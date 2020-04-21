@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "content.proto";
+
+option java_package = "de.stroeer.service.grpc.generated";
+option java_multiple_files = true;
+option go_package = "github.com/stroeer/tapir";
+
+message ArticleRequest {
+    string articleId = 1;
+}
+
+message ArticleResponse {
+    repeated Article results = 1;
+}
+
+service ArticleService {
+    rpc ById (ArticleRequest) returns ( ArticleResponse) {}
+}

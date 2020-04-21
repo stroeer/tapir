@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+option java_package = "de.stroeer.model.generated";
+option java_multiple_files = true;
+option go_package = "github.com/stroeer/tapir";
+
+message Article {
+  string id = 1;
+  string web_url = 2;
+  string canonical_url = 3;
+  ContentType type = 4;
+  string section_path = 5;
+  string headline = 6;
+  map<string, string> fields = 7;
+  repeated string keywords = 8;
+  Metadata metadata = 9;
+  repeated Element elements = 10;
+  repeated Author authors = 11;
+  repeated Onward onward = 12;
+}
+
+message Metadata {
+  string valid_from_date = 1;
+  string valid_to_date = 2;
+  string state = 3;
+  string transformation_date = 4;
+}
+
+message Element {
+  ContentType type = 1;
+  string guid = 2;
+  repeated string relations = 3;
+  repeated Asset assets = 4;
+  string content_id = 5;
+}
+
+enum ContentType {
+  ARTICLE_CONTENT = 0;
+  CODE_CONTENT = 1;
+  EXTERNAL_CONTENT = 2;
+  GALLERY_CONTENT = 3;
+  IMAGE_CONTENT = 4;
+  OEMBED_CONTENT = 5;
+  PAGE_CONTENT = 6;
+  TEASER_CONTENT = 7;
+  UNDEFINED_CONTENT = 8;
+  VIDEO_CONTENT = 9;
+}
+
+enum AssetType {
+    IMAGE_ASSET = 0;
+    VIDEO_ASSET = 1;
+    IMAGES_ASSET = 2;
+    URL_ASSET = 3;
+    METADATA_ASSET = 4;
+    UNDEFINED_ASSET = 5;
+}
+
+message Asset {
+  AssetType type = 1;
+  int64 index = 2;
+  repeated string relations = 3;
+  map<string, string> fields = 4;
+  Metadata metadata = 5;
+}
+
+message Author {
+  string name = 1;
+  string alias = 2;
+  string id = 3;
+  string image_url = 4;
+  string landing_page = 5;
+  string firstname = 6;
+  string surname = 7;
+}
+
+message Onward {
+  string id = 1;
+  repeated string roles = 2;
+}
+
