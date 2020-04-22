@@ -53,7 +53,7 @@ sourceSets {
 
 protobuf {
     protoc {
-        path = "bin/protoc"
+        path = "../bin/protoc"
     }
 
     plugins {
