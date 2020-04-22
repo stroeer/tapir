@@ -24,6 +24,7 @@ message Metadata {
   string valid_to_date = 2;
   string state = 3;
   string transformation_date = 4;
+  string publication_date = 5;
 }
 
 message Element {
@@ -58,7 +59,7 @@ enum AssetType {
 
 message Asset {
   AssetType type = 1;
-  int64 index = 2;
+  int32 index = 2;
   repeated string relations = 3;
   map<string, string> fields = 4;
   Metadata metadata = 5;
