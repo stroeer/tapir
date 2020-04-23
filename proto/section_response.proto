@@ -10,6 +10,16 @@ message SectionResponse {
 }
 
 message Stage {
-  repeated Article main = 1;
-  repeated Article sib = 2;
+  ArticleGroup main = 1;
+  ArticleGroup sib = 2;
+}
+
+message ArticleGroup {
+  repeated Article articles = 1;
+  GroupConfig config = 2;
+}
+
+message GroupConfig {
+  string label = 1;
+  string href = 2;
 }
