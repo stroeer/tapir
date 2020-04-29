@@ -22,7 +22,7 @@ jobs:
           fi
       - if: steps.buf_breaking.outputs.failed == 'true'
         name: comment PR
-        uses: docker.pkg.github.com/stroeer/comment-on-pr/github-action:1.2.0
+        uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
