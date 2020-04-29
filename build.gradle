@@ -10,14 +10,6 @@ group = 'de.stroeer'
 version = System.getenv("RELEASE_TAG") ?: "v0.0.local"
 sourceCompatibility = '11'
 
-task version(type: VersionTask)
-class VersionTask extends DefaultTask {
-    @TaskAction
-    def version() {
-        println project.version
-    }
-}
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -45,7 +37,7 @@ sourceSets {
             srcDirs 'build/generated/source/proto/main/java'
         }
         proto {
-            srcDir '../proto'
+            srcDir 'api'
         }
     }
 }

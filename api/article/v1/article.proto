@@ -1,8 +1,8 @@
 syntax = "proto3";
+package article.v1;
 
-option java_package = "de.stroeer.model.generated";
 option java_multiple_files = true;
-option go_package = "github.com/stroeer/tapir";
+option java_package = "de.stroeer.article.v1";
 
 message Article {
   string id = 1;
@@ -36,25 +36,24 @@ message Element {
 }
 
 enum ContentType {
-  ARTICLE_CONTENT = 0;
-  CODE_CONTENT = 1;
-  EXTERNAL_CONTENT = 2;
-  GALLERY_CONTENT = 3;
-  IMAGE_CONTENT = 4;
-  OEMBED_CONTENT = 5;
-  PAGE_CONTENT = 6;
-  TEASER_CONTENT = 7;
-  UNDEFINED_CONTENT = 8;
-  VIDEO_CONTENT = 9;
+  CONTENT_TYPE_UNSPECIFIED = 0;
+  CONTENT_TYPE_ARTICLE = 1;
+  CONTENT_TYPE_CODE = 2;
+  CONTENT_TYPE_EXTERNAL = 3;
+  CONTENT_TYPE_GALLERY = 4;
+  CONTENT_TYPE_IMAGE = 5;
+  CONTENT_TYPE_OEMBED = 6;
+  CONTENT_TYPE_PAGE = 7;
+  CONTENT_TYPE_TEASER = 8;
+  CONTENT_TYPE_VIDEO = 9;
 }
 
 enum AssetType {
-    IMAGE_ASSET = 0;
-    VIDEO_ASSET = 1;
-    IMAGES_ASSET = 2;
-    URL_ASSET = 3;
-    METADATA_ASSET = 4;
-    UNDEFINED_ASSET = 5;
+    ASSET_TYPE_UNSPECIFIED = 0;
+    ASSET_TYPE_IMAGE = 1;
+    ASSET_TYPE_VIDEO = 2;
+    ASSET_TYPE_URL = 3;
+    ASSET_TYPE_METADATA = 4;
 }
 
 message Asset {

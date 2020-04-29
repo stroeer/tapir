@@ -1,0 +1,6 @@
+build:
+  roots:
+    - api
+lint:
+  use:
+    - DEFAULT

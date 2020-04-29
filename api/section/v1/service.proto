@@ -1,0 +1,15 @@
+syntax = "proto3";
+package section.v1;
+import "article/v1/article.proto";
+
+message GetSectionResponse {
+  repeated article.v1.Article article = 1;
+}
+
+message GetSectionRequest {
+  string section_path = 1;
+}
+
+service SectionService {
+  rpc GetSection (GetSectionRequest) returns (GetSectionResponse) {}
+}
