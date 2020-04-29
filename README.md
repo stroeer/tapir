@@ -1,26 +1,29 @@
 # tapir
-T-online API Repo
 
 <img src="doku/tapir.jpeg" height="200"/>
 
-[What is a tapir?](https://en.wikipedia.org/wiki/Tapir)
+The **T**-online **API** **R**epository contains the interface definitions of t-online APIs 
+that support ~~both REST and~~ gRPC protocols. You can use these definitions with open source 
+tools to generate client libraries, documentation and other artifacts.
 
-## What is this repo for?
-Generating unified models and grpc services from proto definitions for different programming languages
+T-online APIs use [Protocol Buffers](https://github.com/google/protobuf)
+version 3 (proto3) as their Interface Definition Language (IDL) to
+define the API interface and the structure of the payload messages.
 
-Currently supported:
+## Building
+
+The recommended way to build the API client libraries is through Gradle. We currently support:
+
 - Java
 - Node (incl. typescript types)
 
-## How to use it?
+To generate client libraries run
 
-* see [protoboy](https://github.com/stroeer/protoboy) for a PoC in go
+```shell script
+  ./gradlew build
+```
 
-# Generating models and services with Tapir
-    ./gradlew build
-
-files will be generated in 
-    `build/generated/source/proto/main`
+files will be generated in  `build/generated/source/proto/main`
 
 
 
