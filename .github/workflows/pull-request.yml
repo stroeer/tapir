@@ -15,7 +15,7 @@ jobs:
       - name: check breaking change
         id: buf_breaking
         run: |
-          buf check breaking --against-input 'https://github.com/stroeer/proto-ci-test.git#branch=master' --input-config buf.yaml > message.txt || true
+          buf check breaking --against-input 'https://github.com/stroeer/tapir.git#branch=master' --input-config buf.yaml > message.txt || true
           echo "::set-output name=message::$(cat message.txt)"
           if [ -s message.txt ]; then
             echo ::set-output name=failed::'true';
