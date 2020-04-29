@@ -6,15 +6,16 @@ jobs:
   publish-java:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup protoc
-        run: scripts/install_protoc.sh
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          version: '3.11.4'
       - name: Set up Java
         uses: actions/setup-java@v1
         with:
           java-version: 11
       - name: Publish to GitHub Packages
-        run: ./java/gradlew -p java clean publish
+        run: ./gradlew clean publish
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
