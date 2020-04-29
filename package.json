@@ -1,6 +1,6 @@
 {
   "name": "@stroeer/tapir",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "T-online API Repo",
   "devDependencies": {
     "ts-protoc-gen": "0.12.0",
