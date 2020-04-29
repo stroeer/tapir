@@ -1,9 +1,8 @@
 syntax = "proto3";
+package article.v1;
 
-option java_package = "de.stroeer.model.generated";
 option java_multiple_files = true;
-option go_package = "github.com/stroeer/tapir";
-package core.v1;
+option java_package = "de.stroeer.article.v1";
 
 message Article {
   string id = 1;
