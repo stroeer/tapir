@@ -4,4 +4,9 @@
 node_modules
 
 bin
-java/bin
+.gradle
+.env
+build
+*.iml
+*.ipr
+*.iws
