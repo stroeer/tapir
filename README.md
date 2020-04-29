@@ -16,6 +16,10 @@ Currently supported:
 
 * see [protoboy](https://github.com/stroeer/protoboy) for a PoC in go
 
+## Installing Dependencies locally
+### ts-protoc-gen
+    npm install
+  
 # Generating models and services with Tapir
     ./gradlew build
 
