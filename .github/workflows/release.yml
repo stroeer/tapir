@@ -14,8 +14,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.16.1'
-      - name: Setup ts-protoc-gen
-        run: npm install ts-protoc-gen
+      - name: npm install
+        run: npm install
       - name: Publish to GitHub Packages
         run: ./gradlew clean publish
         env:
