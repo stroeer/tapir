@@ -55,14 +55,14 @@ protobuf {
         grpc {
             artifact = 'io.grpc:protoc-gen-grpc-java:1.28.1'
         }
-        ts {
+        node {
             path = './node_modules/ts-protoc-gen/bin/protoc-gen-ts'
         }
     }
 
     generateProtoTasks {
         all()*.plugins {
-            ts {
+            node {
                 option 'import_style=commonjs'
                 option 'binary'
             }
