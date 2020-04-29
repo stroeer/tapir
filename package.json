@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "description": "T-online API Repo",
   "dependencies": {
-    "ts-protoc-gen": "^0.12.0"
+    "ts-protoc-gen": "0.12.0"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stroeer/tapir.git"
   },
+  "files": [
+    "**/*.ts"
+  ],
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/stroeer/tapir/issues"
   },
-  "homepage": "https://github.com/stroeer/tapir#readme"
+  "homepage": "https://github.com/stroeer/tapir#readme",
+  "types": "generated/main/ts"
 }
