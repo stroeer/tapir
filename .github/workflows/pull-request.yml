@@ -10,6 +10,10 @@ jobs:
     container: bufbuild/buf
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
       - name: lint
         run: buf check lint
       - name: check breaking change
@@ -41,9 +45,5 @@ jobs:
           msg: |
             ## :white_check_mark: No Breaking Changes
           check_for_duplicate_msg: false
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
       - name: Run java checks
         run: ./gradlew clean build
