@@ -33,8 +33,8 @@ dependencies {
 sourceSets {
     main {
         java {
-            srcDirs 'build/generated/source/proto/main/grpc'
-            srcDirs 'build/generated/source/proto/main/java'
+            srcDirs 'generated/main/java'
+            srcDirs 'generated/main/grpc'
         }
         proto {
             srcDir 'api'
@@ -44,25 +44,33 @@ sourceSets {
 
 
 protobuf {
+    generatedFilesBaseDir = "$projectDir/generated"
+
     protoc {
-        path = "bin/protoc"
+        artifact = 'com.google.protobuf:protoc:3.11.4'
     }
 
     plugins {
         grpc {
             artifact = 'io.grpc:protoc-gen-grpc-java:1.28.1'
         }
+        ts {
+            path = './node_modules/ts-protoc-gen/bin/protoc-gen-ts'
+        }
     }
 
     generateProtoTasks {
         all()*.plugins {
+            ts {
+                option 'import_style=commonjs'
+                option 'binary'
+            }
             grpc {}
         }
     }
 }
 
 java {
-//    withJavadocJar()
     withSourcesJar()
 }
 
