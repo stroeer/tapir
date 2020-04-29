@@ -2,7 +2,7 @@
 
 # node
 node_modules
-
+generated
 bin
 .gradle
 .env
