@@ -9,7 +9,7 @@ NODE_DIR = ./node
 dir: ## Creates outdir if necessary
 	[ -d $(JAVA_DIR) ] || mkdir $(JAVA_DIR)
 
-node: dir  ## Generates node resources
+node:  ## Generates node resources
 	@echo "+ $@"
 	for filename in $(shell find api -iname "*.proto") ; do \
 		protoc --proto_path=$(PROTO_DIR) \
