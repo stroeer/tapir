@@ -30,8 +30,10 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: npm publish dry run
-        run: ./npmpublish.sh
+      - name: npm publish
+        run: |
+          npm version $RELEASE_TAG
+          npm publish
         working-directory: node
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
