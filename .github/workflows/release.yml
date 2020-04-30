@@ -14,8 +14,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.16.1'
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          version: '3.11.4'
+      - name: Install proto libraries
+        run: ./install_protoc_libs.sh
       - name: npm install
         run: npm install
+        working-directory: node
+      - name: protoc via make
+        run: make all
       - name: Publish to GitHub Packages
         run: ./gradlew clean publish
         env:
@@ -23,6 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm publish dry run
         run: ./npmpublish.sh
+        working-directory: node
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

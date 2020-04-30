@@ -14,6 +14,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          version: '3.11.4'
+      - name: Install proto libraries
+        run: ./install_protoc_libs.sh
+      - name: protoc via make
+        run: make all
       - name: lint
         run: buf check lint
       - name: check breaking change
