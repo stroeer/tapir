@@ -1,7 +1,7 @@
 {
-  "name": "@stroeer/tapir-v1",
-  "version": "0.0.4",
-  "description": "T-online API Repo",
+  "name": "@stroeer/tapir",
+  "version": "0.0.5",
+  "description": "T-Online API Repo",
   "devDependencies": {
     "ts-protoc-gen": "0.12.0",
     "grpc-tools": "1.8.1"
@@ -18,8 +18,6 @@
     "article",
     "section"
   ],
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stroeer/tapir/issues"
