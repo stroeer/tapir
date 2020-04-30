@@ -6,4 +6,9 @@ chmod +x protoc-gen-grpc-java
 PROTOC_VERSION=3.11.4
 wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip -O protoc.zip
 unzip -o protoc.zip bin/protoc
-./bin/protoc --version
+ls -al
+./bin/protoc --version || true
+bin/protoc --version || true
+./protoc --version || true
+protoc --version || true
+exit 1
