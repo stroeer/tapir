@@ -20,7 +20,7 @@ jobs:
         run: npm --prefix node install
         working-directory: node
       - name: make protoc
-        run: make all
+        run: make PROTOC_BIN=./protoc all
       - name: Publish to GitHub Packages
         run: ./gradlew clean publish
         env:

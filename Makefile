@@ -5,6 +5,7 @@ all: clean java node
 JAVA_DIR = ./generated
 PROTO_DIR = ./api
 NODE_DIR = ./node
+PROTOC_BIN ?= protoc
 
 dir: ## Creates outdir if necessary
 	[ -d $(JAVA_DIR) ] || mkdir $(JAVA_DIR)
@@ -12,7 +13,7 @@ dir: ## Creates outdir if necessary
 node:  ## Generates node resources
 	@echo "+ $@"
 	for filename in $(shell find api -iname "*.proto") ; do \
-		protoc --proto_path=$(PROTO_DIR) \
+		$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-ts=$(NODE_DIR)/node_modules/.bin/protoc-gen-ts \
 		--plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin \
 		--js_out=import_style=commonjs,binary:$(NODE_DIR) \
@@ -23,9 +24,8 @@ node:  ## Generates node resources
 java: dir ## Generates java resources
 	@echo "+ $@"
 	for filename in $(shell find api -iname "*.proto") ; do \
-		protoc --proto_path=$(PROTO_DIR) \
+		$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-grpc=protoc-gen-grpc-java \
-		--java_out=$(JAVA_DIR) \
 		--java_out=$(JAVA_DIR) \
 		--grpc_out=$(JAVA_DIR) $$filename ; \
 	done

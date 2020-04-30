@@ -17,7 +17,7 @@ jobs:
       - name: Setup Proto
         run: ./install_proto.sh
       - name: protoc via make
-        run: make all
+        run: make PROTOC_BIN=./protoc all
       - name: lint
         run: buf check lint
       - name: check breaking change
