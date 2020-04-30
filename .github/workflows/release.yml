@@ -1,9 +1,10 @@
 name: Publish package to GitHub Packages
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 jobs:
-  publish-java:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Java
