@@ -6,6 +6,10 @@ jobs:
   publish-java:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Protoc
+        uses: arduino/setup-protoc@master
+        with:
+          version: '3.11.4'
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
@@ -14,10 +18,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.16.1'
-      - name: Install Protoc
-        uses: arduino/setup-protoc@master
-        with:
-          version: '3.11.4'
       - name: Install proto libraries
         run: ./install_protoc_libs.sh
       - name: npm install
