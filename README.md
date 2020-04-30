@@ -18,14 +18,17 @@ The recommended way to build the API client libraries is through Gradle. We curr
 - Node (incl. typescript types)
 
 ## Installing Dependencies locally
+### protoc
+    brew install protobuf
 ### ts-protoc-gen
-    npm install
+    npm --prefix node install
   
 # Generating models and services with Tapir
 ```shell script
-  ./gradlew build
+  make all
 ```
-files will be generated in  `generated/main`
+
+files will be generated in folders `generated` for java and `node` for the node resources
 
 
 
