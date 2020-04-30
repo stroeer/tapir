@@ -15,14 +15,17 @@
     "url": "git+https://github.com/stroeer/tapir.git"
   },
   "files": [
-    "**/*.ts"
+    "js",
+    "grpcjs",
+    "ts"
   ],
+  "main": "index.js",
+  "types": "./ts",
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stroeer/tapir/issues"
   },
-  "homepage": "https://github.com/stroeer/tapir#readme",
-  "types": "generated/main/ts"
+  "homepage": "https://github.com/stroeer/tapir#readme"
 }
