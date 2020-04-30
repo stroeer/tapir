@@ -65,13 +65,9 @@ message Asset {
 }
 
 message Author {
-  string name = 1;
-  string alias = 2;
-  string id = 3;
-  string image_url = 4;
-  string landing_page = 5;
-  string firstname = 6;
-  string surname = 7;
+  string first_name = 1;
+  string surname = 2;
+  string web_url = 3;
 }
 
 message Onward {
