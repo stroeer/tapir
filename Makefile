@@ -1,3 +1,4 @@
+# mark targets to avoid confusion with files
 .PHONY: help clean dir node java
 all: clean java node
 
@@ -10,7 +11,7 @@ dir: ## Creates outdir if necessary
 node: dir  ## Generates node resources
 	@echo "+ $@"
 	for filename in $(shell find api -iname "*.proto") ; do \
-		protoc --proto_path=api --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin --js_out=import_style=commonjs_strict,binary:node --ts_out=service=grpc-node:node --grpc_out=node $$filename ; \
+		protoc --proto_path=api --plugin=protoc-gen-ts=./node/node_modules/.bin/protoc-gen-ts --plugin=protoc-gen-grpc=./node/node_modules/.bin/grpc_tools_node_protoc_plugin --js_out=import_style=commonjs_strict,binary:node --ts_out=service=grpc-node:node --grpc_out=node $$filename ; \
 	done
 
 java: dir ## Generates java resources

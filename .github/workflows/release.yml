@@ -21,7 +21,7 @@ jobs:
       - name: Install proto libraries
         run: ./install_protoc_libs.sh
       - name: npm install
-        run: npm install
+        run: npm --prefix node install
         working-directory: node
       - name: protoc via make
         run: make all
