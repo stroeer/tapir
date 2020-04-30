@@ -14,8 +14,8 @@ node: dir  ## Generates node resources
 	for filename in $(shell find api -iname "*.proto") ; do \
 		protoc --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-ts=$(NODE_DIR)/node_modules/.bin/protoc-gen-ts \
-		--plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin -\
-		-js_out=import_style=commonjs,binary:$(NODE_DIR) \
+		--plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin \
+		--js_out=import_style=commonjs,binary:$(NODE_DIR) \
 		--ts_out=service=grpc-node:$(NODE_DIR) \
 		--grpc_out=$(NODE_DIR) $$filename ; \
 	done
@@ -25,6 +25,7 @@ java: dir ## Generates java resources
 	for filename in $(shell find api -iname "*.proto") ; do \
 		protoc --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-grpc=protoc-gen-grpc-java \
+		--java_out=$(JAVA_DIR) \
 		--java_out=$(JAVA_DIR) \
 		--grpc_out=$(JAVA_DIR) $$filename ; \
 	done
