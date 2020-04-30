@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 JAVA_LIB_VERSION=1.29.0
 URL=https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/$JAVA_LIB_VERSION/protoc-gen-grpc-java-$JAVA_LIB_VERSION-linux-x86_64.exe
 wget $URL > protoc-gen-grpc-java
