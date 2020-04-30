@@ -10,7 +10,7 @@ message GetArticleRequest {
 }
 
 message GetArticleResponse {
-    repeated Article results = 1;
+    Article result = 1;
 }
 
 service ArticleService {

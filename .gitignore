@@ -2,7 +2,7 @@
 
 # node
 node_modules
-
+generated
 bin
 .gradle
 .env
@@ -10,3 +10,5 @@ build
 *.iml
 *.ipr
 *.iws
+node/article
+node/section

@@ -1,21 +1,37 @@
 name: Publish package to GitHub Packages
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 jobs:
-  publish-java:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Protoc
-        uses: arduino/setup-protoc@master
-        with:
-          version: '3.11.4'
-      - name: Set up Java
+      - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+      - name: Setup Proto
+        run: ./install_proto.sh
+      - name: npm install
+        run: npm --prefix node install
+        working-directory: node
+      - name: make protoc
+        run: make PROTOC_BIN=./bin/protoc all
       - name: Publish to GitHub Packages
         run: ./gradlew clean publish
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: npm publish
+        run: |
+          npm version $RELEASE_TAG
+          npm publish
+        working-directory: node
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

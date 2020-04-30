@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  validate:
+  buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
     steps:
@@ -15,14 +15,14 @@ jobs:
       - name: check breaking change
         id: buf_breaking
         run: |
-          buf check breaking --against-input 'https://github.com/stroeer/proto-ci-test.git#branch=master' --input-config buf.yaml > message.txt || true
+          buf check breaking --against-input 'https://github.com/stroeer/tapir.git#branch=master' --input-config buf.yaml > message.txt || true
           echo "::set-output name=message::$(cat message.txt)"
           if [ -s message.txt ]; then
             echo ::set-output name=failed::'true';
           fi
       - if: steps.buf_breaking.outputs.failed == 'true'
         name: comment PR
-        uses: docker.pkg.github.com/stroeer/comment-on-pr/github-action:1.2.0
+        uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -41,3 +41,23 @@ jobs:
           msg: |
             ## :white_check_mark: No Breaking Changes
           check_for_duplicate_msg: false
+  protoc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+      - name: npm install
+        run: npm --prefix node install
+      - name: Setup Proto
+        run: ./install_proto.sh
+      - name: protoc via make
+        run: make PROTOC_BIN=./bin/protoc all
+      - name: Run java checks
+        run: ./gradlew clean build
