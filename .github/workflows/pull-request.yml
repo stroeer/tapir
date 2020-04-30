@@ -49,6 +49,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.16.1'
+      - name: npm install
+        run: npm --prefix node install
       - name: Setup Proto
         run: ./install_proto.sh
       - name: protoc via make
