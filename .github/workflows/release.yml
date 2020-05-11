@@ -19,7 +19,7 @@ jobs:
       - name: Setup Proto
         run: ./install_proto.sh
       - name: npm install
-        run: npm --prefix node install
+        run: npm install
         working-directory: node
       - name: make protoc
         run: make PROTOC_BIN=./bin/protoc all
