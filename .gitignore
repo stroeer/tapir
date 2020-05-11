@@ -2,13 +2,14 @@
 
 # node
 node_modules
-generated
-bin
+node/article
+node/section
+bin/protoc
+java/build
+java/.gradle
+java/src/main/java
 .gradle
-.env
-build
 *.iml
 *.ipr
 *.iws
-node/article
-node/section
+protoc-gen-grpc-java
