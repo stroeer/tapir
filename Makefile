@@ -2,14 +2,14 @@
 .PHONY: clean dir help java node
 all: clean java node
 
-JAVA_DIR = ./generated
+JAVA_DIR = ./java/src/main/java
 PROTO_DIR = ./api
 NODE_DIR = ./node
 PROTOC_BIN ?= protoc
-ALL_PROTO_FILES = $(shell find api -iname "*.proto" ! -name 'all.proto' -exec echo -n '"{}" ' \; | tr '\n' ' ')
+ALL_PROTO_FILES = $(shell find api -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
 
 dir: ## Creates outdir if necessary
-	[ -d $(JAVA_DIR) ] || mkdir $(JAVA_DIR)
+	[ -d $(JAVA_DIR) ] || mkdir -p $(JAVA_DIR)
 
 node:  ## Generates node resources
 	@echo "+ $@"
@@ -30,7 +30,7 @@ java: dir ## Generates java resources
 
 clean: ## Deletes all generated files
 	@echo "+ $@"
-	rm -rf generated  || true
+	rm -rf $(JAVA_DIR)  || true
 	rm -R `find node -type d \( -iname "*" ! -iname "node_modules" \) -mindepth 1 -maxdepth 1` || true
 
 help: ## Display this help screen
