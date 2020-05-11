@@ -1,4 +1,4 @@
-package main;
+package de.stroeer.v1.article;
 
 import de.stroeer.article.v1.Article;
 import de.stroeer.article.v1.Article.Builder;
