@@ -1,0 +1,7 @@
+package v1;
+
+// This file is for debugging purposes
+// Tools like BloomRPC and other CLIs have problems with imports
+import public "article/article.proto";
+import public "article/service.proto";
+import public "section/service.proto";

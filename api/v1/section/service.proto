@@ -1,12 +1,12 @@
 syntax = "proto3";
-package section.v1;
-import "article/v1/article.proto";
+package v1.section;
+import "article/article.proto";
 
 option java_multiple_files = true;
-option java_package = "de.stroeer.section.v1";
+option java_package = "de.stroeer.api.v1.section";
 
 message GetSectionResponse {
-  repeated article.v1.Article article = 1;
+  repeated v1.article.Article article = 1;
 }
 
 message GetSectionRequest {
