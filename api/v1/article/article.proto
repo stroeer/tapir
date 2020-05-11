@@ -27,7 +27,7 @@ message Metadata {
 }
 
 message Element {
-  ContentType type = 1;
+  ElementType type = 1;
   string guid = 2;
   repeated string relations = 3;
   repeated Asset assets = 4;
@@ -41,18 +41,27 @@ enum ContentType {
   CONTENT_TYPE_VIDEO = 3;
   CONTENT_TYPE_GALLERY = 4;
   CONTENT_TYPE_OEMBED = 5;
-  CONTENT_TYPE_EXTERNAL = 6;
-  CONTENT_TYPE_TEASER = 7;
-  CONTENT_TYPE_CODE = 8;
-  CONTENT_TYPE_PAGE = 9;
+}
+
+enum ElementType {
+  ELEMENT_TYPE_UNSPECIFIED = 0;
+  ELEMENT_TYPE_ARTICLE = 1;
+  ELEMENT_TYPE_IMAGE = 2;
+  ELEMENT_TYPE_VIDEO = 3;
+  ELEMENT_TYPE_GALLERY = 4;
+  ELEMENT_TYPE_OEMBED = 5;
+  ELEMENT_TYPE_EXTERNAL = 6;
+  ELEMENT_TYPE_TEASER = 7;
+  ELEMENT_TYPE_CODE = 8;
+  ELEMENT_TYPE_PAGE = 9;
 }
 
 enum AssetType {
-    ASSET_TYPE_UNSPECIFIED = 0;
-    ASSET_TYPE_IMAGE = 1;
-    ASSET_TYPE_VIDEO = 2;
-    ASSET_TYPE_URL = 3;
-    ASSET_TYPE_METADATA = 4;
+  ASSET_TYPE_UNSPECIFIED = 0;
+  ASSET_TYPE_IMAGE = 1;
+  ASSET_TYPE_VIDEO = 2;
+  ASSET_TYPE_URL = 3;
+  ASSET_TYPE_METADATA = 4;
 }
 
 message Asset {
