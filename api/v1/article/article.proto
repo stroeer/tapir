@@ -1,5 +1,6 @@
 syntax = "proto3";
 package v1.article;
+import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
 option java_package = "de.stroeer.api.v1.article";
@@ -20,10 +21,10 @@ message Article {
 }
 
 message Metadata {
-  string valid_from_date = 1;
-  string valid_to_date = 2;
+  google.protobuf.Timestamp valid_from_date = 1;
+  google.protobuf.Timestamp valid_to_date = 2;
   string state = 3;
-  string transformation_date = 4;
+  google.protobuf.Timestamp transformation_date = 4;
 }
 
 message Element {
