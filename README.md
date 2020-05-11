@@ -12,7 +12,7 @@ define the API interface and the structure of the payload messages.
 
 ## Building
 
-The recommended way to build the API client libraries is through Gradle. We currently support:
+We currently support:
 
 - Java
 - Node (incl. typescript types)
@@ -28,7 +28,10 @@ The recommended way to build the API client libraries is through Gradle. We curr
   make all
 ```
 
-files will be generated in folders `generated` for java and `node` for the node resources
+files will be generated in folders `src` for java and `node` for the node resources
 
+## Continuous Integration
+- Login to github packages for `npm publish` is done via the actions/setup-node@v1 which writes a .npmrc file with the token from the secrets
+- login to github packages for `gradlew publish` is done via env vars which are accessed in the `build.gradle`
 
 
