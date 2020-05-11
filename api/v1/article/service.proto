@@ -1,16 +1,16 @@
 syntax = "proto3";
-package article.v1;
-import "article/v1/article.proto";
+package v1.article;
+import "v1/article/article.proto";
 
 option java_multiple_files = true;
-option java_package = "de.stroeer.article.v1";
+option java_package = "de.stroeer.api.v1.article";
 
 message GetArticleRequest {
     string article_id = 1;
 }
 
 message GetArticleResponse {
-    Article result = 1;
+    v1.article.Article result = 1;
 }
 
 service ArticleService {
