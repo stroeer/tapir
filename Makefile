@@ -6,29 +6,27 @@ JAVA_DIR = ./generated
 PROTO_DIR = ./api
 NODE_DIR = ./node
 PROTOC_BIN ?= protoc
+ALL_PROTO_FILES = $(shell find api -iname "*.proto" ! -name 'all.proto' -exec echo -n '"{}" ' \; | tr '\n' ' ')
 
 dir: ## Creates outdir if necessary
 	[ -d $(JAVA_DIR) ] || mkdir $(JAVA_DIR)
 
 node:  ## Generates node resources
 	@echo "+ $@"
-	for filename in $(shell find api -iname "*.proto") ; do \
-		$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
+	$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-ts=$(NODE_DIR)/node_modules/.bin/protoc-gen-ts \
 		--plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin \
 		--js_out=import_style=commonjs,binary:$(NODE_DIR) \
 		--ts_out=service=grpc-node:$(NODE_DIR) \
-		--grpc_out=$(NODE_DIR) $$filename ; \
-	done
+		--grpc_out=$(NODE_DIR) $(ALL_PROTO_FILES)
+
 
 java: dir ## Generates java resources
 	@echo "+ $@"
-	for filename in $(shell find api -iname "*.proto") ; do \
-		$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
+	$(PROTOC_BIN) --proto_path=$(PROTO_DIR) \
 		--plugin=protoc-gen-grpc=protoc-gen-grpc-java \
 		--java_out=$(JAVA_DIR) \
-		--grpc_out=$(JAVA_DIR) $$filename ; \
-	done
+		--grpc_out=$(JAVA_DIR) $(ALL_PROTO_FILES)
 
 clean: ## Deletes all generated files
 	@echo "+ $@"

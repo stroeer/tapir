@@ -1,6 +1,6 @@
 syntax = "proto3";
 package v1.article;
-import "article.proto";
+import "v1/article/article.proto";
 
 option java_multiple_files = true;
 option java_package = "de.stroeer.api.v1.article";
