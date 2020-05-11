@@ -2,8 +2,7 @@
 
 # node
 node_modules
-node/article
-node/section
+node/v1
 bin/protoc
 java/build
 java/.gradle
