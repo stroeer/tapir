@@ -15,8 +15,7 @@
     "url": "git+https://github.com/stroeer/tapir.git"
   },
   "files": [
-    "article",
-    "section"
+    "v1"
   ],
   "license": "MIT",
   "bugs": {
