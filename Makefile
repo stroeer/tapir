@@ -2,7 +2,7 @@
 .PHONY: clean dir help java node
 all: clean java node
 
-JAVA_DIR = ./java/src/main/java
+JAVA_DIR = ./java/src/main/gen
 PROTO_DIR = ./api
 NODE_DIR = ./node
 PROTOC_BIN ?= protoc
