@@ -9,11 +9,11 @@ import com.google.protobuf.util.JsonFormat;
 import java.io.IOException;
 
 // borrowed from https://github.com/venth/training-webflux-grpc
-class ProtobufSerializer extends StdSerializer<GeneratedMessageV3> {
+public class ProtobufSerializer extends StdSerializer<GeneratedMessageV3> {
 
   private final JsonFormat.Printer printer;
 
-  ProtobufSerializer() {
+  public ProtobufSerializer() {
     super(GeneratedMessageV3.class);
     printer = JsonFormat.printer()
         .preservingProtoFieldNames()
