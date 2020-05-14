@@ -1,6 +1,6 @@
 <div align="center">
-  <h1>tapir</h1>
   <img src="doku/tapir.png" height="200" alt="tapir"/>
+   <h1>tapir</h1>
 </div>
 
 The **T**-online **API** **R**epository contains the interface definitions of t-online APIs
