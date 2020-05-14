@@ -24,6 +24,7 @@ We currently support:
 # protoc
 $ brew install protobuf
 
+# protoc-gen-grpc
 # ts-protoc-gen
 $ npm --prefix node install
 ```
