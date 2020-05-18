@@ -52,7 +52,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.16.1'
+          node-version: "12.x"
       - name: npm install
         run: npm install
         working-directory: node
@@ -63,3 +63,6 @@ jobs:
       - name: Run java checks
         run: ./gradlew clean build
         working-directory: java
+      - name: Run node checks
+        run: npm test
+        working-directory: node
