@@ -1,6 +1,12 @@
 build:
   roots:
     - .
+  excludes:
+    - node/node_modules
 lint:
   use:
     - DEFAULT
+  except:
+    - RPC_RESPONSE_STANDARD_NAME
+  ignore:
+    - all.proto

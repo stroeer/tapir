@@ -20,7 +20,11 @@ FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
 endif
 FLAGS+= --grpc_out=$(OUTPUT)
 
-all: clean stroeer/core stroeer/article
+all: stroeer/core stroeer/article
+
+$(OUTPUT):
+	@echo "+ $@"
+	[ -d $@ ] || mkdir -p $@
 
 stroeer/%: $(OUTPUT)
 	@echo "+ $@"

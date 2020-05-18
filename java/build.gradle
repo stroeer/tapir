@@ -35,6 +35,10 @@ task printVersion {
 }
 publishToMavenLocal.dependsOn printVersion
 
+java {
+  withSourcesJar()
+}
+
 publishing {
     repositories {
         maven {
@@ -55,10 +59,15 @@ publishing {
             pom {
                 name = artifactId
                 description = "T-Online GRPC API for ${artifactId}"
+                url = 'https://github.com/stroeer/tapir'
 
                 organization {
                     name = 'T-Online'
                     url = 'https://www.t-online.de'
+                }
+
+                scm {
+                  url = 'https://github.com/stroeer/tapir'
                 }
             }
         }

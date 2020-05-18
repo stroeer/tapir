@@ -52,7 +52,7 @@ $ npm --prefix node install
 Then run:
 
 ```bash
-$ make LANGUAGE=node OUTPUT=./node PROTOC=protoc stroeer/core stroeer/article
+$ make LANGUAGE=node OUTPUT=./node PROTOC=protoc
 ```
 
 #### release
