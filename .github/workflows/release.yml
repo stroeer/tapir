@@ -33,6 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: npm test
         run: npm test
+        working-directory: node
       - name: npm publish
         run: |
           npm version $RELEASE_TAG
