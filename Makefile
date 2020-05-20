@@ -12,6 +12,7 @@
 DIR = $(shell pwd)
 JAVA_DIR = ./java/src/main/java
 NODE_DIR = ./node
+GO_DIR = ./go
 
 OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
@@ -25,13 +26,15 @@ FLAGS+= --plugin=protoc-gen-ts=$(NODE_DIR)/node_modules/.bin/protoc-gen-ts
 FLAGS+= --plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin
 FLAGS+= --js_out=import_style=commonjs,binary:$(NODE_DIR)
 FLAGS+= --ts_out=service=grpc-node:$(NODE_DIR)
+FLAGS+= --grpc_out=$(OUTPUT)
 else ifeq ($(LANGUAGE),go)
 FLAGS+= --$(LANGUAGE)_out=plugins=grpc:$(OUTPUT)
 else
+# java, swift, php, js
 FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
-endif
 FLAGS+= --grpc_out=$(OUTPUT)
+endif
 
 all: clean stroeer/*
 
@@ -47,6 +50,7 @@ stroeer/%: $(OUTPUT)
 clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf $(JAVA_DIR)  || true
+	rm -rf $(GO_DIR)  || true
 	rm -R `find node -type d \( -iname "*" ! -iname "node_modules" ! -iname "tests" \) -mindepth 1 -maxdepth 1` || true
 
 .PHONY: help
