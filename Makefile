@@ -1,3 +1,14 @@
+# This is a simple Makefile that generates client library source code
+# for Tapir using Protocol Buffers and gRPC for any supported
+# language. However, it does not compile the generated code into final
+# libraries that can be directly used with application code.
+#
+# Supported (tested) languages: java, node (TypeScript), go
+#
+# Syntax example:
+#		make LANGUAGE=node OUTPUT=./node
+#
+
 DIR = $(shell pwd)
 JAVA_DIR = ./java/src/main/java
 NODE_DIR = ./node
@@ -14,6 +25,8 @@ FLAGS+= --plugin=protoc-gen-ts=$(NODE_DIR)/node_modules/.bin/protoc-gen-ts
 FLAGS+= --plugin=protoc-gen-grpc=$(NODE_DIR)/node_modules/.bin/grpc_tools_node_protoc_plugin
 FLAGS+= --js_out=import_style=commonjs,binary:$(NODE_DIR)
 FLAGS+= --ts_out=service=grpc-node:$(NODE_DIR)
+else ifeq ($(LANGUAGE),go)
+FLAGS+= --$(LANGUAGE)_out=plugins=grpc:$(OUTPUT)
 else
 FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
