@@ -1,15 +1,15 @@
 plugins {
-    id 'idea'
-    id 'java-library'
-    id 'maven-publish'
+  id 'idea'
+  id 'java-library'
+  id 'maven-publish'
 }
 
 ext {
-    apiVersion = 'v1'
-    externalVersion = System.getenv("RELEASE_TAG") ?: "0.0.1-local"
+  apiVersion = 'v1'
+  externalVersion = System.getenv("RELEASE_TAG") ?: "0.0.1-local"
 
-    gh_username = System.getenv("GITHUB_USERNAME") ?: "username"
-    gh_token = System.getenv("GITHUB_TOKEN") ?: "github_token"
+  gh_username = System.getenv("GITHUB_USERNAME") ?: "username"
+  gh_token = System.getenv("GITHUB_TOKEN") ?: "github_token"
 }
 
 group = 'de.stroeer.api.grpc'
@@ -18,20 +18,24 @@ version = externalVersion
 sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation(
-            'io.grpc:grpc-services:1.29.0',
-            'javax.annotation:javax.annotation-api:1.3.2'
-    )
+  implementation(
+    'io.grpc:grpc-services:1.29.0',
+    'javax.annotation:javax.annotation-api:1.3.2'
+  )
+
+  testImplementation(
+    'org.junit.jupiter:junit-jupiter:5.6.2'
+  )
 }
 
 task printVersion {
-    doLast {
-        println "publishing: ${project.group}:${archivesBaseName}:${version}"
-    }
+  doLast {
+    println "publishing: ${project.group}:${archivesBaseName}:${version}"
+  }
 }
 publishToMavenLocal.dependsOn printVersion
 
@@ -39,37 +43,41 @@ java {
   withSourcesJar()
 }
 
+test {
+  useJUnitPlatform()
+}
+
 publishing {
-    repositories {
-        maven {
-            name = 'GitHubPackages'
-            url = uri('https://maven.pkg.github.com/stroeer/tapir')
-            credentials {
-                username = gh_username
-                password = gh_token
-            }
-        }
+  repositories {
+    maven {
+      name = 'GitHubPackages'
+      url = uri('https://maven.pkg.github.com/stroeer/tapir')
+      credentials {
+        username = gh_username
+        password = gh_token
+      }
     }
+  }
 
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
+  publications {
+    gpr(MavenPublication) {
+      from(components.java)
 
-            artifactId "${archivesBaseName}"
-            pom {
-                name = artifactId
-                description = "T-Online GRPC API for ${artifactId}"
-                url = 'https://github.com/stroeer/tapir'
+      artifactId "${archivesBaseName}"
+      pom {
+        name = artifactId
+        description = "T-Online GRPC API for ${artifactId}"
+        url = 'https://github.com/stroeer/tapir'
 
-                organization {
-                    name = 'T-Online'
-                    url = 'https://www.t-online.de'
-                }
-
-                scm {
-                  url = 'https://github.com/stroeer/tapir'
-                }
-            }
+        organization {
+          name = 'T-Online'
+          url = 'https://www.t-online.de'
         }
+
+        scm {
+          url = 'https://github.com/stroeer/tapir'
+        }
+      }
     }
+  }
 }

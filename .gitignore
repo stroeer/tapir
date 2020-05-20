@@ -8,8 +8,7 @@ bin/protoc
 # java
 java/build
 java/.gradle
-java/src/main/gen
-java/src
+java/src/main/java
 .gradle
 *.iml
 *.ipr
