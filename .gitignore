@@ -4,6 +4,7 @@
 node_modules
 node/stroeer
 bin/protoc
+*.tgz
 
 # java
 java/build
@@ -14,3 +15,6 @@ java/src/main/java
 *.ipr
 *.iws
 protoc-gen-grpc-java
+
+# go
+go/
