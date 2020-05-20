@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stroeer.section.v1;
+
+import "stroeer/core/v1/article.proto";
+
+option java_multiple_files = true;
+option java_outer_classname = "ServiceProto";
+option java_package = "de.stroeer.section.v1";
+
+service SectionService {
+  rpc GetSection (GetSectionRequest) returns (GetSectionResponse) {}
+}
+
+message GetSectionResponse {
+  repeated stroeer.core.v1.Article article = 1;
+}
+
+message GetSectionRequest {
+  string section_path = 1;
+}
