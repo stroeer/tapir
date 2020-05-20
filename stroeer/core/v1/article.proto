@@ -5,7 +5,6 @@ package stroeer.core.v1;
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
-option java_outer_classname = "ArticleProto";
 option java_package = "de.stroeer.core.v1";
 
 message Article {

@@ -5,7 +5,6 @@ package stroeer.article.v1;
 import "stroeer/core/v1/article.proto";
 
 option java_multiple_files = true;
-option java_outer_classname = "ServiceProto";
 option java_package = "de.stroeer.article.v1";
 
 service ArticleService {
