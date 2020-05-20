@@ -22,7 +22,7 @@
     "url": "git+https://github.com/stroeer/tapir.git"
   },
   "files": [
-    "v1"
+    "stroeer"
   ],
   "license": "MIT",
   "bugs": {

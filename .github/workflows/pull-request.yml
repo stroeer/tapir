@@ -86,7 +86,6 @@ jobs:
       - name: make
         run: make PROTOC=./bin/protoc LANGUAGE=node OUTPUT=./node
 
-# do we need to test protoc?
-#      - name: Run node checks
-#        run: npm test
-#        working-directory: node
+      - name: Run node checks
+        run: npm test
+        working-directory: node

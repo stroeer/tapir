@@ -46,10 +46,9 @@ jobs:
       - name: make
         run: make PROTOC=./bin/protoc LANGUAGE=node OUTPUT=./node
 
-# do we need to test protoc?
-#      - name: npm test
-#        run: npm test
-#        working-directory: node
+      - name: npm test
+        run: npm test
+        working-directory: node
 
       - name: npm publish
         run: |
