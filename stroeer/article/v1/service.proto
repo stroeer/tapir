@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package stroeer.article.v1;
+
+import "stroeer/core/v1/article.proto";
+
+option java_multiple_files = true;
+option java_package = "de.stroeer.article.v1";
+
+service ArticleService {
+  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+}
+
+message GetArticleRequest {
+  string id = 1;
+}
+

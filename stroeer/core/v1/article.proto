@@ -1,9 +1,11 @@
 syntax = "proto3";
-package v1.article;
+
+package stroeer.core.v1;
+
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
-option java_package = "de.stroeer.api.v1.article";
+option java_package = "de.stroeer.core.v1";
 
 message Article {
   string id = 1;
@@ -17,7 +19,7 @@ message Article {
   Metadata metadata = 9;
   repeated Element elements = 10;
   repeated Author authors = 11;
-  repeated Onward onward = 12;
+  repeated string onwards = 12;
 }
 
 message Metadata {
@@ -33,6 +35,19 @@ message Element {
   repeated string relations = 3;
   repeated Asset assets = 4;
   string content_id = 5;
+}
+
+message Asset {
+  AssetType type = 1;
+  int32 index = 2;
+  map<string, string> fields = 4;
+  Metadata metadata = 5;
+}
+
+message Author {
+  string first_name = 1;
+  string surname = 2;
+  string web_url = 3;
 }
 
 enum ContentType {
@@ -60,22 +75,3 @@ enum AssetType {
   ASSET_TYPE_URL = 3;
   ASSET_TYPE_METADATA = 4;
 }
-
-message Asset {
-  AssetType type = 1;
-  int32 index = 2;
-  map<string, string> fields = 4;
-  Metadata metadata = 5;
-}
-
-message Author {
-  string first_name = 1;
-  string surname = 2;
-  string web_url = 3;
-}
-
-message Onward {
-  string id = 1;
-  repeated string roles = 2;
-}
-

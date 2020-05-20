@@ -2,11 +2,13 @@
 
 # node
 node_modules
-node/v1
+node/stroeer
 bin/protoc
+
+# java
 java/build
 java/.gradle
-java/src/main/gen
+java/src/main/java
 .gradle
 *.iml
 *.ipr

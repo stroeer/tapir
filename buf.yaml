@@ -1,8 +1,12 @@
 build:
   roots:
-    - api
+    - .
+  excludes:
+    - node/node_modules
 lint:
   use:
     - DEFAULT
   except:
-    - PACKAGE_VERSION_SUFFIX
+    - RPC_RESPONSE_STANDARD_NAME
+  ignore:
+    - all.proto
