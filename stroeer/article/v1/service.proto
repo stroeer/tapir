@@ -25,7 +25,7 @@ message GetArticlePageRequest {
 }
 
 message ArticlePage {
-  stroeer.core.v1.Article main = 1;
+  stroeer.core.v1.Article main_article = 1;
   repeated RelatedArticle related_articles = 2;
 }
 
@@ -33,6 +33,11 @@ message RelatedArticle {
   // we could also use an stroeer.core.v1.Article here but maybe it's worth to have a Teaser abstraction
   // including only teaser relevant attributes?!
   stroeer.core.v1.Teaser teaser = 1;
-  string role = 2;
+  RelatedArticleType role = 2;
+}
+
+enum RelatedArticleType {
+  RELATED_ARTICLE_TYPE_UNSPECIFIED = 0;
+  RELATED_ARTICLE_TYPE_EDITORIAL = 1;
 }
 
