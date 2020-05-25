@@ -23,6 +23,18 @@ message Article {
   repeated string onwards = 12;
 }
 
+// A teaser of an Article which can be rendered on Section or Article pages (
+// as related article).
+message Teaser {
+  string web_url = 1;
+  google.protobuf.Timestamp publication_date = 2;
+  string headline = 3;
+  string intro = 4;
+  ContentType type = 5;
+  repeated Element elements = 6;
+  repeated Author authors = 7;
+}
+
 message Metadata {
   google.protobuf.Timestamp valid_from_date = 1;
   google.protobuf.Timestamp valid_to_date = 2;
