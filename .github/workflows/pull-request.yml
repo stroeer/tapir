@@ -57,11 +57,8 @@ jobs:
           java-version: 11
           java-package: jdk
 
-      - name: setup protoc
-        run: ./install_proto.sh
-
       - name: make
-        run: make PROTOC=./bin/protoc LANGUAGE=java OUTPUT=./java/src/main/java
+        run: make
 
       - name: build
         run: ./gradlew clean build
@@ -80,11 +77,8 @@ jobs:
         run: npm install
         working-directory: node
 
-      - name: setup protoc
-        run: ./install_proto.sh
-
       - name: make
-        run: make PROTOC=./bin/protoc LANGUAGE=node OUTPUT=./node
+        run: make LANGUAGE=node
 
       - name: Run node checks
         run: npm test
