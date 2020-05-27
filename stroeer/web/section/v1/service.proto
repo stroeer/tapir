@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package stroeer.section.v1;
+package stroeer.web.section.v1;
 
 import "stroeer/core/v1/article.proto";
 
-option go_package = "github.com/stroeer/go-tapir/section/v1;section";
 option java_multiple_files = true;
-option java_package = "de.stroeer.section.v1";
+option java_package = "de.stroeer.web.section.v1";
 
+// TODO: the whole service and resource definition for section will be refactored
 service SectionService {
   rpc GetSection (GetSectionRequest) returns (GetSectionResponse) {}
 }

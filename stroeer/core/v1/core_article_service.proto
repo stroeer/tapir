@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package stroeer.core.v1;
+
+import "stroeer/core/v1/article.proto";
+
+option go_package = "github.com/stroeer/go-tapir/core/v1;core";
+option java_multiple_files = true;
+option java_package = "de.stroeer.core.v1";
+
+// Service to manage core articles
+service ArticleService {
+  // Returns a core article by it's id
+  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+}
+
+message GetArticleRequest {
+  string id = 1;
+}

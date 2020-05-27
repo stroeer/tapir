@@ -1,5 +1,7 @@
 // This file is for debugging purposes
 // Tools like BloomRPC and other CLIs have problems with imports
-import public "stroeer/article/v1/service.proto";
-import public "stroeer/section/v1/service.proto";
+import public "stroeer/web/article/v1/web_article.proto";
+import public "stroeer/web/article/v1/web_article_service.proto";
+import public "stroeer/web/section/v1/service.proto";
 import public "stroeer/core/v1/article.proto";
+import public "stroeer/core/v1/core_article_service.proto";

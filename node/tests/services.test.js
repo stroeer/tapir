@@ -1,13 +1,13 @@
-const GrpcArticleServiceClient = require('../stroeer/article/v1/service_grpc_pb');
-const GrpcSectionServiceClient = require('../stroeer/section/v1/service_grpc_pb');
+const GrpcArticleServiceClient = require('../stroeer/web/article/v1/web_article_service_grpc_pb');
+const GrpcSectionServiceClient = require('../stroeer/web/section/v1/service_grpc_pb');
 
 test('gRPC article service client is generated and matches the snapshot', () => {
   expect(GrpcArticleServiceClient).toMatchInlineSnapshot(`
     Object {
-      "ArticleServiceClient": [Function],
-      "ArticleServiceService": Object {
-        "getArticle": Object {
-          "path": "/stroeer.article.v1.ArticleService/GetArticle",
+      "WebArticleServiceClient": [Function],
+      "WebArticleServiceService": Object {
+        "getArticlePage": Object {
+          "path": "/stroeer.web.article.v1.WebArticleService/GetArticlePage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
@@ -28,7 +28,7 @@ test('gRPC section service client is generated and matches the snapshot', () => 
       "SectionServiceClient": [Function],
       "SectionServiceService": Object {
         "getSection": Object {
-          "path": "/stroeer.section.v1.SectionService/GetSection",
+          "path": "/stroeer.web.section.v1.SectionService/GetSection",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
