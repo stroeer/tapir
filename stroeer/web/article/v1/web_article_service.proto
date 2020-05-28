@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package stroeer.web.article.v1;
+
+import "stroeer/web/article/v1/web_article.proto";
+
+option java_multiple_files = true;
+option java_package = "de.stroeer.web.article.v1";
+
+// Service to manage web articles
+service WebArticleService {
+  // Returns an Article page including all (SEO) relevant information to
+  // render an Article with the given id as canonical web or AMP
+  rpc GetArticlePage (GetArticlePageRequest) returns (WebArticlePage) {}
+}
+
+message GetArticlePageRequest {
+  string id = 1;
+}
+
+message WebArticlePage {
+  WebArticle main_article = 1;
+  repeated RelatedArticle related_articles = 2;
+}
+
