@@ -15,6 +15,3 @@ java/src/main/java
 *.ipr
 *.iws
 protoc-gen-grpc-java
-
-# go
-go/
