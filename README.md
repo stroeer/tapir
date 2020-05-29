@@ -59,12 +59,18 @@ TODO
 
 Generating go code is currently not part of the CI and release process.
 
-#### generate
+#### setup
 
 ```shell script
-brew install protobuf
-go get github.com/golang/protobuf/protoc-gen-go
+$ brew install protobuf
+$ go get github.com/golang/protobuf/protoc-gen-go
 ```
 
 see [here](https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.20.0#v1.20-grpc-support)
 why we currently rely on the old `protoc-gen-go` of https://github.com/golang/protobuf which is superseeded by https://github.com/protocolbuffers/protobuf-go
+
+#### generate
+
+```shell script
+$ make LANGUAGE=go PROTOC=protoc
+```

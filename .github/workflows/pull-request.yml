@@ -83,3 +83,14 @@ jobs:
       - name: Run node checks
         run: npm test
         working-directory: node
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+
+      - name: go mod
+        run: go mod tidy
+        working-directory: go

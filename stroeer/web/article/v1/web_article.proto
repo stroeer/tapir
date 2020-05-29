@@ -4,7 +4,7 @@ package stroeer.web.article.v1;
 
 import "stroeer/core/v1/article.proto";
 
-option go_package = "github.com/stroeer/tapir/web/article/v1;article";
+option go_package = "github.com/stroeer/tapir/go/stroeer/web/article/v1;article";
 option java_multiple_files = true;
 option java_package = "de.stroeer.web.article.v1";
 
