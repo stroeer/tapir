@@ -11,11 +11,10 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## building
 
-We use [stroeer/protoc-dockerized](https://hub.docker.com/repository/docker/stroeer/protoc-dockerized) as `protoc` which currently supports 
-generating code for 
+We use [stroeer/protoc-dockerized](https://hub.docker.com/repository/docker/stroeer/protoc-dockerized) as `protoc` which currently supports generating code for
 
-- `java` 
-- `node/TypeScript` 
+- `java`
+- `node/TypeScript`
 
 (the `protoc` binary is configurable in the `Makefile` though)
 

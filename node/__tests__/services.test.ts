@@ -1,8 +1,9 @@
-const GrpcArticleServiceClient = require('../stroeer/web/article/v1/web_article_service_grpc_pb');
-const GrpcSectionServiceClient = require('../stroeer/web/section/v1/web_section_service_grpc_pb');
+import { expect, test } from '@jest/globals';
+import WebArticleService from '../stroeer/web/article/v1/web_article_service_grpc_pb';
+import WebSectionService from '../stroeer/web/section/v1/web_section_service_grpc_pb';
 
 test('gRPC article service client is generated and matches the snapshot', () => {
-  expect(GrpcArticleServiceClient).toMatchInlineSnapshot(`
+  expect(WebArticleService).toMatchInlineSnapshot(`
     Object {
       "WebArticleServiceClient": [Function],
       "WebArticleServiceService": Object {
@@ -23,7 +24,7 @@ test('gRPC article service client is generated and matches the snapshot', () => 
 });
 
 test('gRPC section service client is generated and matches the snapshot', () => {
-  expect(GrpcSectionServiceClient).toMatchInlineSnapshot(`
+  expect(WebSectionService).toMatchInlineSnapshot(`
     Object {
       "WebSectionServiceClient": [Function],
       "WebSectionServiceService": Object {
