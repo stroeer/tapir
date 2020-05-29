@@ -24,3 +24,9 @@ npm i
 npm run test
 npm run lint
 ```
+
+## How to update jest snapshots
+
+```bash
+npm run test -- --u
+```
