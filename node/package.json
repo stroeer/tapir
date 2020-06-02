@@ -3,14 +3,20 @@
   "version": "0.2.3",
   "description": "T-Online API Repo",
   "scripts": {
-    "test": "jest"
+    "checks": "npm run lint && npm run test",
+    "test": "jest",
+    "lint": "tsc -b"
   },
   "devDependencies": {
+    "@types/jest": "25.2.3",
+    "@types/google-protobuf": "3.7.2",
+    "google-protobuf": "3.12.2",
     "grpc": "1.24.2",
-    "google-protobuf": "3.12.1",
     "jest": "26.0.1",
     "jest-circus": "26.0.1",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "ts-jest": "26.0.0",
+    "typescript": "3.9.3"
   },
   "peerDependencies": {
     "grpc": "^1.24.0",

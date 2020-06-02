@@ -81,7 +81,7 @@ jobs:
         run: make LANGUAGE=node
 
       - name: Run node checks
-        run: npm test
+        run: npm run checks
         working-directory: node
 
   go:

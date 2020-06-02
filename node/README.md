@@ -1,29 +1,32 @@
-# tapir-node
+# @stroeer/tapir-v1
 
 ## Usage
 
 ```bash
-npm i @stroeer/tapir
+npm i @stroeer/tapir-v1
 # or
-yarn add @stroeer/tapir
+yarn add @stroeer/tapir-v1
 ```
 
 ## Development
 
+Make sure you generated the gRPC models and services for node.
+
 ### install
 
 ```bash
-npm --prefix node install
+npm i
 ```
 
-### Generate
+### Test/Lint
 
 ```bash
-make clean node
+npm run test
+npm run lint
 ```
 
-### Test
+## How to update jest snapshots
 
 ```bash
-npm --prefix node test
+npm run test -- --u
 ```
