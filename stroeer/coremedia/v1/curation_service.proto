@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stroeer.coremedia.v1;
 
-import "stroeer/coremedia/v1/curated_item.proto";
+import "stroeer/coremedia/v1/curated_article.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
