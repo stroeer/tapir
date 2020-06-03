@@ -4,9 +4,9 @@ package stroeer.coremedia.v1;
 
 import "stroeer/coremedia/v1/curated_item.proto";
 
+option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
-option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 
 service CurationService {
   rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
@@ -17,5 +17,5 @@ message GetCuratedListRequest {
 }
 
 message GetCuratedListResponse {
-  repeated stroeer.coremedia.v1.CuratedItem items = 1;
+  repeated stroeer.coremedia.v1.CuratedArticle items = 1;
 }
