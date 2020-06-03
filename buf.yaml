@@ -9,4 +9,5 @@ lint:
   except:
     - RPC_RESPONSE_STANDARD_NAME
   ignore:
-    - all.proto
+    - all-web.proto
+    - all-core.proto
