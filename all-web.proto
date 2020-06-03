@@ -3,5 +3,3 @@
 import public "stroeer/web/article/v1/web_article.proto";
 import public "stroeer/web/article/v1/web_article_service.proto";
 import public "stroeer/web/section/v1/web_section_service.proto";
-import public "stroeer/core/v1/article.proto";
-import public "stroeer/core/v1/core_article_service.proto";
