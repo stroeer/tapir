@@ -11,3 +11,4 @@ lint:
   ignore:
     - all-web.proto
     - all-core.proto
+    - all-coremedia.proto

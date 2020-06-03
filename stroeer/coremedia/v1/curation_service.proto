@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stroeer.coremedia.v1;
+
+import "stroeer/coremedia/v1/curated_article.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
+option java_multiple_files = true;
+option java_package = "de.stroeer.coremedia.v1";
+
+service CurationService {
+  rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
+}
+
+message GetCuratedListRequest {
+  string list_id = 1;
+}
+
+message GetCuratedListResponse {
+  repeated stroeer.coremedia.v1.CuratedArticle items = 1;
+}
