@@ -6,7 +6,7 @@ plugins {
 
 ext {
   apiVersion = 'v1'
-  externalVersion = System.getenv("RELEASE_TAG") ?: "0.0.1-local"
+  externalVersion = System.getenv("RELEASE_TAG") ?: "0.0.1-SNAPSHOT"
 
   gh_username = System.getenv("GITHUB_USERNAME") ?: "username"
   gh_token = System.getenv("GITHUB_TOKEN") ?: "github_token"
