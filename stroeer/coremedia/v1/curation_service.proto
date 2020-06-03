@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stroeer.coremedia.v1;
 
-import "stroeer/coremedia/v1/curated-item.proto";
+import "stroeer/coremedia/v1/curated_item.proto";
 
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
