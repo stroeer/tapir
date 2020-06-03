@@ -1,0 +1,4 @@
+// This file is for debugging purposes
+// Tools like BloomRPC and other CLIs have problems with imports
+import public "stroeer/coremedia/v1/curated-item.proto";
+import public "stroeer/coremedia/v1/curation-service.proto";
