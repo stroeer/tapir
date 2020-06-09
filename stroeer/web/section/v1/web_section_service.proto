@@ -9,14 +9,14 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.web.section.v1";
 
 service WebSectionService {
-  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {}
+  rpc GetWebSectionPage (GetWebSectionPageRequest) returns (GetWebSectionPageResponse) {}
 }
 
-message GetSectionPageRequest {
+message GetWebSectionPageRequest {
   string section_path = 1;
 }
 
-message GetSectionPageResponse {
-  repeated stroeer.web.article.v1.WebArticle articles = 1;
+message GetWebSectionPageResponse {
+  repeated stroeer.web.article.v1.WebArticle web_articles = 1;
 }
 
