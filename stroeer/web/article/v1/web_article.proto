@@ -20,12 +20,12 @@ message WebArticle {
   repeated stroeer.core.v1.Author authors = 9;
 }
 
-message RelatedArticle {
+message RelatedWebArticle {
   WebArticle article = 1;
-  RelatedArticleRole role = 2;
+  RelatedWebArticleRole role = 2;
 }
 
-enum RelatedArticleRole {
+enum RelatedWebArticleRole {
   RELATED_ARTICLE_ROLE_UNSPECIFIED = 0;
   RELATED_ARTICLE_ROLE_EDITORIAL = 1;
 }

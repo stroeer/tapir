@@ -2,14 +2,14 @@ import { expect, test } from '@jest/globals';
 
 import WebArticleModule, {
   WebArticle,
-  RelatedArticle,
+  RelatedWebArticle,
 } from '../stroeer/web/article/v1/web_article_pb';
 
 test('protobuf generated module of `WebArticle` matches snapshot', () => {
   expect(WebArticleModule).toMatchInlineSnapshot(`
     Object {
-      "RelatedArticle": [Function],
-      "RelatedArticleRole": Object {
+      "RelatedWebArticle": [Function],
+      "RelatedWebArticleRole": Object {
         "RELATED_ARTICLE_ROLE_EDITORIAL": 1,
         "RELATED_ARTICLE_ROLE_UNSPECIFIED": 0,
       },
@@ -35,7 +35,7 @@ test('protobuf generated model of a empty `WebArticle` matches snapshot', () => 
 });
 
 test('protobuf generated model of a empty `RelatedArticle` matches snapshot', () => {
-  expect(new RelatedArticle().toObject()).toMatchInlineSnapshot(`
+  expect(new RelatedWebArticle().toObject()).toMatchInlineSnapshot(`
     Object {
       "article": undefined,
       "role": 0,

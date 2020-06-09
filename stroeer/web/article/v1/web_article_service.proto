@@ -12,15 +12,15 @@ option java_package = "de.stroeer.web.article.v1";
 service WebArticleService {
   // Returns an Article page including all (SEO) relevant information to
   // render an Article with the given id as canonical web or AMP
-  rpc GetArticlePage (GetArticlePageRequest) returns (WebArticlePage) {}
+  rpc GetWebArticlePage (GetWebArticlePageQuery) returns (WebArticlePage) {}
 }
 
-message GetArticlePageRequest {
+message GetWebArticlePageQuery {
   string id = 1;
 }
 
 message WebArticlePage {
-  WebArticle main_article = 1;
-  repeated RelatedArticle related_articles = 2;
+  WebArticle web_article = 1;
+  repeated RelatedWebArticle related_web_articles = 2;
 }
 

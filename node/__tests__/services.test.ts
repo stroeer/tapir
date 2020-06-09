@@ -7,8 +7,8 @@ test('gRPC article service client is generated and matches the snapshot', () => 
     Object {
       "WebArticleServiceClient": [Function],
       "WebArticleServiceService": Object {
-        "getArticlePage": Object {
-          "path": "/stroeer.web.article.v1.WebArticleService/GetArticlePage",
+        "getWebArticlePage": Object {
+          "path": "/stroeer.web.article.v1.WebArticleService/GetWebArticlePage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
@@ -28,8 +28,8 @@ test('gRPC section service client is generated and matches the snapshot', () => 
     Object {
       "WebSectionServiceClient": [Function],
       "WebSectionServiceService": Object {
-        "getSectionPage": Object {
-          "path": "/stroeer.web.section.v1.WebSectionService/GetSectionPage",
+        "getWebSectionPage": Object {
+          "path": "/stroeer.web.section.v1.WebSectionService/GetWebSectionPage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,

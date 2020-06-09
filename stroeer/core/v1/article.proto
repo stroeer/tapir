@@ -35,7 +35,7 @@ message Element {
   string guid = 2;
   repeated string relations = 3;
   repeated Asset assets = 4;
-  string content_id = 5;
+  string article_id = 5;
 }
 
 message Asset {
