@@ -11,9 +11,9 @@ option java_package = "de.stroeer.core.v1";
 // Service to manage core articles
 service ArticleService {
   // Returns a core article by it's id
-  rpc GetArticle (GetArticleQuery) returns (stroeer.core.v1.Article) {}
+  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
 }
 
-message GetArticleQuery {
+message GetArticleRequest {
   string id = 1;
 }

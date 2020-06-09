@@ -10,8 +10,8 @@ test('protobuf generated module of `WebArticle` matches snapshot', () => {
     Object {
       "RelatedWebArticle": [Function],
       "RelatedWebArticleRole": Object {
-        "RELATED_ARTICLE_ROLE_EDITORIAL": 1,
-        "RELATED_ARTICLE_ROLE_UNSPECIFIED": 0,
+        "RELATED_WEB_ARTICLE_ROLE_EDITORIAL": 1,
+        "RELATED_WEB_ARTICLE_ROLE_UNSPECIFIED": 0,
       },
       "WebArticle": [Function],
     }
