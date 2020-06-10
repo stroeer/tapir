@@ -17,7 +17,7 @@ message GetWebSectionPageRequest {
 }
 
 message GetWebSectionPageResponse {
-  repeated stroeer.web.section.v1.WebArticleContainer web_articles = 1;
+  repeated stroeer.web.section.v1.WebArticleContainer container = 1;
 }
 
 message WebArticleContainerMetadata {
