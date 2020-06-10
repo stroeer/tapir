@@ -17,6 +17,15 @@ message GetWebSectionPageRequest {
 }
 
 message GetWebSectionPageResponse {
-  repeated stroeer.web.article.v1.WebArticle web_articles = 1;
+  repeated stroeer.web.section.v1.WebArticleContainer web_articles = 1;
 }
 
+message WebArticleContainerMetadata {
+  string label = 1;
+  string href = 2;
+}
+
+message WebArticleContainer {
+  repeated stroeer.web.article.v1.WebArticle web_articles = 1;
+  stroeer.web.section.v1.WebArticleContainerMetadata container_metadata = 2;
+}
