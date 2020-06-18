@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.web.section.v1;
 
 import "stroeer/web/article/v1/web_article.proto";
+import "stroeer/web/section/v1/web_section_page.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/web/section/v1;section";
 option java_multiple_files = true;
@@ -17,6 +18,7 @@ message GetWebSectionPageRequest {
 }
 
 message GetWebSectionPageResponse {
-  repeated stroeer.web.article.v1.WebArticle web_articles = 1;
+  repeated stroeer.web.section.v1.SectionPageStage stages = 1;
+  repeated stroeer.web.section.v1.SectionPageBox boxes = 2;
 }
 

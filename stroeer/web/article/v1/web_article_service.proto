@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.web.article.v1;
 
 import "stroeer/web/article/v1/web_article.proto";
+import "stroeer/web/section/v1/web_section_page.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/web/article/v1;article";
 option java_multiple_files = true;
@@ -22,5 +23,6 @@ message GetWebArticlePageRequest {
 message GetWebArticlePageResponse {
   WebArticle web_article = 1;
   repeated RelatedWebArticle related_web_articles = 2;
+  repeated stroeer.web.section.v1.SectionPageBox boxes = 3;
 }
 
