@@ -73,3 +73,17 @@ why we currently rely on the old `protoc-gen-go` of https://github.com/golang/pr
 ```shell script
 $ make LANGUAGE=go PROTOC=protoc
 ```
+
+### Docker Image for `stroeer/protoc-dockerized`
+
+#### Requirements
+- be member of https://hub.docker.com/u/stroeer
+- login to hub.docker.com with docker login
+
+#### Release new version
+- look at Requirements above
+- bump versions in `build_docker.sh`
+- run `build_docker.sh`
+- run `docker push stroeer/protoc-dockerized:latest`
+
+
