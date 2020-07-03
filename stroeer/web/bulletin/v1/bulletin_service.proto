@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stroeer.web.bulletin.v1;
+
+import "stroeer/web/bulletin/v1/bulletin.proto";
+import "stroeer/web/article/v1/web_article.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/web/bulletin/v1;bulletin";
+option java_multiple_files = true;
+option java_package = "de.stroeer.web.bulletin.v1";
+
+service BulletinService {
+  rpc GetBulletins (GetBulletinsRequest) returns (GetBulletinsResponse) {}
+}
+
+message GetBulletinsRequest {}
+
+message GetBulletinsResponse {
+  repeated Bulletin fixed_bulletins = 1;
+  repeated Bulletin dynamic_bulletins = 2;
+}

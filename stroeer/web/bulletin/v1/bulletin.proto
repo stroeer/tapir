@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package stroeer.web.bulletin.v1;
+
+import "stroeer/web/article/v1/web_article.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/web/bulletin/v1;bulletin";
+option java_multiple_files = true;
+option java_package = "de.stroeer.web.bulletin.v1";
+
+message Bulletin {
+  repeated stroeer.web.article.v1.WebArticle web_articles = 1;
+  string label = 2; // label comes from HotTopicService
+  string web_url = 3; // href of first web_article
+}
