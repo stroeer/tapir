@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.coremedia.v1;
 
 import "stroeer/coremedia/v1/curated_article.proto";
+import "stroeer/coremedia/v1/curated_topic.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
@@ -10,6 +11,7 @@ option java_package = "de.stroeer.coremedia.v1";
 
 service CurationService {
   rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
+  rpc GetCuratedTopics (GetCuratedTopicsRequest) returns (GetCuratedTopicsResponse) {}
 }
 
 message GetCuratedListRequest {
@@ -18,4 +20,12 @@ message GetCuratedListRequest {
 
 message GetCuratedListResponse {
   repeated stroeer.coremedia.v1.CuratedArticle items = 1;
+}
+
+message GetCuratedTopicsRequest {
+  string list_id = 1;
+}
+
+message GetCuratedTopicsResponse {
+  repeated stroeer.coremedia.v1.CuratedTopic curated_topics = 1;
 }
