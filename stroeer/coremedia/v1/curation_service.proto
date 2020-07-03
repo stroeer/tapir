@@ -11,7 +11,7 @@ option java_package = "de.stroeer.coremedia.v1";
 
 service CurationService {
   rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
-  rpc GetCuratedTopics (GetCuratedTopicsRequest) returns (GetCuratedTopicsResponse) {}
+  rpc GetCuratedTopics (GetCuratedListRequest) returns (GetCuratedTopicsResponse) {}
 }
 
 message GetCuratedListRequest {
@@ -20,10 +20,6 @@ message GetCuratedListRequest {
 
 message GetCuratedListResponse {
   repeated stroeer.coremedia.v1.CuratedArticle items = 1;
-}
-
-message GetCuratedTopicsRequest {
-  string list_id = 1;
 }
 
 message GetCuratedTopicsResponse {
