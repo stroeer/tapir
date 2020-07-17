@@ -34,9 +34,9 @@ else ifeq ($(LANGUAGE),go)
 		OUTPUT = $(GO_DIR)
 	endif
 	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
-	FLAGS+= --go_opt=paths=source_relative
-	FLAGS+= --go-grpc_out=$(OUTPUT)
-	FLAGS+= --go-grpc_opt=paths=source_relative
+	FLAGS+= --$(LANGUAGE)_opt=paths=source_relative
+	FLAGS+= --$(LANGUAGE)-grpc_out=$(OUTPUT)
+	FLAGS+= --$(LANGUAGE)-grpc_opt=paths=source_relative
 else
 	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 	FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)

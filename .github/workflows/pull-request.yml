@@ -91,6 +91,9 @@ jobs:
 
       - uses: actions/setup-go@v2
 
+      - name: make
+        run: make LANGUAGE=go --always-make
+
       - name: go mod
         run: go mod tidy
         working-directory: go
