@@ -33,8 +33,10 @@ else ifeq ($(LANGUAGE),go)
 	ifeq ($(OUTPUT), $(JAVA_DIR))
 		OUTPUT = $(GO_DIR)
 	endif
-	FLAGS+= --$(LANGUAGE)_out=plugins=grpc:$(OUTPUT)
+	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 	FLAGS+= --go_opt=paths=source_relative
+	FLAGS+= --go-grpc_out=$(OUTPUT)
+	FLAGS+= --go-grpc_opt=paths=source_relative
 else
 	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 	FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)

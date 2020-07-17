@@ -15,6 +15,7 @@ We use [stroeer/protoc-dockerized](https://hub.docker.com/repository/docker/stro
 
 - `java`
 - `node/TypeScript`
+- `go`
 
 (the `protoc` binary is configurable in the `Makefile` though)
 
@@ -62,16 +63,14 @@ Generating go code is currently not part of the CI and release process.
 
 ```shell script
 $ brew install protobuf
-$ go get github.com/golang/protobuf/protoc-gen-go
+$ go install google.golang.org/protobuf/cmd/protoc-gen-go
+$ go get github.com/grpc/grpc-go/cmd/protoc-gen-go-grpc
 ```
-
-see [here](https://github.com/protocolbuffers/protobuf-go/releases/tag/v1.20.0#v1.20-grpc-support)
-why we currently rely on the old `protoc-gen-go` of https://github.com/golang/protobuf which is superseeded by https://github.com/protocolbuffers/protobuf-go
 
 #### generate
 
 ```shell script
-$ make LANGUAGE=go PROTOC=protoc
+$ make LANGUAGE=go
 ```
 
 ### Docker Image for `stroeer/protoc-dockerized`

@@ -7,7 +7,7 @@ ARG JAVA_LIB_VERSION
 
 # node plugins
 RUN npm install grpc-tools@$NODE_GRPC_TOOLS_VERSION \
-                ts-protoc-gen@$NODE_TS_PROTOC_GEN_VERSION
+    ts-protoc-gen@$NODE_TS_PROTOC_GEN_VERSION
 
 RUN mkdir /installer
 
@@ -19,11 +19,18 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_
 RUN mkdir -p /installer/protoc
 RUN unzip -o protoc.zip -d /installer/protoc/
 
+# go
+FROM golang:1.14 as gopher
+RUN go get google.golang.org/protobuf/cmd/protoc-gen-go
+RUN go get github.com/grpc/grpc-go/cmd/protoc-gen-go-grpc
+
 FROM node:lts-stretch-slim
 USER root
 COPY --from=installer /node_modules /node_modules
 COPY --from=installer /installer/protoc /usr/bin/protoc
 COPY --from=installer /installer/protoc-gen-grpc-java /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-go-grpc /usr/bin/
 
 RUN chmod +x /usr/bin/protoc-gen-grpc-java
 
