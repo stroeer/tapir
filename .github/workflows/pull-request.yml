@@ -91,6 +91,7 @@ jobs:
 
       - uses: actions/setup-go@v2
 
+      # (in contrast to localhost) w/o the '--always-make' option, this target is always up-to-date on GitHub actions. Don't know why, yet
       - name: make
         run: make LANGUAGE=go --always-make
 
