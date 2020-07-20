@@ -95,6 +95,6 @@ jobs:
       - name: make
         run: make LANGUAGE=go --always-make
 
-      - name: go mod
-        run: go mod tidy
+      - name: go test
+        run: go test -v .
         working-directory: go

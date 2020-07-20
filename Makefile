@@ -58,7 +58,7 @@ stroeer/%: $(OUTPUT)
 clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf $(JAVA_DIR) || true
-	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" ! -iname "*_test.go" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 help: ## Display this help screen
