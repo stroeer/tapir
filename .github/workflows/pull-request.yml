@@ -73,8 +73,8 @@ jobs:
         with:
           node-version: "12.x"
 
-      - name: npm install
-        run: npm install
+      - name: npm ci
+        run: npm ci
         working-directory: node
 
       - name: make
