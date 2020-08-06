@@ -37,8 +37,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: npm install
-        run: npm install
+      - name: npm ci
+        run: npm ci
         working-directory: node
 
       - name: make
