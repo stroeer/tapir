@@ -18,6 +18,7 @@ message WebArticle {
   map<string, string> fields = 7;
   repeated stroeer.core.v1.Element elements = 8;
   repeated stroeer.core.v1.Author authors = 9;
+  repeated stroeer.core.v1.BodyEntity body = 10;
 }
 
 message RelatedWebArticle {
