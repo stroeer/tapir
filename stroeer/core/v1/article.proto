@@ -82,14 +82,14 @@ enum AssetType {
 }
 
 enum BodyEntityType {
-  BODY_TYPE_UNSPECIFIED = 0;
-  BODY_TYPE_PARAGRAPH = 1;
-  BODY_TYPE_SUB_HEADLINE = 2;
-  BODY_TYPE_ELEMENT = 3;
+  BODY_ENTITY_TYPE_UNSPECIFIED = 0;
+  BODY_ENTITY_TYPE_PARAGRAPH = 1;
+  BODY_ENTITY_TYPE_SUB_HEADLINE = 2;
+  BODY_ENTITY_TYPE_ELEMENT = 3;
 }
 
 message BodyEntity {
   BodyEntityType type = 1;
-  string content = 2; // empty for BODY_TYPE_ELEMENT
-  string guid = 3; // empty for BODY_TYPE_PARAGRAPH and BODY_TYPE_SUB_HEADLINE
+  string content = 2; // empty for BODY_ENTITY_TYPE_ELEMENT
+  string guid = 3; // empty for BODY_ENTITY_TYPE_PARAGRAPH and BODY_ENTITY_TYPE_SUB_HEADLINE
 }
