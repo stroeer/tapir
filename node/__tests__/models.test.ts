@@ -22,6 +22,7 @@ test('protobuf generated model of a empty `WebArticle` matches snapshot', () => 
   expect(new WebArticle().toObject()).toMatchInlineSnapshot(`
     Object {
       "authorsList": Array [],
+      "bodyList": Array [],
       "canonicalUrl": "",
       "elementsList": Array [],
       "fieldsMap": Array [],
