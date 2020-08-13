@@ -33,8 +33,10 @@ else ifeq ($(LANGUAGE),go)
 	ifeq ($(OUTPUT), $(JAVA_DIR))
 		OUTPUT = $(GO_DIR)
 	endif
-	FLAGS+= --$(LANGUAGE)_out=plugins=grpc:$(OUTPUT)
-	FLAGS+= --go_opt=paths=source_relative
+	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
+	FLAGS+= --$(LANGUAGE)_opt=paths=source_relative
+	FLAGS+= --$(LANGUAGE)-grpc_out=$(OUTPUT)
+	FLAGS+= --$(LANGUAGE)-grpc_opt=paths=source_relative
 else
 	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
 	FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
@@ -56,8 +58,8 @@ stroeer/%: $(OUTPUT)
 clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf $(JAVA_DIR) || true
-	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
-	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "tests" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" ! -iname "*_test.go" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 help: ## Display this help screen
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
