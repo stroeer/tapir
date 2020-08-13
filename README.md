@@ -57,21 +57,18 @@ TODO
 
 ### go
 
-Generating go code is currently not part of the CI and release process.
-
-#### setup
-
-```shell script
-$ brew install protobuf
-$ go install google.golang.org/protobuf/cmd/protoc-gen-go
-$ go get github.com/grpc/grpc-go/cmd/protoc-gen-go-grpc
-```
-
 #### generate
+
+For generating go sources run:
 
 ```shell script
 $ make LANGUAGE=go
 ```
+
+#### release
+
+Generating go code is currently not part of the release process. Go sources need
+to be generated locally and added to pull requests.
 
 ### Docker Image for `stroeer/protoc-dockerized`
 
