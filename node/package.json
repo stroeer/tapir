@@ -8,15 +8,15 @@
     "lint": "tsc -b"
   },
   "devDependencies": {
-    "@types/jest": "25.2.3",
+    "@types/jest": "26.0.8",
     "@types/google-protobuf": "3.7.2",
-    "google-protobuf": "3.12.2",
-    "grpc": "1.24.2",
-    "jest": "26.0.1",
-    "jest-circus": "26.0.1",
+    "google-protobuf": "3.12.4",
+    "grpc": "1.24.3",
+    "jest": "26.2.1",
+    "jest-circus": "26.2.1",
     "prettier": "2.0.5",
-    "ts-jest": "26.0.0",
-    "typescript": "3.9.3"
+    "ts-jest": "26.1.4",
+    "typescript": "3.9.7"
   },
   "peerDependencies": {
     "grpc": "^1.24.0",
