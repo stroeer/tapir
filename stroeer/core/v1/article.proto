@@ -21,7 +21,7 @@ message Article {
   repeated Element elements = 10;
   repeated Author authors = 11;
   repeated string onwards = 12;
-  repeated Body body = 13;
+  Body body = 13;
 }
 
 message Metadata {

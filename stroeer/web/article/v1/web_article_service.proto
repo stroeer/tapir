@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package stroeer.web.article.v1;
 
+import "stroeer/core/v1/article.proto";
 import "stroeer/web/article/v1/web_article.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/web/article/v1;article";
@@ -17,10 +18,13 @@ service WebArticleService {
 
 message GetWebArticlePageRequest {
   string id = 1;
+  string page = 2;
 }
 
 message GetWebArticlePageResponse {
   WebArticle web_article = 1;
   repeated RelatedWebArticle related_web_articles = 2;
+  repeated stroeer.core.v1.BodyNode body_nodes = 3;
+  int32 pages = 4;
 }
 
