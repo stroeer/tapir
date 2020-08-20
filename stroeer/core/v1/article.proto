@@ -53,14 +53,14 @@ message Author {
 }
 
 message Body {
-  repeated HtmlNode children = 1;
+  repeated BodyNode children = 1;
 }
 
-message HtmlNode {
-  HtmlNodeType type = 1;
+message BodyNode {
+  string type = 1;
   string text = 2;
   map<string, string> fields = 3;
-  repeated HtmlNode children = 4;
+  repeated BodyNode children = 4;
   repeated Element elements = 5; // inline-video, content|rich-links, gallery
 }
 
@@ -88,14 +88,4 @@ enum AssetType {
   ASSET_TYPE_VIDEO = 2;
   ASSET_TYPE_URL = 3;
   ASSET_TYPE_METADATA = 4;
-}
-
-enum HtmlNodeType {
-  HTML_NODE_TYPE_UNSPECIFIED = 0;
-  HTML_NODE_TYPE_PARAGRAPH = 1;
-  HTML_NODE_TYPE_SUB = 2;
-  HTML_NODE_TYPE_SUP = 3;
-  HTML_NODE_TYPE_ANCHOR = 4;
-  HTML_NODE_TYPE_UNORDERED_LIST = 5;
-  HTML_NODE_TYPE_LIST_ITEM = 6;
 }
