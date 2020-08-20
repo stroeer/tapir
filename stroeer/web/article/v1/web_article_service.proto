@@ -25,6 +25,6 @@ message GetWebArticlePageResponse {
   WebArticle web_article = 1;
   repeated RelatedWebArticle related_web_articles = 2;
   repeated stroeer.core.v1.BodyNode body_nodes = 3;
-  int32 pages = 4;
+  uint32 pages = 4;
 }
 
