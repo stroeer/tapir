@@ -18,12 +18,10 @@ service WebArticleService {
 
 message GetWebArticlePageRequest {
   string id = 1;
-  string page = 2;
 }
 
 message GetWebArticlePageResponse {
   WebArticle web_article = 1;
   repeated RelatedWebArticle related_web_articles = 2;
-  uint32 pages = 3;
 }
 
