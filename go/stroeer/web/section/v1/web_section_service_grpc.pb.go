@@ -50,9 +50,6 @@ type WebSectionServiceService struct {
 }
 
 func (s *WebSectionServiceService) getWebSectionPage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GetWebSectionPage == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GetWebSectionPage not implemented")
-	}
 	in := new(GetWebSectionPageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
@@ -72,12 +69,18 @@ func (s *WebSectionServiceService) getWebSectionPage(_ interface{}, ctx context.
 
 // RegisterWebSectionServiceService registers a service implementation with a gRPC server.
 func RegisterWebSectionServiceService(s grpc.ServiceRegistrar, srv *WebSectionServiceService) {
+	srvCopy := *srv
+	if srvCopy.GetWebSectionPage == nil {
+		srvCopy.GetWebSectionPage = func(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method GetWebSectionPage not implemented")
+		}
+	}
 	sd := grpc.ServiceDesc{
 		ServiceName: "stroeer.web.section.v1.WebSectionService",
 		Methods: []grpc.MethodDesc{
 			{
 				MethodName: "GetWebSectionPage",
-				Handler:    srv.getWebSectionPage,
+				Handler:    srvCopy.getWebSectionPage,
 			},
 		},
 		Streams:  []grpc.StreamDesc{},
@@ -85,28 +88,4 @@ func RegisterWebSectionServiceService(s grpc.ServiceRegistrar, srv *WebSectionSe
 	}
 
 	s.RegisterService(&sd, nil)
-}
-
-// NewWebSectionServiceService creates a new WebSectionServiceService containing the
-// implemented methods of the WebSectionService service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewWebSectionServiceService(s interface{}) *WebSectionServiceService {
-	ns := &WebSectionServiceService{}
-	if h, ok := s.(interface {
-		GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
-	}); ok {
-		ns.GetWebSectionPage = h.GetWebSectionPage
-	}
-	return ns
-}
-
-// UnstableWebSectionServiceService is the service API for WebSectionService service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableWebSectionServiceService interface {
-	GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
 }

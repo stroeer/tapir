@@ -27,8 +27,8 @@ ifeq ($(LANGUAGE),node)
 	FLAGS+= --plugin=protoc-gen-ts=/node_modules/.bin/protoc-gen-ts
 	FLAGS+= --plugin=protoc-gen-grpc=/node_modules/.bin/grpc_tools_node_protoc_plugin
 	FLAGS+= --js_out=import_style=commonjs,binary:$(OUTPUT)
-	FLAGS+= --ts_out=service=grpc-node:$(OUTPUT)
-	FLAGS+= --grpc_out=$(OUTPUT)
+	FLAGS+= --ts_out=service=grpc-node,mode=grpc-js:$(OUTPUT)
+	FLAGS+= --grpc_out=grpc_js:$(OUTPUT)
 else ifeq ($(LANGUAGE),go)
 	ifeq ($(OUTPUT), $(JAVA_DIR))
 		OUTPUT = $(GO_DIR)

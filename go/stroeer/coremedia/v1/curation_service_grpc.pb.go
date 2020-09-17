@@ -50,9 +50,6 @@ type CurationServiceService struct {
 }
 
 func (s *CurationServiceService) getCuratedList(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GetCuratedList == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GetCuratedList not implemented")
-	}
 	in := new(GetCuratedListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
@@ -72,12 +69,18 @@ func (s *CurationServiceService) getCuratedList(_ interface{}, ctx context.Conte
 
 // RegisterCurationServiceService registers a service implementation with a gRPC server.
 func RegisterCurationServiceService(s grpc.ServiceRegistrar, srv *CurationServiceService) {
+	srvCopy := *srv
+	if srvCopy.GetCuratedList == nil {
+		srvCopy.GetCuratedList = func(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method GetCuratedList not implemented")
+		}
+	}
 	sd := grpc.ServiceDesc{
 		ServiceName: "stroeer.coremedia.v1.CurationService",
 		Methods: []grpc.MethodDesc{
 			{
 				MethodName: "GetCuratedList",
-				Handler:    srv.getCuratedList,
+				Handler:    srvCopy.getCuratedList,
 			},
 		},
 		Streams:  []grpc.StreamDesc{},
@@ -85,28 +88,4 @@ func RegisterCurationServiceService(s grpc.ServiceRegistrar, srv *CurationServic
 	}
 
 	s.RegisterService(&sd, nil)
-}
-
-// NewCurationServiceService creates a new CurationServiceService containing the
-// implemented methods of the CurationService service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewCurationServiceService(s interface{}) *CurationServiceService {
-	ns := &CurationServiceService{}
-	if h, ok := s.(interface {
-		GetCuratedList(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error)
-	}); ok {
-		ns.GetCuratedList = h.GetCuratedList
-	}
-	return ns
-}
-
-// UnstableCurationServiceService is the service API for CurationService service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableCurationServiceService interface {
-	GetCuratedList(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error)
 }

@@ -1,6 +1,6 @@
 {
   "name": "@stroeer/tapir-v1",
-  "version": "0.2.3",
+  "version": "0.6.0",
   "description": "T-Online API Repo",
   "scripts": {
     "checks": "npm run lint && npm run test",
@@ -9,10 +9,10 @@
     "update": "npx npm-check --update"
   },
   "devDependencies": {
+    "@grpc/grpc-js": "1.1.6",
     "@types/google-protobuf": "3.7.3",
     "@types/jest": "26.0.14",
     "google-protobuf": "3.13.0",
-    "grpc": "1.24.3",
     "jest": "26.4.2",
     "jest-circus": "26.4.2",
     "prettier": "2.1.2",
@@ -20,7 +20,7 @@
     "typescript": "4.0.2"
   },
   "peerDependencies": {
-    "grpc": "^1.24.0",
+    "@grpc/grpc-js": "^1.1.6",
     "google-protobuf": "^3.13.0"
   },
   "repository": {
