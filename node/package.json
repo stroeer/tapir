@@ -5,22 +5,23 @@
   "scripts": {
     "checks": "npm run lint && npm run test",
     "test": "jest",
-    "lint": "tsc -b"
+    "lint": "tsc -b",
+    "update": "npx npm-check --update"
   },
   "devDependencies": {
-    "@types/jest": "26.0.8",
-    "@types/google-protobuf": "3.7.2",
-    "google-protobuf": "3.12.4",
+    "@types/google-protobuf": "3.7.3",
+    "@types/jest": "26.0.14",
+    "google-protobuf": "3.13.0",
     "grpc": "1.24.3",
-    "jest": "26.2.1",
-    "jest-circus": "26.2.1",
-    "prettier": "2.0.5",
-    "ts-jest": "26.1.4",
-    "typescript": "3.9.7"
+    "jest": "26.4.2",
+    "jest-circus": "26.4.2",
+    "prettier": "2.1.2",
+    "ts-jest": "26.3.0",
+    "typescript": "4.0.2"
   },
   "peerDependencies": {
     "grpc": "^1.24.0",
-    "google-protobuf": "^3.12.0"
+    "google-protobuf": "^3.13.0"
   },
   "repository": {
     "type": "git",
