@@ -9,9 +9,9 @@ The **T**-online **API** **R**epository contains the interface definitions of t-
 
 T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version 3 (proto3) as their Interface Definition Language (IDL) to define the API interface and the structure of the payload messages.
 
-## building
+## Build
 
-We use [stroeer/protoc-dockerized](https://hub.docker.com/repository/docker/stroeer/protoc-dockerized) as `protoc` which currently supports generating code for
+We use [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) as `protoc` which currently supports generating code for
 
 - `java`
 - `node/TypeScript`
@@ -70,16 +70,19 @@ $ make LANGUAGE=go
 Generating go code is currently not part of the release process. Go sources need
 to be generated locally and added to pull requests.
 
-### Docker Image for `stroeer/protoc-dockerized`
+## Docker Image for `stroeer/protoc-dockerized`
 
-#### Requirements
-- be member of https://hub.docker.com/u/stroeer
-- login to hub.docker.com with docker login
+### Requirements
 
-#### Release new version
+Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
+
+```sh
+cat ~/Token.txt | docker login -u USERNAME --password-stdin
+```
+
+### Release new version
+
 - look at Requirements above
 - bump versions in `build_docker.sh`
 - run `build_docker.sh`
-- run `docker push stroeer/protoc-dockerized:latest`
-
-
+- run `docker push ghcr.io/stroeer/protoc-dockerized:latest`
