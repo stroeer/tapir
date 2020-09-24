@@ -77,7 +77,7 @@ to be generated locally and added to pull requests.
 Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
 
 ```sh
-cat ~/Token.txt | docker login -u USERNAME --password-stdin
+cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-stdin
 ```
 
 ### Release new version
