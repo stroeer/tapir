@@ -17,7 +17,7 @@ GO_DIR = ./go
 OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
 GRPCPLUGIN ?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
-PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) stroeer/protoc-dockerized
+PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized
 
 FLAGS+= --proto_path=$(DIR)
 ifeq ($(LANGUAGE),node)
