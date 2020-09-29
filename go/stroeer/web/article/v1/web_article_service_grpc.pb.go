@@ -11,7 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion7
 
 // WebArticleServiceClient is the client API for WebArticleService service.
 //
@@ -30,6 +30,10 @@ func NewWebArticleServiceClient(cc grpc.ClientConnInterface) WebArticleServiceCl
 	return &webArticleServiceClient{cc}
 }
 
+var webArticleServiceGetWebArticlePageStreamDesc = &grpc.StreamDesc{
+	StreamName: "GetWebArticlePage",
+}
+
 func (c *webArticleServiceClient) GetWebArticlePage(ctx context.Context, in *GetWebArticlePageRequest, opts ...grpc.CallOption) (*GetWebArticlePageResponse, error) {
 	out := new(GetWebArticlePageResponse)
 	err := c.cc.Invoke(ctx, "/stroeer.web.article.v1.WebArticleService/GetWebArticlePage", in, out, opts...)
@@ -39,56 +43,53 @@ func (c *webArticleServiceClient) GetWebArticlePage(ctx context.Context, in *Get
 	return out, nil
 }
 
-// WebArticleServiceServer is the server API for WebArticleService service.
-// All implementations must embed UnimplementedWebArticleServiceServer
-// for forward compatibility
-type WebArticleServiceServer interface {
+// WebArticleServiceService is the service API for WebArticleService service.
+// Fields should be assigned to their respective handler implementations only before
+// RegisterWebArticleServiceService is called.  Any unassigned fields will result in the
+// handler for that method returning an Unimplemented error.
+type WebArticleServiceService struct {
 	// Returns an Article page including all (SEO) relevant information to
 	// render an Article with the given id as canonical web or AMP
-	GetWebArticlePage(context.Context, *GetWebArticlePageRequest) (*GetWebArticlePageResponse, error)
-	mustEmbedUnimplementedWebArticleServiceServer()
+	GetWebArticlePage func(context.Context, *GetWebArticlePageRequest) (*GetWebArticlePageResponse, error)
 }
 
-// UnimplementedWebArticleServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedWebArticleServiceServer struct {
-}
-
-func (*UnimplementedWebArticleServiceServer) GetWebArticlePage(context.Context, *GetWebArticlePageRequest) (*GetWebArticlePageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWebArticlePage not implemented")
-}
-func (*UnimplementedWebArticleServiceServer) mustEmbedUnimplementedWebArticleServiceServer() {}
-
-func RegisterWebArticleServiceServer(s *grpc.Server, srv WebArticleServiceServer) {
-	s.RegisterService(&_WebArticleService_serviceDesc, srv)
-}
-
-func _WebArticleService_GetWebArticlePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func (s *WebArticleServiceService) getWebArticlePage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetWebArticlePageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WebArticleServiceServer).GetWebArticlePage(ctx, in)
+		return s.GetWebArticlePage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     srv,
+		Server:     s,
 		FullMethod: "/stroeer.web.article.v1.WebArticleService/GetWebArticlePage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WebArticleServiceServer).GetWebArticlePage(ctx, req.(*GetWebArticlePageRequest))
+		return s.GetWebArticlePage(ctx, req.(*GetWebArticlePageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _WebArticleService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "stroeer.web.article.v1.WebArticleService",
-	HandlerType: (*WebArticleServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetWebArticlePage",
-			Handler:    _WebArticleService_GetWebArticlePage_Handler,
+// RegisterWebArticleServiceService registers a service implementation with a gRPC server.
+func RegisterWebArticleServiceService(s grpc.ServiceRegistrar, srv *WebArticleServiceService) {
+	srvCopy := *srv
+	if srvCopy.GetWebArticlePage == nil {
+		srvCopy.GetWebArticlePage = func(context.Context, *GetWebArticlePageRequest) (*GetWebArticlePageResponse, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method GetWebArticlePage not implemented")
+		}
+	}
+	sd := grpc.ServiceDesc{
+		ServiceName: "stroeer.web.article.v1.WebArticleService",
+		Methods: []grpc.MethodDesc{
+			{
+				MethodName: "GetWebArticlePage",
+				Handler:    srvCopy.getWebArticlePage,
+			},
 		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "stroeer/web/article/v1/web_article_service.proto",
+		Streams:  []grpc.StreamDesc{},
+		Metadata: "stroeer/web/article/v1/web_article_service.proto",
+	}
+
+	s.RegisterService(&sd, nil)
 }
