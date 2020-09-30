@@ -11,7 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion7
 
 // ArticleServiceClient is the client API for ArticleService service.
 //
@@ -29,6 +29,10 @@ func NewArticleServiceClient(cc grpc.ClientConnInterface) ArticleServiceClient {
 	return &articleServiceClient{cc}
 }
 
+var articleServiceGetArticleStreamDesc = &grpc.StreamDesc{
+	StreamName: "GetArticle",
+}
+
 func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*Article, error) {
 	out := new(Article)
 	err := c.cc.Invoke(ctx, "/stroeer.core.v1.ArticleService/GetArticle", in, out, opts...)
@@ -38,55 +42,74 @@ func (c *articleServiceClient) GetArticle(ctx context.Context, in *GetArticleReq
 	return out, nil
 }
 
-// ArticleServiceServer is the server API for ArticleService service.
-// All implementations must embed UnimplementedArticleServiceServer
-// for forward compatibility
-type ArticleServiceServer interface {
+// ArticleServiceService is the service API for ArticleService service.
+// Fields should be assigned to their respective handler implementations only before
+// RegisterArticleServiceService is called.  Any unassigned fields will result in the
+// handler for that method returning an Unimplemented error.
+type ArticleServiceService struct {
 	// Returns a core article by it's id
-	GetArticle(context.Context, *GetArticleRequest) (*Article, error)
-	mustEmbedUnimplementedArticleServiceServer()
+	GetArticle func(context.Context, *GetArticleRequest) (*Article, error)
 }
 
-// UnimplementedArticleServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedArticleServiceServer struct {
-}
-
-func (*UnimplementedArticleServiceServer) GetArticle(context.Context, *GetArticleRequest) (*Article, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetArticle not implemented")
-}
-func (*UnimplementedArticleServiceServer) mustEmbedUnimplementedArticleServiceServer() {}
-
-func RegisterArticleServiceServer(s *grpc.Server, srv ArticleServiceServer) {
-	s.RegisterService(&_ArticleService_serviceDesc, srv)
-}
-
-func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func (s *ArticleServiceService) getArticle(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	if s.GetArticle == nil {
+		return nil, status.Errorf(codes.Unimplemented, "method GetArticle not implemented")
+	}
 	in := new(GetArticleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticleServiceServer).GetArticle(ctx, in)
+		return s.GetArticle(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     srv,
+		Server:     s,
 		FullMethod: "/stroeer.core.v1.ArticleService/GetArticle",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticleServiceServer).GetArticle(ctx, req.(*GetArticleRequest))
+		return s.GetArticle(ctx, req.(*GetArticleRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ArticleService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "stroeer.core.v1.ArticleService",
-	HandlerType: (*ArticleServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetArticle",
-			Handler:    _ArticleService_GetArticle_Handler,
+// RegisterArticleServiceService registers a service implementation with a gRPC server.
+func RegisterArticleServiceService(s grpc.ServiceRegistrar, srv *ArticleServiceService) {
+	sd := grpc.ServiceDesc{
+		ServiceName: "stroeer.core.v1.ArticleService",
+		Methods: []grpc.MethodDesc{
+			{
+				MethodName: "GetArticle",
+				Handler:    srv.getArticle,
+			},
 		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "stroeer/core/v1/core_article_service.proto",
+		Streams:  []grpc.StreamDesc{},
+		Metadata: "stroeer/core/v1/core_article_service.proto",
+	}
+
+	s.RegisterService(&sd, nil)
+}
+
+// NewArticleServiceService creates a new ArticleServiceService containing the
+// implemented methods of the ArticleService service in s.  Any unimplemented
+// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
+// This includes situations where the method handler is misspelled or has the wrong
+// signature.  For this reason, this function should be used with great care and
+// is not recommended to be used by most users.
+func NewArticleServiceService(s interface{}) *ArticleServiceService {
+	ns := &ArticleServiceService{}
+	if h, ok := s.(interface {
+		GetArticle(context.Context, *GetArticleRequest) (*Article, error)
+	}); ok {
+		ns.GetArticle = h.GetArticle
+	}
+	return ns
+}
+
+// UnstableArticleServiceService is the service API for ArticleService service.
+// New methods may be added to this interface if they are added to the service
+// definition, which is not a backward-compatible change.  For this reason,
+// use of this type is not recommended.
+type UnstableArticleServiceService interface {
+	// Returns a core article by it's id
+	GetArticle(context.Context, *GetArticleRequest) (*Article, error)
 }

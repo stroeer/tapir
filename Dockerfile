@@ -20,9 +20,12 @@ RUN mkdir -p /installer/protoc
 RUN unzip -o protoc.zip -d /installer/protoc/
 
 # go
-FROM golang:1.14 as gopher
+FROM golang:1.15 as gopher
+ARG GO_GRPC_TOOLS_VERSION
+# install the protocol compiler plugin for Go
 RUN go get google.golang.org/protobuf/cmd/protoc-gen-go
-RUN go get github.com/grpc/grpc-go/cmd/protoc-gen-go-grpc
+# installing grpc-go cmd, see https://github.com/grpc/grpc.io/issues/298
+RUN git clone -b v$GO_GRPC_TOOLS_VERSION https://github.com/grpc/grpc-go && cd grpc-go/cmd/protoc-gen-go-grpc && go install .
 
 FROM node:lts-stretch-slim
 USER root

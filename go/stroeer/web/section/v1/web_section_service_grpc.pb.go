@@ -11,7 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion7
 
 // WebSectionServiceClient is the client API for WebSectionService service.
 //
@@ -28,6 +28,10 @@ func NewWebSectionServiceClient(cc grpc.ClientConnInterface) WebSectionServiceCl
 	return &webSectionServiceClient{cc}
 }
 
+var webSectionServiceGetWebSectionPageStreamDesc = &grpc.StreamDesc{
+	StreamName: "GetWebSectionPage",
+}
+
 func (c *webSectionServiceClient) GetWebSectionPage(ctx context.Context, in *GetWebSectionPageRequest, opts ...grpc.CallOption) (*GetWebSectionPageResponse, error) {
 	out := new(GetWebSectionPageResponse)
 	err := c.cc.Invoke(ctx, "/stroeer.web.section.v1.WebSectionService/GetWebSectionPage", in, out, opts...)
@@ -37,54 +41,72 @@ func (c *webSectionServiceClient) GetWebSectionPage(ctx context.Context, in *Get
 	return out, nil
 }
 
-// WebSectionServiceServer is the server API for WebSectionService service.
-// All implementations must embed UnimplementedWebSectionServiceServer
-// for forward compatibility
-type WebSectionServiceServer interface {
-	GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
-	mustEmbedUnimplementedWebSectionServiceServer()
+// WebSectionServiceService is the service API for WebSectionService service.
+// Fields should be assigned to their respective handler implementations only before
+// RegisterWebSectionServiceService is called.  Any unassigned fields will result in the
+// handler for that method returning an Unimplemented error.
+type WebSectionServiceService struct {
+	GetWebSectionPage func(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
 }
 
-// UnimplementedWebSectionServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedWebSectionServiceServer struct {
-}
-
-func (*UnimplementedWebSectionServiceServer) GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetWebSectionPage not implemented")
-}
-func (*UnimplementedWebSectionServiceServer) mustEmbedUnimplementedWebSectionServiceServer() {}
-
-func RegisterWebSectionServiceServer(s *grpc.Server, srv WebSectionServiceServer) {
-	s.RegisterService(&_WebSectionService_serviceDesc, srv)
-}
-
-func _WebSectionService_GetWebSectionPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func (s *WebSectionServiceService) getWebSectionPage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	if s.GetWebSectionPage == nil {
+		return nil, status.Errorf(codes.Unimplemented, "method GetWebSectionPage not implemented")
+	}
 	in := new(GetWebSectionPageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WebSectionServiceServer).GetWebSectionPage(ctx, in)
+		return s.GetWebSectionPage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     srv,
+		Server:     s,
 		FullMethod: "/stroeer.web.section.v1.WebSectionService/GetWebSectionPage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WebSectionServiceServer).GetWebSectionPage(ctx, req.(*GetWebSectionPageRequest))
+		return s.GetWebSectionPage(ctx, req.(*GetWebSectionPageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _WebSectionService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "stroeer.web.section.v1.WebSectionService",
-	HandlerType: (*WebSectionServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetWebSectionPage",
-			Handler:    _WebSectionService_GetWebSectionPage_Handler,
+// RegisterWebSectionServiceService registers a service implementation with a gRPC server.
+func RegisterWebSectionServiceService(s grpc.ServiceRegistrar, srv *WebSectionServiceService) {
+	sd := grpc.ServiceDesc{
+		ServiceName: "stroeer.web.section.v1.WebSectionService",
+		Methods: []grpc.MethodDesc{
+			{
+				MethodName: "GetWebSectionPage",
+				Handler:    srv.getWebSectionPage,
+			},
 		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "stroeer/web/section/v1/web_section_service.proto",
+		Streams:  []grpc.StreamDesc{},
+		Metadata: "stroeer/web/section/v1/web_section_service.proto",
+	}
+
+	s.RegisterService(&sd, nil)
+}
+
+// NewWebSectionServiceService creates a new WebSectionServiceService containing the
+// implemented methods of the WebSectionService service in s.  Any unimplemented
+// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
+// This includes situations where the method handler is misspelled or has the wrong
+// signature.  For this reason, this function should be used with great care and
+// is not recommended to be used by most users.
+func NewWebSectionServiceService(s interface{}) *WebSectionServiceService {
+	ns := &WebSectionServiceService{}
+	if h, ok := s.(interface {
+		GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
+	}); ok {
+		ns.GetWebSectionPage = h.GetWebSectionPage
+	}
+	return ns
+}
+
+// UnstableWebSectionServiceService is the service API for WebSectionService service.
+// New methods may be added to this interface if they are added to the service
+// definition, which is not a backward-compatible change.  For this reason,
+// use of this type is not recommended.
+type UnstableWebSectionServiceService interface {
+	GetWebSectionPage(context.Context, *GetWebSectionPageRequest) (*GetWebSectionPageResponse, error)
 }
