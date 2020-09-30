@@ -2,6 +2,7 @@
 # https://github.com/improbable-eng/ts-protoc-gen/releases
 # https://github.com/grpc/grpc-java/releases
 # https://github.com/protocolbuffers/protobuf/releases
+# https://github.com/grpc/grpc-go
 
 docker build -t stroeer/protoc-dockerized:latest \
 --build-arg NODE_GRPC_TOOLS_VERSION="1.9.1" \
