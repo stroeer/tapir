@@ -22,13 +22,26 @@ message Article {
   repeated Author authors = 11;
   repeated string onwards = 12;
   Body body = 13;
+  string top_line = 14;
+  string summary = 15;
 }
 
 message Metadata {
-  google.protobuf.Timestamp valid_from_date = 1;
-  google.protobuf.Timestamp valid_to_date = 2;
+  //  editorial date: Gültig von
+  google.protobuf.Timestamp valid_from = 1;
+  //  editorial date: Gültig bis
+  google.protobuf.Timestamp valid_to = 2;
   string state = 3;
-  google.protobuf.Timestamp transformation_date = 4;
+  //  editorial date: Zuletzt bearbeitet
+  google.protobuf.Timestamp last_edited = 4;
+  //  editorial date: Zuletzt publiziert
+  google.protobuf.Timestamp last_published = 5;
+  // editorial date: Erstellungsdatum
+  google.protobuf.Timestamp created = 6;
+  // editorial date: Aktualisierungsdatum
+  google.protobuf.Timestamp updated = 7;
+  // cms-internal/technical: last modification within the CMS
+  google.protobuf.Timestamp last_modification = 8;
 }
 
 message Element {
