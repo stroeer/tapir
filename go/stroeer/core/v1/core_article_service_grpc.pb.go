@@ -52,6 +52,9 @@ type ArticleServiceService struct {
 }
 
 func (s *ArticleServiceService) getArticle(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	if s.GetArticle == nil {
+		return nil, status.Errorf(codes.Unimplemented, "method GetArticle not implemented")
+	}
 	in := new(GetArticleRequest)
 	if err := dec(in); err != nil {
 		return nil, err
@@ -71,18 +74,12 @@ func (s *ArticleServiceService) getArticle(_ interface{}, ctx context.Context, d
 
 // RegisterArticleServiceService registers a service implementation with a gRPC server.
 func RegisterArticleServiceService(s grpc.ServiceRegistrar, srv *ArticleServiceService) {
-	srvCopy := *srv
-	if srvCopy.GetArticle == nil {
-		srvCopy.GetArticle = func(context.Context, *GetArticleRequest) (*Article, error) {
-			return nil, status.Errorf(codes.Unimplemented, "method GetArticle not implemented")
-		}
-	}
 	sd := grpc.ServiceDesc{
 		ServiceName: "stroeer.core.v1.ArticleService",
 		Methods: []grpc.MethodDesc{
 			{
 				MethodName: "GetArticle",
-				Handler:    srvCopy.getArticle,
+				Handler:    srv.getArticle,
 			},
 		},
 		Streams:  []grpc.StreamDesc{},
@@ -90,4 +87,29 @@ func RegisterArticleServiceService(s grpc.ServiceRegistrar, srv *ArticleServiceS
 	}
 
 	s.RegisterService(&sd, nil)
+}
+
+// NewArticleServiceService creates a new ArticleServiceService containing the
+// implemented methods of the ArticleService service in s.  Any unimplemented
+// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
+// This includes situations where the method handler is misspelled or has the wrong
+// signature.  For this reason, this function should be used with great care and
+// is not recommended to be used by most users.
+func NewArticleServiceService(s interface{}) *ArticleServiceService {
+	ns := &ArticleServiceService{}
+	if h, ok := s.(interface {
+		GetArticle(context.Context, *GetArticleRequest) (*Article, error)
+	}); ok {
+		ns.GetArticle = h.GetArticle
+	}
+	return ns
+}
+
+// UnstableArticleServiceService is the service API for ArticleService service.
+// New methods may be added to this interface if they are added to the service
+// definition, which is not a backward-compatible change.  For this reason,
+// use of this type is not recommended.
+type UnstableArticleServiceService interface {
+	// Returns a core article by it's id
+	GetArticle(context.Context, *GetArticleRequest) (*Article, error)
 }
