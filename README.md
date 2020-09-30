@@ -70,9 +70,9 @@ $ make LANGUAGE=go
 Generating go code is currently not part of the release process. Go sources need
 to be generated locally and added to pull requests.
 
-## Docker Image for `stroeer/protoc-dockerized`
+## docker Image for `stroeer/protoc-dockerized`
 
-### Requirements
+### requirements
 
 Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
 
@@ -80,9 +80,9 @@ Login to `ghcr.io` with your Github user name and a Github personal access token
 cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-stdin
 ```
 
-### Release new version
+### release new version
 
-- look at Requirements above
 - bump versions in `build_docker.sh`
 - run `build_docker.sh`
-- run `docker push ghcr.io/stroeer/protoc-dockerized:latest`
+- run `docker tag stroeer/protoc-dockerized:$protoc_version ghcr.io/stroeer/protoc-dockerized:$protoc_version`
+- run `docker push ghcr.io/stroeer/protoc-dockerized:$protoc_version`
