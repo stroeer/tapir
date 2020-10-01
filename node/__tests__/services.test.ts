@@ -1,14 +1,14 @@
 import { expect, test } from '@jest/globals';
-import WebArticleService from '../stroeer/web/article/v1/web_article_service_grpc_pb';
-import WebSectionService from '../stroeer/web/section/v1/web_section_service_grpc_pb';
+import ArticleService from '../stroeer/pages/article/v1/article_service_grpc_pb';
+import SectionService from '../stroeer/pages/section/v1/section_service_grpc_pb';
 
 test('gRPC article service client is generated and matches the snapshot', () => {
-  expect(WebArticleService).toMatchInlineSnapshot(`
+  expect(ArticleService).toMatchInlineSnapshot(`
     Object {
-      "WebArticleServiceClient": [Function],
-      "WebArticleServiceService": Object {
-        "getWebArticlePage": Object {
-          "path": "/stroeer.web.article.v1.WebArticleService/GetWebArticlePage",
+      "ArticlePageServiceClient": [Function],
+      "ArticlePageServiceService": Object {
+        "getArticlePage": Object {
+          "path": "/stroeer.pages.article.v1.ArticlePageService/GetArticlePage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
@@ -24,12 +24,12 @@ test('gRPC article service client is generated and matches the snapshot', () => 
 });
 
 test('gRPC section service client is generated and matches the snapshot', () => {
-  expect(WebSectionService).toMatchInlineSnapshot(`
+  expect(SectionService).toMatchInlineSnapshot(`
     Object {
-      "WebSectionServiceClient": [Function],
-      "WebSectionServiceService": Object {
-        "getWebSectionPage": Object {
-          "path": "/stroeer.web.section.v1.WebSectionService/GetWebSectionPage",
+      "SectionServiceClient": [Function],
+      "SectionServiceService": Object {
+        "getSectionPage": Object {
+          "path": "/stroeer.pages.section.v1.SectionService/GetSectionPage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
