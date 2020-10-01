@@ -20,7 +20,7 @@ message Article {
   repeated Element elements = 9;
   repeated string keywords = 10;
   repeated Author authors = 11;
-  repeated string onwards = 12;
+  repeated int64 onwards = 12;
 
 }
 

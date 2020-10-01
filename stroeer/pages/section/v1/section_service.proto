@@ -8,7 +8,7 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/pages/section/v1;sectio
 option java_multiple_files = true;
 option java_package = "de.stroeer.pages.section.v1";
 
-service SectionService {
+service SectionPageService {
   rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {}
 }
 
