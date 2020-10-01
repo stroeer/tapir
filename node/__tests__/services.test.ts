@@ -26,10 +26,10 @@ test('gRPC article service client is generated and matches the snapshot', () => 
 test('gRPC section service client is generated and matches the snapshot', () => {
   expect(SectionService).toMatchInlineSnapshot(`
     Object {
-      "SectionServiceClient": [Function],
-      "SectionServiceService": Object {
+      "SectionPageServiceClient": [Function],
+      "SectionPageServiceService": Object {
         "getSectionPage": Object {
-          "path": "/stroeer.pages.section.v1.SectionService/GetSectionPage",
+          "path": "/stroeer.pages.section.v1.SectionPageService/GetSectionPage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
           "requestStream": false,
