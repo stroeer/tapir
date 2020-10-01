@@ -1,0 +1,27 @@
+name: docker-release
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "Dockerfile"
+      - "build_docker.sh"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Docker build
+        run: ./build_docker.sh
+
+      - name: GHCR login
+        run: docker login ghcr.io -u ${{ github.repository_owner }} --password ${{ github.token }}
+
+      - name: GHCR publish
+        run: docker push ghcr.io/stroeer/protoc-dockerized:3.13.0
+
+      - name: GHCR logout
+        run: docker logout ghcr.io
