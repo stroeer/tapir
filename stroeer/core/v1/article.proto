@@ -9,47 +9,72 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
 message Article {
-  string id = 1;
-  string web_url = 2;
-  string canonical_url = 3;
-  ContentType type = 4;
-  string section_path = 5;
-  string headline = 6;
-  map<string, string> fields = 7;
-  repeated string keywords = 8;
-  Metadata metadata = 9;
-  repeated Element elements = 10;
+  int64 id = 1;
+  ContentType type = 2;
+  ContentSubType sub_type = 3;
+  References references = 4;
+  Section section = 5;
+  map<string, string> fields = 6;
+  Body body = 7;
+  Metadata metadata = 8;
+  repeated Element elements = 9;
+  repeated string keywords = 10;
   repeated Author authors = 11;
   repeated string onwards = 12;
-  Body body = 13;
+
 }
 
 message Metadata {
-  google.protobuf.Timestamp valid_from_date = 1;
-  google.protobuf.Timestamp valid_to_date = 2;
-  string state = 3;
-  google.protobuf.Timestamp transformation_date = 4;
+  string state = 1;
+  //  editorial date: Gültig von
+  google.protobuf.Timestamp valid_from = 2;
+  //  editorial date: Gültig bis
+  google.protobuf.Timestamp valid_to = 3;
+  //  editorial date: Zuletzt bearbeitet
+  google.protobuf.Timestamp last_edited = 4;
+  //  editorial date: Zuletzt publiziert
+  google.protobuf.Timestamp last_published = 5;
+  // editorial date: Erstellungsdatum
+  google.protobuf.Timestamp created = 6;
+  // editorial date: Aktualisierungsdatum
+  google.protobuf.Timestamp updated = 7;
 }
 
 message Element {
   ElementType type = 1;
-  string guid = 2;
-  repeated string relations = 3;
-  repeated Asset assets = 4;
-  string article_id = 5;
+  repeated ElementRelation relations = 2;
+  repeated Asset assets = 3;
 }
 
 message Asset {
   AssetType type = 1;
   int32 index = 2;
-  map<string, string> fields = 4;
-  Metadata metadata = 5;
+  map<string, string> fields = 3;
+  Metadata metadata = 4;
 }
 
 message Author {
-  string first_name = 1;
-  string surname = 2;
-  string web_url = 3;
+  uint64 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  // alias
+  // vg-wort id
+  // profile picture
+}
+
+message Section {
+  string path = 1;
+  string label = 2;
+  Section parent = 3;
+}
+
+message References {
+  // article's path, e.g. /section/id_$ID/title.html
+  string path = 1;
+  // article's canonical URL, may differ if external, e.g. https://www.giga.de/external.html
+  string canonical = 2;
+  // article's AMP URL, no pattern specified yet.
+  string amp = 3;
 }
 
 message Body {
@@ -73,6 +98,13 @@ enum ContentType {
   CONTENT_TYPE_OEMBED = 5;
 }
 
+enum ContentSubType {
+  CONTENT_SUB_TYPE_UNSPECIFIED = 0;
+  CONTENT_SUB_TYPE_NEWS = 1;
+  CONTENT_SUB_TYPE_OPINION = 2;
+  CONTENT_SUB_TYPE_COLUMN = 3;
+}
+
 enum ElementType {
   ELEMENT_TYPE_UNSPECIFIED = 0;
   ELEMENT_TYPE_ARTICLE = 1;
@@ -88,4 +120,11 @@ enum AssetType {
   ASSET_TYPE_VIDEO = 2;
   ASSET_TYPE_URL = 3;
   ASSET_TYPE_METADATA = 4;
+}
+
+enum ElementRelation {
+  ELEMENT_RELATION_UNSPECIFIED = 0;
+  ELEMENT_RELATION_OPENER = 1;
+  ELEMENT_RELATION_TEASER = 2;
+  ELEMENT_RELATION_INLINE = 3;
 }

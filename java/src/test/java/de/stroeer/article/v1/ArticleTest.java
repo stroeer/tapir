@@ -11,8 +11,8 @@ public class ArticleTest {
   @Test
   public void ModelCompiles() {
     Builder articleBuilder = Article.newBuilder();
-    articleBuilder.setId("id");
+    articleBuilder.setId(42L);
     Article article = articleBuilder.build();
-    assertEquals(article.getId(), "id");
+    assertEquals(article.getId(), 42L);
   }
 }

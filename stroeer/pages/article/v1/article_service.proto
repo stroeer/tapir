@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package stroeer.pages.article.v1;
+
+import "stroeer/core/v1/article.proto";
+import "stroeer/pages/article/v1/article.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/pages/article/v1;article";
+option java_multiple_files = true;
+option java_package = "de.stroeer.pages.article.v1";
+
+service ArticlePageService {
+  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+}
+
+message GetArticlePageRequest {
+  uint64 id = 1;
+}
+
+message GetArticlePageResponse {
+  stroeer.core.v1.Article article = 1;
+  repeated RelatedArticle related_articles = 2;
+}
+
