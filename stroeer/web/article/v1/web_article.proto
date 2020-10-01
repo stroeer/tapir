@@ -19,7 +19,6 @@ message WebArticle {
   repeated stroeer.core.v1.Element elements = 8;
   repeated stroeer.core.v1.Author authors = 9;
   repeated stroeer.core.v1.BodyNode body_nodes = 10;
-  stroeer.core.v1.Metadata metadata = 11;
 }
 
 message RelatedWebArticle {

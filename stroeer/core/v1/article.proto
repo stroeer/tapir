@@ -9,10 +9,10 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
 message Article {
-  uint64 id = 1;
+  int64 id = 1;
   ContentType type = 2;
   ContentSubType sub_type = 3;
-  ArticleReferences references = 4;
+  References references = 4;
   Section section = 5;
   map<string, string> fields = 6;
   Body body = 7;
@@ -48,7 +48,7 @@ message Element {
 
 message Asset {
   AssetType type = 1;
-  uint32 index = 2;
+  int32 index = 2;
   map<string, string> fields = 3;
   Metadata metadata = 4;
 }
@@ -68,7 +68,7 @@ message Section {
   Section parent = 3;
 }
 
-message ArticleReferences {
+message References {
   // article's path, e.g. /section/id_$ID/title.html
   string path = 1;
   // article's canonical URL, may differ if external, e.g. https://www.giga.de/external.html
