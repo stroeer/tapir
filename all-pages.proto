@@ -1,0 +1,5 @@
+// This file is for debugging purposes
+// Tools like BloomRPC and other CLIs have problems with imports
+import public "stroeer/pages/article/v1/article.proto";
+import public "stroeer/pages/article/v1/article_service.proto";
+import public "stroeer/pages/section/v1/section_service.proto";
