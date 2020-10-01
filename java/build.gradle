@@ -8,8 +8,8 @@ ext {
   apiVersion = 'v1'
   externalVersion = System.getenv("RELEASE_TAG") ?: "0.0.1-SNAPSHOT"
 
-  gh_username = System.getenv("GITHUB_USERNAME") ?: "username"
-  gh_token = System.getenv("GITHUB_TOKEN") ?: "github_token"
+  gh_username = System.getenv("GITHUB_ACTOR") ?: (project.findProperty('github.actor') ?: "none")
+  gh_token = System.getenv("GITHUB_TOKEN") ?: (project.findProperty('github.token') ?: "none")
 }
 
 group = 'de.stroeer.api.grpc'
