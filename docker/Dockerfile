@@ -1,23 +1,23 @@
+FROM node:lts-stretch as node
+
+
+# node plugins
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+
 FROM node:lts-stretch as installer
 
 ARG PROTOC_VERSION
-ARG NODE_GRPC_TOOLS_VERSION
-ARG NODE_TS_PROTOC_GEN_VERSION
-ARG JAVA_LIB_VERSION
-
-# node plugins
-RUN npm install grpc-tools@$NODE_GRPC_TOOLS_VERSION \
-  ts-protoc-gen@$NODE_TS_PROTOC_GEN_VERSION
-
-RUN mkdir /installer
 
 # protoc
+RUN mkdir /installer
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip -O protoc.zip
 RUN mkdir -p /installer/protoc
 RUN unzip -o protoc.zip -d /installer/protoc/
 
 # Download Java Lib
-FROM gradle as java
+FROM gradle:latest as java
 COPY build.gradle .
 RUN gradle download
 RUN mv installer /
@@ -32,7 +32,7 @@ RUN git clone -b v$GO_GRPC_TOOLS_VERSION https://github.com/grpc/grpc-go && cd g
 
 FROM node:lts-stretch-slim
 USER root
-COPY --from=installer /node_modules /node_modules
+COPY --from=node /node_modules /node_modules
 COPY --from=installer /installer/protoc /usr/bin/protoc
 COPY --from=java /installer/protoc-gen-grpc-java /usr/bin/
 COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
