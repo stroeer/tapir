@@ -10,5 +10,6 @@ lint:
     - RPC_RESPONSE_STANDARD_NAME
   ignore:
     - all-web.proto
+    - all-pages.proto
     - all-core.proto
     - all-coremedia.proto
