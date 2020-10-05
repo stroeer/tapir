@@ -1,4 +1,9 @@
+# IDE
 .idea
+.vscode
+*.iml
+*.ipr
+*.iws
 
 # node
 node_modules
@@ -7,11 +12,12 @@ bin/protoc
 *.tgz
 
 # java
+java/bin
 java/build
 java/.gradle
 java/src/main/java
+java/.*
 .gradle
-*.iml
-*.ipr
-*.iws
+
+# binaries
 protoc-gen-grpc-java
