@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package stroeer.pages.section.v1;
+
+import "stroeer/core/v1/article.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/pages/section/v1;section";
+option java_multiple_files = true;
+option java_package = "de.stroeer.pages.section.v1";
+
+message SectionPage {
+  repeated Stage stages = 1;
+}
+
+message Stage {
+  repeated stroeer.core.v1.Article articles = 1;
+  StageConfiguration stage_configuration = 2;
+  repeated Stage stages = 3;
+}
+
+message StageConfiguration {
+  map<string, string> fields = 1;
+  string layout = 2;
+}
