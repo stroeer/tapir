@@ -18,7 +18,10 @@ RUN npm install
 
 # Java
 FROM gradle:latest as java
+
 COPY build.gradle .
+COPY gradle .
+
 RUN gradle download
 RUN mv installer /
 

@@ -11,7 +11,13 @@ repositories {
 }
 
 configurations {
-  toCopyFile
+  toCopyFile {
+    resolutionStrategy.activateDependencyLocking()
+  }
+}
+
+dependencyLocking {
+    lockMode = LockMode.STRICT
 }
 
 dependencies {
