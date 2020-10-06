@@ -1,42 +1,52 @@
-FROM node:lts-stretch as node
 
-
-# node plugins
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install
-
+# Protoc binary
 FROM node:lts-stretch as installer
-
 ARG PROTOC_VERSION
-
-# protoc
 RUN mkdir /installer
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip -O protoc.zip
 RUN mkdir -p /installer/protoc
 RUN unzip -o protoc.zip -d /installer/protoc/
 
-# Download Java Lib
+
+# Node
+FROM node:lts-stretch as node
+
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+
+
+# Java
 FROM gradle:latest as java
 COPY build.gradle .
 RUN gradle download
 RUN mv installer /
 
-# go
+
+# Go
 FROM golang:1.15 as gopher
 ARG GO_GRPC_TOOLS_VERSION
-# install the protocol compiler plugin for Go
-RUN go get google.golang.org/protobuf/cmd/protoc-gen-go
-# installing grpc-go cmd, see https://github.com/grpc/grpc.io/issues/298
-RUN git clone -b v$GO_GRPC_TOOLS_VERSION https://github.com/grpc/grpc-go && cd grpc-go/cmd/protoc-gen-go-grpc && go install .
 
+RUN mkdir /temp
+RUN cd /temp
+WORKDIR /temp
+
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
+RUN go install /go/pkg/mod/google.golang.org/protobuf@*/cmd/protoc-gen-go
+RUN go install /go/pkg/mod/google.golang.org/grpc/cmd/protoc-gen-go-grpc@*
+
+
+# Composition
 FROM node:lts-stretch-slim
 USER root
 COPY --from=node /node_modules /node_modules
 COPY --from=installer /installer/protoc /usr/bin/protoc
 COPY --from=java /installer/protoc-gen-grpc-java /usr/bin/
-COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
 COPY --from=gopher /go/bin/protoc-gen-go-grpc /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
 
 RUN chmod +x /usr/bin/protoc-gen-grpc-java
 
