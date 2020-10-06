@@ -12,8 +12,8 @@ RUN unzip -o protoc.zip -d /installer/protoc/
 FROM node:lts-stretch as node
 
 COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+COPY package-lock.json .
+RUN npm install
 
 
 # Java
