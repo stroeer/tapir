@@ -82,7 +82,11 @@ cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-s
 
 ### release new version
 
-- bump versions in `build_docker.sh`
+- move to `docker/`
+- bump versions:
+  - protoc version in `docker/build_docker.sh`
+  - go dependency versions in `go.mod`
+  - java dependency versions in `build.gradle`
+  - node depenedncy versions in `package.json`
 - run `build_docker.sh`
-- run `docker tag stroeer/protoc-dockerized:$protoc_version ghcr.io/stroeer/protoc-dockerized:$protoc_version`
-- run `docker push ghcr.io/stroeer/protoc-dockerized:$protoc_version`
+- run `docker push ghcr.io/stroeer/protoc-dockerized:$protoc_version` (use `$protoc_version` from `build_docker.sh`)
