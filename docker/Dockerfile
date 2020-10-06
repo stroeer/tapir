@@ -1,6 +1,6 @@
 
 # Protoc binary
-FROM node:lts-stretch as installer
+FROM node:lts-stretch as protoc-bin
 ARG PROTOC_VERSION
 RUN mkdir /installer
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip -O protoc.zip
@@ -41,12 +41,13 @@ RUN go install /go/pkg/mod/google.golang.org/grpc/cmd/protoc-gen-go-grpc@*
 
 # Composition
 FROM node:lts-stretch-slim
+
 USER root
-COPY --from=node /node_modules /node_modules
-COPY --from=installer /installer/protoc /usr/bin/protoc
-COPY --from=java /installer/protoc-gen-grpc-java /usr/bin/
-COPY --from=gopher /go/bin/protoc-gen-go-grpc /usr/bin/
 COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-go-grpc /usr/bin/
+COPY --from=java /installer/protoc-gen-grpc-java /usr/bin/
+COPY --from=node /node_modules /node_modules
+COPY --from=protoc-bin /installer/protoc /usr/bin/protoc
 
 RUN chmod +x /usr/bin/protoc-gen-grpc-java
 
