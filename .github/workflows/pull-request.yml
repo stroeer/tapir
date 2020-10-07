@@ -9,6 +9,9 @@ jobs:
   buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
+    env:
+      BUF_INPUT_HTTPS_USERNAME: $GITHUB_ACTOR
+      BUF_INPUT_HTTPS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
