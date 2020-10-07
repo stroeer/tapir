@@ -19,8 +19,7 @@ message Article {
   Metadata metadata = 8;
   repeated Element elements = 9;
   repeated string keywords = 10;
-  repeated Author authors = 11;
-  repeated int64 onwards = 12;
+  repeated int64 onwards = 11;
 }
 
 message Metadata {
@@ -50,20 +49,6 @@ message Asset {
   int32 index = 2;
   map<string, string> fields = 3;
   Metadata metadata = 4;
-}
-
-// An author of an article with biographic information
-// and profile picture.
-message Author {
-  // unique CMS id of the author
-  int64 id = 1;
-
-  // biographic information of the author like 'first_name', 'last_name', 'alias',
-  // 'role' (e.g. 'Stellvertretender Chefredakteur'), 'vg_wort_id'
-  map<string, string> fields = 2;
-
-  // elements of an author like his/her profile picture
-  repeated Element elements = 3;
 }
 
 message Section {
@@ -135,6 +120,7 @@ enum ElementType {
   ELEMENT_TYPE_VIDEO = 3;
   ELEMENT_TYPE_GALLERY = 4;
   ELEMENT_TYPE_OEMBED = 5;
+  ELEMENT_TYPE_AUTHOR = 6;
 }
 
 enum AssetType {
