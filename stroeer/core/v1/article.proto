@@ -21,7 +21,6 @@ message Article {
   repeated string keywords = 10;
   repeated Author authors = 11;
   repeated int64 onwards = 12;
-
 }
 
 message Metadata {
@@ -53,13 +52,18 @@ message Asset {
   Metadata metadata = 4;
 }
 
+// An author of an article with biographic information
+// and profile picture.
 message Author {
-  uint64 id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  // alias
-  // vg-wort id
-  // profile picture
+  // unique CMS id of the author
+  int64 id = 1;
+
+  // biographic information of the author like 'first_name', 'last_name', 'alias',
+  // 'role' (e.g. 'Stellvertretender Chefredakteur'), 'vg_wort_id'
+  map<string, string> fields = 2;
+
+  // elements of an author like his/her profile picture
+  repeated Element elements = 3;
 }
 
 message Section {
