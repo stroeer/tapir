@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package stroeer.coremedia.v2;
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v2;coremedia";
+option java_multiple_files = true;
+option java_package = "de.stroeer.coremedia.v2";
+
+message CuratedStage {
+  repeated CuratedArticle articles = 1;
+  string label = 2;
+}
+
+message CuratedArticle {
+  string id = 1;
+  string curated_headline = 3;
+}

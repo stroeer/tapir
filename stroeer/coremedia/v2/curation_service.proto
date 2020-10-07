@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stroeer.coremedia.v2;
+
+import "stroeer/coremedia/v2/curated_stage.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v2;coremedia";
+option java_multiple_files = true;
+option java_package = "de.stroeer.coremedia.v2";
+
+service CurationService {
+  rpc GetCuratedStage (GetCuratedStageRequest) returns (GetCuratedStageResponse) {}
+}
+
+message GetCuratedStageRequest {
+  string list_id = 1;
+}
+
+message GetCuratedStageResponse {
+  stroeer.coremedia.v2.CuratedStage stage = 1;
+}
