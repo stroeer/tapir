@@ -28,9 +28,6 @@ RUN mv installer /
 FROM golang:1.15 as gopher
 ARG GO_GRPC_TOOLS_VERSION
 
-# RUN mkdir temp
-# WORKDIR /temp
-
 COPY go /temp
 WORKDIR /temp
 
