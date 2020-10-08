@@ -1,6 +1,6 @@
 
 # Protoc binary
-FROM node:lts-stretch as protoc-bin
+FROM node:lts-alpine as protoc-bin
 ARG PROTOC_VERSION
 RUN mkdir /installer
 RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip -O protoc.zip
@@ -9,18 +9,16 @@ RUN unzip -o protoc.zip -d /installer/protoc/
 
 
 # Node
-FROM node:lts-stretch as node
+FROM node:lts-alpine as node
 
-COPY package.json .
-COPY package-lock.json .
+COPY node .
 RUN npm install
 
 
 # Java
 FROM gradle:latest as java
 
-COPY build.gradle .
-COPY gradle .
+COPY java .
 
 RUN gradle download
 RUN mv installer /
@@ -30,17 +28,13 @@ RUN mv installer /
 FROM golang:1.15 as gopher
 ARG GO_GRPC_TOOLS_VERSION
 
-RUN mkdir /temp
-RUN cd /temp
+# RUN mkdir temp
+# WORKDIR /temp
+
+COPY go /temp
 WORKDIR /temp
 
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
-
-RUN go install /go/pkg/mod/google.golang.org/protobuf@*/cmd/protoc-gen-go
-RUN go install /go/pkg/mod/google.golang.org/grpc/cmd/protoc-gen-go-grpc@*
-
+RUN cat tools.go | grep _ | awk -F'"' '{print $2}' | xargs -tI % go install %
 
 # Composition
 FROM node:lts-stretch-slim

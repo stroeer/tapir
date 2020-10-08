@@ -7,6 +7,4 @@
 protoc_version=3.13.0
 
 docker build \
--t ghcr.io/stroeer/protoc-dockerized:$protoc_version \
---build-arg PROTOC_VERSION=$protoc_version \
-.
+-t ghcr.io/stroeer/protoc-dockerized:$protoc_version --build-arg PROTOC_VERSION=$protoc_version .
