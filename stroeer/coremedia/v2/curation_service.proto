@@ -10,6 +10,7 @@ option java_package = "de.stroeer.coremedia.v2";
 
 service CurationService {
   rpc GetCuratedStage (GetCuratedStageRequest) returns (GetCuratedStageResponse) {}
+  rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
 }
 
 message GetCuratedStageRequest {
@@ -18,4 +19,13 @@ message GetCuratedStageRequest {
 
 message GetCuratedStageResponse {
   stroeer.coremedia.v2.CuratedStage stage = 1;
+}
+
+
+message GetCuratedStagesRequest {
+  repeated int64 list_id = 1;
+}
+
+message GetCuratedStagesResponse {
+  repeated stroeer.coremedia.v2.CuratedStage stages = 1;
 }

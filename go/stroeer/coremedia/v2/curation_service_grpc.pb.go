@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CurationServiceClient interface {
 	GetCuratedStage(ctx context.Context, in *GetCuratedStageRequest, opts ...grpc.CallOption) (*GetCuratedStageResponse, error)
+	GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error)
 }
 
 type curationServiceClient struct {
@@ -41,12 +42,26 @@ func (c *curationServiceClient) GetCuratedStage(ctx context.Context, in *GetCura
 	return out, nil
 }
 
+var curationServiceGetCuratedStagesStreamDesc = &grpc.StreamDesc{
+	StreamName: "GetCuratedStages",
+}
+
+func (c *curationServiceClient) GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error) {
+	out := new(GetCuratedStagesResponse)
+	err := c.cc.Invoke(ctx, "/stroeer.coremedia.v2.CurationService/GetCuratedStages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CurationServiceService is the service API for CurationService service.
 // Fields should be assigned to their respective handler implementations only before
 // RegisterCurationServiceService is called.  Any unassigned fields will result in the
 // handler for that method returning an Unimplemented error.
 type CurationServiceService struct {
-	GetCuratedStage func(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error)
+	GetCuratedStage  func(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error)
+	GetCuratedStages func(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
 }
 
 func (s *CurationServiceService) getCuratedStage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -69,6 +84,26 @@ func (s *CurationServiceService) getCuratedStage(_ interface{}, ctx context.Cont
 	}
 	return interceptor(ctx, in, info, handler)
 }
+func (s *CurationServiceService) getCuratedStages(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	if s.GetCuratedStages == nil {
+		return nil, status.Errorf(codes.Unimplemented, "method GetCuratedStages not implemented")
+	}
+	in := new(GetCuratedStagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return s.GetCuratedStages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     s,
+		FullMethod: "/stroeer.coremedia.v2.CurationService/GetCuratedStages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return s.GetCuratedStages(ctx, req.(*GetCuratedStagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 // RegisterCurationServiceService registers a service implementation with a gRPC server.
 func RegisterCurationServiceService(s grpc.ServiceRegistrar, srv *CurationServiceService) {
@@ -78,6 +113,10 @@ func RegisterCurationServiceService(s grpc.ServiceRegistrar, srv *CurationServic
 			{
 				MethodName: "GetCuratedStage",
 				Handler:    srv.getCuratedStage,
+			},
+			{
+				MethodName: "GetCuratedStages",
+				Handler:    srv.getCuratedStages,
 			},
 		},
 		Streams:  []grpc.StreamDesc{},
@@ -100,6 +139,11 @@ func NewCurationServiceService(s interface{}) *CurationServiceService {
 	}); ok {
 		ns.GetCuratedStage = h.GetCuratedStage
 	}
+	if h, ok := s.(interface {
+		GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
+	}); ok {
+		ns.GetCuratedStages = h.GetCuratedStages
+	}
 	return ns
 }
 
@@ -109,4 +153,5 @@ func NewCurationServiceService(s interface{}) *CurationServiceService {
 // use of this type is not recommended.
 type UnstableCurationServiceService interface {
 	GetCuratedStage(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error)
+	GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
 }
