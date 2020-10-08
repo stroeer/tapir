@@ -6,7 +6,21 @@ on:
       - "master"
     paths:
       - "Dockerfile"
-      - "build_docker.sh"
+
+      # Protoc, image tags, image-build and image-release targets
+      - "Makefile"
+
+      # Node
+      - "node/package-lock.json"
+      - "node/package.json"
+
+      # Go
+      - "go/go.mod"
+      - "go/go.sum"
+      - "go/tools.go"
+
+      # Java
+      - "java/build.gradle"
 
 jobs:
   docker:
@@ -14,14 +28,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build
-        run: ./build_docker.sh
-
       - name: GHCR login
         run: docker login ghcr.io -u ${{ github.repository_owner }} --password ${{ github.token }}
 
+      - name: Docker build
+        run: make image-build
+
       - name: GHCR publish
-        run: docker push ghcr.io/stroeer/protoc-dockerized:3.13.0
+        run: make image-release
 
       - name: GHCR logout
         run: docker logout ghcr.io
