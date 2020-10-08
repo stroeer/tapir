@@ -17,7 +17,10 @@ GO_DIR = ./go
 OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
 GRPCPLUGIN ?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
-PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:3.13.0
+
+PROTOC_VERSION ?= 3.13.0
+
+PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS+= --proto_path=$(DIR)
 ifeq ($(LANGUAGE),node)
@@ -43,7 +46,7 @@ else
 	FLAGS+= --grpc_out=$(OUTPUT)
 endif
 
-.PHONY: clean help stroeer/%
+.PHONY: clean help image-build image-release stroeer/%
 
 all: stroeer/*
 
@@ -60,6 +63,17 @@ clean: ## Deletes all generated files
 	rm -rf $(JAVA_DIR) || true
 	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" ! -iname "*_test.go" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+
+image-build: ## Build new docker image
+	docker build \
+		-t ghcr.io/stroeer/protoc-dockerized:latest \
+		-t ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
+		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) .
+
+image-release: image-build ## Release new docker image to GHCR
+	docker push ghcr.io/stroeer/protoc-dockerized:latest
+	docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
+
 
 help: ## Display this help screen
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
