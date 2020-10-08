@@ -82,7 +82,6 @@ cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-s
 
 ### release new version
 
-- move to `docker/`
 - bump versions:
   - protoc version in `Makefile`
   - go dependency versions in `go.mod`
