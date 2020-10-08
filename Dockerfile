@@ -12,7 +12,7 @@ RUN unzip -o protoc.zip -d /installer/protoc/
 FROM node:lts-alpine as node
 
 COPY node .
-RUN npm install
+RUN npm ci
 
 
 # Java
