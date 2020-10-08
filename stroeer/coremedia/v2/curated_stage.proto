@@ -12,6 +12,6 @@ message CuratedStage {
 }
 
 message CuratedArticle {
-  string id = 1;
+  int64 id = 1;
   string curated_headline = 3;
 }

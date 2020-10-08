@@ -13,7 +13,7 @@ service CurationService {
 }
 
 message GetCuratedStageRequest {
-  string list_id = 1;
+   int64 list_id = 1;
 }
 
 message GetCuratedStageResponse {
