@@ -84,9 +84,9 @@ cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-s
 
 - move to `docker/`
 - bump versions:
-  - protoc version in `docker/build_docker.sh`
+  - protoc version in `Makefile`
   - go dependency versions in `go.mod`
-  - java dependency versions in `build.gradle`. **Important**: Don't forget to run `gradle dependencies --write-locks` after changing the versions or adding new dependencies.
+  - java dependency versions in `build.gradle`
   - node depenedncy versions in `package.json`
-- run `build_docker.sh`
-- run `docker push ghcr.io/stroeer/protoc-dockerized:$protoc_version` (use `$protoc_version` from `build_docker.sh`)
+- run `make image-build` (uses `$protoc_version` as well as `latest` as image tags)
+- run `make image-release` to release new images
