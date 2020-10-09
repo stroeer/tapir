@@ -47,15 +47,11 @@ task printVersion {
 }
 publishToMavenLocal.dependsOn printVersion
 
-task download {
-  doLast {
-    configurations.genGrpc.resolvedConfiguration.resolvedArtifacts.each { artifact ->
-      project.copy {
-        from artifact.file
-        into 'installer'
-        rename { "${artifact.name}" }
-      }
-    }
+task download(type: Copy, group: 'help', description: 'Download binaries required for GRPC generation') {
+  from configurations.genGrpc
+  into 'installer'
+  rename { file ->
+    file.replace(file, 'protoc-gen-grpc-java')
   }
 }
 
