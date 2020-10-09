@@ -1,0 +1,30 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "gradle"
+    directory: "/java"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "stroeer/teams/buzz-end"
+
+  - package-ecosystem: "gomod"
+    directory: "/go"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "stroeer/teams/buzz-end"
+
+  - package-ecosystem: "npm"
+    directory: "/node"
+    schedule:
+      interval: "weekly"
