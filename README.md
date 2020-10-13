@@ -70,30 +70,30 @@ $ make LANGUAGE=go
 Generating go code is currently not part of the release process. Go sources need
 to be generated locally and added to pull requests.
 
-## docker Image for `stroeer/protoc-dockerized`
+## docker image
 
-### requirements
+### version management
+
+bump versions in a PR and merge into `master`:
+
+- protoc version in `Makefile`
+- go dependency versions in `go.mod`
+- java dependency versions in `build.gradle`
+- node dependency versions in `package.json`
+
+### release new version
+
+#### official way
+
+run workflow `docker-release` manually
+
+#### inofficial way
 
 Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
 
 ```sh
 cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-stdin
 ```
-
-### release new version
-
-- bump versions in a PR:
-
-  - protoc version in `Makefile`
-  - go dependency versions in `go.mod`
-  - java dependency versions in `build.gradle`
-  - node depenedncy versions in `package.json`
-
-- after merge run workflow `docker-release` manually
-
-#### inofficial way
-
-- bump versions as previously described
 
 - run `make image-build` (tags as [`$protoc_version`, `latest`])
 - run `make image-release` to push the new image
