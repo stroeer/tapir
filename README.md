@@ -82,10 +82,18 @@ cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-s
 
 ### release new version
 
-- bump versions:
+- bump versions in a PR:
+
   - protoc version in `Makefile`
   - go dependency versions in `go.mod`
   - java dependency versions in `build.gradle`
   - node depenedncy versions in `package.json`
-- run `make image-build` (uses `$protoc_version` as well as `latest` as image tags)
-- run `make image-release` to release new images
+
+- after merge run workflow `docker-release` manually
+
+#### inofficial way
+
+- bump versions as previously described
+
+- run `make image-build` (tags as [`$protoc_version`, `latest`])
+- run `make image-release` to push the new image
