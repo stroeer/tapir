@@ -81,13 +81,7 @@ bump versions in a PR and merge into `master`:
 - java dependency versions in `build.gradle`
 - node dependency versions in `package.json`
 
-### release new version
-
-#### official way
-
-run workflow `docker-release` manually
-
-#### inofficial way
+### release
 
 Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
 
