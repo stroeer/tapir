@@ -1,7 +1,7 @@
 name: docker-release
 
 # NOTE: only triggered manually
-on: workflow_run
+on: [workflow_dispatch]
 
 jobs:
   docker:
