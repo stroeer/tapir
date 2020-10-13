@@ -1,26 +1,7 @@
 name: docker-release
 
-on:
-  push:
-    branches:
-      - "master"
-    paths:
-      - "Dockerfile"
-
-      # Protoc, image tags, image-build and image-release targets
-      - "Makefile"
-
-      # Node
-      - "node/package-lock.json"
-      - "node/package.json"
-
-      # Go
-      - "go/go.mod"
-      - "go/go.sum"
-      - "go/tools.go"
-
-      # Java
-      - "java/build.gradle"
+# NOTE: only triggered manually
+on: workflow_run
 
 jobs:
   docker:
