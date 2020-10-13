@@ -1,12 +1,7 @@
 name: docker-release
 
-on:
-  push:
-    branches:
-      - "master"
-    paths:
-      - "Dockerfile"
-      - "build_docker.sh"
+# NOTE: only triggered manually
+on: workflow_run
 
 jobs:
   docker:
@@ -14,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker build
-        run: ./build_docker.sh
-
       - name: GHCR login
         run: docker login ghcr.io -u ${{ github.repository_owner }} --password ${{ github.token }}
 
+      - name: Docker build
+        run: make image-build
+
       - name: GHCR publish
-        run: docker push ghcr.io/stroeer/protoc-dockerized:3.13.0
+        run: make image-release
 
       - name: GHCR logout
         run: docker logout ghcr.io
