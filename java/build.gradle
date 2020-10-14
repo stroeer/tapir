@@ -36,7 +36,7 @@ dependencies {
   )
 
   genGrpc(
-    group: 'io.grpc', name: 'protoc-gen-grpc-java', version: '1.32.1', classifier:'linux-x86_64', ext: 'exe' 
+    group: 'io.grpc', name: 'protoc-gen-grpc-java', version: '1.32.2', classifier:'linux-x86_64', ext: 'exe' 
   )
 }
 
