@@ -100,9 +100,28 @@ enum ContentType {
 
 enum ContentSubType {
   CONTENT_SUB_TYPE_UNSPECIFIED = 0;
+  // Meldung/Nachricht — this is the default
   CONTENT_SUB_TYPE_NEWS = 1;
-  CONTENT_SUB_TYPE_OPINION = 2;
-  CONTENT_SUB_TYPE_COLUMN = 3;
+  // Kolumne
+  CONTENT_SUB_TYPE_COLUMN = 2;
+  // Bericht
+  CONTENT_SUB_TYPE_REPORT = 3;
+  // Kommentar
+  CONTENT_SUB_TYPE_COMMENTARY = 4;
+  // Interview
+  CONTENT_SUB_TYPE_INTERVIEW = 5;
+  // Pro und Kontra/Streitgespräch
+  CONTENT_SUB_TYPE_CONTROVERSY = 6;
+  // Reportage
+  CONTENT_SUB_TYPE_STORY = 7;
+  // Rezension/Kritik
+  CONTENT_SUB_TYPE_RECENSION = 8;
+  // Tagesanbruch
+  CONTENT_SUB_TYPE_TAGESANBRUCH = 9;
+  // Analyse
+  CONTENT_SUB_TYPE_ANALYSIS = 10;
+  // Satire/Glosse
+  CONTENT_SUB_TYPE_SATIRE = 11;
 }
 
 enum ElementType {
