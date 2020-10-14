@@ -14,7 +14,7 @@
     "@types/jest": "26.0.14",
     "google-protobuf": "3.13.0",
     "grpc-tools": "1.9.1",
-    "jest": "26.4.2",
+    "jest": "26.5.3",
     "jest-circus": "26.4.2",
     "prettier": "2.1.2",
     "ts-jest": "26.3.0",
