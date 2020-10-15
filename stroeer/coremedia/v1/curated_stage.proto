@@ -6,8 +6,12 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia"
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
+message CuratedStage {
+  repeated CuratedArticle articles = 1;
+  string label = 2;
+}
+
 message CuratedArticle {
-  string id = 1;
-  string web_url = 2;
-  string short_headline = 3;
+  int64 id = 1;
+  string curated_headline = 3;
 }
