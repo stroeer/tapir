@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package stroeer.coremedia.v2;
+package stroeer.coremedia.v1;
 
-option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v2;coremedia";
+option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
-option java_package = "de.stroeer.coremedia.v2";
+option java_package = "de.stroeer.coremedia.v1";
 
 message CuratedStage {
   repeated CuratedArticle articles = 1;

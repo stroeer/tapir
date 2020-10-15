@@ -2,20 +2,30 @@ syntax = "proto3";
 
 package stroeer.coremedia.v1;
 
-import "stroeer/coremedia/v1/curated_article.proto";
+import "stroeer/coremedia/v1/curated_stage.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
 service CurationService {
-  rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
+  rpc GetCuratedStage (GetCuratedStageRequest) returns (GetCuratedStageResponse) {}
+  rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
 }
 
-message GetCuratedListRequest {
-  string list_id = 1;
+message GetCuratedStageRequest {
+   int64 list_id = 1;
 }
 
-message GetCuratedListResponse {
-  repeated stroeer.coremedia.v1.CuratedArticle items = 1;
+message GetCuratedStageResponse {
+  stroeer.coremedia.v1.CuratedStage stage = 1;
+}
+
+
+message GetCuratedStagesRequest {
+  repeated int64 list_id = 1;
+}
+
+message GetCuratedStagesResponse {
+  repeated stroeer.coremedia.v1.CuratedStage stages = 1;
 }
