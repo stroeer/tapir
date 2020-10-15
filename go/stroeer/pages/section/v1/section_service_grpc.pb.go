@@ -28,10 +28,6 @@ func NewSectionPageServiceClient(cc grpc.ClientConnInterface) SectionPageService
 	return &sectionPageServiceClient{cc}
 }
 
-var sectionPageServiceGetSectionPageStreamDesc = &grpc.StreamDesc{
-	StreamName: "GetSectionPage",
-}
-
 func (c *sectionPageServiceClient) GetSectionPage(ctx context.Context, in *GetSectionPageRequest, opts ...grpc.CallOption) (*GetSectionPageResponse, error) {
 	out := new(GetSectionPageResponse)
 	err := c.cc.Invoke(ctx, "/stroeer.pages.section.v1.SectionPageService/GetSectionPage", in, out, opts...)
@@ -41,72 +37,61 @@ func (c *sectionPageServiceClient) GetSectionPage(ctx context.Context, in *GetSe
 	return out, nil
 }
 
-// SectionPageServiceService is the service API for SectionPageService service.
-// Fields should be assigned to their respective handler implementations only before
-// RegisterSectionPageServiceService is called.  Any unassigned fields will result in the
-// handler for that method returning an Unimplemented error.
-type SectionPageServiceService struct {
-	GetSectionPage func(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
+// SectionPageServiceServer is the server API for SectionPageService service.
+// All implementations must embed UnimplementedSectionPageServiceServer
+// for forward compatibility
+type SectionPageServiceServer interface {
+	GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
+	mustEmbedUnimplementedSectionPageServiceServer()
 }
 
-func (s *SectionPageServiceService) getSectionPage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GetSectionPage == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GetSectionPage not implemented")
-	}
+// UnimplementedSectionPageServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSectionPageServiceServer struct {
+}
+
+func (UnimplementedSectionPageServiceServer) GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSectionPage not implemented")
+}
+func (UnimplementedSectionPageServiceServer) mustEmbedUnimplementedSectionPageServiceServer() {}
+
+// UnsafeSectionPageServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SectionPageServiceServer will
+// result in compilation errors.
+type UnsafeSectionPageServiceServer interface {
+	mustEmbedUnimplementedSectionPageServiceServer()
+}
+
+func RegisterSectionPageServiceServer(s *grpc.Server, srv SectionPageServiceServer) {
+	s.RegisterService(&_SectionPageService_serviceDesc, srv)
+}
+
+func _SectionPageService_GetSectionPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSectionPageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.GetSectionPage(ctx, in)
+		return srv.(SectionPageServiceServer).GetSectionPage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
+		Server:     srv,
 		FullMethod: "/stroeer.pages.section.v1.SectionPageService/GetSectionPage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.GetSectionPage(ctx, req.(*GetSectionPageRequest))
+		return srv.(SectionPageServiceServer).GetSectionPage(ctx, req.(*GetSectionPageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RegisterSectionPageServiceService registers a service implementation with a gRPC server.
-func RegisterSectionPageServiceService(s grpc.ServiceRegistrar, srv *SectionPageServiceService) {
-	sd := grpc.ServiceDesc{
-		ServiceName: "stroeer.pages.section.v1.SectionPageService",
-		Methods: []grpc.MethodDesc{
-			{
-				MethodName: "GetSectionPage",
-				Handler:    srv.getSectionPage,
-			},
+var _SectionPageService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "stroeer.pages.section.v1.SectionPageService",
+	HandlerType: (*SectionPageServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSectionPage",
+			Handler:    _SectionPageService_GetSectionPage_Handler,
 		},
-		Streams:  []grpc.StreamDesc{},
-		Metadata: "stroeer/pages/section/v1/section_service.proto",
-	}
-
-	s.RegisterService(&sd, nil)
-}
-
-// NewSectionPageServiceService creates a new SectionPageServiceService containing the
-// implemented methods of the SectionPageService service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewSectionPageServiceService(s interface{}) *SectionPageServiceService {
-	ns := &SectionPageServiceService{}
-	if h, ok := s.(interface {
-		GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
-	}); ok {
-		ns.GetSectionPage = h.GetSectionPage
-	}
-	return ns
-}
-
-// UnstableSectionPageServiceService is the service API for SectionPageService service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableSectionPageServiceService interface {
-	GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "stroeer/pages/section/v1/section_service.proto",
 }

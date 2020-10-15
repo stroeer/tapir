@@ -8,7 +8,9 @@ option java_package = "de.stroeer.coremedia.v1";
 
 message CuratedStage {
   repeated CuratedArticle articles = 1;
-  string label = 2;
+  string stage_label = 2;
+  string stage_id = 3;
+  int64 list_id = 4;
 }
 
 message CuratedArticle {

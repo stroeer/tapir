@@ -17,7 +17,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CurationServiceClient interface {
-	GetCuratedList(ctx context.Context, in *GetCuratedListRequest, opts ...grpc.CallOption) (*GetCuratedListResponse, error)
+	GetCuratedStage(ctx context.Context, in *GetCuratedStageRequest, opts ...grpc.CallOption) (*GetCuratedStageResponse, error)
+	GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error)
 }
 
 type curationServiceClient struct {
@@ -28,85 +29,105 @@ func NewCurationServiceClient(cc grpc.ClientConnInterface) CurationServiceClient
 	return &curationServiceClient{cc}
 }
 
-var curationServiceGetCuratedListStreamDesc = &grpc.StreamDesc{
-	StreamName: "GetCuratedList",
-}
-
-func (c *curationServiceClient) GetCuratedList(ctx context.Context, in *GetCuratedListRequest, opts ...grpc.CallOption) (*GetCuratedListResponse, error) {
-	out := new(GetCuratedListResponse)
-	err := c.cc.Invoke(ctx, "/stroeer.coremedia.v1.CurationService/GetCuratedList", in, out, opts...)
+func (c *curationServiceClient) GetCuratedStage(ctx context.Context, in *GetCuratedStageRequest, opts ...grpc.CallOption) (*GetCuratedStageResponse, error) {
+	out := new(GetCuratedStageResponse)
+	err := c.cc.Invoke(ctx, "/stroeer.coremedia.v1.CurationService/GetCuratedStage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// CurationServiceService is the service API for CurationService service.
-// Fields should be assigned to their respective handler implementations only before
-// RegisterCurationServiceService is called.  Any unassigned fields will result in the
-// handler for that method returning an Unimplemented error.
-type CurationServiceService struct {
-	GetCuratedList func(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error)
+func (c *curationServiceClient) GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error) {
+	out := new(GetCuratedStagesResponse)
+	err := c.cc.Invoke(ctx, "/stroeer.coremedia.v1.CurationService/GetCuratedStages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-func (s *CurationServiceService) getCuratedList(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GetCuratedList == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GetCuratedList not implemented")
-	}
-	in := new(GetCuratedListRequest)
+// CurationServiceServer is the server API for CurationService service.
+// All implementations must embed UnimplementedCurationServiceServer
+// for forward compatibility
+type CurationServiceServer interface {
+	GetCuratedStage(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error)
+	GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
+	mustEmbedUnimplementedCurationServiceServer()
+}
+
+// UnimplementedCurationServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCurationServiceServer struct {
+}
+
+func (UnimplementedCurationServiceServer) GetCuratedStage(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCuratedStage not implemented")
+}
+func (UnimplementedCurationServiceServer) GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCuratedStages not implemented")
+}
+func (UnimplementedCurationServiceServer) mustEmbedUnimplementedCurationServiceServer() {}
+
+// UnsafeCurationServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CurationServiceServer will
+// result in compilation errors.
+type UnsafeCurationServiceServer interface {
+	mustEmbedUnimplementedCurationServiceServer()
+}
+
+func RegisterCurationServiceServer(s *grpc.Server, srv CurationServiceServer) {
+	s.RegisterService(&_CurationService_serviceDesc, srv)
+}
+
+func _CurationService_GetCuratedStage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCuratedStageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.GetCuratedList(ctx, in)
+		return srv.(CurationServiceServer).GetCuratedStage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
-		FullMethod: "/stroeer.coremedia.v1.CurationService/GetCuratedList",
+		Server:     srv,
+		FullMethod: "/stroeer.coremedia.v1.CurationService/GetCuratedStage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.GetCuratedList(ctx, req.(*GetCuratedListRequest))
+		return srv.(CurationServiceServer).GetCuratedStage(ctx, req.(*GetCuratedStageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RegisterCurationServiceService registers a service implementation with a gRPC server.
-func RegisterCurationServiceService(s grpc.ServiceRegistrar, srv *CurationServiceService) {
-	sd := grpc.ServiceDesc{
-		ServiceName: "stroeer.coremedia.v1.CurationService",
-		Methods: []grpc.MethodDesc{
-			{
-				MethodName: "GetCuratedList",
-				Handler:    srv.getCuratedList,
-			},
+func _CurationService_GetCuratedStages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCuratedStagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CurationServiceServer).GetCuratedStages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stroeer.coremedia.v1.CurationService/GetCuratedStages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CurationServiceServer).GetCuratedStages(ctx, req.(*GetCuratedStagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _CurationService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "stroeer.coremedia.v1.CurationService",
+	HandlerType: (*CurationServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetCuratedStage",
+			Handler:    _CurationService_GetCuratedStage_Handler,
 		},
-		Streams:  []grpc.StreamDesc{},
-		Metadata: "stroeer/coremedia/v1/curation_service.proto",
-	}
-
-	s.RegisterService(&sd, nil)
-}
-
-// NewCurationServiceService creates a new CurationServiceService containing the
-// implemented methods of the CurationService service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewCurationServiceService(s interface{}) *CurationServiceService {
-	ns := &CurationServiceService{}
-	if h, ok := s.(interface {
-		GetCuratedList(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error)
-	}); ok {
-		ns.GetCuratedList = h.GetCuratedList
-	}
-	return ns
-}
-
-// UnstableCurationServiceService is the service API for CurationService service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableCurationServiceService interface {
-	GetCuratedList(context.Context, *GetCuratedListRequest) (*GetCuratedListResponse, error)
+		{
+			MethodName: "GetCuratedStages",
+			Handler:    _CurationService_GetCuratedStages_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "stroeer/coremedia/v1/curation_service.proto",
 }

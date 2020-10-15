@@ -14,7 +14,7 @@ service CurationService {
 }
 
 message GetCuratedStageRequest {
-   int64 list_id = 1;
+   string stage_id = 1;
 }
 
 message GetCuratedStageResponse {
@@ -23,7 +23,7 @@ message GetCuratedStageResponse {
 
 
 message GetCuratedStagesRequest {
-  repeated int64 list_id = 1;
+  repeated string stage_ids = 1;
 }
 
 message GetCuratedStagesResponse {
