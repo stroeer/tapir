@@ -13,12 +13,67 @@ message SectionPage {
 }
 
 message Stage {
-  repeated stroeer.core.v1.Article articles = 1;
+  repeated StageItem stage_items = 1;
   StageConfiguration stage_configuration = 2;
-  repeated Stage stages = 3;
 }
 
+/* possible problems:
+  - linkout as 'string' isn't in sync with the actual section tree
+  - where to derive position from for the 'linkout'?
+*/
 message StageConfiguration {
+  /* stage labels
+     e.g.: ["title":"Coronavirus", "subtitle":"Alle News und Informationen"]
+     and overrides
+     e.g.: ["title_size":"SMALL", "style/theme/palette":"COLOR_BLARZ", "logo_position:center", "qcu":"true", "swipeable":"true"]
+  */
   map<string, string> fields = 1;
-  string layout = 2;
+  StageLayout stage_layout = 2;
+}
+
+// wip: common lingo discussion planned
+enum StageLayout {
+  STAGE_LAYOUT_UNSPECIFIED = 0;
+  STAGE_LAYOUT_STORIES = 1;
+  STAGE_LAYOUT_BULLETS = 2;
+}
+
+message StageItem {
+  oneof item_type {
+    Stage stage = 1;
+    ArticleTeaser article_teaser = 2;
+    Commercial commercial = 3;
+  }
+  reserved 4 to 10; // for future item types
+  StageItemWidth stage_item_width = 11;
+}
+
+message Commercial {
+  map<string, string> fields = 1;
+}
+
+message ArticleTeaser {
+  stroeer.core.v1.Article article = 1;
+  // ["sponsoring_logo":"gruender_szene.png"]
+  map<string, string> fields = 2;
+  TeaserLayout teaser_layout = 3;
+}
+
+// wip: common lingo discussion planned
+enum TeaserLayout {
+  TEASER_LAYOUT_UNSPECIFIED = 0;
+  TEASER_LAYOUT_HERO = 1;
+  TEASER_LAYOUT_CLUSTER = 2;
+  TEASER_LAYOUT_STORY = 4;
+  TEASER_LAYOUT_BULLET_ITEM = 5;
+}
+
+enum StageItemWidth {
+  STAGE_ITEM_WIDTH_UNSPECIFIED = 0;
+  STAGE_ITEM_WIDTH_FULL = 1;
+  STAGE_ITEM_WIDTH_HALF = 2;
+  reserved 3, 5 to 7; // use indices like the actual denomitators
+  STAGE_ITEM_WIDTH_QUARTER = 4;
+  STAGE_ITEM_WIDTH_EIGHTHS = 8;
+  STAGE_ITEM_WIDTH_FULL_PAGE = 9;
 }
