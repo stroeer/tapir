@@ -9,18 +9,8 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
 service CurationService {
-  rpc GetCuratedStage (GetCuratedStageRequest) returns (GetCuratedStageResponse) {}
   rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
 }
-
-message GetCuratedStageRequest {
-   string stage_id = 1;
-}
-
-message GetCuratedStageResponse {
-  stroeer.coremedia.v1.CuratedStage stage = 1;
-}
-
 
 message GetCuratedStagesRequest {
   repeated string stage_ids = 1;
