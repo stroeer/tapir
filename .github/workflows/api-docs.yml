@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${{github.repository}}.wiki
-      - name: Write docs to wiki
+      - name: add docs to api-spec.md
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -28,5 +28,7 @@ jobs:
           echo "\n\n## $RELEASE_TAG \n" >> ../../api-spec.md
           for n in api-spec-stroeer*; do filepath=${n/.md/}; label=${filepath/api-spec-/}; echo "• [$label](api-specs/$RELEASE_TAG/$filepath)" >> ../../api-spec.md; done
           cd ../..
+      - name: push changed docs to wiki
+        run: |
           git add .
-          git diff-index --quiet HEAD || git commit -m "Update api-specs" && git push
+          git diff-index --quiet HEAD || git commit -m "update wiki api-specs" && git push
