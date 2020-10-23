@@ -24,7 +24,7 @@ PROTOC_VERSION ?= 3.13.0
 PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS+= --proto_path=$(DIR)
-FLAGS+= --doc_opt=markdown,package.md
+FLAGS+= --doc_out=$(DOCS_DIR)/
 ifeq ($(LANGUAGE),node)
 	ifeq ($(OUTPUT), $(JAVA_DIR))
 		OUTPUT = $(NODE_DIR)
@@ -52,18 +52,19 @@ endif
 
 all: stroeer/*
 
-doc-folders: clean-docs
-	@echo "+ docsdir $@"
-	find stroeer/* -type d -depth 0 | xargs -L1 -I{} mkdir -p $(DOCS_DIR)/"{}"
-
 $(OUTPUT):
 	@echo "+ mkdir $@"
 	[ -d $@ ] || mkdir -p $@
 
+$(DOCS_DIR):
+	@echo "+ mkdir $@"
+	[ -d $@ ] || mkdir -p $@
 
-stroeer/%: $(OUTPUT) doc-folders
+
+stroeer/%: $(OUTPUT) $(DOCS_DIR) clean-docs
 	@echo "+ compile: $@"
-	$(PROTOC) $(FLAGS) --doc_out=$(DOCS_DIR)/$@ $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
+	$(eval doc_name := api-spec-$(subst /,.,$@))
+	$(PROTOC) $(FLAGS) --doc_opt=markdown,$(doc_name).md $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
 
 clean: ## Deletes all generated files
 	@echo "+ $@"
