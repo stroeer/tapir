@@ -89,5 +89,5 @@ Login to `ghcr.io` with your Github user name and a Github personal access token
 cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-stdin
 ```
 
-- run `make image-build` (tags as [`$protoc_version`, `latest`])
-- run `make image-release` to push the new image
+- run `make docker-build` (tags as [`$protoc_version`, `latest`])
+- run `make docker-release` to push the new image

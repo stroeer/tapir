@@ -1,4 +1,4 @@
-name: publish
+name: wiki-docs-generator
 
 on:
   release:
@@ -21,8 +21,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           cd tapir.wiki
-          cd tapir.wiki
-          [ -d api-specs/$RELEASE_TAG ] || mkdir -p api-specs/$RELEASE_TAG
+          [ -d api-spec
+          s/$RELEASE_TAG ] || mkdir -p api-specs/$RELEASE_TAG
           yes | cp ../api-docs/api-spec* ./api-specs/$RELEASE_TAG
           cd ./api-specs/$RELEASE_TAG
           echo "\n\n## $RELEASE_TAG \n" >> ../../api-spec.md
