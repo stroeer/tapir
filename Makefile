@@ -13,7 +13,9 @@ DIR = $(shell pwd)
 JAVA_DIR = ./java/src/main/java
 NODE_DIR = ./node
 GO_DIR = ./go
-DOCS_DIR = ./api-docs
+
+RELEASE_TAG ?= latest
+DOCS_DIR = ./api-docs/$(RELEASE_TAG)
 
 OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
@@ -24,7 +26,6 @@ PROTOC_VERSION ?= 3.13.0
 PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS+= --proto_path=$(DIR)
-FLAGS+= --doc_out=$(DOCS_DIR)/
 ifeq ($(LANGUAGE),node)
 	ifeq ($(OUTPUT), $(JAVA_DIR))
 		OUTPUT = $(NODE_DIR)
@@ -63,8 +64,14 @@ $(DOCS_DIR):
 
 stroeer/%: $(OUTPUT) $(DOCS_DIR) clean-docs
 	@echo "+ compile: $@"
-	$(eval doc_name := api-spec-$(subst /,.,$@))
-	$(PROTOC) $(FLAGS) --doc_opt=markdown,$(doc_name).md $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
+	$(PROTOC) $(FLAGS) $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
+
+docs: $(DOCS_DIR) clean-docs
+	@echo "+ docs: $@"
+	$(eval packages := $(shell find stroeer/* -iname "*.proto" -exec dirname '{}' \; | sort -u))
+	@echo "+ packages: $(packages)"
+	$(foreach package,$(packages), $(eval files += $(wildcard $(package)/*)))
+	$(PROTOC) $(FLAGS) --doc_out=$(DOCS_DIR) --doc_opt=markdown,api-spec.md $(files)
 
 clean: ## Deletes all generated files
 	@echo "+ $@"
@@ -73,7 +80,7 @@ clean: ## Deletes all generated files
 	@rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 clean-docs:
-	@if [[ $(DOCS_DIR)/* == /* ]]; then echo "var DOCS_DIR is unset, prevented 'rm -rf /*'"; else rm -rf $(DOCS_DIR)/*; fi
+	@if [[ $(DOCS_DIR)/* == /* ]]; then echo "var DOCS_DIR is unset, prevented 'rm -rf /*'"; else rm -rf $(DOCS_DIR)/* || true; fi
 
 docker-build: ## Build new docker image
 	docker build \
@@ -87,6 +94,3 @@ docker-push: image-build ## Release new docker image to GHCR
 
 help: ## Display this help screen
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
-dev-release-java: clean java stroeer/*
-	cd java; ./gradlew publishToMavenLocal
