@@ -27,7 +27,7 @@ message StageConfiguration {
 
 message StageItem {
   StageItemWidth stage_item_width = 1;
-  oneof item_type {
+  oneof stage_item_type {
     Stage stage = 2;
     ArticleTeaser article_teaser = 3;
     Commercial commercial = 4;
