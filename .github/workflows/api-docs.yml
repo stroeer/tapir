@@ -8,7 +8,8 @@ jobs:
   docs:
     env:
       RELEASE_TAG: ${{ github.event.release.tag_name }}
-      SPEC_FOLDER: api-specs/${{ github.event.release.tag_name }}
+      RELEASE_SPEC_FOLDER: api-docs/${{ github.event.release.tag_name }}
+      SPEC_FILE_NAME: api-spec.md
     steps:
       - uses: actions/checkout@v2
       - name: Gen docs
@@ -19,16 +20,14 @@ jobs:
           repository: ${{github.repository}}.wiki
       - name: add docs to api-spec.md
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           cd tapir.wiki
           [ -d $SPEC_FOLDER ] || mkdir -p $SPEC_FOLDER
-          yes | cp ../api-docs/api-spec* $SPEC_FOLDER
-          cd $SPEC_FOLDER
-          echo "\n\n## $RELEASE_TAG \n" >> ../../api-spec.md
-          for n in api-spec-stroeer*; do filepath=${n/.md/}; label=${filepath/api-spec-/}; echo "• [$label]($SPEC_FOLDER/$filepath)" >> ../../api-spec.md; done
-          cd ../..
+          yes | cp -r ../$SPEC_FOLDER .
+          echo "• [$RELEASE_TAG]($RELEASE_SPEC_FOLDER/$SPEC_FILE_NAME)" >> ../../api-spec.md
+          cd ..
       - name: push changed docs to wiki
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
           git diff-index --quiet HEAD || git commit -m "update wiki api-specs" && git push
