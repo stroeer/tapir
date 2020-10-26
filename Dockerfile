@@ -50,7 +50,6 @@ COPY --from=node /node_modules /node_modules
 COPY --from=protoc-bin /installer/protoc /usr/bin/protoc
 COPY --from=protoc-bin /installer/protoc-gen-doc /usr/bin/protoc-gen-doc
 RUN chmod +x /usr/bin/protoc-gen-grpc-java
-RUN chmod +x /usr/bin/protoc-gen-grpc-java
 
 ENV PATH="/usr/bin/protoc/bin:${PATH}"
 RUN protoc --version
