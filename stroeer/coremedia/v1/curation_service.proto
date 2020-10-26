@@ -2,20 +2,39 @@ syntax = "proto3";
 
 package stroeer.coremedia.v1;
 
-import "stroeer/coremedia/v1/curated_article.proto";
+import "stroeer/coremedia/v1/curated_stage.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
+/**
+ * A legacy service for getting lists of article ids that are curated for the current t-online.de
+ * Implemented by github.com/stroeer/polyphase
+*/
 service CurationService {
-  rpc GetCuratedList (GetCuratedListRequest) returns (GetCuratedListResponse) {}
+  /**
+  * The method to call on the CurationService to get curation data from coremedia.
+  * Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
+  */
+  rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
 }
 
-message GetCuratedListRequest {
-  string list_id = 1;
+/**
+ * Message that defines parameters for invoking the CurationService.GetCuratedStages method
+*/
+message GetCuratedStagesRequest {
+  /**
+  * List of conventional stage_ids, like 'aufmacher', 'sport', 'schlagzeilen'.
+  * The mapping from a stage_id to an numerics list_id of coremedia is done at the implementing service.
+  * Also supports legacy numeric list_ids from coremedia, like '69725912'; the stage_id of the returned CuratedStage will be the provided numeric id.
+  */
+  repeated string stage_ids = 1;
 }
 
-message GetCuratedListResponse {
-  repeated stroeer.coremedia.v1.CuratedArticle items = 1;
+/**
+* Contains a list of CuratedStages for each provided stage_id, that was resolved to curation data from coremedia.
+*/
+message GetCuratedStagesResponse {
+  repeated stroeer.coremedia.v1.CuratedStage stages = 1;
 }
