@@ -17,7 +17,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CurationServiceClient interface {
-	GetCuratedStage(ctx context.Context, in *GetCuratedStageRequest, opts ...grpc.CallOption) (*GetCuratedStageResponse, error)
+	//*
+	// The method to call on the CurationService to get curation data from coremedia.
+	// Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
 	GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error)
 }
 
@@ -27,15 +29,6 @@ type curationServiceClient struct {
 
 func NewCurationServiceClient(cc grpc.ClientConnInterface) CurationServiceClient {
 	return &curationServiceClient{cc}
-}
-
-func (c *curationServiceClient) GetCuratedStage(ctx context.Context, in *GetCuratedStageRequest, opts ...grpc.CallOption) (*GetCuratedStageResponse, error) {
-	out := new(GetCuratedStageResponse)
-	err := c.cc.Invoke(ctx, "/stroeer.coremedia.v1.CurationService/GetCuratedStage", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *curationServiceClient) GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error) {
@@ -51,7 +44,9 @@ func (c *curationServiceClient) GetCuratedStages(ctx context.Context, in *GetCur
 // All implementations must embed UnimplementedCurationServiceServer
 // for forward compatibility
 type CurationServiceServer interface {
-	GetCuratedStage(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error)
+	//*
+	// The method to call on the CurationService to get curation data from coremedia.
+	// Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
 	GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
 	mustEmbedUnimplementedCurationServiceServer()
 }
@@ -60,9 +55,6 @@ type CurationServiceServer interface {
 type UnimplementedCurationServiceServer struct {
 }
 
-func (UnimplementedCurationServiceServer) GetCuratedStage(context.Context, *GetCuratedStageRequest) (*GetCuratedStageResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCuratedStage not implemented")
-}
 func (UnimplementedCurationServiceServer) GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCuratedStages not implemented")
 }
@@ -77,24 +69,6 @@ type UnsafeCurationServiceServer interface {
 
 func RegisterCurationServiceServer(s *grpc.Server, srv CurationServiceServer) {
 	s.RegisterService(&_CurationService_serviceDesc, srv)
-}
-
-func _CurationService_GetCuratedStage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCuratedStageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CurationServiceServer).GetCuratedStage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stroeer.coremedia.v1.CurationService/GetCuratedStage",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CurationServiceServer).GetCuratedStage(ctx, req.(*GetCuratedStageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CurationService_GetCuratedStages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -119,10 +93,6 @@ var _CurationService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "stroeer.coremedia.v1.CurationService",
 	HandlerType: (*CurationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetCuratedStage",
-			Handler:    _CurationService_GetCuratedStage_Handler,
-		},
 		{
 			MethodName: "GetCuratedStages",
 			Handler:    _CurationService_GetCuratedStages_Handler,

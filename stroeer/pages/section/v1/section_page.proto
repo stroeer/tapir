@@ -13,12 +13,42 @@ message SectionPage {
 }
 
 message Stage {
-  repeated stroeer.core.v1.Article articles = 1;
+  repeated StageItem stage_items = 1;
   StageConfiguration stage_configuration = 2;
-  repeated Stage stages = 3;
 }
 
+/**
+ * TODO: references
+ */
 message StageConfiguration {
+  // Includes: stage_layout
   map<string, string> fields = 1;
-  string layout = 2;
+}
+
+message StageItem {
+  StageItemWidth stage_item_width = 1;
+  oneof stage_item_type {
+    Stage stage = 2;
+    ArticleTeaser article_teaser = 3;
+    Commercial commercial = 4;
+  }
+}
+
+message Commercial {
+  map<string, string> fields = 1;
+}
+
+message ArticleTeaser {
+  stroeer.core.v1.Article article = 1;
+  // Includes: teaser_layout
+  map<string, string> fields = 2;
+}
+
+enum StageItemWidth {
+  STAGE_ITEM_WIDTH_UNSPECIFIED = 0;
+  STAGE_ITEM_WIDTH_FULL = 1;
+  STAGE_ITEM_WIDTH_ONE_HALF = 2;
+  STAGE_ITEM_WIDTH_ONE_QUARTER = 4;
+  STAGE_ITEM_WIDTH_ONE_EIGHTHS = 8;
+  STAGE_ITEM_WIDTH_FULL_PAGE = 9;
 }
