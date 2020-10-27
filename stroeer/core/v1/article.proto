@@ -19,9 +19,7 @@ message Article {
   Metadata metadata = 8;
   repeated Element elements = 9;
   repeated string keywords = 10;
-  repeated Author authors = 11;
   repeated int64 onwards = 12;
-
 }
 
 message Metadata {
@@ -44,6 +42,7 @@ message Element {
   ElementType type = 1;
   repeated ElementRelation relations = 2;
   repeated Asset assets = 3;
+  repeated Element children = 4;
 }
 
 message Asset {
@@ -51,15 +50,6 @@ message Asset {
   int32 index = 2;
   map<string, string> fields = 3;
   Metadata metadata = 4;
-}
-
-message Author {
-  uint64 id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  // alias
-  // vg-wort id
-  // profile picture
 }
 
 message Section {
@@ -96,6 +86,8 @@ enum ContentType {
   CONTENT_TYPE_VIDEO = 3;
   CONTENT_TYPE_GALLERY = 4;
   CONTENT_TYPE_OEMBED = 5;
+  CONTENT_TYPE_AUTHOR = 6;
+  CONTENT_TYPE_AGENCY = 7;
 }
 
 enum ContentSubType {
@@ -131,6 +123,8 @@ enum ElementType {
   ELEMENT_TYPE_VIDEO = 3;
   ELEMENT_TYPE_GALLERY = 4;
   ELEMENT_TYPE_OEMBED = 5;
+  ELEMENT_TYPE_AUTHOR = 6;
+  ELEMENT_TYPE_AGENCY = 7;
 }
 
 enum AssetType {
