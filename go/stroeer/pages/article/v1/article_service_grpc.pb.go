@@ -28,10 +28,6 @@ func NewArticlePageServiceClient(cc grpc.ClientConnInterface) ArticlePageService
 	return &articlePageServiceClient{cc}
 }
 
-var articlePageServiceGetArticlePageStreamDesc = &grpc.StreamDesc{
-	StreamName: "GetArticlePage",
-}
-
 func (c *articlePageServiceClient) GetArticlePage(ctx context.Context, in *GetArticlePageRequest, opts ...grpc.CallOption) (*GetArticlePageResponse, error) {
 	out := new(GetArticlePageResponse)
 	err := c.cc.Invoke(ctx, "/stroeer.pages.article.v1.ArticlePageService/GetArticlePage", in, out, opts...)
@@ -41,72 +37,61 @@ func (c *articlePageServiceClient) GetArticlePage(ctx context.Context, in *GetAr
 	return out, nil
 }
 
-// ArticlePageServiceService is the service API for ArticlePageService service.
-// Fields should be assigned to their respective handler implementations only before
-// RegisterArticlePageServiceService is called.  Any unassigned fields will result in the
-// handler for that method returning an Unimplemented error.
-type ArticlePageServiceService struct {
-	GetArticlePage func(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error)
+// ArticlePageServiceServer is the server API for ArticlePageService service.
+// All implementations must embed UnimplementedArticlePageServiceServer
+// for forward compatibility
+type ArticlePageServiceServer interface {
+	GetArticlePage(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error)
+	mustEmbedUnimplementedArticlePageServiceServer()
 }
 
-func (s *ArticlePageServiceService) getArticlePage(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	if s.GetArticlePage == nil {
-		return nil, status.Errorf(codes.Unimplemented, "method GetArticlePage not implemented")
-	}
+// UnimplementedArticlePageServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedArticlePageServiceServer struct {
+}
+
+func (UnimplementedArticlePageServiceServer) GetArticlePage(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetArticlePage not implemented")
+}
+func (UnimplementedArticlePageServiceServer) mustEmbedUnimplementedArticlePageServiceServer() {}
+
+// UnsafeArticlePageServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ArticlePageServiceServer will
+// result in compilation errors.
+type UnsafeArticlePageServiceServer interface {
+	mustEmbedUnimplementedArticlePageServiceServer()
+}
+
+func RegisterArticlePageServiceServer(s *grpc.Server, srv ArticlePageServiceServer) {
+	s.RegisterService(&_ArticlePageService_serviceDesc, srv)
+}
+
+func _ArticlePageService_GetArticlePage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetArticlePageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.GetArticlePage(ctx, in)
+		return srv.(ArticlePageServiceServer).GetArticlePage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
+		Server:     srv,
 		FullMethod: "/stroeer.pages.article.v1.ArticlePageService/GetArticlePage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.GetArticlePage(ctx, req.(*GetArticlePageRequest))
+		return srv.(ArticlePageServiceServer).GetArticlePage(ctx, req.(*GetArticlePageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RegisterArticlePageServiceService registers a service implementation with a gRPC server.
-func RegisterArticlePageServiceService(s grpc.ServiceRegistrar, srv *ArticlePageServiceService) {
-	sd := grpc.ServiceDesc{
-		ServiceName: "stroeer.pages.article.v1.ArticlePageService",
-		Methods: []grpc.MethodDesc{
-			{
-				MethodName: "GetArticlePage",
-				Handler:    srv.getArticlePage,
-			},
+var _ArticlePageService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "stroeer.pages.article.v1.ArticlePageService",
+	HandlerType: (*ArticlePageServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetArticlePage",
+			Handler:    _ArticlePageService_GetArticlePage_Handler,
 		},
-		Streams:  []grpc.StreamDesc{},
-		Metadata: "stroeer/pages/article/v1/article_service.proto",
-	}
-
-	s.RegisterService(&sd, nil)
-}
-
-// NewArticlePageServiceService creates a new ArticlePageServiceService containing the
-// implemented methods of the ArticlePageService service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewArticlePageServiceService(s interface{}) *ArticlePageServiceService {
-	ns := &ArticlePageServiceService{}
-	if h, ok := s.(interface {
-		GetArticlePage(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error)
-	}); ok {
-		ns.GetArticlePage = h.GetArticlePage
-	}
-	return ns
-}
-
-// UnstableArticlePageServiceService is the service API for ArticlePageService service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableArticlePageServiceService interface {
-	GetArticlePage(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error)
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "stroeer/pages/article/v1/article_service.proto",
 }
