@@ -25,15 +25,17 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+//*
+// A successful result for a provided stage_id, see `GetCuratedStagesRequest`
 type CuratedStage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Articles   []*CuratedArticle `protobuf:"bytes,1,rep,name=articles,proto3" json:"articles,omitempty"`
-	StageLabel string            `protobuf:"bytes,2,opt,name=stage_label,json=stageLabel,proto3" json:"stage_label,omitempty"`
-	StageId    string            `protobuf:"bytes,3,opt,name=stage_id,json=stageId,proto3" json:"stage_id,omitempty"`
-	ListId     int64             `protobuf:"varint,4,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
+	Articles   []*CuratedArticle `protobuf:"bytes,1,rep,name=articles,proto3" json:"articles,omitempty"`                       // representation of an article that is currently curated for t-online.de
+	StageLabel string            `protobuf:"bytes,2,opt,name=stage_label,json=stageLabel,proto3" json:"stage_label,omitempty"` // optional label from the editors that should be rendered above the articles
+	StageId    string            `protobuf:"bytes,3,opt,name=stage_id,json=stageId,proto3" json:"stage_id,omitempty"`          // the conventional id for this stage, like 'aufmacher', 'panorama' or 'schlagzeilen'
+	ListId     int64             `protobuf:"varint,4,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`            // the numeric list id, the stage_id maps to
 }
 
 func (x *CuratedStage) Reset() {
@@ -96,13 +98,15 @@ func (x *CuratedStage) GetListId() int64 {
 	return 0
 }
 
+//*
+// Wrapper message to bundle an usage specific headline with its curated article id
 type CuratedArticle struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	CuratedHeadline string `protobuf:"bytes,3,opt,name=curated_headline,json=curatedHeadline,proto3" json:"curated_headline,omitempty"`
+	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                 // id of the curated article, needed for fetching the actual content
+	CuratedHeadline string `protobuf:"bytes,3,opt,name=curated_headline,json=curatedHeadline,proto3" json:"curated_headline,omitempty"` // optional, and usually shorter headline, that differs from the originally written headline by the editors used for teasing articles on overview pages
 }
 
 func (x *CuratedArticle) Reset() {
