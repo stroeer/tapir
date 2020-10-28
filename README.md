@@ -1,78 +1,45 @@
 <div align="center">
-  <img src="doku/tapir.png" height="200" alt="tapir"/>
+  <img src="docs/tapir.png" height="200" alt="tapir"/>
    <h1>tapir</h1>
 </div>
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/stroeer/tapir?style=flat-square)
 
-The **T**-online **API** **R**epository contains the interface definitions of t-online APIs that support ~~both REST and~~ gRPC protocols. You can use these definitions with open source tools to generate client libraries, documentation and other artifacts.
+The **T**-online **API** **R**epository contains the interface definitions of t-online APIs that support the [gRPC](https://grpc.io/) protocol. You can use these definitions with open source tools to generate client libraries, documentation and other artifacts.
 
 T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version 3 (proto3) as their Interface Definition Language (IDL) to define the API interface and the structure of the payload messages.
 
-## Build
+## Guidelines
 
-We use [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) as `protoc` which currently supports generating code for
+* tapir provides RCP services for accessing editorial content and configuration for rendering t-online products owned by different teams
+* RPC services and proto messages are optimized for an efficient development and delivery of those products
+* different editorial content types and product features are modeled with the same proto messages and concepts to keep the APIs clean and future proof. Examples:
+    * articles, videos or galleries share the same message structure distinguished by a type field
+    * attributes of an article are modeled as generic `<string, string>` maps
+    * elements of an article like images, videos and their assets share the same proto messages and can be distinguished by a type field
+    * [enumerations](https://developers.google.com/protocol-buffers/docs/proto3#enum) are only used for stable/rarely changing lists of pre-defined values like a content type.
+    Volatile fields like layout types are modeled as `string` fields.   
+* proto message fields and entries of maps are optional unless commented otherwise. Clients must not break if an optional field or map entry is missing.
+ 
 
-- `java`
-- `node/TypeScript`
-- `go`
+## Code generation
 
-(the `protoc` binary is configurable in the `Makefile` though)
-
-### java
-
-#### generate
-
-For generating Java sources run:
-
-```bash
-$ make
-```
-
-#### release
-
-The recommended way to build and publish the Java client libraries is through gradle:
+We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) as `protoc` 
+and a Makefile tested to generate code for `java`, `node (TypeScript)` and `go`:
 
 ```shell script
-$ export GITHUB_USERNAME=foo
-$ export GITHUB_TOKEN=bar
-$ cd java && ./gradlew publish
-```
+$ make LANGUAGE=[java,node,go]
+``` 
 
-### node
+## Client libraries
 
-#### generate
+[Releases](https://github.com/stroeer/tapir/releases) include client libraries as `java` and `npm` [packages](https://github.com/orgs/stroeer/packages?repo_name=tapir). 
 
-For generating node sources run:
+Generating go code is currently not part of the release process. Go sources need to be generated locally and added to pull requests.
 
-```bash
-$ make LANGUAGE=node
-```
+## Docker image
 
-#### release
-
-TODO
-
-(Login to github packages for `npm publish` is done via the actions/setup-node@v1 which writes a .npmrc file with the token from the secrets)
-
-### go
-
-#### generate
-
-For generating go sources run:
-
-```shell script
-$ make LANGUAGE=go
-```
-
-#### release
-
-Generating go code is currently not part of the release process. Go sources need
-to be generated locally and added to pull requests.
-
-## docker image
-
-### version management
+### Version management
 
 bump versions in a PR and merge into `master`:
 
@@ -81,7 +48,7 @@ bump versions in a PR and merge into `master`:
 - java dependency versions in `build.gradle`
 - node dependency versions in `package.json`
 
-### release
+### Release
 
 Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
 
