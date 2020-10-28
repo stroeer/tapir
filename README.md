@@ -11,9 +11,9 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## Guidelines
 
-* tapir provides RCP services for accessing editorial content and configuration for rendering t-online products owned by different teams
-* RPC services and proto messages are optimized for an efficient development and delivery of those products
-* different editorial content types and product features are modeled with the same proto messages and concepts to keep the APIs clean and future proof. Examples:
+* tapir provides an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) and RCP services stubs to access editorial content and their configuration. This allows delivering various t-online products developed by independent teams
+* RPC services and proto messages are optimized for an efficient development and delivery of those products: One of our internal API guideline demands that all the content required to render a page must depend on a single API call.
+* different editorial content types and product features are modeled by the same proto messages using the same concepts. This allows to keep the APIs _clean_ and future proof. Examples:
     * articles, videos or galleries share the same message structure distinguished by a type field
     * attributes of an article are modeled as generic `<string, string>` maps
     * elements of an article like images, videos and their assets share the same proto messages and can be distinguished by a type field
