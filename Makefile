@@ -59,7 +59,6 @@ stroeer/%: $(OUTPUT)
 	$(PROTOC) $(FLAGS) $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
 	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) --grpc-gateway_opt logtostderr=true --grpc-gateway_opt paths=source_relative \
 		$(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
-	$(PROTOC) -I . --openapiv2_out ./docs/openapiv2 --openapiv2_opt logtostderr=true $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
 
 clean: ## Deletes all generated files
 	@echo "+ $@"
