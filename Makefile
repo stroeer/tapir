@@ -46,7 +46,7 @@ else
 	FLAGS+= --grpc_out=$(OUTPUT)
 endif
 
-.PHONY: clean help image-build image-release stroeer/%
+.PHONY: clean help image-build image-release gateway stroeer/%
 
 all: stroeer/*
 
@@ -57,8 +57,14 @@ $(OUTPUT):
 stroeer/%: $(OUTPUT)
 	@echo "+ $@"
 	$(PROTOC) $(FLAGS) $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
-	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) --grpc-gateway_opt logtostderr=true --grpc-gateway_opt paths=source_relative \
-		$(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
+
+gateway: ## Generates grpc-gateway resources
+	@echo "+ $@"
+	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) \
+		--grpc-gateway_opt logtostderr=true \
+		--grpc-gateway_opt paths=source_relative \
+		--grpc-gateway_opt grpc_api_configuration=stroeer/pages/article/v1/api_config_http.yaml \
+		stroeer/pages/article/v1/article_service.proto
 
 clean: ## Deletes all generated files
 	@echo "+ $@"
@@ -75,7 +81,6 @@ image-build: ## Build new docker image
 image-release: image-build ## Release new docker image to GHCR
 	docker push ghcr.io/stroeer/protoc-dockerized:latest
 	docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
-
 
 help: ## Display this help screen
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

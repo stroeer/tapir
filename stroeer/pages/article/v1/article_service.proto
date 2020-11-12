@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package stroeer.pages.article.v1;
 
-import "google/api/annotations.proto";
 import "stroeer/core/v1/article.proto";
 import "stroeer/pages/article/v1/article.proto";
 
@@ -11,11 +10,7 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.pages.article.v1";
 
 service ArticlePageService {
-  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {
-    option (google.api.http) = {
-      get: "/v1/pages/articles/{id}"
-    };
-  }
+  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 
 message GetArticlePageRequest {

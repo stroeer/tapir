@@ -11,5 +11,3 @@ lint:
     - OTHER
   except:
     - RPC_RESPONSE_STANDARD_NAME
-  ignore:
-    - google
