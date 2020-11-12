@@ -1,3 +1,5 @@
+version: v1beta1
+
 build:
   roots:
     - .
@@ -6,5 +8,8 @@ build:
 lint:
   use:
     - DEFAULT
+    - OTHER
   except:
     - RPC_RESPONSE_STANDARD_NAME
+  ignore:
+    - google
