@@ -39,6 +39,8 @@ FROM node:lts-stretch-slim
 USER root
 COPY --from=gopher /go/bin/protoc-gen-go /usr/bin/
 COPY --from=gopher /go/bin/protoc-gen-go-grpc /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-grpc-gateway /usr/bin/
+COPY --from=gopher /go/bin/protoc-gen-openapiv2 /usr/bin/
 COPY --from=java /installer/protoc-gen-grpc-java /usr/bin/
 COPY --from=node /node_modules /node_modules
 COPY --from=protoc-bin /installer/protoc /usr/bin/protoc

@@ -31,6 +31,9 @@ and a Makefile tested to generate code for `java`, `node (TypeScript)` and `go`:
 $ make LANGUAGE=[java,node,go]
 ``` 
 
+[stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) also supports generating
+a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) reverse-proxy server.
+
 ## Client libraries
 
 [Releases](https://github.com/stroeer/tapir/releases) include client libraries as `java` and `npm` [packages](https://github.com/orgs/stroeer/packages?repo_name=tapir). 

@@ -1,0 +1,9 @@
+# The configuration schema is defined by service.proto file
+# https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: stroeer.pages.article.v1.ArticlePageService.GetArticlePage
+      get: /v1/pages/articles/{id}
