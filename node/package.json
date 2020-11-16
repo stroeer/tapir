@@ -9,7 +9,7 @@
     "update": "npx npm-check --update"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.1.8",
+    "@grpc/grpc-js": "1.2.0",
     "@types/google-protobuf": "3.7.4",
     "@types/jest": "26.0.15",
     "google-protobuf": "3.13.0",
