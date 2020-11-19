@@ -8,133 +8,318 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
+// An article represents a piece of content created in the content management
+// system. Different types of content like text or video articles share
+// the same message structure distinguished by the ContentType field.
+//
+// Depending on the service used to retrieve an article, this message might
+// only contain teaser relevant information (e.g. with no Body field).
+//
+// Message fields and map entries are optional unless commented otherwise.
 message Article {
+  // Unique ID of the article defined by the content management system (required).
   int64 id = 1;
+
+  // Main content type of the article.
   ContentType type = 2;
+
+  // Subtype of the article.
   ContentSubType sub_type = 3;
+
+  // References to get access to the article on different technical platforms like
+  // canonical web or AMP (required).
   References references = 4;
+
+  // Hierarchical section information of the article (required).
   Section section = 5;
+
+  // Generic map containing general content and configuration information of
+  // the article (required).
+  //
+  // The entry set is defined by the content management system and
+  // will vary depending on the main type of the article.
+  //
+  // For CONTENT_TYPE_ARTICLE, this map will always contain non empty values
+  // for the following keys:
+  //
+  // * headline
+  // * top_line
+  // * summary
+  // * meta_title
+  //
+  // For CONTENT_TYPE_GALLERY, this map will always contain non empty values
+  // for the following keys:
+  //
+  // * headline
+  //
+  // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 6;
+
+  // Recursive body structure of the article to render on detail
+  // pages (optional).
+  //
+  // This message will be empty for the teaser representation of the article.
+  //
+  // see https://github.com/orgs/stroeer/teams/api/discussions/1
   Body body = 7;
+
+  // Technical metadata of the article (optional).
   Metadata metadata = 8;
+
+  // Elements of the article to render as a teaser e.g. on overview pages (optional).
   repeated Element elements = 9;
+
+  // Entities of the article like persons, places etc. (optional).
   repeated string keywords = 10;
+
+  // Unique IDs of articles related to this article (optional).
+  //
+  // Related articles are defined manually in the content management system
+  // by the editorial department.
   repeated int64 onwards = 12;
 }
 
+// Technical metadata of the article.
 message Metadata {
+
+  // State of the article in the content management system (optional).
+  // see https://github.com/stroeer/tapir/issues/64
   string state = 1;
-  //  editorial date: Gültig von
+
+  // Manually set editorial date ('Gültig von') at which the article is valid to deliver on
+  // digital platforms in seconds of UTC time since Unix epoch (optional).
   google.protobuf.Timestamp valid_from = 2;
-  //  editorial date: Gültig bis
+
+  // Manually set editorial date ('Gültig bis') till the article is valid to deliver on
+  // digital platforms in seconds of UTC time since Unix epoch (optional).
   google.protobuf.Timestamp valid_to = 3;
-  //  editorial date: Zuletzt bearbeitet
+
+  // editorial date: Zuletzt bearbeitet
+  // TODO: this seems unused....remove?
   google.protobuf.Timestamp last_edited = 4;
+
   //  editorial date: Zuletzt publiziert
+  // TODO: this seems unused....remove?
   google.protobuf.Timestamp last_published = 5;
+
   // editorial date: Erstellungsdatum
+  // TODO: this seems unused....remove?
   google.protobuf.Timestamp created = 6;
-  // editorial date: Aktualisierungsdatum
+
+  // Manually set editorial date ('Aktualisierungsdatum') at which the article
+  // was updated in seconds of UTC time since Unix epoch (optional).
   google.protobuf.Timestamp updated = 7;
 }
 
+// Elements of the article to render as a teaser e.g. on overview pages.
+//
+// Different types of elements like images or videos share
+// the same message structure distinguished by the ElementType field.
 message Element {
+  // Type of the element.
   ElementType type = 1;
+
+  // TODO: this might be obsolete with https://github.com/orgs/stroeer/teams/api/discussions/1
   repeated ElementRelation relations = 2;
+
+  // Assets of the element like images or videos (optional).
   repeated Asset assets = 3;
+
+  // Children of the element (optional).
   repeated Element children = 4;
 }
 
+// Asset of an element.
 message Asset {
+  // Type of the asset.
   AssetType type = 1;
+
+  // TODO: do we still need the index?
   int32 index = 2;
+
+  // Generic map containing general content and configuration information of
+  // the asset (optional).
+  //
+  // Depending on the type of the asset, this map will contain different
+  // entry sets, e.g. 'source', 'width' and 'height' for images.
+  //
+  // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 3;
+
+  // Technical metadata of the asset (optional).
   Metadata metadata = 4;
 }
 
+// Hierarchical section information of the article till root.
+//
+// For example:  /politik/deutschland/ -> /politik/ -> /
 message Section {
+  // Section path of the article, e.g. /politik/deutschland/ (required).
   string path = 1;
+
+  // Label of the section path, e.g. "Politik"  (TODO: required or optional?).
   string label = 2;
+
+  // Parent section (optional).
   Section parent = 3;
 }
 
+// References to get access to the article on different technical platforms like
+// canonical web or AMP.
 message References {
-  // article's path, e.g. /section/id_$ID/title.html
+  // Path of the article's path, e.g. /section/id_$ID/title.html (required).
   string path = 1;
-  // article's canonical URL, may differ if external, e.g. https://www.giga.de/external.html
+
+  // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
+  // (required).
   string canonical = 2;
-  // article's AMP URL, no pattern specified yet.
+
+  // AMP URL of the article (optional).
   string amp = 3;
 }
 
+// Body of the article to render on detail pages.
+//
+// see https://github.com/orgs/stroeer/teams/api/discussions/1
 message Body {
+  // Recursive Body nodes.
   repeated BodyNode children = 1;
 }
 
+// Recursive body structure representing all types of possible
+// body nodes inside an article.
+//
+// Clients must be resilient to unknown or missing nodes.
 message BodyNode {
+  // Type of the node, e.g. 'a', 'p', 'ul', 'li', 'text' (required).
   string type = 1;
+
+  // Text of the node (optional).
   string text = 2;
+
+  // Additional information for the node depending on it's type,
+  // e.g. 'href' for 'a' nodes (optional).
   map<string, string> fields = 3;
+
+  // Children of the node, e.g. the 'text' of a 'p' (optional).
   repeated BodyNode children = 4;
-  repeated Element elements = 5; // inline-video, content|rich-links, gallery
+
+  // Elements of the node, e.g. inline videos or galleries (optional).
+  repeated Element elements = 5;
 }
 
+// Main content type of the article.
 enum ContentType {
+  // Not specified.
   CONTENT_TYPE_UNSPECIFIED = 0;
+
+  // A text article.
   CONTENT_TYPE_ARTICLE = 1;
+
+  // TODO: do we have/need images as main types?
   CONTENT_TYPE_IMAGE = 2;
+
+  // A video article.
   CONTENT_TYPE_VIDEO = 3;
+
+  // A gallery article.
   CONTENT_TYPE_GALLERY = 4;
+
+  // An oembed article.
   CONTENT_TYPE_OEMBED = 5;
+
+  // TODO: do we have/need authors as main types?
   CONTENT_TYPE_AUTHOR = 6;
+
+  // TODO: do we have/need agencies as main types?
   CONTENT_TYPE_AGENCY = 7;
 }
 
+// Subtype of the article.
 enum ContentSubType {
+  // Not specified.
   CONTENT_SUB_TYPE_UNSPECIFIED = 0;
+
   // Meldung/Nachricht — this is the default
   CONTENT_SUB_TYPE_NEWS = 1;
-  // Kolumne
+
+  // 'Kolumne'
   CONTENT_SUB_TYPE_COLUMN = 2;
-  // Bericht
+
+  // 'Bericht'
   CONTENT_SUB_TYPE_REPORT = 3;
-  // Kommentar
+
+  // 'Kommentar'
   CONTENT_SUB_TYPE_COMMENTARY = 4;
-  // Interview
+
+  // 'Interview'
   CONTENT_SUB_TYPE_INTERVIEW = 5;
-  // Pro und Kontra/Streitgespräch
+
+  // 'Pro und Kontra/Streitgespräch'
   CONTENT_SUB_TYPE_CONTROVERSY = 6;
-  // Reportage
+
+  // 'Reportage'
   CONTENT_SUB_TYPE_STORY = 7;
-  // Rezension/Kritik
+
+  // 'Rezension/Kritik'
   CONTENT_SUB_TYPE_RECENSION = 8;
-  // Tagesanbruch
+
+  // 'Tagesanbruch'
   CONTENT_SUB_TYPE_TAGESANBRUCH = 9;
-  // Analyse
+
+  // 'Analyse'
   CONTENT_SUB_TYPE_ANALYSIS = 10;
-  // Satire/Glosse
+
+  // 'Satire/Glosse'
   CONTENT_SUB_TYPE_SATIRE = 11;
 }
 
+// Type of an element.
 enum ElementType {
+  // Not specified.
   ELEMENT_TYPE_UNSPECIFIED = 0;
+
+  // An article element.
   ELEMENT_TYPE_ARTICLE = 1;
+
+  // An image element.
   ELEMENT_TYPE_IMAGE = 2;
+
+  // A video element.
   ELEMENT_TYPE_VIDEO = 3;
+
+  // A gallery element.
   ELEMENT_TYPE_GALLERY = 4;
+
+  // An oembed element.
   ELEMENT_TYPE_OEMBED = 5;
+
+  // An author element.
   ELEMENT_TYPE_AUTHOR = 6;
+
+  // An agency (e.g. DPA) element.
   ELEMENT_TYPE_AGENCY = 7;
 }
 
+// Type of an asset.
 enum AssetType {
+  // Not specified.
   ASSET_TYPE_UNSPECIFIED = 0;
+
+  // An image asset.
   ASSET_TYPE_IMAGE = 1;
+
+  // A video asset.
   ASSET_TYPE_VIDEO = 2;
+
+  // An URL asset.
   ASSET_TYPE_URL = 3;
+
+  // A metadata asset.
   ASSET_TYPE_METADATA = 4;
 }
 
+// TODO: this might be obsolete with https://github.com/orgs/stroeer/teams/api/discussions/1
 enum ElementRelation {
   ELEMENT_RELATION_UNSPECIFIED = 0;
   ELEMENT_RELATION_OPENER = 1;
