@@ -166,7 +166,7 @@ message Section {
 // References to get access to the article on different technical platforms like
 // canonical web or AMP.
 message References {
-  // Path of the article's path, e.g. /section/id_$ID/title.html (required).
+  // URL path for this article e.g. /section/id_$ID/title.html (required).
   string path = 1;
 
   // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
