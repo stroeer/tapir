@@ -8,34 +8,22 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia"
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
-/**
- * Service to get lists of article ids that are curated by a CvD for overview pages, namely the homepage
- * Implemented by github.com/stroeer/polyphase
-*/
+// Get curation information from editors / CvD for overview pages, namely the homepage
+// Implemented by github.com/stroeer/polyphase
 service CurationService {
-  /**
-  * Method to get curation data to render overview pages.
-  * Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
-  */
-  rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
+  // Responds with curation data for the provided request parameters.
+  rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {
+  }
 }
 
-/**
- * Message that defines parameters when invoking the method GetCuratedStages
-*/
+// Message that defines parameters for invoking GetCuratedStages method.
 message GetCuratedStagesRequest {
-  /**
-  * List of conventional stage_ids, like 'aufmacher', 'sport', 'schlagzeilen'.
-  * The mapping from a stage_id to a numeric list_id in the CMS is done at the implementing service.
-  * When providing a numeric list_id, like '69725912', the service will use it directly to fetch the list from the CMS.
-  * The returned CuratedStage will then use the provided numeric id for setting the field `stage_id`.
-  */
+  // List of descriptive stage_ids, like 'aufmacher', 'sport', 'schlagzeilen'.
+  // When providing a numeric id, like '69725912, it will be used to fetch a CMS list with that id.
   repeated string stage_ids = 1;
 }
 
-/**
-* Response object with the list of CuratedStages, one for each provided stage_id, that could be resolved to curation data.
-*/
+// Response object with the list of CuratedStages, one for each provided stage_id, that could be resolved to curation data.
 message GetCuratedStagesResponse {
   repeated stroeer.coremedia.v1.CuratedStage stages = 1;
 }
