@@ -10,10 +10,10 @@ option java_package = "de.stroeer.core.v1";
 
 // An article represents a piece of content created in the content management
 // system. Different types of content like text or video articles share
-// the same message structure distinguished by the ContentType field.
+// the same message structure distinguished by the `Article.type` field.
 //
 // Depending on the service used to retrieve an article, this message might
-// only contain teaser relevant information (e.g. with no Body field).
+// only contain data required on overview pages (e.g. with `Article.body` set to `null` thus not containing any data that is only required on detail pages). This is sometimes referred to as _Teaser_.
 //
 // Message fields and map entries are optional unless commented otherwise.
 message Article {
@@ -23,7 +23,7 @@ message Article {
   // Main content type of the article.
   ContentType type = 2;
 
-  // Subtype of the article.
+  // Subtype of the article (optional). For `CONTENT_TYPE_ARTICLE` this field holds a sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
   ContentSubType sub_type = 3;
 
   // References to get access to the article on different technical platforms like
@@ -45,7 +45,6 @@ message Article {
   // * headline
   // * top_line
   // * summary
-  // * meta_title
   //
   // For CONTENT_TYPE_GALLERY, this map will always contain non empty values
   // for the following keys:
@@ -160,7 +159,7 @@ message Section {
   // Label of the section path, e.g. "Politik"  (TODO: required or optional?).
   string label = 2;
 
-  // Parent section (optional).
+  // Parent section (optional). Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
   Section parent = 3;
 }
 
@@ -194,7 +193,7 @@ message BodyNode {
   // Type of the node, e.g. 'a', 'p', 'ul', 'li', 'text' (required).
   string type = 1;
 
-  // Text of the node (optional).
+  // Text of the node (optional), only set for text nodes (`type == 'text'`).
   string text = 2;
 
   // Additional information for the node depending on it's type,
@@ -276,7 +275,7 @@ enum ContentSubType {
 
 // Type of an element.
 enum ElementType {
-  // Not specified.
+  // Not specified, not supported or yet unknown.
   ELEMENT_TYPE_UNSPECIFIED = 0;
 
   // An article element.
