@@ -3,19 +3,15 @@ syntax = "proto3";
 package stroeer.coremedia.v1;
 
 import "stroeer/coremedia/v1/curated_stage.proto";
-import "google/protobuf/empty.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/coremedia/v1;coremedia";
 option java_multiple_files = true;
 option java_package = "de.stroeer.coremedia.v1";
 
 // Get curation information from editors / CvD for overview pages, namely the homepage
-// Implemented by github.com/stroeer/polyphase
 service CurationService {
   // Responds with curation data for the provided request parameters.
   rpc GetCuratedStages (GetCuratedStagesRequest) returns (GetCuratedStagesResponse) {}
-  // Responds with all descriptive stage_ids supported to call GetCuratedStages with.
-  rpc GetStageIdMappings (google.protobuf.Empty) returns (GetStageIdMappingsResponse) {}
 }
 
 // Message that defines parameters for invoking GetCuratedStages method.
@@ -28,17 +24,4 @@ message GetCuratedStagesRequest {
 // Response object with the list of CuratedStages, one for each provided stage_id, that could be resolved to curation data.
 message GetCuratedStagesResponse {
   repeated stroeer.coremedia.v1.CuratedStage stages = 1;
-}
-
-// Response object with all existing mappings known to the implementing service
-message GetStageIdMappingsResponse {
-  repeated StageIdMapping mappings = 1;
-}
-
-// Conventional mapping of descriptive stage_ids to numeric list_ids
-message StageIdMapping {
-  // Conventional and descriptive id for this stage, like 'aufmacher', 'panorama' or 'schlagzeilen'
-  string stage_id = 1;
-  // Numeric list id, that was requested from the CMS to resolve the CuratedStage
-  int64 list_id = 2;
 }
