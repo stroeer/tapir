@@ -23,7 +23,7 @@ message Article {
   // Main content type of the article.
   ContentType type = 2;
 
-  // Subtype of the article (optional). For `CONTENT_TYPE_ARTICLE` this field holds a sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
+  // Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
   ContentSubType sub_type = 3;
 
   // References to get access to the article on different technical platforms like
@@ -55,23 +55,23 @@ message Article {
   map<string, string> fields = 6;
 
   // Recursive body structure of the article to render on detail
-  // pages (optional).
+  // pages.
   //
   // This message will be empty for the teaser representation of the article.
   //
   // see https://github.com/orgs/stroeer/teams/api/discussions/1
   Body body = 7;
 
-  // Technical metadata of the article (optional).
+  // Technical metadata of the article.
   Metadata metadata = 8;
 
-  // Elements of the article to render as a teaser e.g. on overview pages (optional).
+  // Elements of the article to render as a teaser e.g. on overview pages.
   repeated Element elements = 9;
 
-  // Entities of the article like persons, places etc. (optional).
+  // Entities of the article like persons, places etc.
   repeated string keywords = 10;
 
-  // Unique IDs of articles related to this article (optional).
+  // Unique IDs of articles related to this article.
   //
   // Related articles are defined manually in the content management system
   // by the editorial department.
@@ -81,16 +81,16 @@ message Article {
 // Technical metadata of the article.
 message Metadata {
 
-  // State of the article in the content management system (optional).
+  // State of the article in the content management system.
   // see https://github.com/stroeer/tapir/issues/64
   string state = 1;
 
   // Manually set editorial date ('Gültig von') at which the article is valid to deliver on
-  // digital platforms in seconds of UTC time since Unix epoch (optional).
+  // digital platforms in seconds of UTC time since Unix epoch.
   google.protobuf.Timestamp valid_from = 2;
 
   // Manually set editorial date ('Gültig bis') till the article is valid to deliver on
-  // digital platforms in seconds of UTC time since Unix epoch (optional).
+  // digital platforms in seconds of UTC time since Unix epoch.
   google.protobuf.Timestamp valid_to = 3;
 
   // editorial date: Zuletzt bearbeitet
@@ -106,7 +106,7 @@ message Metadata {
   google.protobuf.Timestamp created = 6;
 
   // Manually set editorial date ('Aktualisierungsdatum') at which the article
-  // was updated in seconds of UTC time since Unix epoch (optional).
+  // was updated in seconds of UTC time since Unix epoch.
   google.protobuf.Timestamp updated = 7;
 }
 
@@ -124,7 +124,7 @@ message Element {
   // Assets of the element like images, videos or metadata (required).
   repeated Asset assets = 3;
 
-  // Children of the element (optional).
+  // Children of the element.
   repeated Element children = 4;
 }
 
@@ -137,7 +137,7 @@ message Asset {
   int32 index = 2;
 
   // Generic map containing general content and configuration information of
-  // the asset (optional).
+  // the asset.
   //
   // Depending on the type of the asset, this map will contain different
   // entry sets, e.g. 'source', 'width' and 'height' for images.
@@ -145,7 +145,7 @@ message Asset {
   // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 3;
 
-  // Technical metadata of the asset (optional).
+  // Technical metadata of the asset.
   Metadata metadata = 4;
 }
 
@@ -156,10 +156,10 @@ message Section {
   // Section path of the article, e.g. /politik/deutschland/ (required).
   string path = 1;
 
-  // Label of the section path, e.g. "Politik"  (TODO: required or optional?).
+  // Label of the section path, e.g. "Politik"  (TODO: is this required?).
   string label = 2;
 
-  // Parent section (optional). Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
+  // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
   Section parent = 3;
 }
 
@@ -173,7 +173,7 @@ message References {
   // (required).
   string canonical = 2;
 
-  // AMP URL of the article (optional).
+  // AMP URL of the article.
   string amp = 3;
 }
 
@@ -193,17 +193,17 @@ message BodyNode {
   // Type of the node, e.g. 'a', 'p', 'ul', 'li', 'text' (required).
   string type = 1;
 
-  // Text of the node (optional), only set for text nodes (`type == 'text'`).
+  // Text of the node, only set for text nodes (`type == 'text'`).
   string text = 2;
 
   // Additional information for the node depending on it's type,
-  // e.g. 'href' for 'a' nodes (optional).
+  // e.g. 'href' for 'a' nodes.
   map<string, string> fields = 3;
 
-  // Children of the node, e.g. the 'text' of a 'p' (optional).
+  // Children of the node, e.g. the 'text' of a 'p'.
   repeated BodyNode children = 4;
 
-  // Elements of the node, e.g. inline videos or galleries (optional).
+  // Elements of the node, e.g. inline videos or galleries.
   repeated Element elements = 5;
 }
 
