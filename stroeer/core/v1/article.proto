@@ -94,15 +94,15 @@ message Metadata {
   google.protobuf.Timestamp valid_to = 3;
 
   // editorial date: Zuletzt bearbeitet
-  // TODO: this seems unused....remove?
+  // see https://github.com/stroeer/tapir/issues/112
   google.protobuf.Timestamp last_edited = 4;
 
-  //  editorial date: Zuletzt publiziert
-  // TODO: this seems unused....remove?
+  // editorial date: Zuletzt publiziert
+  // see https://github.com/stroeer/tapir/issues/112
   google.protobuf.Timestamp last_published = 5;
 
   // editorial date: Erstellungsdatum
-  // TODO: this seems unused....remove?
+  // see https://github.com/stroeer/tapir/issues/112
   google.protobuf.Timestamp created = 6;
 
   // Manually set editorial date ('Aktualisierungsdatum') at which the article
@@ -121,7 +121,7 @@ message Element {
   // TODO: this might be obsolete with https://github.com/orgs/stroeer/teams/api/discussions/1
   repeated ElementRelation relations = 2;
 
-  // Assets of the element like images or videos (optional).
+  // Assets of the element like images, videos or metadata (required).
   repeated Asset assets = 3;
 
   // Children of the element (optional).
