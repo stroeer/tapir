@@ -13,7 +13,9 @@ option java_package = "de.stroeer.core.v1";
 // the same message structure distinguished by the `Article.type` field.
 //
 // Depending on the service used to retrieve an article, this message might
-// only contain data required on overview pages (e.g. with `Article.body` set to `null` thus not containing any data that is only required on detail pages). This is sometimes referred to as _Teaser_.
+// only contain data required on section pages (e.g. with `Article.body` set to `null`
+// thus not containing any data that is only required on detail pages). This is sometimes
+// referred to as _Teaser_.
 //
 // Message fields and map entries are optional unless commented otherwise.
 message Article {
@@ -112,7 +114,7 @@ message Metadata {
 
 // Elements of the article which are not part of the body, e.g. author information
 // opener image/video etc. Those elements should be used to render the article
-// as a teaser e.g. on overview pages.
+// as a teaser e.g. on section pages.
 //
 // Different types of elements like images or videos share
 // the same message structure distinguished by the `ElementType` field.
@@ -120,7 +122,7 @@ message Element {
   // Type of the element.
   ElementType type = 1;
 
-  // TODO: this might be obsolete with https://github.com/orgs/stroeer/teams/api/discussions/1
+  // TODO: this enum is probably deprecated
   repeated ElementRelation relations = 2;
 
   // Assets of the element like images, videos or metadata (required).
@@ -135,7 +137,7 @@ message Asset {
   // Type of the asset.
   AssetType type = 1;
 
-  // TODO: do we still need the index?
+  // see https://github.com/stroeer/tapir/issues/115
   int32 index = 2;
 
   // Generic map containing general content and configuration information of
@@ -190,7 +192,9 @@ message Body {
 //
 // Clients must be resilient to unknown or missing nodes.
 message BodyNode {
-  // Type of the node, e.g. 'a', 'p', 'ul', 'li', 'text' (required).
+  // Type of the node (required):
+  //
+  // `p`, `sub_headline`, `a`, `strong`, `em`, `ul`, `ol`, `li`, `img`, `article_sources`, `article_source`
   string type = 1;
 
   // Text of the node, only set for text nodes (`type == 'text'`).
@@ -215,7 +219,7 @@ enum ContentType {
   // A text article.
   CONTENT_TYPE_ARTICLE = 1;
 
-  // TODO: do we have/need images as main types?
+  // An image article (not available as standalone article).
   CONTENT_TYPE_IMAGE = 2;
 
   // A video article.
@@ -227,10 +231,10 @@ enum ContentType {
   // An oembed article.
   CONTENT_TYPE_OEMBED = 5;
 
-  // TODO: do we have/need authors as main types?
+  // An author article (not available as standalone article).
   CONTENT_TYPE_AUTHOR = 6;
 
-  // TODO: do we have/need agencies as main types?
+  // An agency article (not available as standalone article).
   CONTENT_TYPE_AGENCY = 7;
 }
 
@@ -318,7 +322,7 @@ enum AssetType {
   ASSET_TYPE_METADATA = 4;
 }
 
-// TODO: this might be obsolete with https://github.com/orgs/stroeer/teams/api/discussions/1
+// TODO: this enum is probably deprecated
 enum ElementRelation {
   ELEMENT_RELATION_UNSPECIFIED = 0;
   ELEMENT_RELATION_OPENER = 1;
