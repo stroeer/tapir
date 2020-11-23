@@ -8,11 +8,16 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/pages/article/v1;articl
 option java_multiple_files = true;
 option java_package = "de.stroeer.pages.article.v1";
 
+// An editorial article, which is related to another article.
+// Can be picked by editors or technical automatisms.
+// Usually rendered as part of the article body as teasers to other articles.
 message RelatedArticle {
   stroeer.core.v1.Article article = 1;
   RelatedArticleRole role = 2;
 }
 
+// Information about who picked the related article.
+// Currently only editorial picks are supported.
 enum RelatedArticleRole {
   RELATED_ARTICLE_ROLE_UNSPECIFIED = 0;
   RELATED_ARTICLE_ROLE_EDITORIAL = 1;
