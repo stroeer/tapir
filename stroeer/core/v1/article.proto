@@ -58,27 +58,27 @@ message Article {
   // pages.
   //
   // This message will be empty for the teaser representation of the article.
-  //
-  // see https://github.com/orgs/stroeer/teams/api/discussions/1
   Body body = 7;
 
-  // Technical metadata of the article.
+  // Article metadata like publication state and technical timestamps.
   Metadata metadata = 8;
 
-  // Elements of the article to render as a teaser e.g. on overview pages.
+  // Elements of the article which are not part of the body, e.g. author information
+  // opener image/video etc. Those elements should be used to render the article
+  // as a teaser e.g. on overview pages.
   repeated Element elements = 9;
 
-  // Entities of the article like persons, places etc.
+  // Extracted entities from the article body like people, places, organizations etc.
   repeated string keywords = 10;
 
-  // Unique IDs of articles related to this article.
+  // IDs of articles related to this article.
   //
   // Related articles are defined manually in the content management system
   // by the editorial department.
   repeated int64 onwards = 12;
 }
 
-// Technical metadata of the article.
+// Article metadata like publication state and technical timestamps.
 message Metadata {
 
   // State of the article in the content management system.
@@ -110,7 +110,9 @@ message Metadata {
   google.protobuf.Timestamp updated = 7;
 }
 
-// Elements of the article to render as a teaser e.g. on overview pages.
+// Elements of the article which are not part of the body, e.g. author information
+// opener image/video etc. Those elements should be used to render the article
+// as a teaser e.g. on overview pages.
 //
 // Different types of elements like images or videos share
 // the same message structure distinguished by the ElementType field.
@@ -156,7 +158,7 @@ message Section {
   // Section path of the article, e.g. /politik/deutschland/ (required).
   string path = 1;
 
-  // Label of the section path, e.g. "Politik"  (TODO: is this required?).
+  // Label of the section path, e.g. "Politik".
   string label = 2;
 
   // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
@@ -178,8 +180,6 @@ message References {
 }
 
 // Body of the article to render on detail pages.
-//
-// see https://github.com/orgs/stroeer/teams/api/discussions/1
 message Body {
   // Recursive Body nodes.
   repeated BodyNode children = 1;
