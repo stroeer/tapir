@@ -39,14 +39,14 @@ message Article {
   // The entry set is defined by the content management system and
   // will vary depending on the main type of the article.
   //
-  // For CONTENT_TYPE_ARTICLE, this map will always contain non empty values
+  // For `CONTENT_TYPE_ARTICLE`, this map will always contain non empty values
   // for the following keys:
   //
   // * headline
   // * top_line
   // * summary
   //
-  // For CONTENT_TYPE_GALLERY, this map will always contain non empty values
+  // For `CONTENT_TYPE_GALLERY`, this map will always contain non empty values
   // for the following keys:
   //
   // * headline
@@ -57,7 +57,7 @@ message Article {
   // Recursive body structure of the article to render on detail
   // pages.
   //
-  // This message will be empty for the teaser representation of the article.
+  // This message will be empty for the teaser representation (e.g. section pages) of the article.
   Body body = 7;
 
   // Article metadata like publication state and technical timestamps.
@@ -65,7 +65,7 @@ message Article {
 
   // Elements of the article which are not part of the body, e.g. author information
   // opener image/video etc. Those elements should be used to render the article
-  // as a teaser e.g. on overview pages.
+  // as a teaser e.g. on section pages.
   repeated Element elements = 9;
 
   // Extracted entities from the article body like people, places, organizations etc.
@@ -115,7 +115,7 @@ message Metadata {
 // as a teaser e.g. on overview pages.
 //
 // Different types of elements like images or videos share
-// the same message structure distinguished by the ElementType field.
+// the same message structure distinguished by the `ElementType` field.
 message Element {
   // Type of the element.
   ElementType type = 1;
