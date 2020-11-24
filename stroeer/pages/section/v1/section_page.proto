@@ -8,25 +8,33 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/pages/section/v1;sectio
 option java_multiple_files = true;
 option java_package = "de.stroeer.pages.section.v1";
 
+// All data to render a section page like the homepage or "/politik/".
 message SectionPage {
   repeated Stage stages = 1;
 }
 
+// A block of teasers - can consist of editorial articles, advertisement and/or stages.
 message Stage {
   repeated StageItem stage_items = 1;
   StageConfiguration stage_configuration = 2;
 }
 
-/**
- * TODO: references
- */
+// Rendering data for a stage, currently only a fields map.
+// Coordinate stage layouts, especially the `default` layout with UI department.
+// todo: currently doesn't contain the link for a stage, like "Mehr aus Sport".
 message StageConfiguration {
-  // Includes: stage_layout
+  // Entry: `stage_title` represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
+  // Entry: `stage_layout` represents a visual layout, which may affect teasers, colors, and other stylings.
+  // If entry `stage_layout` is missing, use layout `default`.
   map<string, string> fields = 1;
 }
 
+// A single generic item of a stage.
 message StageItem {
+  // Width instructions for rendering the single item.
   StageItemWidth stage_item_width = 1;
+  // At most one field will be set at the same time.
+  // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
   oneof stage_item_type {
     Stage stage = 2;
     ArticleTeaser article_teaser = 3;
@@ -34,16 +42,27 @@ message StageItem {
   }
 }
 
+// Data to render a Commercial as part of a Stage.
+// todo: requirements for this feature are currently missing.
 message Commercial {
   map<string, string> fields = 1;
 }
 
+// Bundles the data needed to render a core article as a teaser.
+// Coordinate teaser layouts, especially the `default` layout with UI department.
 message ArticleTeaser {
+  // `Article.body` is set to `null` to reduce overhead.
   stroeer.core.v1.Article article = 1;
-  // Includes: teaser_layout
+  // `fields` may contain additional rendering information.
+  // Entry: `teaser_layout`, marker to use a particular layout in the rendering teaser template.
+  // If entry is missing use layout `default`.
   map<string, string> fields = 2;
 }
 
+// Info to render the width of an item, relative to the page grid.
+// These values represent "desktop-first" widths.
+// `FULL` respects the grid gutter.
+// `FULL_PAGE` breaks out of the regular grid (no gutter).
 enum StageItemWidth {
   STAGE_ITEM_WIDTH_UNSPECIFIED = 0;
   STAGE_ITEM_WIDTH_FULL = 1;

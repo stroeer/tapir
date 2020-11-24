@@ -9,16 +9,23 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/pages/article/v1;articl
 option java_multiple_files = true;
 option java_package = "de.stroeer.pages.article.v1";
 
+// Service to fetch all data needed to render an article page.
 service ArticlePageService {
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 
+// Message to provide the cms id for the requested article page.
 message GetArticlePageRequest {
   int64 id = 1;
 }
 
+// Response for a successful `GetArticlePage` request.
+// Responds with `NOT_FOUND` for articles that don't exists, or are not published.
 message GetArticlePageResponse {
+  // The editorial article with the cms id of the `GetArticlePageRequest`.
+  // Elements of the returned article can be filtered according to their validity, for example images.
   stroeer.core.v1.Article article = 1;
+  // Additional editorial articles, which are related to the primary article.
   repeated RelatedArticle related_articles = 2;
 }
 
