@@ -24,7 +24,7 @@ message Stage {
 // todo: currently doesn't contain the link for a stage, like "Mehr aus Sport".
 message StageConfiguration {
   // Entry: `stage_title` represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
-  // Entry: `stage_layout` represents a visual layout, which may affect teasers, colors, and other stylings.
+  // Entry: `stage_layout` represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `default`.
   map<string, string> fields = 1;
 }
@@ -55,19 +55,25 @@ message ArticleTeaser {
   stroeer.core.v1.Article article = 1;
   // `fields` may contain additional rendering information.
   // Entry: `teaser_layout`, marker to use a particular layout in the rendering teaser template.
-  // If entry is missing use layout `default`.
+  // Entry: `teaser_variant`, marker to use also a particular variant of the provided `teaser_layout`.
+  // If `teaser_layout` entries is missing use layout `default`.
   map<string, string> fields = 2;
 }
 
 // Info to render the width of an item, relative to the page grid.
 // These values represent "desktop-first" widths.
-// `FULL` respects the grid gutter.
-// `FULL_PAGE` breaks out of the regular grid (no gutter).
 enum StageItemWidth {
   STAGE_ITEM_WIDTH_UNSPECIFIED = 0;
+  // 100%
   STAGE_ITEM_WIDTH_FULL = 1;
-  STAGE_ITEM_WIDTH_ONE_HALF = 2;
-  STAGE_ITEM_WIDTH_ONE_QUARTER = 4;
-  STAGE_ITEM_WIDTH_ONE_EIGHTHS = 8;
-  STAGE_ITEM_WIDTH_FULL_PAGE = 9;
+  // 75%
+  STAGE_ITEM_WIDTH_THREE_QUARTERS = 2;
+  // 66%
+  STAGE_ITEM_WIDTH_TWO_THIRDS = 3;
+  // 50%
+  STAGE_ITEM_WIDTH_ONE_HALF = 4;
+  // 33%
+  STAGE_ITEM_WIDTH_ONE_THIRD = 5;
+  // 25%
+  STAGE_ITEM_WIDTH_ONE_QUARTER = 6;
 }
