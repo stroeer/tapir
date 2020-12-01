@@ -137,9 +137,6 @@ message Asset {
   // Type of the asset.
   AssetType type = 1;
 
-  // see https://github.com/stroeer/tapir/issues/115
-  int32 index = 2;
-
   // Generic map containing general content and configuration information of
   // the asset.
   //
@@ -147,10 +144,10 @@ message Asset {
   // entry sets, e.g. 'source', 'width' and 'height' for images.
   //
   // Clients must be resilient to unknown or missing entry sets.
-  map<string, string> fields = 3;
+  map<string, string> fields = 2;
 
   // Technical metadata of the asset.
-  Metadata metadata = 4;
+  Metadata metadata = 3;
 }
 
 // Hierarchical section information of the article till root.
