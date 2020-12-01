@@ -82,10 +82,8 @@ message Article {
 
 // Article metadata like publication state and technical timestamps.
 message Metadata {
-
   // State of the article in the content management system.
-  // see https://github.com/stroeer/tapir/issues/64
-  string state = 1;
+  State state = 1;
 
   // Manually set editorial date ('Gültig von') at which the article is valid to deliver on
   // digital platforms in seconds of UTC time since Unix epoch.
@@ -206,6 +204,15 @@ message BodyNode {
 
   // Elements of the node, e.g. inline videos or galleries.
   repeated Element elements = 5;
+}
+
+// State of the article in the content management system.
+enum State {
+  // Not specified.
+  STATE_UNSPECIFIED = 0;
+
+  // A published article.
+  STATE_PUBLISHED = 1;
 }
 
 // Main content type of the article.
