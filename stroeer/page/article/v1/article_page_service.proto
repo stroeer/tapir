@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package stroeer.page.article.v1;
+
+import "stroeer/core/v1/article.proto";
+import "stroeer/page/article/v1/article_page.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/page/article/v1;article";
+option java_multiple_files = true;
+option java_package = "de.stroeer.page.article.v1";
+
+// Service for article pages.
+service ArticlePageService {
+  // Returns the requested article with all render relevant data for the user and SEO bots.
+  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+}
+
+// Request message to get an article page.
+message GetArticlePageRequest {
+  // ID of the article defined by the content management system (required).
+  int64 id = 1;
+}
+
+// Response message for an article page request.
+//
+// Status codes:
+// * `OK`: article exists and is published
+// * `NOT_FOUND`: article doesn't exist or is not published according to it's `Metadata`
+message GetArticlePageResponse {
+  // Article page with all render relevant data for the user and SEO bots.
+  stroeer.page.article.v1.ArticlePage article_page = 1;
+}
+

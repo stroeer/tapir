@@ -5,5 +5,5 @@ config_version: 3
 
 http:
   rules:
-    - selector: stroeer.pages.article.v1.ArticlePageService.GetArticlePage
+    - selector: stroeer.page.article.v1.ArticlePageService.GetArticlePage
       get: /v1/pages/articles/{id}
