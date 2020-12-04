@@ -17,9 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CurationServiceClient interface {
-	//*
-	// The method to call on the CurationService to get curation data from coremedia.
-	// Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
+	// Responds with curation data for the provided request parameters.
 	GetCuratedStages(ctx context.Context, in *GetCuratedStagesRequest, opts ...grpc.CallOption) (*GetCuratedStagesResponse, error)
 }
 
@@ -44,9 +42,7 @@ func (c *curationServiceClient) GetCuratedStages(ctx context.Context, in *GetCur
 // All implementations must embed UnimplementedCurationServiceServer
 // for forward compatibility
 type CurationServiceServer interface {
-	//*
-	// The method to call on the CurationService to get curation data from coremedia.
-	// Accepts a GetCuratedStagesRequest, returns GetCuratedStagesResponse
+	// Responds with curation data for the provided request parameters.
 	GetCuratedStages(context.Context, *GetCuratedStagesRequest) (*GetCuratedStagesResponse, error)
 	mustEmbedUnimplementedCurationServiceServer()
 }
@@ -67,7 +63,7 @@ type UnsafeCurationServiceServer interface {
 	mustEmbedUnimplementedCurationServiceServer()
 }
 
-func RegisterCurationServiceServer(s *grpc.Server, srv CurationServiceServer) {
+func RegisterCurationServiceServer(s grpc.ServiceRegistrar, srv CurationServiceServer) {
 	s.RegisterService(&_CurationService_serviceDesc, srv)
 }
 

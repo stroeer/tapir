@@ -63,8 +63,8 @@ gateway: ## Generates grpc-gateway resources
 	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) \
 		--grpc-gateway_opt logtostderr=true \
 		--grpc-gateway_opt paths=source_relative \
-		--grpc-gateway_opt grpc_api_configuration=stroeer/pages/article/v1/api_config_http.yaml \
-		stroeer/pages/article/v1/article_service.proto
+		--grpc-gateway_opt grpc_api_configuration=stroeer/page/article/v1/api_config_http.yaml \
+		stroeer/page/article/v1/article_page_service.proto
 
 clean: ## Deletes all generated files
 	@echo "+ $@"

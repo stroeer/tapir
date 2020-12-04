@@ -30,7 +30,7 @@ func NewSectionPageServiceClient(cc grpc.ClientConnInterface) SectionPageService
 
 func (c *sectionPageServiceClient) GetSectionPage(ctx context.Context, in *GetSectionPageRequest, opts ...grpc.CallOption) (*GetSectionPageResponse, error) {
 	out := new(GetSectionPageResponse)
-	err := c.cc.Invoke(ctx, "/stroeer.pages.section.v1.SectionPageService/GetSectionPage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stroeer.page.section.v1.SectionPageService/GetSectionPage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +61,7 @@ type UnsafeSectionPageServiceServer interface {
 	mustEmbedUnimplementedSectionPageServiceServer()
 }
 
-func RegisterSectionPageServiceServer(s *grpc.Server, srv SectionPageServiceServer) {
+func RegisterSectionPageServiceServer(s grpc.ServiceRegistrar, srv SectionPageServiceServer) {
 	s.RegisterService(&_SectionPageService_serviceDesc, srv)
 }
 
@@ -75,7 +75,7 @@ func _SectionPageService_GetSectionPage_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stroeer.pages.section.v1.SectionPageService/GetSectionPage",
+		FullMethod: "/stroeer.page.section.v1.SectionPageService/GetSectionPage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SectionPageServiceServer).GetSectionPage(ctx, req.(*GetSectionPageRequest))
@@ -84,7 +84,7 @@ func _SectionPageService_GetSectionPage_Handler(srv interface{}, ctx context.Con
 }
 
 var _SectionPageService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "stroeer.pages.section.v1.SectionPageService",
+	ServiceName: "stroeer.page.section.v1.SectionPageService",
 	HandlerType: (*SectionPageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -93,5 +93,5 @@ var _SectionPageService_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "stroeer/pages/section/v1/section_service.proto",
+	Metadata: "stroeer/page/section/v1/section_page_service.proto",
 }

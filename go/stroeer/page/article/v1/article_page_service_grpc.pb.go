@@ -17,6 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArticlePageServiceClient interface {
+	// Returns the requested article with all render relevant data for the user and SEO bots.
 	GetArticlePage(ctx context.Context, in *GetArticlePageRequest, opts ...grpc.CallOption) (*GetArticlePageResponse, error)
 }
 
@@ -30,7 +31,7 @@ func NewArticlePageServiceClient(cc grpc.ClientConnInterface) ArticlePageService
 
 func (c *articlePageServiceClient) GetArticlePage(ctx context.Context, in *GetArticlePageRequest, opts ...grpc.CallOption) (*GetArticlePageResponse, error) {
 	out := new(GetArticlePageResponse)
-	err := c.cc.Invoke(ctx, "/stroeer.pages.article.v1.ArticlePageService/GetArticlePage", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stroeer.page.article.v1.ArticlePageService/GetArticlePage", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,6 +42,7 @@ func (c *articlePageServiceClient) GetArticlePage(ctx context.Context, in *GetAr
 // All implementations must embed UnimplementedArticlePageServiceServer
 // for forward compatibility
 type ArticlePageServiceServer interface {
+	// Returns the requested article with all render relevant data for the user and SEO bots.
 	GetArticlePage(context.Context, *GetArticlePageRequest) (*GetArticlePageResponse, error)
 	mustEmbedUnimplementedArticlePageServiceServer()
 }
@@ -61,7 +63,7 @@ type UnsafeArticlePageServiceServer interface {
 	mustEmbedUnimplementedArticlePageServiceServer()
 }
 
-func RegisterArticlePageServiceServer(s *grpc.Server, srv ArticlePageServiceServer) {
+func RegisterArticlePageServiceServer(s grpc.ServiceRegistrar, srv ArticlePageServiceServer) {
 	s.RegisterService(&_ArticlePageService_serviceDesc, srv)
 }
 
@@ -75,7 +77,7 @@ func _ArticlePageService_GetArticlePage_Handler(srv interface{}, ctx context.Con
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stroeer.pages.article.v1.ArticlePageService/GetArticlePage",
+		FullMethod: "/stroeer.page.article.v1.ArticlePageService/GetArticlePage",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArticlePageServiceServer).GetArticlePage(ctx, req.(*GetArticlePageRequest))
@@ -84,7 +86,7 @@ func _ArticlePageService_GetArticlePage_Handler(srv interface{}, ctx context.Con
 }
 
 var _ArticlePageService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "stroeer.pages.article.v1.ArticlePageService",
+	ServiceName: "stroeer.page.article.v1.ArticlePageService",
 	HandlerType: (*ArticlePageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -93,5 +95,5 @@ var _ArticlePageService_serviceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "stroeer/pages/article/v1/article_service.proto",
+	Metadata: "stroeer/page/article/v1/article_page_service.proto",
 }

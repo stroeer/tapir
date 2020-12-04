@@ -63,7 +63,7 @@ type UnsafeArticleServiceServer interface {
 	mustEmbedUnimplementedArticleServiceServer()
 }
 
-func RegisterArticleServiceServer(s *grpc.Server, srv ArticleServiceServer) {
+func RegisterArticleServiceServer(s grpc.ServiceRegistrar, srv ArticleServiceServer) {
 	s.RegisterService(&_ArticleService_serviceDesc, srv)
 }
 
