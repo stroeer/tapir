@@ -11,7 +11,7 @@
   "devDependencies": {
     "@grpc/grpc-js": "1.2.2",
     "@types/google-protobuf": "3.7.4",
-    "@types/jest": "26.0.15",
+    "@types/jest": "26.0.16",
     "google-protobuf": "3.14.0",
     "grpc-tools": "1.10.0",
     "jest": "26.6.3",
