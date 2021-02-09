@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package stroeer.core.v1;
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
+option java_multiple_files = true;
+option java_package = "de.stroeer.core.v1";
+
+
+// References to get access to the article on different technical platforms like
+// canonical web or AMP.
+message References {
+  // URL path for this article e.g. /section/id_$ID/title.html (required).
+  string path = 1;
+
+  // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
+  // (required).
+  string canonical = 2;
+
+  // AMP URL of the article.
+  string amp = 3;
+}
+
+// Hierarchical section information of the article till root.
+//
+// For example:  /politik/deutschland/ -> /politik/ -> /
+message SectionTree {
+  // Section path of the article, e.g. /politik/deutschland/ (required).
+  string path = 1;
+
+  // Label of the section path, e.g. "Politik".
+  string label = 2;
+
+  // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
+  SectionTree parent = 3;
+}

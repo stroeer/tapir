@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package stroeer.page.section.v1;
 
+import "stroeer/core/v1/shared.proto";
 import "stroeer/core/v1/article.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/page/section/v1;section";
@@ -10,7 +11,18 @@ option java_package = "de.stroeer.page.section.v1";
 
 // All data to render a section page like the homepage or "/politik/".
 message SectionPage {
-  repeated Stage stages = 1;
+  repeated Section section = 1;
+  repeated Stage stages = 2;
+}
+
+// All meta information to render a section page
+message Section {
+  // References to get access to the section on different technical platforms like
+  // canonical web or AMP (required).
+  stroeer.core.v1.References references = 1;
+
+  // Hierarchical section tree information of the section (required).
+  stroeer.core.v1.SectionTree section_tree = 2;
 }
 
 // A block of teasers - can consist of editorial articles, advertisement and/or stages.
