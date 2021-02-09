@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.core.v1;
 
 import "google/protobuf/timestamp.proto";
+import "stroeer/core/v1/shared.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
@@ -30,10 +31,10 @@ message Article {
 
   // References to get access to the article on different technical platforms like
   // canonical web or AMP (required).
-  References references = 4;
+  stroeer.core.v1.References references = 4;
 
-  // Hierarchical section information of the article (required).
-  Section section = 5;
+  // Hierarchical section tree information of the article (required).
+  stroeer.core.v1.SectionTree section_tree = 5;
 
   // Generic map containing general content and configuration information of
   // the article (required).
@@ -146,34 +147,6 @@ message Asset {
 
   // Technical metadata of the asset.
   Metadata metadata = 3;
-}
-
-// Hierarchical section information of the article till root.
-//
-// For example:  /politik/deutschland/ -> /politik/ -> /
-message Section {
-  // Section path of the article, e.g. /politik/deutschland/ (required).
-  string path = 1;
-
-  // Label of the section path, e.g. "Politik".
-  string label = 2;
-
-  // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
-  Section parent = 3;
-}
-
-// References to get access to the article on different technical platforms like
-// canonical web or AMP.
-message References {
-  // URL path for this article e.g. /section/id_$ID/title.html (required).
-  string path = 1;
-
-  // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
-  // (required).
-  string canonical = 2;
-
-  // AMP URL of the article.
-  string amp = 3;
 }
 
 // Body of the article to render on detail pages.
