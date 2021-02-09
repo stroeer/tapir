@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package stroeer.core.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
+option java_multiple_files = true;
+option java_package = "de.stroeer.core.v1";
+
+// ########################################################################
+// UseCase:
+// A reference data model for multiple links of multiple types in one place.
+//
+// Instead of:
+// config.subNavigation
+// config.sponsoringReference
+// config.titleReference
+// We want:
+// config.references.filter(isSubNavigation)
+// config.references.filter(isTitle)
+// config.references.filter(isSponsoring)
+// ########################################################################
+// ########################################################################
+// Version A:
+// Clean Reference + a wrapper message for multiple links
+//
+// const isNavigation = (typedReference) => typedReference.type === 'navigation';
+// const subNavigation = links.filter(isNavigation).map(typedReference => typedReference.reference);
+// ########################################################################
+
+message Reference__A {
+  string label = 1;
+
+  // Entry: `href`
+  // Entry: `target`
+  // Entry: `rel`
+  map<string, string> fields = 2;
+}
+
+// todo:
+// find better name
+message TypedReference {
+  // todo:
+  // type as an enum?
+  string type = 1;
+  Reference__A reference = 2;
+}
+
+// ########################################################################
+// Version B:
+// Reference incl. a type for multiple links:
+// repeated Reference links = 1;
+//
+// const isNavigation = (reference) => reference.type === 'navigation';
+// const subNavigation = links.filter(isNavigation);
+// ########################################################################
+
+message Reference__B {
+  // todo:
+  // type as an enum?
+  string type = 1;
+  string label = 2;
+
+  // Entry: `href`
+  // Entry: `target`
+  // Entry: `rel`
+  map<string, string> fields = 3;
+}
+
+// ########################################################################
+// Refactoring: SectionTree -> LinkedReference
+// This would be a reusable data model for:
+// - Breadcrumb
+// - Main Navigation (?)
+// - All kind of navigation with a sub navi (?)
+//
+// todo:
+// Both impl. looking good. At some point we will have the `NavigationReference`
+// impl. for the main navigation. Should we consider this yet? Do we need both?
+// ########################################################################
+
+message LinkedReference {
+  Reference__A reference = 1;
+  LinkedReference parent = 2;
+}
+
+// Sport -> [Fussball, Handball, Formel1]
+message NavigationReference {
+  Reference__A reference = 1;
+  repeated NavigationReference children = 2;
+}
+
+// ########################################################################
+// Refactoring: References -> ?
+// The name is misleading.
+// Ideas:
+// - Self
+// - Document
+// - Link
+// - Target
+// - Address
+// ########################################################################
+
+message References {
+  string path = 1;
+  string canonical = 2;
+  string amp = 3;
+}
+
+// ########################################################################
+// Example: StageConfiguration
+// ########################################################################
+
+// Spec:
+// - How to link the stage title?
+// - How to add multiple links as a sub navi (in a defined order)?
+// - How to link a logo?
+// - How to link a sponsor?
+message StageConfiguration {
+  // Entry: `layout`
+  // Entry: `tracking_name`
+  // Entry: `header_title`
+  // Entry: `header_sub_title`
+  // Entry: `header_logo_id`
+  // Entry: `flag:header_hidden`
+  // Entry: `sponsoring_title`
+  // Entry: `sponsoring_slogan`
+  // Entry: `sponsoring_logo_id`
+  // Entry: `flag:sponsoring_hidden`
+  map<string, string> fields = 1;
+  // Type: `header_title`
+  // Type: `sponsoring_title`
+  // Type: `sponsoring_slogan`
+  // Type: `sponsoring_logo`
+  // Type: `navigation`
+  // Type: `sub_navigation`
+  repeated TypedReference references = 2;
+}
+
+// ########################################################################
+// TODO: BodyNode
+// How to make `BodyNode.a` as a Reference?
+// ########################################################################
+
+message BodyNode {
+  string type = 1;
+  string text = 2;
+  // todo:
+  // ???
+  Reference__A reference = 6;
+  map<string, string> fields = 3;
+  repeated BodyNode children = 4;
+  repeated Element elements = 5;
+}
