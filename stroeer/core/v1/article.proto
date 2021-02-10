@@ -29,12 +29,8 @@ message Article {
   // Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
   ContentSubType sub_type = 3;
 
-  // References to get access to the article on different technical platforms like
-  // canonical web or AMP (required).
-  stroeer.core.v1.References references = 4;
-
   // Hierarchical section tree information of the article (required).
-  stroeer.core.v1.SectionTree section_tree = 5;
+  stroeer.core.v1.Category section_tree = 5;
 
   // Generic map containing general content and configuration information of
   // the article (required).
@@ -45,9 +41,12 @@ message Article {
   // For `CONTENT_TYPE_ARTICLE`, this map will always contain non empty values
   // for the following keys:
   //
-  // * headline
-  // * top_line
-  // * summary
+  // * `headline`
+  // * `top_line`
+  // * `summary`
+  // * `url_path`: URL path for this article e.g. /section/id_$ID/title.html
+  // * `url_canonical`: Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
+  // * `url_amp`: AMP URL of the article
   //
   // For `CONTENT_TYPE_GALLERY`, this map will always contain non empty values
   // for the following keys:
@@ -140,7 +139,7 @@ message Asset {
   // the asset.
   //
   // Depending on the type of the asset, this map will contain different
-  // entry sets, e.g. 'source', 'width' and 'height' for images.
+  // entry sets, e.g. `source`, `width` and `height` for images.
   //
   // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 2;
@@ -162,17 +161,30 @@ message Body {
 message BodyNode {
   // Type of the node (required):
   //
-  // `p`, `sub_headline`, `a`, `strong`, `em`, `ul`, `ol`, `li`, `img`, `article_sources`, `article_source`
+  // * `text`
+  // * `p`
+  // * `sub_headline`
+  // * `a`
+  // * `strong`
+  // * `em`
+  // * `br`
+  // * `ul`
+  // * `ol`
+  // * `li`
+  // * `img`: inline image element
+  // * `oembed`: inline oEmbed element
+  // * `article_sources`: "Quellenapparat"
+  // * `article_source`: A single "Quellenapparat" item containing `text` or `a`
   string type = 1;
 
   // Text of the node, only set for text nodes (`type == 'text'`).
   string text = 2;
 
   // Additional information for the node depending on it's type,
-  // e.g. 'href' for 'a' nodes.
+  // e.g. `href` for `a` nodes.
   map<string, string> fields = 3;
 
-  // Children of the node, e.g. the 'text' of a 'p'.
+  // Children of the node, e.g. the `text` of a `p`.
   repeated BodyNode children = 4;
 
   // Elements of the node, e.g. inline videos or galleries.

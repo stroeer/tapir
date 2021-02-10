@@ -6,31 +6,41 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
+// Represents a single Reference or Link incl. all needed attributes to built
+// an anchor element.
+message Reference {
+  // The type is only needed for filtering multiple links of the same type in
+  // list of references.
+  //
+  // Example entries:
+  // * `title`
+  // * `navigation`
+  // * `sub_navigation`
+  string type = 1;
 
-// References to get access to the article on different technical platforms like
-// canonical web or AMP.
-message References {
-  // URL path for this article e.g. /section/id_$ID/title.html (required).
-  string path = 1;
+  // The text or label of the link.
+  string text = 2;
 
-  // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
-  // (required).
-  string canonical = 2;
-
-  // AMP URL of the article.
-  string amp = 3;
+  // Contains all optional attributes of a link.
+  // * `href`
+  // * `target`
+  // * `rel`
+  // * `flag:internal`
+  //
+  // Clients must be resilient to unknown or missing entry sets.
+  map<string, string> fields = 3;
 }
 
-// Hierarchical section information of the article till root.
+// Hierarchically structured references. Representing the section tree or
+// navigation menus.
 //
-// For example:  /politik/deutschland/ -> /politik/ -> /
-message SectionTree {
-  // Section path of the article, e.g. /politik/deutschland/ (required).
-  string path = 1;
+// For example:
+// `/` -> `/sport/` -> `/sport/fussball/`
+// [?] The name `Category` is used here to align namings with the CMS.
+message Category {
+  // Reference of the current category e.g. /politik/deutschland/ (required).
+  Reference reference = 1;
 
-  // Label of the section path, e.g. "Politik".
-  string label = 2;
-
-  // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
-  SectionTree parent = 3;
+  // All children of this category.
+  repeated Category children = 2;
 }

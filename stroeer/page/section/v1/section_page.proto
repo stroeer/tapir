@@ -17,12 +17,20 @@ message SectionPage {
 
 // All meta information to render a section page
 message Section {
-  // References to get access to the section on different technical platforms like
-  // canonical web or AMP (required).
-  stroeer.core.v1.References references = 1;
+  // Generic map containing general content and configuration information of
+  // the section (required).
+  //
+  // This map will always contain non empty values for the following keys:
+  //
+  // * `url_path`: URL path for this section e.g. /sport/fussball/bundesliga/
+  // * `url_canonical`: Canonical URL of the section, may differ if external, e.g. https://www.giga.de/tech/
+  // * `url_amp`: AMP URL of the section
+  //
+  // Clients must be resilient to unknown or missing entry sets.
+  map<string, string> fields = 1;
 
   // Hierarchical section tree information of the section (required).
-  stroeer.core.v1.SectionTree section_tree = 2;
+  stroeer.core.v1.Category section_tree = 2;
 }
 
 // A block of teasers - can consist of editorial articles, advertisement and/or stages.
@@ -33,12 +41,17 @@ message Stage {
 
 // Rendering data for a stage, currently only a fields map.
 // Coordinate stage layouts, especially the `default` layout with UI department.
-// todo: currently doesn't contain the link for a stage, like "Mehr aus Sport".
 message StageConfiguration {
-  // Entry: `stage_title` represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
-  // Entry: `stage_layout` represents a visual layout, which may affect teasers, colors, and other styles.
+  // * `stage_title`: represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
+  // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `default`.
   map<string, string> fields = 1;
+
+  // All kind of references like:
+  // * stage_title
+  // * sub_navigation
+  // Filter reference by type.
+  repeated stroeer.core.v1.Reference references = 2;
 }
 
 // A single generic item of a stage.
@@ -66,8 +79,8 @@ message ArticleTeaser {
   // `Article.body` is set to `null` to reduce overhead.
   stroeer.core.v1.Article article = 1;
   // `fields` may contain additional rendering information.
-  // Entry: `teaser_layout`, marker to use a particular layout in the rendering teaser template.
-  // Entry: `teaser_variant`, marker to use also a particular variant of the provided `teaser_layout`.
+  // * `teaser_layout`: marker to use a particular layout in the rendering teaser template.
+  // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
   // If `teaser_layout` entries is missing use layout `default`.
   map<string, string> fields = 2;
 }
