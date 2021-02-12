@@ -6,8 +6,9 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
-// A Reference represents a link to another entity - for example an `Article`,
-// a `SectionPage` or an external website.
+// A Reference represents a link to another entity, for example an `Article`,
+// a `Section` or an external website, or a whole tree structure, for example
+// a section tree or navigation.
 message Reference {
   // The type is only needed for filtering multiple references of the same type
   // in list of references.
