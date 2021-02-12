@@ -24,12 +24,12 @@ message Section {
   // * `path`: URL path for this article e.g. /section/sub_section/ (required)
   // * `canonical`: Canonical URL of the section, may differ if external, e.g. https://www.giga.de/tech/ (required)
   // * `amp`: AMP URL of the section (required)
-  repeated stroeer.core.v1.Reference references = 4;
+  repeated stroeer.core.v1.Reference references = 1;
 
   // Hierarchical section tree information of the section (required).
   // For example:
   // `/` -> `/sport/` -> `/sport/fussball/`
-  stroeer.core.v1.Reference section_tree = 5;
+  stroeer.core.v1.Reference section_tree = 2;
 }
 
 // A block of teasers - can consist of editorial articles, advertisement and/or stages.
