@@ -15,22 +15,21 @@ message SectionPage {
   repeated Stage stages = 2;
 }
 
-// All meta information to render a section page
+// All meta information to render a section page.
 message Section {
-  // Generic map containing general content and configuration information of
-  // the section (required).
+  // References to get access to the section on different technical platforms
+  // like canonical, web or AMP (required).
   //
-  // This map will always contain non empty values for the following keys:
-  //
-  // * `url_path`: URL path for this section e.g. /sport/fussball/bundesliga/
-  // * `url_canonical`: Canonical URL of the section, may differ if external, e.g. https://www.giga.de/tech/
-  // * `url_amp`: AMP URL of the section
-  //
-  // Clients must be resilient to unknown or missing entry sets.
-  map<string, string> fields = 1;
+  // Filter by `Reference.type`:
+  // * `path`: URL path for this article e.g. /section/sub_section/ (required)
+  // * `canonical`: Canonical URL of the section, may differ if external, e.g. https://www.giga.de/tech/ (required)
+  // * `amp`: AMP URL of the section (required)
+  repeated stroeer.core.v1.Reference references = 4;
 
   // Hierarchical section tree information of the section (required).
-  stroeer.core.v1.Category section_tree = 2;
+  // For example:
+  // `/` -> `/sport/` -> `/sport/fussball/`
+  stroeer.core.v1.Reference section_tree = 5;
 }
 
 // A block of teasers - can consist of editorial articles, advertisement and/or stages.
@@ -47,10 +46,10 @@ message StageConfiguration {
   // If entry `stage_layout` is missing, use layout `default`.
   map<string, string> fields = 1;
 
-  // All kind of references like:
-  // * stage_title
-  // * sub_navigation
-  // Filter reference by type.
+  // All kind of references as part of the stage. Filter reference by
+  // `Reference.type`:
+  // * `stage_title`
+  // * `sub_navigation`
   repeated stroeer.core.v1.Reference references = 2;
 }
 

@@ -26,11 +26,23 @@ message Article {
   // Main content type of the article.
   ContentType type = 2;
 
-  // Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
+  // Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a
+  // sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
   ContentSubType sub_type = 3;
 
+  // References to get access to the article on different technical platforms
+  // like canonical, web or AMP (required).
+  //
+  // Filter by `Reference.type`:
+  // * `path`: URL path for this article e.g. /section/id_$ID/title.html (required)
+  // * `canonical`: Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html (required)
+  // * `amp`: AMP URL of the article (required)
+  repeated stroeer.core.v1.Reference references = 4;
+
   // Hierarchical section tree information of the article (required).
-  stroeer.core.v1.Category section_tree = 5;
+  // For example:
+  // `/` -> `/sport/` -> `/sport/fussball/`
+  stroeer.core.v1.Reference section_tree = 5;
 
   // Generic map containing general content and configuration information of
   // the article (required).
@@ -44,9 +56,6 @@ message Article {
   // * `headline`
   // * `top_line`
   // * `summary`
-  // * `url_path`: URL path for this article e.g. /section/id_$ID/title.html
-  // * `url_canonical`: Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
-  // * `url_amp`: AMP URL of the article
   //
   // For `CONTENT_TYPE_GALLERY`, this map will always contain non empty values
   // for the following keys:
