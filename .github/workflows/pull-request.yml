@@ -6,6 +6,18 @@ on:
       - master
 
 jobs:
+  api-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+
+      - run: go get -u github.com/googleapis/api-linter/cmd/api-linter
+
+      - name: Google API linter
+        run: api-linter --output-format stroeer/core/v1/article.proto
+
   buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
