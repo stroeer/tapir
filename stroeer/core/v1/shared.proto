@@ -6,31 +6,35 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
+// A Reference represents a link to another entity, for example an `Article`,
+// a `Section` or an external website, or a whole tree structure, for example
+// a section tree or navigation.
+message Reference {
+  // The type is only needed for filtering multiple references of the same type
+  // in list of references.
+  //
+  // Example entries:
+  // * `unspecified`
+  // * `title`
+  // * `navigation`
+  // * `sub_navigation`
+  string type = 1;
 
-// References to get access to the article on different technical platforms like
-// canonical web or AMP.
-message References {
-  // URL path for this article e.g. /section/id_$ID/title.html (required).
-  string path = 1;
-
-  // Canonical URL of the article, may differ if external, e.g. https://www.giga.de/external.html
-  // (required).
-  string canonical = 2;
-
-  // AMP URL of the article.
-  string amp = 3;
-}
-
-// Hierarchical section information of the article till root.
-//
-// For example:  /politik/deutschland/ -> /politik/ -> /
-message SectionTree {
-  // Section path of the article, e.g. /politik/deutschland/ (required).
-  string path = 1;
-
-  // Label of the section path, e.g. "Politik".
+  // The text or label of the reference.
   string label = 2;
 
-  // Parent section. Usually points to the parent section, if there is none, e.g. when in `root` this value is `null`
-  SectionTree parent = 3;
+  // The href of the reference. It can be relative or absolute.
+  string href = 3;
+
+  // Contains all optional attributes of the reference.
+  // * `target`
+  // * `rel`
+  // * `flag:internal`
+  //
+  // Clients must be resilient to unknown or missing entry sets.
+  map<string, string> fields = 4;
+
+  // Hierarchically structured references for representing a navigation or tree.
+  repeated Reference children = 5;
 }
+
