@@ -114,7 +114,10 @@ message Element {
   // Type of the element.
   ElementType type = 1;
 
-  // TODO: this enum is probably deprecated
+  // The usages (relations) of an element.
+  // Example:
+  // One image element with the relations `teaser` and `opener` is used for
+  // both places.
   repeated ElementRelation relations = 2;
 
   // Assets of the element like images, videos or metadata (required).
@@ -305,10 +308,14 @@ enum AssetType {
   ASSET_TYPE_METADATA = 4;
 }
 
-// TODO: this enum is probably deprecated
+// Relation or usage of an element
 enum ElementRelation {
+  // Not specified.
   ELEMENT_RELATION_UNSPECIFIED = 0;
+
+  // As an opener element
   ELEMENT_RELATION_OPENER = 1;
+
+  // As an teaser element
   ELEMENT_RELATION_TEASER = 2;
-  ELEMENT_RELATION_INLINE = 3;
 }
