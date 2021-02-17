@@ -90,27 +90,18 @@ message Metadata {
 
   // Manually set editorial date ('Gültig von') at which the article is valid to deliver on
   // digital platforms in seconds of UTC time since Unix epoch.
-  google.protobuf.Timestamp valid_from = 2;
+  google.protobuf.Timestamp start_time = 2;
 
   // Manually set editorial date ('Gültig bis') till the article is valid to deliver on
   // digital platforms in seconds of UTC time since Unix epoch.
-  google.protobuf.Timestamp valid_to = 3;
+  google.protobuf.Timestamp end_time = 3;
 
-  // editorial date: Zuletzt bearbeitet
-  // see https://github.com/stroeer/tapir/issues/112
-  google.protobuf.Timestamp last_edited = 4;
-
-  // editorial date: Zuletzt publiziert
-  // see https://github.com/stroeer/tapir/issues/112
-  google.protobuf.Timestamp last_published = 5;
-
-  // editorial date: Erstellungsdatum
-  // see https://github.com/stroeer/tapir/issues/112
-  google.protobuf.Timestamp created = 6;
+  // editorial date: 'Publikationsdatum'
+  google.protobuf.Timestamp publish_time = 4;
 
   // Manually set editorial date ('Aktualisierungsdatum') at which the article
   // was updated in seconds of UTC time since Unix epoch.
-  google.protobuf.Timestamp updated = 7;
+  google.protobuf.Timestamp update_time = 5;
 }
 
 // Elements of the article which are not part of the body, e.g. author information
