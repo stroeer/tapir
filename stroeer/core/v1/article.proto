@@ -294,6 +294,12 @@ enum ElementType {
 
   // An agency (e.g. DPA) element.
   ELEMENT_TYPE_AGENCY = 7;
+
+  // An element that represents a <esi:include>
+  ELEMENT_TYPE_EDGE_SIDE_INCLUDE = 8;
+
+  // A citation element.
+  ELEMENT_TYPE_CITATION = 9;
 }
 
 // Type of an asset.
