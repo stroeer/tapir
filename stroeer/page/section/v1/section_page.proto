@@ -11,7 +11,7 @@ option java_package = "de.stroeer.page.section.v1";
 
 // All data to render a section page like the homepage or "/politik/".
 message SectionPage {
-  repeated Section section = 1;
+  Section section = 1;
   repeated Stage stages = 2;
 }
 
