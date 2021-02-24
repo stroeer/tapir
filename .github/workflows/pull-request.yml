@@ -15,10 +15,10 @@ jobs:
         with:
           go-version: '^1.16'
 
-      - run: go install github.com/googleapis/api-linter/cmd/api-linter@v1.15.0
+      - run: go install github.com/googleapis/api-linter/cmd/api-linter@latest
 
       - name: Google API linter
-        run: api-linter --output-format stroeer/core/v1/article.proto
+        run: make lint
 
   buf:
     runs-on: ubuntu-latest
