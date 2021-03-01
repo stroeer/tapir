@@ -58,6 +58,13 @@ stroeer/%: $(OUTPUT)
 	@echo "+ $@"
 	$(PROTOC) $(FLAGS) $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
 
+tools: ## Checks for local availability of tools
+	@command -v api-linter >/dev/null 2>&1 || { echo >&2 "Please install api-linter: 'go install github.com/googleapis/api-linter/cmd/api-linter@latest'"; exit 1; }
+
+lint: tools ## Lints all proto files using Google API linter (https://linter.aip.dev/)
+	@echo "+ $@"
+	@api-linter $(shell find stroeer -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ') --output-format summary --set-exit-status || exit 1
+
 gateway: ## Generates grpc-gateway resources
 	@echo "+ $@"
 	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) \

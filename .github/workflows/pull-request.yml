@@ -6,6 +6,20 @@ on:
       - master
 
 jobs:
+  api-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16'
+
+      - run: go install github.com/googleapis/api-linter/cmd/api-linter@latest
+
+      - name: Google API linter
+        run: make lint
+
   buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
