@@ -18,7 +18,7 @@ OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
 GRPCPLUGIN ?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
 
-PROTOC_VERSION ?= 3.14.0
+PROTOC_VERSION ?= 3.15.0
 
 PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
