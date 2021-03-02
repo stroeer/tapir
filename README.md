@@ -61,3 +61,4 @@ cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-s
 
 - run `make image-build` (tags as [`$protoc_version`, `latest`])
 - run `make image-release` to push the new image
+
