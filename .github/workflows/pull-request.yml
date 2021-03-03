@@ -30,12 +30,12 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: lint
-        run: buf check lint
+        run: buf lint
 
       - name: check breaking change
         id: buf_breaking
         run: |
-          buf check breaking --against-input 'https://github.com/stroeer/tapir.git#branch=master' --input-config buf.yaml > message.txt || true
+          buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml > message.txt || true
           echo "::set-output name=message::$(cat message.txt)"
           if [ -s message.txt ]; then
             echo ::set-output name=failed::'true';
