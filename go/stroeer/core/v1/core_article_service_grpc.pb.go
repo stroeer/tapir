@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // ArticleServiceClient is the client API for ArticleService service.
@@ -64,7 +65,7 @@ type UnsafeArticleServiceServer interface {
 }
 
 func RegisterArticleServiceServer(s grpc.ServiceRegistrar, srv ArticleServiceServer) {
-	s.RegisterService(&_ArticleService_serviceDesc, srv)
+	s.RegisterService(&ArticleService_ServiceDesc, srv)
 }
 
 func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -85,7 +86,10 @@ func _ArticleService_GetArticle_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ArticleService_serviceDesc = grpc.ServiceDesc{
+// ArticleService_ServiceDesc is the grpc.ServiceDesc for ArticleService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ArticleService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "stroeer.core.v1.ArticleService",
 	HandlerType: (*ArticleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

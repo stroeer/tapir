@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // CurationServiceClient is the client API for CurationService service.
@@ -64,7 +65,7 @@ type UnsafeCurationServiceServer interface {
 }
 
 func RegisterCurationServiceServer(s grpc.ServiceRegistrar, srv CurationServiceServer) {
-	s.RegisterService(&_CurationService_serviceDesc, srv)
+	s.RegisterService(&CurationService_ServiceDesc, srv)
 }
 
 func _CurationService_GetCuratedStages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -85,7 +86,10 @@ func _CurationService_GetCuratedStages_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-var _CurationService_serviceDesc = grpc.ServiceDesc{
+// CurationService_ServiceDesc is the grpc.ServiceDesc for CurationService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var CurationService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "stroeer.coremedia.v1.CurationService",
 	HandlerType: (*CurationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

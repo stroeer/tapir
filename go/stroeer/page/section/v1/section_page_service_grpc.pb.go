@@ -11,6 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // SectionPageServiceClient is the client API for SectionPageService service.
@@ -62,7 +63,7 @@ type UnsafeSectionPageServiceServer interface {
 }
 
 func RegisterSectionPageServiceServer(s grpc.ServiceRegistrar, srv SectionPageServiceServer) {
-	s.RegisterService(&_SectionPageService_serviceDesc, srv)
+	s.RegisterService(&SectionPageService_ServiceDesc, srv)
 }
 
 func _SectionPageService_GetSectionPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -83,7 +84,10 @@ func _SectionPageService_GetSectionPage_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-var _SectionPageService_serviceDesc = grpc.ServiceDesc{
+// SectionPageService_ServiceDesc is the grpc.ServiceDesc for SectionPageService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SectionPageService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "stroeer.page.section.v1.SectionPageService",
 	HandlerType: (*SectionPageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
