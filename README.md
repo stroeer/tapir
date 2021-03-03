@@ -3,7 +3,7 @@
    <h1>tapir</h1>
 </div>
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/stroeer/tapir?style=flat-square)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/stroeer/tapir?color=%23f653a6&label=Release&style=flat-square)
 
 The **T**-online **API** **R**epository contains the interface definitions of t-online APIs that support the [gRPC](https://grpc.io/) protocol. You can use these definitions with open source tools to generate client libraries, documentation and other artifacts.
 
