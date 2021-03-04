@@ -46,8 +46,6 @@ else
 	FLAGS+= --grpc_out=$(OUTPUT)
 endif
 
-.PHONY: clean help image-build image-release gateway lint java go node
-
 all: $(PROTO_FILES)
 
 # Generate source files for a specific language like 'java'
@@ -56,28 +54,34 @@ all: $(PROTO_FILES)
 	@mkdir -p $(OUTPUT)
 	$(PROTOC) $(FLAGS) $*.proto
 
-LANGUAGES ?= java node go
+LANGUAGES := java node go
+.PHONY: generate java node go
 generate: $(LANGUAGES) ## Generates source files for all supported languages
 
 $(LANGUAGES):
 	$(MAKE) LANGUAGE="$@"
 
+.PHONY: lint
 lint: ## Lints all proto files using https://docs.buf.build/lint-overview
 	@echo "+ $@"
 	@buf lint || exit 1
 
+.PHONY: breaking
 breaking: ## Detects breaking changes using https://docs.buf.build/breaking-overview
 	@echo "+ $@"
 	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
 
+.PHONY: test
 test: generate # Runs all tests
 	@echo "+ $@"
 	cd java && ./gradlew clean build
 	cd node && npm run checks
 	cd go && go test -v .
 
-check: lint breaking test ## Runs all checks
+.PHONY: check
+check: lint breaking gateway test check-git-clean ## Runs all checks
 
+.PHONY: gateway
 gateway: ## Generates grpc-gateway resources
 	@echo "+ $@"
 	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) \
@@ -86,18 +90,29 @@ gateway: ## Generates grpc-gateway resources
 		--grpc-gateway_opt grpc_api_configuration=stroeer/page/article/v1/api_config_http.yaml \
 		stroeer/page/article/v1/article_page_service.proto
 
+.PHONY: clean
 clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf $(JAVA_DIR) || true
 	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" ! -iname "*_test.go" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
+.PHONY: help
+help: ## Display this help screen
+	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+#######################
+# protoc docker image #
+#######################
+
 ACTOR = $(GITHUB_ACTOR)
 TOKEN = $(GITHUB_TOKEN)
+.PHONY: ghcr-login
 ghcr-login:
 	@echo "+ $@"
 	@echo $(TOKEN) | docker login ghcr.io -u $(ACTOR) --password-stdin
 
+.PHONY: protoc-build
 protoc-build: ## Build protoc docker image
 	@echo "+ $@"
 	@docker build \
@@ -105,10 +120,55 @@ protoc-build: ## Build protoc docker image
 		-t ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
 		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) .
 
+.PHONY: protoc-push
 protoc-push: ghcr-login protoc-build ## Push protoc docker image to https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized
 	@echo "+ $@"
 	@docker push ghcr.io/stroeer/protoc-dockerized:latest
 	@docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
-help: ## Display this help screen
-	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+#######################
+# release		  			  #
+#######################
+
+DESCRIBE           := $(shell git fetch --all > /dev/null && git describe --match "v*" --always --tags)
+DESCRIBE_PARTS     := $(subst -, ,$(DESCRIBE))
+# 'v0.2.0'
+VERSION_TAG        := $(word 1,$(DESCRIBE_PARTS))
+# '0.2.0'
+VERSION            := $(subst v,,$(VERSION_TAG))
+# '0 2 0'
+VERSION_PARTS      := $(subst ., ,$(VERSION))
+
+MAJOR              := $(word 1,$(VERSION_PARTS))
+MINOR              := $(word 2,$(VERSION_PARTS))
+PATCH              := $(word 3,$(VERSION_PARTS))
+
+BUMP ?= patch
+ifeq ($(BUMP), major)
+NEXT_VERSION		:= $(shell echo $$(($(MAJOR)+1)).0.0)
+else ifeq ($(BUMP), minor)
+NEXT_VERSION		:= $(shell echo $(MAJOR).$$(($(MINOR)+1)).0)
+else
+NEXT_VERSION		:= $(shell echo $(MAJOR).$(MINOR).$$(($(PATCH)+1)))
+endif
+NEXT_TAG 			:= v$(NEXT_VERSION)
+NEXT_GO_TAG 	:= go/$(NEXT_TAG)
+
+.PHONY: check-git-clean
+check-git-clean: ## Verifies clean working directory
+	@echo "+ $@"
+	@git diff-index --quiet HEAD ||(echo "There are uncomitted changes"; exit 1)
+
+.PHONY: check-git-branch
+check-git-branch: check-git-clean
+	@echo "+ $@"
+	git fetch --all --tags --prune
+	git checkout master
+
+.PHONY: release
+release: clean check gateway check-git-branch ## Releases new version of gRPC source code packages
+	@echo "$@ $(NEXT_TAG)"
+	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
+	git push origin $(NEXT_TAG)
+	git tag -a $(NEXT_GO_TAG) -m "$(NEXT_GO_TAG)"
+	git push origin $(NEXT_GO_TAG)

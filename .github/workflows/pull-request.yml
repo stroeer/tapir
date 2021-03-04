@@ -50,8 +50,7 @@ jobs:
           java-version: 11
           java-package: jdk
 
-      - name: make
-        run: make
+      - run: make LANGUAGE=java
 
       - name: build
         run: ./gradlew clean build
@@ -70,8 +69,7 @@ jobs:
         run: npm ci
         working-directory: node
 
-      - name: make
-        run: make LANGUAGE=node
+      - run: make LANGUAGE=node
 
       - name: Run node checks
         run: npm run checks
@@ -84,9 +82,19 @@ jobs:
 
       - uses: actions/setup-go@v2
 
-      - name: make
-        run: make LANGUAGE=go
+      - run: make LANGUAGE=go
+
+      - run: make gateway
 
       - name: go test
         run: go test -v .
         working-directory: go
+
+      - name: Verifies clean working directory
+        run: |
+          if output=$(git status --porcelain) && [ -z "$output" ]; then
+            echo "Go source code is up-to-date";
+          else
+            echo "Detected changes in generated Go source code!";
+            exit 1;
+          fi
