@@ -9,7 +9,7 @@ The **T**-online **API** **R**epository contains the interface definitions of t-
 
 T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version 3 (proto3) as their Interface Definition Language (IDL) to define the API interface and the structure of the payload messages.
 
-## Guidelines
+## guidelines
 
 * tapir provides an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) and RCP services stubs to access editorial content and their configuration. This allows delivering various t-online products developed by independent teams
 * RPC services and proto messages are optimized for an efficient development and delivery of those products: One of our internal API guideline demands that all the content required to render a page must depend on a single API call.
@@ -22,7 +22,7 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 * proto message fields and entries of maps are optional unless commented otherwise. Clients must not break if an optional field or map entry is missing.
  
 
-## Code generation
+## code generation
 
 We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) as `protoc` 
 and a Makefile tested to generate code for `java`, `node (TypeScript)` and `go`:
@@ -34,31 +34,33 @@ $ make LANGUAGE=[java,node,go]
 [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) also supports generating
 a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) reverse-proxy server.
 
-## Client libraries
+## client libraries
 
 [Releases](https://github.com/stroeer/tapir/releases) include client libraries as `java` and `npm` [packages](https://github.com/orgs/stroeer/packages?repo_name=tapir). 
 
 Generating go code is currently not part of the release process. Go sources need to be generated locally and added to pull requests.
 
-## Docker image
+## protoc docker image
 
-### Version management
+We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) including `protoc` and all required
+grpc plugins to generate source code for `java`, `node` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) 
+reverse-proxy server.
 
-bump versions in a PR and merge into `master`:
+### release
 
-- protoc version in `Makefile`
-- go dependency versions in `go.mod`
-- java dependency versions in `build.gradle`
-- node dependency versions in `package.json`
+1. bump versions
+   
+    - protoc version in `Makefile` - this version will be used as the docker image tag
+    - go dependency versions in `go.mod`
+    - java dependency versions in `build.gradle`
+    - node dependency versions in `package.json`
 
-### Release
 
-Login to `ghcr.io` with your Github user name and a Github personal access token having permissions to `read:packages`, `write:packages` and/or `delete:packages`:
+2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)
+   
+   - `export GITHUB_ACTOR={yourusername}`
+   - `export GITHUB_TOKEN={yourtoken}` (needs `read:packages`, `write:packages`, `delete:packages` permissions)
 
-```sh
-cat ${TOKEN_FILE_LOCATION} | docker login ghcr.io -u ${GH_USERNAME} --password-stdin
-```
 
-- run `make image-build` (tags as [`$protoc_version`, `latest`])
-- run `make image-release` to push the new image
-
+3. build and push protoc docker image
+    - `make protoc-push`

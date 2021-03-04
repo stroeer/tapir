@@ -92,15 +92,23 @@ clean: ## Deletes all generated files
 	rm -rf `find $(GO_DIR) -type d \( -iname "*" ! -iname "go.mod" ! -iname "go.sum" ! -iname "*_test.go" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
-image-build: ## Build new docker image
-	docker build \
+ACTOR = $(GITHUB_ACTOR)
+TOKEN = $(GITHUB_TOKEN)
+ghcr-login:
+	@echo "+ $@"
+	@echo $(TOKEN) | docker login ghcr.io -u $(ACTOR) --password-stdin
+
+protoc-build: ## Build protoc docker image
+	@echo "+ $@"
+	@docker build \
 		-t ghcr.io/stroeer/protoc-dockerized:latest \
 		-t ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
 		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) .
 
-image-release: image-build ## Release new docker image to GHCR
-	docker push ghcr.io/stroeer/protoc-dockerized:latest
-	docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
+protoc-push: ghcr-login protoc-build ## Push protoc docker image to https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized
+	@echo "+ $@"
+	@docker push ghcr.io/stroeer/protoc-dockerized:latest
+	@docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 help: ## Display this help screen
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
