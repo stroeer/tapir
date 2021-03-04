@@ -9,47 +9,43 @@
 #		make LANGUAGE=node
 #
 
-DIR = $(shell pwd)
-JAVA_DIR = ./java/src/main/java
-NODE_DIR = ./node
-GO_DIR = ./go
+DIR 			= $(shell pwd)
+JAVA_DIR		= ./java/src/main/java
+NODE_DIR		= ./node
+GO_DIR			= ./go
 
-OUTPUT ?= $(JAVA_DIR)
-LANGUAGE ?= java
-GRPCPLUGIN ?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
+LANGUAGE		?= java
+GRPCPLUGIN		?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
 
-PROTO_FILES := $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(SUFFIX)/")
-PROTOC_VERSION ?= 3.15.0
-PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
+PROTO_FILES		:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
+PROTOC_VERSION	?= 3.15.0
+PROTOC			?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
-FLAGS+= --proto_path=$(DIR)
+FLAGS			+= --proto_path=$(DIR)
 ifeq ($(LANGUAGE),node)
-	ifeq ($(OUTPUT), $(JAVA_DIR))
-		OUTPUT = $(NODE_DIR)
-	endif
-	FLAGS+= --plugin=protoc-gen-ts=/node_modules/.bin/protoc-gen-ts
-	FLAGS+= --plugin=protoc-gen-grpc=/node_modules/.bin/grpc_tools_node_protoc_plugin
-	FLAGS+= --js_out=import_style=commonjs,binary:$(OUTPUT)
-	FLAGS+= --ts_out=service=grpc-node,mode=grpc-js:$(OUTPUT)
-	FLAGS+= --grpc_out=grpc_js:$(OUTPUT)
+	OUTPUT		:= $(NODE_DIR)
+	FLAGS		+= --plugin=protoc-gen-ts=/node_modules/.bin/protoc-gen-ts
+	FLAGS		+= --plugin=protoc-gen-grpc=/node_modules/.bin/grpc_tools_node_protoc_plugin
+	FLAGS		+= --js_out=import_style=commonjs,binary:$(OUTPUT)
+	FLAGS		+= --ts_out=service=grpc-node,mode=grpc-js:$(OUTPUT)
+	FLAGS		+= --grpc_out=grpc_js:$(OUTPUT)
 else ifeq ($(LANGUAGE),go)
-	ifeq ($(OUTPUT), $(JAVA_DIR))
-		OUTPUT = $(GO_DIR)
-	endif
-	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
-	FLAGS+= --$(LANGUAGE)_opt=paths=source_relative
-	FLAGS+= --$(LANGUAGE)-grpc_out=$(OUTPUT)
-	FLAGS+= --$(LANGUAGE)-grpc_opt=paths=source_relative
+	OUTPUT		:= $(GO_DIR)
+	FLAGS		+= --$(LANGUAGE)_out=$(OUTPUT)
+	FLAGS		+= --$(LANGUAGE)_opt=paths=source_relative
+	FLAGS		+= --$(LANGUAGE)-grpc_out=$(OUTPUT)
+	FLAGS		+= --$(LANGUAGE)-grpc_opt=paths=source_relative
 else
-	FLAGS+= --$(LANGUAGE)_out=$(OUTPUT)
-	FLAGS+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
-	FLAGS+= --grpc_out=$(OUTPUT)
+	OUTPUT		:= $(JAVA_DIR)
+	FLAGS		+= --$(LANGUAGE)_out=$(OUTPUT)
+	FLAGS		+=	--plugin=protoc-gen-grpc=$(GRPCPLUGIN)
+	FLAGS		+= --grpc_out=$(OUTPUT)
 endif
 
 all: $(PROTO_FILES)
 
 # Generate source files for a specific language like 'java'
-%.$(SUFFIX): %.proto
+%.$(TARGET_SUFFIX) : %.proto
 	@echo "+ $^ ($(LANGUAGE))"
 	@mkdir -p $(OUTPUT)
 	$(PROTOC) $(FLAGS) $*.proto
@@ -116,43 +112,43 @@ ghcr-login:
 protoc-build: ## Build protoc docker image
 	@echo "+ $@"
 	@docker build \
-		-t ghcr.io/stroeer/protoc-dockerized:latest \
-		-t ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
+		--tag ghcr.io/stroeer/protoc-dockerized:latest \
+		--tag ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
 		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) .
 
 .PHONY: protoc-push
 protoc-push: ghcr-login protoc-build ## Push protoc docker image to https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized
 	@echo "+ $@"
-	@docker push ghcr.io/stroeer/protoc-dockerized:latest
-	@docker push ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
+	@docker push --all-tags ghcr.io/stroeer/protoc-dockerized
 
-#######################
-# release		  			  #
-#######################
+###########
+# release #
+###########
 
-DESCRIBE           := $(shell git fetch --all > /dev/null && git describe --match "v*" --always --tags)
-DESCRIBE_PARTS     := $(subst -, ,$(DESCRIBE))
+DESCRIBE			= $(eval DESCRIBE := $(shell git fetch --all > /dev/null && git describe --match "v*" --always --tags))$(DESCRIBE)
+
+DESCRIBE_PARTS		= $(subst -, ,$(DESCRIBE))
 # 'v0.2.0'
-VERSION_TAG        := $(word 1,$(DESCRIBE_PARTS))
+VERSION_TAG			= $(word 1,$(DESCRIBE_PARTS))
 # '0.2.0'
-VERSION            := $(subst v,,$(VERSION_TAG))
+VERSION				= $(subst v,,$(VERSION_TAG))
 # '0 2 0'
-VERSION_PARTS      := $(subst ., ,$(VERSION))
+VERSION_PARTS		= $(subst ., ,$(VERSION))
 
-MAJOR              := $(word 1,$(VERSION_PARTS))
-MINOR              := $(word 2,$(VERSION_PARTS))
-PATCH              := $(word 3,$(VERSION_PARTS))
+MAJOR				= $(word 1,$(VERSION_PARTS))
+MINOR				= $(word 2,$(VERSION_PARTS))
+PATCH				= $(word 3,$(VERSION_PARTS))
 
 BUMP ?= patch
 ifeq ($(BUMP), major)
-NEXT_VERSION		:= $(shell echo $$(($(MAJOR)+1)).0.0)
+NEXT_VERSION		= $(shell echo $$(($(MAJOR)+1)).0.0)
 else ifeq ($(BUMP), minor)
-NEXT_VERSION		:= $(shell echo $(MAJOR).$$(($(MINOR)+1)).0)
+NEXT_VERSION		= $(shell echo $(MAJOR).$$(($(MINOR)+1)).0)
 else
-NEXT_VERSION		:= $(shell echo $(MAJOR).$(MINOR).$$(($(PATCH)+1)))
+NEXT_VERSION		= $(shell echo $(MAJOR).$(MINOR).$$(($(PATCH)+1)))
 endif
-NEXT_TAG 			:= v$(NEXT_VERSION)
-NEXT_GO_TAG 	:= go/$(NEXT_TAG)
+NEXT_TAG 			= v$(NEXT_VERSION)
+NEXT_GO_TAG 		= go/$(NEXT_TAG)
 
 .PHONY: check-git-clean
 check-git-clean: ## Verifies clean working directory
