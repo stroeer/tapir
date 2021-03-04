@@ -6,20 +6,6 @@ on:
       - master
 
 jobs:
-  api-linter:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '^1.16'
-
-      - run: go install github.com/googleapis/api-linter/cmd/api-linter@latest
-
-      - name: Google API linter
-        run: make lint
-
   buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
@@ -30,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: lint
-        run: buf lint
+        run: make lint
 
       - name: check breaking change
         id: buf_breaking
@@ -52,16 +38,6 @@ jobs:
             ```
             ${{ steps.buf_breaking.outputs.message }}
             ```
-          check_for_duplicate_msg: false
-
-      - if: steps.buf_breaking.outputs.failed != 'true'
-        name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: |
-            ## :white_check_mark: No Breaking Changes
           check_for_duplicate_msg: false
 
   java:
@@ -108,9 +84,8 @@ jobs:
 
       - uses: actions/setup-go@v2
 
-      # (in contrast to localhost) w/o the '--always-make' option, this target is always up-to-date on GitHub actions. Don't know why, yet
       - name: make
-        run: make LANGUAGE=go --always-make
+        run: make LANGUAGE=go
 
       - name: go test
         run: go test -v .

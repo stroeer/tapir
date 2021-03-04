@@ -18,8 +18,8 @@ OUTPUT ?= $(JAVA_DIR)
 LANGUAGE ?= java
 GRPCPLUGIN ?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
 
+PROTO_FILES := $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(SUFFIX)/")
 PROTOC_VERSION ?= 3.15.0
-
 PROTOC ?= docker run --rm -v $(DIR):$(DIR) -w $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS+= --proto_path=$(DIR)
@@ -46,24 +46,37 @@ else
 	FLAGS+= --grpc_out=$(OUTPUT)
 endif
 
-.PHONY: clean help image-build image-release gateway stroeer/%
+.PHONY: clean help image-build image-release gateway lint java go node
 
-all: stroeer/*
+all: $(PROTO_FILES)
 
-$(OUTPUT):
+# Generate source files for a specific language like 'java'
+%.$(SUFFIX): %.proto
+	@echo "+ $^ ($(LANGUAGE))"
+	@mkdir -p $(OUTPUT)
+	$(PROTOC) $(FLAGS) $*.proto
+
+LANGUAGES := java node go
+generate: $(LANGUAGES) ## Generates source files for all supported languages
+
+$(LANGUAGES):
+	$(MAKE) LANGUAGE="$@"
+
+lint: ## Lints all proto files using https://docs.buf.build/lint-overview
 	@echo "+ $@"
-	[ -d $@ ] || mkdir -p $@
+	@buf lint || exit 1
 
-stroeer/%: $(OUTPUT)
+breaking: ## Detects breaking changes using https://docs.buf.build/breaking-overview
 	@echo "+ $@"
-	$(PROTOC) $(FLAGS) $(shell find $@ -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ')
+	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
 
-tools: ## Checks for local availability of tools
-	@command -v api-linter >/dev/null 2>&1 || { echo >&2 "Please install api-linter: 'go install github.com/googleapis/api-linter/cmd/api-linter@latest'"; exit 1; }
-
-lint: tools ## Lints all proto files using Google API linter (https://linter.aip.dev/)
+test: generate # Runs all tests
 	@echo "+ $@"
-	@api-linter $(shell find stroeer -iname "*.proto" -exec echo -n '"{}" ' \; | tr '\n' ' ') --output-format summary --set-exit-status || exit 1
+	cd java && ./gradlew clean build
+	cd node && npm run checks
+	cd go && go test -v .
+
+check: lint breaking test ## Runs all checks
 
 gateway: ## Generates grpc-gateway resources
 	@echo "+ $@"
