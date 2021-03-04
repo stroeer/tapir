@@ -9,7 +9,11 @@ The **T**-online **API** **R**epository contains the interface definitions of t-
 
 T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version 3 (proto3) as their Interface Definition Language (IDL) to define the API interface and the structure of the payload messages.
 
-## guidelines
+## overview
+
+**TODO**
+
+### guidelines
 
 * tapir provides an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) and RCP services stubs to access editorial content and their configuration. This allows delivering various t-online products developed by independent teams
 * RPC services and proto messages are optimized for an efficient development and delivery of those products: One of our internal API guideline demands that all the content required to render a page must depend on a single API call.
@@ -22,19 +26,22 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 * proto message fields and entries of maps are optional unless commented otherwise. Clients must not break if an optional field or map entry is missing.
  
 
-## code generation
+## generate gRPC source code
 
-We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) as `protoc` 
-and a Makefile tested to generate code for `java`, `node (TypeScript)` and `go`:
+To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC on your local machine,
+or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code 
+generation. Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
 
-```shell script
-$ make LANGUAGE=[java,node,go]
-``` 
+It's also possible to generate gRPC source code for all languages (define by the `LANGUAGES` variable) at once: `make generate`.
 
-[stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) also supports generating
-a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) reverse-proxy server.
+### quality assurance
 
-## client libraries
+We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
+successful code generation for `java`, `node` and `go`. Run `make check` to run all checks.
+
+### client libraries
+
+**TODO**
 
 [Releases](https://github.com/stroeer/tapir/releases) include client libraries as `java` and `npm` [packages](https://github.com/orgs/stroeer/packages?repo_name=tapir). 
 
