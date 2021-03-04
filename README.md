@@ -11,8 +11,6 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## overview
 
-**TODO**
-
 ### guidelines
 
 * tapir provides an [IDL](https://en.wikipedia.org/wiki/Interface_description_language) and RCP services stubs to access editorial content and their configuration. This allows delivering various t-online products developed by independent teams
@@ -30,22 +28,25 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC on your local machine,
 or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code 
-generation. Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
+generation. 
 
-It's also possible to generate gRPC source code for all languages (define by the `LANGUAGES` variable) at once: `make generate`.
+Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
+
+It's also possible to generate gRPC source code for `java`, `node` and `go` at once: `make generate`.
 
 ### quality assurance
 
 We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
-successful code generation for `java`, `node` and `go`. Run `make check` to run all checks.
+successful code generation for `java`, `node` and `go`. 
+
+Run `make check` to run all checks.
 
 ### client libraries
 
-**TODO**
+We generate packages for [java](https://github.com/stroeer/tapir/packages/235034) and [node](https://github.com/stroeer/tapir/packages/235031)
+automatically for each new tag which can be integrated in your build system. In addition, the generated [go source code](go/) is tagged for usage with go modules.
 
-[Releases](https://github.com/stroeer/tapir/releases) include client libraries as `java` and `npm` [packages](https://github.com/orgs/stroeer/packages?repo_name=tapir). 
-
-Generating go code is currently not part of the release process. Go sources need to be generated locally and added to pull requests.
+To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
 
 ## protoc docker image
 
