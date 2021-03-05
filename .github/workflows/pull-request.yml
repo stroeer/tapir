@@ -6,20 +6,6 @@ on:
       - master
 
 jobs:
-  api-linter:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '^1.16'
-
-      - run: go install github.com/googleapis/api-linter/cmd/api-linter@latest
-
-      - name: Google API linter
-        run: make lint
-
   buf:
     runs-on: ubuntu-latest
     container: bufbuild/buf
@@ -54,16 +40,6 @@ jobs:
             ```
           check_for_duplicate_msg: false
 
-      - if: steps.buf_breaking.outputs.failed != 'true'
-        name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: |
-            ## :white_check_mark: No Breaking Changes
-          check_for_duplicate_msg: false
-
   java:
     runs-on: ubuntu-latest
     steps:
@@ -74,8 +50,7 @@ jobs:
           java-version: 11
           java-package: jdk
 
-      - name: make
-        run: make
+      - run: make LANGUAGE=java
 
       - name: build
         run: ./gradlew clean build
@@ -94,8 +69,7 @@ jobs:
         run: npm ci
         working-directory: node
 
-      - name: make
-        run: make LANGUAGE=node
+      - run: make LANGUAGE=node
 
       - name: Run node checks
         run: npm run checks
@@ -108,10 +82,19 @@ jobs:
 
       - uses: actions/setup-go@v2
 
-      # (in contrast to localhost) w/o the '--always-make' option, this target is always up-to-date on GitHub actions. Don't know why, yet
-      - name: make
-        run: make LANGUAGE=go --always-make
+      - run: make LANGUAGE=go
+
+      - run: make gateway
 
       - name: go test
         run: go test -v .
         working-directory: go
+
+      - name: Verifies clean working directory
+        run: |
+          if output=$(git status --porcelain) && [ -z "$output" ]; then
+            echo "Go source code is up-to-date";
+          else
+            echo "Detected changes in generated Go source code!";
+            exit 1;
+          fi
