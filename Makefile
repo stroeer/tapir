@@ -162,7 +162,7 @@ check-git-branch: check-git-clean
 	git checkout master
 
 .PHONY: release
-release: clean check gateway check-git-branch ## Releases new version of gRPC source code packages
+release: clean check check-git-branch ## Releases new version of gRPC source code packages
 	@echo "$@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
