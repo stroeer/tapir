@@ -75,7 +75,7 @@ test: generate # Runs all tests
 	cd go && go test -v .
 
 .PHONY: check
-check: lint breaking gateway test check-git-clean ## Runs all checks
+check: lint breaking gateway test ## Runs all checks
 
 .PHONY: gateway
 gateway: ## Generates grpc-gateway resources
