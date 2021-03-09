@@ -1,8 +1,9 @@
-name: publish
+name: release-packages
 
 on:
-  release:
-    types: [published, edited]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   java:
@@ -19,11 +20,13 @@ jobs:
         run: make
 
       - name: publish
-        run: ./gradlew clean build publish
         working-directory: java
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          ./gradlew -Pversion=$RELEASE_TAG clean build publish
 
   node:
     runs-on: ubuntu-latest
@@ -49,10 +52,11 @@ jobs:
         working-directory: node
 
       - name: npm publish
-        run: |
-          npm version $RELEASE_TAG
-          npm publish
         working-directory: node
         env:
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          npm version $RELEASE_TAG
+          npm publish

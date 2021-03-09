@@ -16,12 +16,12 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: lint
-        run: buf check lint
+        run: buf lint
 
       - name: check breaking change
         id: buf_breaking
         run: |
-          buf check breaking --against-input 'https://github.com/stroeer/tapir.git#branch=master' --input-config buf.yaml > message.txt || true
+          buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml > message.txt || true
           echo "::set-output name=message::$(cat message.txt)"
           if [ -s message.txt ]; then
             echo ::set-output name=failed::'true';
@@ -40,16 +40,6 @@ jobs:
             ```
           check_for_duplicate_msg: false
 
-      - if: steps.buf_breaking.outputs.failed != 'true'
-        name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: |
-            ## :white_check_mark: No Breaking Changes
-          check_for_duplicate_msg: false
-
   java:
     runs-on: ubuntu-latest
     steps:
@@ -60,8 +50,7 @@ jobs:
           java-version: 11
           java-package: jdk
 
-      - name: make
-        run: make
+      - run: make LANGUAGE=java
 
       - name: build
         run: ./gradlew clean build
@@ -80,8 +69,7 @@ jobs:
         run: npm ci
         working-directory: node
 
-      - name: make
-        run: make LANGUAGE=node
+      - run: make LANGUAGE=node
 
       - name: Run node checks
         run: npm run checks
@@ -94,10 +82,19 @@ jobs:
 
       - uses: actions/setup-go@v2
 
-      # (in contrast to localhost) w/o the '--always-make' option, this target is always up-to-date on GitHub actions. Don't know why, yet
-      - name: make
-        run: make LANGUAGE=go --always-make
+      - run: make LANGUAGE=go
+
+      - run: make gateway
 
       - name: go test
         run: go test -v .
         working-directory: go
+
+      - name: Verifies clean working directory
+        run: |
+          if output=$(git status --porcelain) && [ -z "$output" ]; then
+            echo "Go source code is up-to-date";
+          else
+            echo "Detected changes in generated Go source code!";
+            exit 1;
+          fi
