@@ -10,21 +10,21 @@ https://grpc.github.io/grpc/core/md_doc_statuscodes.html
 
 | Error scenario | GRPC status | HTTP Status | Cache Headers | Description |
 | --- |:---:| ---:| ---:| --- |
-| Article found | OK | 200
-| Article not found | NOT_FOUND | 404
-| Article expired | NOT_FOUND | 410
-| Article not published yet | NOT_FOUND | 404
-| Article could not be loaded | FAILED_PRECONDITION | 503
+| Article found | OK | 200 | max-age=60
+| Article not found | NOT_FOUND | 404 | max-age=60
+| Article not published yet | NOT_FOUND | 404 | max-age=60
+| Article expired | NOT_FOUND | 410 | max-age=60
+| Article could not be loaded | FAILED_PRECONDITION | 503 | max-age=0, no-cache, no-store, must-revalidate
+| Article loading timeout | FAILED_PRECONDITION | 503 | max-age=0, no-cache, no-store, must-revalidate
 
 ## Section Page Service Status
 
 | Error scenario | GRPC status | HTTP Status | Cache Headers | Description |
 | --- |:---:| ---:| ---:| --- |
-| Section path is empty| INVALID_ARGUMENT | 400 
-| Section path invalid | INVALID_ARGUMENT | 400
-| Section path unknown | INVALID_ARGUMENT | 400 
-| Curation datasource is not available | FAILED_PRECONDITION | 503
-| Curated stage not found | FAILED_PRECONDITION | 400 
-| Curated stage empty | FAILED_PRECONDITION | 400 
-| Article loading for a curated stage failed entirely | FAILED_PRECONDITION | 503 
-| Automatic stage is empty | FAILED_PRECONDITION | ??? | | Elasticsearch does not return any data for the section path 
+| Section path is empty| INVALID_ARGUMENT | 400 | max-age=60
+| Section path invalid | INVALID_ARGUMENT | 400 | max-age=60
+| Section path unknown | FAILED_PRECONDITION | 404 | max-age=60
+| Stage data not found | FAILED_PRECONDITION | 404 | max-age=60
+| Stage data is empty | FAILED_PRECONDITION | 404 | max-age=60
+| Stage datasource is not available | FAILED_PRECONDITION | 503 | max-age=0, no-cache, no-store, must-revalidate
+| Stage loading timeout | FAILED_PRECONDITION | 503 | max-age=0, no-cache, no-store, must-revalidate
