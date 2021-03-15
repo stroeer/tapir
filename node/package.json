@@ -12,7 +12,7 @@
     "@grpc/grpc-js": "1.2.8",
     "@types/google-protobuf": "3.7.4",
     "@types/jest": "26.0.20",
-    "google-protobuf": "3.15.3",
+    "google-protobuf": "3.15.6",
     "grpc-tools": "1.10.0",
     "jest": "26.6.3",
     "jest-circus": "26.6.3",
