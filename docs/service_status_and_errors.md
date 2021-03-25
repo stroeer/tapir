@@ -31,6 +31,7 @@ https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f458
 | section path is empty | client did not provide a section path | INVALID_ARGUMENT | [google.rpc.BadRequest](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L169) | 400 | yes
 | section path is invalid | client provided an invalid section path | INVALID_ARGUMENT | [google.rpc.BadRequest](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L169) | 400 | yes
 | section path is unknown | client provided an unknown section path | INVALID_ARGUMENT | none | 404 | yes
+| section data incomplete | some data for that section could not be loaded | ??? | ??? | ??? | ???
 | internal | internal error while loading section data | INTERNAL | none | 500 | no
 | timeout | timeout while loading section data | DEADLINE_EXCEEDED | none | 504 | no
 
