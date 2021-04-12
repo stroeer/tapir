@@ -54,8 +54,8 @@ message StageConfiguration {
 
   // All kind of references as part of the stage. Filter reference by
   // `Reference.type`:
-  // * `stage_title`
-  // * `sub_navigation`
+  // * `ref_stage_title`
+  // * `ref_sub_navigation`
   repeated stroeer.core.v1.Reference references = 2;
 }
 
