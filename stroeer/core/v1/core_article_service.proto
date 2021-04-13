@@ -12,18 +12,65 @@ option java_package = "de.stroeer.core.v1";
 service ArticleService {
   /** Returns a core article by it's id
 
-    Status and errors:
+    ############################################################################
+    # Status/Error scenario's
+    ############################################################################
 
-    | scenario | description | gRPC status | gRPC error payload | HTTP Status | cacheable
-    |:---|:---|:---:|:---|:---:|:---:|
-    | found | article was found in the datastore and is published according to it's [Metadata](https://github.com/stroeer/tapir/blob/d99e155003a5f81a4f300d558d1fbc736dbda511/stroeer/core/v1/article.proto#L87)| OK | none | 200 | yes
-    | invalid id | article id is invalid | INVALID_ARGUMENT | [google.rpc.BadRequest](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L169) | 400 | yes
-    | not found | article was not found in the datastore | NOT_FOUND | [google.rpc.ResourceInfo](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L198) | 404 | yes
-    | not published yet | article was found in the datastore but it's `Metadata` [start_time](https://github.com/stroeer/tapir/blob/d99e155003a5f81a4f300d558d1fbc736dbda511/stroeer/core/v1/article.proto#L93) is not reached, yet | NOT_FOUND | [google.rpc.ResourceInfo](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L198) with info about the `start_time` | 404 | yes
-    | expired | article was found in the datastore but is expired according to it's `Metadata` [end_time](https://github.com/stroeer/tapir/blob/d99e155003a5f81a4f300d558d1fbc736dbda511/stroeer/core/v1/article.proto#L97) | NOT_FOUND | [google.rpc.ResourceInfo](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L198) with info about the `end_time` | 404/410 (TODO: clarify requirements with SEO) | yes
-    | deleted/archived (TODO: clarify requirements with SEO) | article was found in the datastore but it's [state](https://github.com/stroeer/tapir/blob/d99e155003a5f81a4f300d558d1fbc736dbda511/stroeer/core/v1/article.proto#L89) is marked as deleted/archived | FAILED_PRECONDITION | [google.rpc.PreconditionFailure](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L143) with info about the [state](https://github.com/stroeer/tapir/blob/d99e155003a5f81a4f300d558d1fbc736dbda511/stroeer/core/v1/article.proto#L89) | 410 | yes
-    | internal | internal error processing the article | INTERNAL | none | 500 | no
-    | timeout | timeout loading and processing the article | DEADLINE_EXCEEDED | none | 504 | no
+    scenario: found
+    description: article was found in the datastore and is published according to it's metadata
+    gRPC status: OK
+    gRPC error payload: none
+    HTTP status: OK
+    cacheable: yes
+
+    scenario: invalid id
+    description: article id is invalid
+    gRPC status: INVALID_ARGUMENT
+    gRPC error payload: google.rpc.BadRequest
+    HTTP status: 400
+    cacheable: yes
+
+    scenario: not found
+    description: article was not found in the datastore
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: not published yet
+    description: article was found in the datastore but according to it's metadata the article is not published yet
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo with info about the 'start_time'
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: expired
+    description: article was found in the datastore but is expired according to it's metadata
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo with info about the 'end_time'
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: deleted/archived
+    description: article was found in the datastore but it's state is marked as deleted/archived
+    gRPC status: FAILED_PRECONDITION
+    gRPC error payload: google.rpc.PreconditionFailure with info about the state
+    HTTP status: 410
+    cacheable: yes
+
+    scenario: internal
+    description: internal error processing the article
+    gRPC status: INTERNAL
+    gRPC error payload: none
+    HTTP status: 500
+    cacheable: no
+
+    scenario: timeout
+    description: timeout loading and processing the article
+    gRPC status: DEADLINE_EXCEEDED
+    gRPC error payload: none
+    HTTP status: 504
+    cacheable: no
 
     **Redirect cases should be defined after requirements are clear**
 

@@ -11,14 +11,51 @@ option java_package = "de.stroeer.page.section.v1";
 // Service to fetch all data needed to render a section page, like the homepage or "/politik/"
 service SectionPageService {
   /**
-    | scenario | description | gRPC status | gRPC error payload | HTTP Status | cacheable |
-    |:---|:---|:---:|:---|:---:|:---:|
-    | found | all data for the section page was found | OK | none | none | yes |
-    | section path is empty | client did not provide a section path | INVALID_ARGUMENT | [google.rpc.BadRequest](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L169) | 400 | yes
-    | section path is invalid | client provided an invalid section path | INVALID_ARGUMENT | [google.rpc.BadRequest](https://github.com/googleapis/googleapis/blob/3e9b231b098d514c9a51ba8c59e416f45837b195/google/rpc/error_details.proto#L169) | 400 | yes
-    | section path is unknown | client provided an unknown section path | NOT_FOUND | none | 404 | yes
-    | internal | internal error while loading section data | INTERNAL | none | 500 | no
-    | timeout | timeout while loading section data | DEADLINE_EXCEEDED | none | 504 | no
+    ############################################################################
+    # Status/Error scenario's
+    ############################################################################
+
+    scenario: found
+    description: all data for the section page was found
+    gRPC status: OK
+    gRPC error payload: none
+    HTTP status: OK
+    cacheable: yes
+
+    scenario: section path is empty
+    description: client did not provide a section path
+    gRPC status: INVALID_ARGUMENT
+    gRPC error payload: google.rpc.BadRequest
+    HTTP status: 400
+    cacheable: yes
+
+    scenario: section path is invalid
+    description: client provided an invalid section path
+    gRPC status: INVALID_ARGUMENT
+    gRPC error payload: google.rpc.BadRequest
+    HTTP status: 400
+    cacheable: yes
+
+    scenario: section path is unknown
+    description: client provided an unknown section path
+    gRPC status: NOT_FOUND
+    gRPC error payload: none
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: internal
+    description: internal error while loading section data
+    gRPC status: INTERNAL
+    gRPC error payload: none
+    HTTP status: 500
+    cacheable: no
+
+    scenario: timeout
+    description: timeout while loading section data
+    gRPC status: DEADLINE_EXCEEDED
+    gRPC error payload: none
+    HTTP status: 504
+    cacheable: no
 
     **Scenarios about incomplete section data needs to be defined**
    */
