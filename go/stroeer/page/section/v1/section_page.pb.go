@@ -287,8 +287,8 @@ type StageConfiguration struct {
 	Fields map[string]string `protobuf:"bytes,1,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// All kind of references as part of the stage. Filter reference by
 	// `Reference.type`:
-	// * `stage_title`
-	// * `sub_navigation`
+	// * `ref_stage_title`
+	// * `ref_sub_navigation`
 	References []*v1.Reference `protobuf:"bytes,2,rep,name=references,proto3" json:"references,omitempty"`
 }
 

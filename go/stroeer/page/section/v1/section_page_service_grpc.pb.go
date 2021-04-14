@@ -18,6 +18,59 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SectionPageServiceClient interface {
+	//*
+	//############################################################################
+	//# Description
+	//############################################################################
+	//Get section data for a given section path
+	//
+	//############################################################################
+	//# Status/Error scenario's
+	//############################################################################
+	//
+	//scenario: found
+	//description: all data for the section page was found
+	//gRPC status: OK
+	//gRPC error payload: none
+	//HTTP status: OK
+	//cacheable: yes
+	//
+	//scenario: section path is empty
+	//description: client did not provide a section path
+	//gRPC status: INVALID_ARGUMENT
+	//gRPC error payload: google.rpc.BadRequest
+	//HTTP status: 400
+	//cacheable: yes
+	//
+	//scenario: section path is invalid
+	//description: client provided an invalid section path
+	//gRPC status: INVALID_ARGUMENT
+	//gRPC error payload: google.rpc.BadRequest
+	//HTTP status: 400
+	//cacheable: yes
+	//
+	//scenario: section path is unknown
+	//description: client provided an unknown section path
+	//gRPC status: NOT_FOUND
+	//gRPC error payload: none
+	//HTTP status: 404
+	//cacheable: yes
+	//
+	//scenario: internal
+	//description: internal error while loading section data
+	//gRPC status: INTERNAL
+	//gRPC error payload: none
+	//HTTP status: 500
+	//cacheable: no
+	//
+	//scenario: timeout
+	//description: timeout while loading section data
+	//gRPC status: DEADLINE_EXCEEDED
+	//gRPC error payload: none
+	//HTTP status: 504
+	//cacheable: no
+	//
+	//*Scenarios about incomplete section data needs to be defined**
 	GetSectionPage(ctx context.Context, in *GetSectionPageRequest, opts ...grpc.CallOption) (*GetSectionPageResponse, error)
 }
 
@@ -42,6 +95,59 @@ func (c *sectionPageServiceClient) GetSectionPage(ctx context.Context, in *GetSe
 // All implementations must embed UnimplementedSectionPageServiceServer
 // for forward compatibility
 type SectionPageServiceServer interface {
+	//*
+	//############################################################################
+	//# Description
+	//############################################################################
+	//Get section data for a given section path
+	//
+	//############################################################################
+	//# Status/Error scenario's
+	//############################################################################
+	//
+	//scenario: found
+	//description: all data for the section page was found
+	//gRPC status: OK
+	//gRPC error payload: none
+	//HTTP status: OK
+	//cacheable: yes
+	//
+	//scenario: section path is empty
+	//description: client did not provide a section path
+	//gRPC status: INVALID_ARGUMENT
+	//gRPC error payload: google.rpc.BadRequest
+	//HTTP status: 400
+	//cacheable: yes
+	//
+	//scenario: section path is invalid
+	//description: client provided an invalid section path
+	//gRPC status: INVALID_ARGUMENT
+	//gRPC error payload: google.rpc.BadRequest
+	//HTTP status: 400
+	//cacheable: yes
+	//
+	//scenario: section path is unknown
+	//description: client provided an unknown section path
+	//gRPC status: NOT_FOUND
+	//gRPC error payload: none
+	//HTTP status: 404
+	//cacheable: yes
+	//
+	//scenario: internal
+	//description: internal error while loading section data
+	//gRPC status: INTERNAL
+	//gRPC error payload: none
+	//HTTP status: 500
+	//cacheable: no
+	//
+	//scenario: timeout
+	//description: timeout while loading section data
+	//gRPC status: DEADLINE_EXCEEDED
+	//gRPC error payload: none
+	//HTTP status: 504
+	//cacheable: no
+	//
+	//*Scenarios about incomplete section data needs to be defined**
 	GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
 	mustEmbedUnimplementedSectionPageServiceServer()
 }

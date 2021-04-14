@@ -10,7 +10,74 @@ option java_package = "de.stroeer.page.article.v1";
 
 // Service for article pages.
 service ArticlePageService {
-  // Returns the requested article with all render relevant data for the user and SEO bots.
+  /**
+    ############################################################################
+    # Description
+    ############################################################################
+    Returns the requested article with all render relevant data for the user and SEO bots.
+
+    ############################################################################
+    # Status/Error scenario's
+    ############################################################################
+
+    scenario: found
+    description: article was found in the datastore and is published according to it's metadata
+    gRPC status: OK
+    gRPC error payload: none
+    HTTP status: OK
+    cacheable: yes
+
+    scenario: invalid id
+    description: article id is invalid
+    gRPC status: INVALID_ARGUMENT
+    gRPC error payload: google.rpc.BadRequest
+    HTTP status: 400
+    cacheable: yes
+
+    scenario: not found
+    description: article was not found in the datastore
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: not published yet
+    description: article was found in the datastore but according to it's metadata the article is not published yet
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo with info about the 'start_time'
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: expired
+    description: article was found in the datastore but is expired according to it's metadata
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo with info about the 'end_time'
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: deleted/archived
+    description: article was found in the datastore but it's state is marked as deleted/archived
+    gRPC status: FAILED_PRECONDITION
+    gRPC error payload: google.rpc.PreconditionFailure with info about the state
+    HTTP status: 410
+    cacheable: yes
+
+    scenario: internal
+    description: internal error processing the article
+    gRPC status: INTERNAL
+    gRPC error payload: none
+    HTTP status: 500
+    cacheable: no
+
+    scenario: timeout
+    description: timeout loading and processing the article
+    gRPC status: DEADLINE_EXCEEDED
+    gRPC error payload: none
+    HTTP status: 504
+    cacheable: no
+
+    **Redirect cases should be defined after requirements are clear**
+   */
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 
