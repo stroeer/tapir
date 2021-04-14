@@ -917,6 +917,7 @@ type BodyNode struct {
 	// * `oembed`: inline oEmbed element
 	// * `article_sources`: "Quellenapparat"
 	// * `article_source`: A single "Quellenapparat" item containing `text` or `a`
+	// * `disclaimer`: formatted text that holds a (health) disclaimer, e.g. used in `/gesundheit/`
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	// Text of the node, only set for text nodes (`type == 'text'`).
 	Text string `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
