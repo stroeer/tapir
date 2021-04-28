@@ -24,7 +24,7 @@ configurations {
 }
 
 dependencies {
-  def grpc = '1.36.1'
+  def grpc = '1.37.0'
 
   implementation group: 'io.grpc', name: 'grpc-services', version: grpc
   implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
