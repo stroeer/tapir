@@ -88,7 +88,7 @@ message Metadata {
   // State of the article in the content management system.
   State state = 1;
 
-  // Manually set editorial date ('Gültig von') at which the article is valid to deliver on
+  // Manually set editorial timestamp ('Gültig von') at which the article is valid to deliver on
   // digital platforms in seconds of UTC time since Unix epoch.
   google.protobuf.Timestamp start_time = 2;
 
@@ -96,12 +96,27 @@ message Metadata {
   // digital platforms in seconds of UTC time since Unix epoch.
   google.protobuf.Timestamp end_time = 3;
 
-  // editorial date: 'Publikationsdatum'
+  // Editorial date ('Publikationsdatum') of the first publication of the
+  // article in seconds of UTC time since Unix epoch.
+  //
+  // This date will be set automatically by the content management system.
   google.protobuf.Timestamp publish_time = 4;
 
-  // Manually set editorial date ('Aktualisierungsdatum') at which the article
+  // Editorial date ('Aktualisierungsdatum') at which the article
   // was updated in seconds of UTC time since Unix epoch.
+  //
+  // On first publication this timestamp matches `publish_time`. Afterwards
+  // it's either updated manually in the content management system or
+  // automatically if the article content changed significantly.
   google.protobuf.Timestamp update_time = 5;
+
+  // Technical timestamp at which the article was transformed in the
+  // API layer in seconds of UTC time since Unix epoch.
+  google.protobuf.Timestamp transformation_time = 6;
+
+  // Number of errors occurred while fetching and/or transforming optional
+  // article components (e.g. embeds) to an `article` message.
+  int64 transformation_errors = 7;
 }
 
 // Elements of the article which are not part of the body, e.g. author information
