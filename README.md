@@ -20,15 +20,15 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
     * attributes of an article are modeled as generic `<string, string>` maps
     * elements of an article like images, videos and their assets share the same proto messages and can be distinguished by a type field
     * [enumerations](https://developers.google.com/protocol-buffers/docs/proto3#enum) are only used for stable/rarely changing lists of pre-defined values like a content type.
-    Volatile fields like layout types are modeled as `string` fields.   
+    Volatile fields like layout types are modeled as `string` fields.
 * proto message fields and entries of maps are optional unless commented otherwise. Clients must not break if an optional field or map entry is missing.
- 
+
 
 ## generate gRPC source code
 
 To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC on your local machine,
-or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code 
-generation. 
+or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code
+generation.
 
 Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
 
@@ -37,7 +37,7 @@ It's also possible to generate gRPC source code for `java`, `node` and `go` at o
 ### quality assurance
 
 We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
-successful code generation for `java`, `node` and `go`. 
+successful code generation for `java`, `node` and `go`.
 
 Run `make check` to run all checks.
 
@@ -51,13 +51,21 @@ To create a new release run `make BUMP=[major|minor|patch] release` (defaults to
 ## protoc docker image
 
 We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) including `protoc` and all required
-grpc plugins to generate source code for `java`, `node` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) 
+grpc plugins to generate source code for `java`, `node` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
 reverse-proxy server.
+
+### precondition
+
+To access our docker image you need a valid GitHub PAT (personal access token) and login to `https://ghcr.io`. You have to do this only once.
+
+1. create (or re-use) a GitHub PAT in your [GitHub settings](https://github.com/settings/tokens)
+2. follow the login instructions via [GitHub docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-docker-registry#authenticating-with-a-personal-access-token)
+3. :warning: login URL is `https://ghcr.io`. Example: `cat ~/TOKEN.txt | docker login https://ghcr.io -u [GITHUB-USERNAME] --password-stdin`
 
 ### release
 
 1. bump versions
-   
+
     - protoc version in `Makefile` - this version will be used as the docker image tag
     - go dependency versions in `go.mod`
     - java dependency versions in `build.gradle`
@@ -65,7 +73,7 @@ reverse-proxy server.
 
 
 2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)
-   
+
    - `export GITHUB_ACTOR={yourusername}`
    - `export GITHUB_TOKEN={yourtoken}` (needs `read:packages`, `write:packages`, `delete:packages` permissions)
 
