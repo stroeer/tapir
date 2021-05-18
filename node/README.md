@@ -33,6 +33,6 @@ npm run test -- --u
 
 ## Helpful resources
 
-Examples for generating TypeScript types for generated services / models.
+Examples for generating TypeScript types of generated services / models.
 
 https://github.com/badsyntax/grpc-js-typescript
