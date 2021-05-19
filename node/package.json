@@ -6,17 +6,18 @@
     "checks": "npm run lint && npm run test",
     "test": "jest",
     "lint": "tsc -b",
-    "update": "npx npm-check --update"
+    "update": "npx npm-check --update",
+    "format": "prettier --write '__tests__/**/*.ts'"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.3.0",
+    "@grpc/grpc-js": "1.3.2",
     "@types/google-protobuf": "3.15.2",
     "@types/jest": "26.0.23",
-    "google-protobuf": "3.16.0",
+    "google-protobuf": "3.17.0",
     "grpc-tools": "1.11.1",
     "jest": "26.6.3",
     "jest-circus": "26.6.3",
-    "prettier": "2.2.1",
+    "prettier": "2.3.0",
     "ts-jest": "26.5.6",
     "ts-protoc-gen": "0.15.0",
     "typescript": "4.2.4"
