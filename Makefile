@@ -168,3 +168,7 @@ release: clean check check-git-branch ## Releases new version of gRPC source cod
 	git push origin $(NEXT_TAG)
 	git tag -a $(NEXT_GO_TAG) -m "$(NEXT_GO_TAG)"
 	git push origin $(NEXT_GO_TAG)
+
+
+release-local-java:
+	cd java && ./gradlew clean build publishToMavenLocal

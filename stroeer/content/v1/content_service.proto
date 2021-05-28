@@ -39,9 +39,9 @@ service ContentService {
     gRPC error payload: none
     HTTP status: 504
     cacheable: no
-
-  // Request the Schlagzeilen, Regio Stages and similar content.
-  rpc GetStages (GetStagesRequest) returns (GetStagesResponse) {}
+  **/
+  rpc GetStages (GetStagesRequest) returns (GetStagesResponse) {
+  }
 }
 
 // Message to request stages independent of SectionPages
