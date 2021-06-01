@@ -40,8 +40,9 @@ message Section {
 
 // A block of teasers - can consist of editorial articles, advertisement and/or stages.
 message Stage {
-  repeated StageItem stage_items = 1;
-  StageConfiguration stage_configuration = 2;
+  StageConfiguration stage_configuration = 1;
+  repeated StageItem stage_items = 2;
+  repeated StageItem companions = 3; // if present do 1/4 + 3/4 width, if not use 4/4 stage_items
 }
 
 // Rendering data for a stage, currently only a fields map.
@@ -50,6 +51,7 @@ message StageConfiguration {
   // * `stage_title`: represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
   // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `default`.
+  // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
   map<string, string> fields = 1;
 
   // All kind of references as part of the stage. Filter reference by
@@ -61,15 +63,23 @@ message StageConfiguration {
 
 // A single generic item of a stage.
 message StageItem {
-  // Width instructions for rendering the single item.
-  StageItemWidth stage_item_width = 1;
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
   oneof stage_item_type {
+    // can we get rid of recursion?
+    // how else to do Schlagzeilen Stage as Companion (needs particular stage_layout)
+    // how else to have a MRect BETWEEN Editorial Teasers
     Stage stage = 2;
     ArticleTeaser article_teaser = 3;
     Commercial commercial = 4;
+    EdgeSiteInclude edge_site_include = 5;
   }
+}
+
+message EdgeSiteInclude {
+  stroeer.core.v1.Reference include_reference = 1;
+  // do we need this?
+  map<string, string> fields = 2;
 }
 
 // Data to render a Commercial as part of a Stage.
