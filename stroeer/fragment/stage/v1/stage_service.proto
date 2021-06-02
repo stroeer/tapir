@@ -46,8 +46,8 @@ service StageService {
 
 // Message to request stages independent of SectionPages, for client side rendering or ESIs
 message GetStagesRequest {
-  // a stage_id is a token which is agreed between frontend and backend, for example "schlagzeilen"
-  repeated string stage_ids = 1;
+  // an id is a token which is agreed between frontend and backend, for example "schlagzeilen"
+  repeated string ids = 1;
 }
 
 // Message for requesting data for single stages
