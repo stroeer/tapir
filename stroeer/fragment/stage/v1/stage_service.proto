@@ -2,18 +2,18 @@ syntax = "proto3";
 
 import "stroeer/page/section/v1/section_page.proto";
 
-package stroeer.content.v1;
+package stroeer.fragment.stage.v1;
 
-option go_package = "github.com/stroeer/tapir/go/stroeer/content/v1;content";
+option go_package = "github.com/stroeer/tapir/go/stroeer/fragment/stage/v1;stage";
 option java_multiple_files = true;
-option java_package = "de.stroeer.content.v1";
+option java_package = "de.stroeer.fragment.stage.v1";
 
-service ContentService {
+service StageService {
   /**
     ############################################################################
     # Description
     ############################################################################
-    Get single stages by requesting them via agreed tokens, e.g. "schlagzeilen".
+    Get single stages by requesting them via agreed tokens, e.g. "schlagzeilen" or "meistgelesen".
 
     ############################################################################
     # Status/Error scenario's
@@ -44,7 +44,7 @@ service ContentService {
   }
 }
 
-// Message to request stages independent of SectionPages
+// Message to request stages independent of SectionPages, for client side rendering or ESIs
 message GetStagesRequest {
   // a stage_id is a token which is agreed between frontend and backend, for example "schlagzeilen"
   repeated string stage_ids = 1;
