@@ -13,7 +13,7 @@ service StageService {
     ############################################################################
     # Description
     ############################################################################
-    Get single stages by requesting them via agreed tokens, e.g. "schlagzeilen" or "meistgelesen".
+    Get single stages by requesting them via well-known ids, e.g. "schlagzeilen" or "meistgelesen".
 
     ############################################################################
     # Status/Error scenario's
@@ -46,12 +46,12 @@ service StageService {
 
 // Message to request stages independent of SectionPages, for client side rendering or ESIs
 message GetStagesRequest {
-  // an id is a token which is agreed between frontend and backend, for example "schlagzeilen"
+  // ids must be well-known to the frontend and backend, for example "schlagzeilen"
   repeated string ids = 1;
 }
 
 // Message for requesting data for single stages
-// All tokens from the stage_ids that could be resolved to stages are part of the response, others are omitted.
+// All provided ids that could be resolved to stages are part of the response, others are omitted.
 message GetStagesResponse {
   repeated stroeer.page.section.v1.Stage stages = 1;
 }
