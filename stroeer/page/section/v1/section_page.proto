@@ -38,18 +38,18 @@ message Section {
   stroeer.core.v1.Reference section_tree = 2;
 }
 
-// A block of teasers - can consist of editorial articles, advertisement and/or stages.
+// A "row" of teasers - can consist of editorial articles, advertisement and/or stages.
 message Stage {
-  // contains stage_title from now on
+  // contains stage_title and sub_navs from now on
   StageConfiguration stage_configuration = 1;
   repeated StageItem stage_items = 2;
-  repeated StageItem companions = 3; // if present do 1/4 + 3/4 width, if not use 4/4 stage_items
+  // optional, always render the column with the Title and SubNav from the StageConfiguration
+  repeated StageItem companions = 3;
 }
 
 // Rendering data for a stage, currently only a fields map.
 // Coordinate stage layouts, especially the `default` layout with UI department.
 message StageConfiguration {
-  // * `stage_title`: represents an optional label to be rendered above a Stage, like "CORONAVIRUS".
   // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `default`.
   // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
@@ -64,34 +64,33 @@ message StageConfiguration {
 
 // A single generic item of a stage.
 message StageItem {
-  map<string, string> fields = 2; // "padding-off=true", for commercials, you know
+  map<string, string> fields = 1; // for custom flags like bg_color
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
   oneof stage_item_type {
-    TeaserStage teaser_stage = 3;
-    ArticleTeaser article_teaser = 4;
-    Commercial commercial = 5;
+    TeaserStage stage = 2;
+    ArticleTeaser article_teaser = 3;
+    Commercial commercial = 4;
   }
 }
 
-// A non-recursive collection of teaserable items.
+// A non-recursive collection of teaseable items.
 message TeaserStage {
   repeated TeaserStageItem teaser_stage_items = 1;
-  // stage_layout: schlagzeilen
+  // e.g. stage_layout: schlagzeilen
   map<string, string> fields = 2;
 }
 
-// A single teasable item. (has a href and the click leads to an Ad- or PageImpression)
-// idea: ClickableItem, LinkedItem
+// A single teaseable item.
+// alternatives: ClickableItem, LinkedItem, EverythingButAStage
 message TeaserStageItem {
-  StageItemWidth stage_item_width = 1; // todo
-  map<string, string> fields = 2; // todo: do we need this here as well????
+  // for future flags (pada)
+  map<string, string> fields = 1;
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be an editorial article or a Commercial.
   oneof teaser_stage_item_type {
-    ArticleTeaser article_teaser = 3;
-    Commercial commercial = 4;
-    // is still extendable
+    ArticleTeaser article_teaser = 2;
+    Commercial commercial = 3;
   }
 }
 
@@ -111,22 +110,4 @@ message ArticleTeaser {
 message Commercial {
   // advertisement booking ids
   map<string, string> fields = 1;
-}
-
-// Info to render the width of an item, relative to the page grid.
-// These values represent "desktop-first" widths.
-enum StageItemWidth {
-  STAGE_ITEM_WIDTH_UNSPECIFIED = 0;
-  // 100%
-  STAGE_ITEM_WIDTH_FULL = 1;
-  // 75%
-  STAGE_ITEM_WIDTH_THREE_QUARTERS = 2;
-  // 66%
-  STAGE_ITEM_WIDTH_TWO_THIRDS = 3;
-  // 50%
-  STAGE_ITEM_WIDTH_ONE_HALF = 4;
-  // 33%
-  STAGE_ITEM_WIDTH_ONE_THIRD = 5;
-  // 25%
-  STAGE_ITEM_WIDTH_ONE_QUARTER = 6;
 }
