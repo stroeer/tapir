@@ -69,23 +69,9 @@ message StageItem {
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
   oneof stage_item_type {
-    TeaserStage stage = 3;
+    TeaserStage teaser_stage = 3;
     ArticleTeaser article_teaser = 4;
     Commercial commercial = 5;
-  }
-}
-
-// A single teasable item. (has a href and the click leads to an Ad- or PageImpression)
-// idea: ClickableItem, LinkedItem
-message TeaserStageItem {
-  StageItemWidth stage_item_width = 1;
-  map<string, string> fields = 2; // todo: do we need this here as well????
-  // At most one field will be set at the same time.
-  // The delegate of the StageItem can be an editorial article or a Commercial.
-  oneof stage_item_type {
-    ArticleTeaser article_teaser = 3;
-    Commercial commercial = 4;
-    // is still extendable
   }
 }
 
@@ -96,10 +82,18 @@ message TeaserStage {
   map<string, string> fields = 2;
 }
 
-// Data to render a Commercial as part of a Stage.
-message Commercial {
-  // advertisement booking ids
-  map<string, string> fields = 1;
+// A single teasable item. (has a href and the click leads to an Ad- or PageImpression)
+// idea: ClickableItem, LinkedItem
+message TeaserStageItem {
+  StageItemWidth stage_item_width = 1;
+  map<string, string> fields = 2; // todo: do we need this here as well????
+  // At most one field will be set at the same time.
+  // The delegate of the StageItem can be an editorial article or a Commercial.
+  oneof teaser_stage_item_type {
+    ArticleTeaser article_teaser = 3;
+    Commercial commercial = 4;
+    // is still extendable
+  }
 }
 
 // Bundles the data needed to render a core article as a teaser.
@@ -112,6 +106,12 @@ message ArticleTeaser {
   // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
   // If `teaser_layout` entries is missing use layout `default`.
   map<string, string> fields = 2;
+}
+
+// Data to render a Commercial as part of a Stage.
+message Commercial {
+  // advertisement booking ids
+  map<string, string> fields = 1;
 }
 
 // Info to render the width of an item, relative to the page grid.

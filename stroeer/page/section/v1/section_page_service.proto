@@ -62,7 +62,7 @@ service SectionPageService {
     HTTP status: 504
     cacheable: no
 
-    **Scenarios about incomplete section data needs to be defined**
+    Scenarios about incomplete section data needs to be defined
    */
   rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {}
 }
