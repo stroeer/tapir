@@ -64,7 +64,6 @@ message StageConfiguration {
 
 // A single generic item of a stage.
 message StageItem {
-  StageItemWidth stage_item_width = 1;
   map<string, string> fields = 2; // "padding-off=true", for commercials, you know
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
@@ -85,7 +84,7 @@ message TeaserStage {
 // A single teasable item. (has a href and the click leads to an Ad- or PageImpression)
 // idea: ClickableItem, LinkedItem
 message TeaserStageItem {
-  StageItemWidth stage_item_width = 1;
+  StageItemWidth stage_item_width = 1; // todo
   map<string, string> fields = 2; // todo: do we need this here as well????
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be an editorial article or a Commercial.
