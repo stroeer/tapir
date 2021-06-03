@@ -170,5 +170,6 @@ release: clean check check-git-branch ## Releases new version of gRPC source cod
 	git push origin $(NEXT_GO_TAG)
 
 
-release-local-java:
+.PHONY:
+release-local-java: ## Releases generated Java code to your local maven repository
 	cd java && ./gradlew clean build publishToMavenLocal
