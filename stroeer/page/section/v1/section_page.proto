@@ -42,12 +42,16 @@ message Section {
 message Stage {
   StageConfiguration stage_configuration = 1;
   repeated StageItem stage_items = 2;
-  // optional, always render the column with the Title and SubNav from the StageConfiguration
+  // todo: it is currently unlcear how esi companion elements are represented: It could be either as an article or an element.
   repeated StageItem companions = 3;
 }
 
-// Rendering data for a stage, currently only a fields map.
-// Coordinate stage layouts, especially the `stream` layout with UI department.
+// Coordinate stage and companion layouts, especially the `stream` layout with UI department.
+// The stage title is always part of the `references` -- even without `href`.
+//
+// Info: Why is this an extra message?
+// In case we need more custom & specific configuration like:
+// * sponsoring
 message StageConfiguration {
   // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `stream`.
@@ -66,7 +70,7 @@ message StageItem {
   // Optional flags/hints for customization only for the stage item.
   map<string, string> fields = 1;
   // At most one field will be set at the same time.
-  // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
+  // The delegate of the StageItem can be another teaser stage, an editorial article or a commercial.
   oneof stage_item_type {
     TeaserStage stage = 2;
     ArticleTeaser article_teaser = 3;
@@ -86,10 +90,10 @@ message TeaserStage {
 // A single teaseable item.
 // alternatives: ClickableItem, LinkedItem, EverythingButAStage
 message TeaserStageItem {
-  // Optional flags/hints for customization only for the stage item.
+  // Optional flags/hints for customization only for the teaser stage item.
   map<string, string> fields = 1;
   // At most one field will be set at the same time.
-  // The delegate of the StageItem can be an editorial article or a Commercial.
+  // The delegate of the item can be an editorial article or a commercial.
   oneof teaser_stage_item_type {
     ArticleTeaser article_teaser = 2;
     Commercial commercial = 3;
