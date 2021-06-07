@@ -40,7 +40,6 @@ message Section {
 
 // A "row" of teasers - can consist of editorial articles, advertisement and/or stages.
 message Stage {
-  // contains stage_title and sub_navs from now on
   StageConfiguration stage_configuration = 1;
   repeated StageItem stage_items = 2;
   // optional, always render the column with the Title and SubNav from the StageConfiguration
@@ -48,10 +47,10 @@ message Stage {
 }
 
 // Rendering data for a stage, currently only a fields map.
-// Coordinate stage layouts, especially the `default` layout with UI department.
+// Coordinate stage layouts, especially the `stream` layout with UI department.
 message StageConfiguration {
   // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
-  // If entry `stage_layout` is missing, use layout `default`.
+  // If entry `stage_layout` is missing, use layout `stream`.
   // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
   map<string, string> fields = 1;
 
@@ -64,7 +63,8 @@ message StageConfiguration {
 
 // A single generic item of a stage.
 message StageItem {
-  map<string, string> fields = 1; // for custom flags like bg_color
+  // Optional flags/hints for customization only for the stage item.
+  map<string, string> fields = 1;
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be another Stage, an editorial article or a Commercial.
   oneof stage_item_type {
@@ -76,15 +76,17 @@ message StageItem {
 
 // A non-recursive collection of teaseable items.
 message TeaserStage {
-  repeated TeaserStageItem teaser_stage_items = 1;
-  // e.g. stage_layout: schlagzeilen
-  map<string, string> fields = 2;
+  // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
+  // If entry `stage_layout` is missing, use layout `stream`.
+  // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
+  map<string, string> fields = 1;
+  repeated TeaserStageItem teaser_stage_items = 2;
 }
 
 // A single teaseable item.
 // alternatives: ClickableItem, LinkedItem, EverythingButAStage
 message TeaserStageItem {
-  // for future flags (pada)
+  // Optional flags/hints for customization only for the stage item.
   map<string, string> fields = 1;
   // At most one field will be set at the same time.
   // The delegate of the StageItem can be an editorial article or a Commercial.
@@ -94,20 +96,20 @@ message TeaserStageItem {
   }
 }
 
-// Bundles the data needed to render a core article as a teaser.
-// Coordinate teaser layouts, especially the `default` layout with UI department.
+// Bundles the data needed to render a core article as a teaser as part of a stage.
+// Coordinate teaser layouts, especially the `stream` layout with UI department.
 message ArticleTeaser {
-  // `Article.body` is set to `null` to reduce overhead.
-  stroeer.core.v1.Article article = 1;
   // `fields` may contain additional rendering information.
   // * `teaser_layout`: marker to use a particular layout in the rendering teaser template.
   // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
-  // If `teaser_layout` entries is missing use layout `default`.
+  // If `teaser_layout` entries is missing use layout `stream`.
   map<string, string> fields = 2;
+  // `Article.body` is set to `null` to reduce overhead.
+  stroeer.core.v1.Article article = 1;
 }
 
-// Data to render a Commercial as part of a Stage.
+// Bundles the data to render a commercial as part of a stage.
 message Commercial {
-  // advertisement booking ids
+  // Addtional advertisement booking ids. This may individual for each commercial type.
   map<string, string> fields = 1;
 }
