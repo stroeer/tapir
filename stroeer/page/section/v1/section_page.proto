@@ -42,16 +42,11 @@ message Section {
 message Stage {
   StageConfiguration stage_configuration = 1;
   repeated StageItem stage_items = 2;
-  // todo: it is currently unlcear how esi companion elements are represented: It could be either as an article or an element.
   repeated StageItem companions = 3;
 }
 
-// Coordinate stage and companion layouts, especially the `stream` layout with UI department.
-// The stage title is always part of the `references` -- even without `href`.
-//
-// Info: Why is this an extra message?
-// In case we need more custom & specific configuration like:
-// * sponsoring
+// Stage and companion layouts must be coordinated with UI department, especially the `stream` layout.
+// The stage title is in the `references`, also when not linked.
 message StageConfiguration {
   // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
   // If entry `stage_layout` is missing, use layout `stream`.
@@ -65,35 +60,29 @@ message StageConfiguration {
   repeated stroeer.core.v1.Reference references = 2;
 }
 
-// A single generic item of a stage.
+// A generic model to represent what can be part of a stage.
 message StageItem {
-  // Optional flags/hints for customization only for the stage item.
+  // Optional flags/hints for customization independent of the stage_item_type
   map<string, string> fields = 1;
-  // At most one field will be set at the same time.
-  // The delegate of the StageItem can be another teaser stage, an editorial article or a commercial.
   oneof stage_item_type {
-    TeaserStage stage = 2;
+    TeaserStage teaser_stage = 2;
     ArticleTeaser article_teaser = 3;
     Commercial commercial = 4;
+    // todo: it is currently unclear how esi companion elements are represented.
+    // todo: it could either be an artificial ArticleTeaser containing an EsiElement or an core.Element could be allowed as StageItem oneof.
   }
 }
 
-// A non-recursive collection of teaseable items.
+// A non-recursive collection of teaseable items with its configuration, like layout.
 message TeaserStage {
-  // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
-  // If entry `stage_layout` is missing, use layout `stream`.
-  // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
-  map<string, string> fields = 1;
+  StageConfiguration stage_configuration = 1;
   repeated TeaserStageItem teaser_stage_items = 2;
 }
 
-// A single teaseable item.
-// alternatives: ClickableItem, LinkedItem, EverythingButAStage
+// A single teaseable item, which can't be a stage.
 message TeaserStageItem {
-  // Optional flags/hints for customization only for the teaser stage item.
+  // Optional flags/hints for customization independent of the teaser_stage_item_type
   map<string, string> fields = 1;
-  // At most one field will be set at the same time.
-  // The delegate of the item can be an editorial article or a commercial.
   oneof teaser_stage_item_type {
     ArticleTeaser article_teaser = 2;
     Commercial commercial = 3;
@@ -114,6 +103,6 @@ message ArticleTeaser {
 
 // Bundles the data to render a commercial as part of a stage.
 message Commercial {
-  // Addtional advertisement booking ids. This may individual for each commercial type.
+  // e.g. advertisement booking ids. Data may differ between commercial types.
   map<string, string> fields = 1;
 }
