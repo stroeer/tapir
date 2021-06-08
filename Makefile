@@ -60,12 +60,12 @@ $(LANGUAGES):
 .PHONY: lint
 lint: ## Lints all proto files using https://docs.buf.build/lint-overview
 	@echo "+ $@"
-	@buf check lint || exit 1
+	@buf lint || exit 1
 
 .PHONY: breaking
 breaking: ## Detects breaking changes using https://docs.buf.build/breaking-overview
 	@echo "+ $@"
-	@buf check breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
+	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
 
 .PHONY: test
 test: generate # Runs all tests
