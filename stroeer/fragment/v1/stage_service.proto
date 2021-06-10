@@ -53,6 +53,6 @@ message GetStagesRequest {
 // Message for requesting data for single stages
 // All provided ids that could be resolved to stages are part of the response, others are omitted.
 message GetStagesResponse {
-  repeated stroeer.page.section.v1.Stage stages = 1;
+  repeated stroeer.page.section.v1.SectionPage.Stage stages = 1;
 }
 
