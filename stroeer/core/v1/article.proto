@@ -81,6 +81,72 @@ message Article {
   // Related articles are defined manually in the content management system
   // by the editorial department.
   repeated int64 onwards = 10;
+
+  // Main content type of the article.
+  enum ContentType {
+    // Not specified.
+    CONTENT_TYPE_UNSPECIFIED = 0;
+
+    // A text article.
+    ARTICLE = 1;
+
+    // An image article (not available as standalone article).
+    IMAGE = 2;
+
+    // A video article.
+    VIDEO = 3;
+
+    // A gallery article.
+    GALLERY = 4;
+
+    // An oembed article.
+    OEMBED = 5;
+
+    // An author article (not available as standalone article).
+    AUTHOR = 6;
+
+    // An agency article (not available as standalone article).
+    AGENCY = 7;
+  }
+
+  // Subtype of the article.
+  enum ContentSubType {
+    // Not specified.
+    CONTENT_SUB_TYPE_UNSPECIFIED = 0;
+
+    // Meldung/Nachricht — this is the default
+    NEWS = 1;
+
+    // 'Kolumne'
+    COLUMN = 2;
+
+    // 'Bericht'
+    REPORT = 3;
+
+    // 'Kommentar'
+    COMMENTARY = 4;
+
+    // 'Interview'
+    INTERVIEW = 5;
+
+    // 'Pro und Kontra/Streitgespräch'
+    CONTROVERSY = 6;
+
+    // 'Reportage'
+    STORY = 7;
+
+    // 'Rezension/Kritik'
+    RECENSION = 8;
+
+    // 'Tagesanbruch'
+    TAGESANBRUCH = 9;
+
+    // 'Analyse'
+    ANALYSIS = 10;
+
+    // 'Satire/Glosse'
+    SATIRE = 11;
+  }
 }
 
 // Article metadata like publication state and technical timestamps.
@@ -117,6 +183,15 @@ message Metadata {
   // Number of errors occurred while fetching and/or transforming optional
   // article components (e.g. embeds) to an `article` message.
   int64 transformation_errors = 7;
+
+  // State of the article in the content management system.
+  enum State {
+    // Not specified.
+    STATE_UNSPECIFIED = 0;
+
+    // A published article.
+    PUBLISHED = 1;
+  }
 }
 
 // Elements of the article which are not part of the body, e.g. author information
@@ -140,6 +215,50 @@ message Element {
 
   // Children of the element.
   repeated Element children = 4;
+  // Type of an element.
+  enum ElementType {
+    // Not specified, not supported or yet unknown.
+    ELEMENT_TYPE_UNSPECIFIED = 0;
+
+    // An article element.
+    ARTICLE = 1;
+
+    // An image element.
+    IMAGE = 2;
+
+    // A video element.
+    VIDEO = 3;
+
+    // A gallery element.
+    GALLERY = 4;
+
+    // An oembed element.
+    OEMBED = 5;
+
+    // An author element.
+    AUTHOR = 6;
+
+    // An agency (e.g. DPA) element.
+    AGENCY = 7;
+
+    // An element that represents a <esi:include>
+    EDGE_SIDE_INCLUDE = 8;
+
+    // A citation element.
+    CITATION = 9;
+  }
+
+  // Relation or usage of an element
+  enum ElementRelation {
+    // Not specified.
+    ELEMENT_RELATION_UNSPECIFIED = 0;
+
+    // As an opener element
+    OPENER = 1;
+
+    // As an teaser element
+    TEASER = 2;
+  }
 }
 
 // Asset of an element.
@@ -158,6 +277,25 @@ message Asset {
 
   // Technical metadata of the asset.
   Metadata metadata = 3;
+
+
+  // Type of an asset.
+  enum AssetType {
+    // Not specified.
+    ASSET_TYPE_UNSPECIFIED = 0;
+
+    // An image asset.
+    IMAGE = 1;
+
+    // A video asset.
+    VIDEO = 2;
+
+    // An URL asset.
+    URL = 3;
+
+    // A metadata asset.
+    METADATA = 4;
+  }
 }
 
 // Body of the article to render on detail pages.
@@ -202,142 +340,4 @@ message BodyNode {
 
   // Elements of the node, e.g. inline videos or galleries.
   repeated Element elements = 5;
-}
-
-// State of the article in the content management system.
-enum State {
-  // Not specified.
-  STATE_UNSPECIFIED = 0;
-
-  // A published article.
-  STATE_PUBLISHED = 1;
-}
-
-// Main content type of the article.
-enum ContentType {
-  // Not specified.
-  CONTENT_TYPE_UNSPECIFIED = 0;
-
-  // A text article.
-  CONTENT_TYPE_ARTICLE = 1;
-
-  // An image article (not available as standalone article).
-  CONTENT_TYPE_IMAGE = 2;
-
-  // A video article.
-  CONTENT_TYPE_VIDEO = 3;
-
-  // A gallery article.
-  CONTENT_TYPE_GALLERY = 4;
-
-  // An oembed article.
-  CONTENT_TYPE_OEMBED = 5;
-
-  // An author article (not available as standalone article).
-  CONTENT_TYPE_AUTHOR = 6;
-
-  // An agency article (not available as standalone article).
-  CONTENT_TYPE_AGENCY = 7;
-}
-
-// Subtype of the article.
-enum ContentSubType {
-  // Not specified.
-  CONTENT_SUB_TYPE_UNSPECIFIED = 0;
-
-  // Meldung/Nachricht — this is the default
-  CONTENT_SUB_TYPE_NEWS = 1;
-
-  // 'Kolumne'
-  CONTENT_SUB_TYPE_COLUMN = 2;
-
-  // 'Bericht'
-  CONTENT_SUB_TYPE_REPORT = 3;
-
-  // 'Kommentar'
-  CONTENT_SUB_TYPE_COMMENTARY = 4;
-
-  // 'Interview'
-  CONTENT_SUB_TYPE_INTERVIEW = 5;
-
-  // 'Pro und Kontra/Streitgespräch'
-  CONTENT_SUB_TYPE_CONTROVERSY = 6;
-
-  // 'Reportage'
-  CONTENT_SUB_TYPE_STORY = 7;
-
-  // 'Rezension/Kritik'
-  CONTENT_SUB_TYPE_RECENSION = 8;
-
-  // 'Tagesanbruch'
-  CONTENT_SUB_TYPE_TAGESANBRUCH = 9;
-
-  // 'Analyse'
-  CONTENT_SUB_TYPE_ANALYSIS = 10;
-
-  // 'Satire/Glosse'
-  CONTENT_SUB_TYPE_SATIRE = 11;
-}
-
-// Type of an element.
-enum ElementType {
-  // Not specified, not supported or yet unknown.
-  ELEMENT_TYPE_UNSPECIFIED = 0;
-
-  // An article element.
-  ELEMENT_TYPE_ARTICLE = 1;
-
-  // An image element.
-  ELEMENT_TYPE_IMAGE = 2;
-
-  // A video element.
-  ELEMENT_TYPE_VIDEO = 3;
-
-  // A gallery element.
-  ELEMENT_TYPE_GALLERY = 4;
-
-  // An oembed element.
-  ELEMENT_TYPE_OEMBED = 5;
-
-  // An author element.
-  ELEMENT_TYPE_AUTHOR = 6;
-
-  // An agency (e.g. DPA) element.
-  ELEMENT_TYPE_AGENCY = 7;
-
-  // An element that represents a <esi:include>
-  ELEMENT_TYPE_EDGE_SIDE_INCLUDE = 8;
-
-  // A citation element.
-  ELEMENT_TYPE_CITATION = 9;
-}
-
-// Type of an asset.
-enum AssetType {
-  // Not specified.
-  ASSET_TYPE_UNSPECIFIED = 0;
-
-  // An image asset.
-  ASSET_TYPE_IMAGE = 1;
-
-  // A video asset.
-  ASSET_TYPE_VIDEO = 2;
-
-  // An URL asset.
-  ASSET_TYPE_URL = 3;
-
-  // A metadata asset.
-  ASSET_TYPE_METADATA = 4;
-}
-
-// Relation or usage of an element
-enum ElementRelation {
-  // Not specified.
-  ELEMENT_RELATION_UNSPECIFIED = 0;
-
-  // As an opener element
-  ELEMENT_RELATION_OPENER = 1;
-
-  // As an teaser element
-  ELEMENT_RELATION_TEASER = 2;
 }
