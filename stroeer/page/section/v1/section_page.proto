@@ -64,6 +64,7 @@ message SectionPage {
       // Optional flags/hints for customization independent of the stage_item_type
       map<string, string> fields = 1;
       oneof item_type {
+        // we don't support recursion and limit the depth at this point to 1 in the services
         Stage stage = 2;
         ArticleTeaser article_teaser = 3;
         Commercial commercial = 4;
