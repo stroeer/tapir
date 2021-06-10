@@ -65,9 +65,9 @@ message SectionPage {
       map<string, string> fields = 1;
       oneof item_type {
         // We don't support recursion and limit the depth at this point to 1 in the services
-        Stage stage = 2;
-        ArticleTeaser article_teaser = 3;
-        Commercial commercial = 4;
+        Stage stage = 8;
+        ArticleTeaser article_teaser = 9;
+        Commercial commercial = 10;
       }
 
       // Bundles the data needed to render a core article as a teaser as part of a stage.
@@ -77,9 +77,9 @@ message SectionPage {
         // * `teaser_layout`: marker to use a particular layout in the rendering teaser template.
         // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
         // If `teaser_layout` entries is missing use layout `stream`.
-        map<string, string> fields = 2;
+        map<string, string> fields = 1;
         // `Article.body` is set to `null` to reduce overhead.
-        stroeer.core.v1.Article article = 1;
+        stroeer.core.v1.Article article = 2;
       }
 
       // Bundles the data to render a commercial as part of a stage.
