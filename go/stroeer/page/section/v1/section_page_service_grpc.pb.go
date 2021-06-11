@@ -70,7 +70,7 @@ type SectionPageServiceClient interface {
 	//HTTP status: 504
 	//cacheable: no
 	//
-	//*Scenarios about incomplete section data needs to be defined**
+	//Scenarios about incomplete section data needs to be defined
 	GetSectionPage(ctx context.Context, in *GetSectionPageRequest, opts ...grpc.CallOption) (*GetSectionPageResponse, error)
 }
 
@@ -147,7 +147,7 @@ type SectionPageServiceServer interface {
 	//HTTP status: 504
 	//cacheable: no
 	//
-	//*Scenarios about incomplete section data needs to be defined**
+	//Scenarios about incomplete section data needs to be defined
 	GetSectionPage(context.Context, *GetSectionPageRequest) (*GetSectionPageResponse, error)
 	mustEmbedUnimplementedSectionPageServiceServer()
 }
