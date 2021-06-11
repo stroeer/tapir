@@ -36,57 +36,57 @@ message SectionPage {
     // `/` -> `/sport/` -> `/sport/fussball/`
     stroeer.core.v1.Reference section_tree = 2;
   }
+}
 
-  // A stream stage with companions and the main content area.
-  // Embedded items can be editorial articles, advertisement and/or stages (only one level deep).
-  message Stage {
-    Configuration configuration = 1;
-    repeated Item main_items = 2;
-    repeated Item companion_items = 3;
+// A stream stage with companions and the main content area.
+// Embedded items can be editorial articles, advertisement and/or stages (only one level deep).
+message Stage {
+  Configuration configuration = 1;
+  repeated Item main_items = 2;
+  repeated Item companion_items = 3;
 
-    // Stage and companion layouts must be coordinated with UI department, especially the `stream` layout.
-    // The stage title is in the `references`, also when not linked.
-    message Configuration {
-      // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
-      // If entry `stage_layout` is missing, use layout `stream`.
-      // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
-      map<string, string> fields = 1;
+  // Stage and companion layouts must be coordinated with UI department, especially the `stream` layout.
+  // The stage title is in the `references`, also when not linked.
+  message Configuration {
+    // * `stage_layout`: represents a visual layout, which may affect teasers, colors, and other styles.
+    // If entry `stage_layout` is missing, use layout `stream`.
+    // the stage_layout field can be used to configure full page width commercials (e.g. nativendo, t-online empfiehlt)
+    map<string, string> fields = 1;
 
-      // All kind of references as part of the stage. Filter reference by
-      // `Reference.type`:
-      // * `ref_stage_title`
-      // * `ref_sub_navigation`
-      repeated stroeer.core.v1.Reference references = 2;
+    // All kind of references as part of the stage. Filter reference by
+    // `Reference.type`:
+    // * `ref_stage_title`
+    // * `ref_sub_navigation`
+    repeated stroeer.core.v1.Reference references = 2;
+  }
+
+  // A generic model to represent what can be part of a stage.
+  message Item {
+    // Optional flags/hints for customization independent of the `item_type`
+    map<string, string> fields = 1;
+    oneof item_type {
+      // We don't support recursion and limit the depth at this point to 1 in the services
+      Stage stage = 2;
+      ArticleTeaser article_teaser = 3;
+      Commercial commercial = 4;
     }
 
-    // A generic model to represent what can be part of a stage.
-    message Item {
-      // Optional flags/hints for customization independent of the `item_type`
+    // Bundles the data needed to render a core article as a teaser as part of a stage.
+    // Coordinate teaser layouts, especially the `stream` layout with UI department.
+    message ArticleTeaser {
+      // `fields` may contain additional rendering information.
+      // * `teaser_layout`: marker to use a particular layout in the rendering teaser template.
+      // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
+      // If `teaser_layout` entries is missing use layout `stream`.
       map<string, string> fields = 1;
-      oneof item_type {
-        // We don't support recursion and limit the depth at this point to 1 in the services
-        Stage stage = 8;
-        ArticleTeaser article_teaser = 9;
-        Commercial commercial = 10;
-      }
+      // `Article.body` is set to `null` to reduce overhead.
+      stroeer.core.v1.Article article = 2;
+    }
 
-      // Bundles the data needed to render a core article as a teaser as part of a stage.
-      // Coordinate teaser layouts, especially the `stream` layout with UI department.
-      message ArticleTeaser {
-        // `fields` may contain additional rendering information.
-        // * `teaser_layout`: marker to use a particular layout in the rendering teaser template.
-        // * `teaser_variant`: marker to use also a particular variant of the provided `teaser_layout`.
-        // If `teaser_layout` entries is missing use layout `stream`.
-        map<string, string> fields = 1;
-        // `Article.body` is set to `null` to reduce overhead.
-        stroeer.core.v1.Article article = 2;
-      }
-
-      // Bundles the data to render a commercial as part of a stage.
-      message Commercial {
-        // e.g. advertisement booking ids. Data may differ between commercial types.
-        map<string, string> fields = 1;
-      }
+    // Bundles the data to render a commercial as part of a stage.
+    message Commercial {
+      // e.g. advertisement booking ids. Data may differ between commercial types.
+      map<string, string> fields = 1;
     }
   }
 }
