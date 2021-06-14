@@ -11,3 +11,4 @@ lint:
     - OTHER
   except:
     - RPC_RESPONSE_STANDARD_NAME
+    - ENUM_VALUE_PREFIX
