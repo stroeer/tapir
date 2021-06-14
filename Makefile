@@ -18,7 +18,7 @@ LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
 
 PROTO_FILES		:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
-PROTOC_VERSION	?= 3.15.0
+PROTOC_VERSION	?= 3.17.3
 PROTOC			?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS			+= --proto_path=$(DIR)
