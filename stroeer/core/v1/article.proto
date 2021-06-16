@@ -146,6 +146,9 @@ message Article {
 
     // 'Satire/Glosse'
     SATIRE = 11;
+
+    // Content originally imported from agency/tickers by the CMS
+    AGENCY_IMPORT = 12;
   }
 }
 
