@@ -153,7 +153,7 @@ NEXT_GO_TAG 		= go/$(NEXT_TAG)
 .PHONY: check-git-clean
 check-git-clean: ## Verifies clean working directory
 	@echo "+ $@"
-	@git diff-index --exit-code --name-only HEAD || (echo "There are uncomitted changes"; exit 1)
+	git diff-index --exit-code --name-only HEAD || (echo "There are uncomitted changes"; exit 1)
 
 .PHONY: check-git-branch
 check-git-branch: check-git-clean
@@ -163,7 +163,7 @@ check-git-branch: check-git-clean
 
 .PHONY: release
 release: clean check check-git-branch ## Releases new version of gRPC source code packages
-	@echo "$@ $(NEXT_TAG)"
+	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
 	git tag -a $(NEXT_GO_TAG) -m "$(NEXT_GO_TAG)"
