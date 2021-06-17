@@ -153,6 +153,7 @@ NEXT_GO_TAG 		= go/$(NEXT_TAG)
 .PHONY: check-git-clean
 check-git-clean: ## Verifies clean working directory
 	@echo "+ $@"
+	git status
 	git diff-index --exit-code --name-only HEAD || (echo "There are uncomitted changes"; exit 1)
 
 .PHONY: check-git-branch
