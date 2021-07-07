@@ -71,12 +71,25 @@ service SectionPageService {
 // Correct paths have a leading and a trailing slash, like `/nachrichten/unterhaltung/`
 // The homepage has the path `/`.
 message GetSectionPageRequest {
+  // valid section_path, with leading and trailing slash
   string section_path = 1;
+
+  // use to page through sections. If unspecified, it will default to `1`.
+  // Paging is 1-based (1 is the first page, there is no page `0`)
+  //
+  // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
+  // The service may return fewer than this value.
+  int32 page = 2;
 }
 
 // Response message when requesting data for a section page.
 // Responds with `NOT_FOUND` if an unknown path is requested, or the path is incorrect.
 message GetSectionPageResponse {
   stroeer.page.section.v1.SectionPage section_page = 1;
-}
 
+  // if request contained a `page`, this page is confirmed here with the same value
+  int32 page = 2;
+
+  // last page that has content for`section_path`
+  int32 total_pages = 3;
+}
