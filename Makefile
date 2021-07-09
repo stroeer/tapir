@@ -84,7 +84,8 @@ gateway: ## Generates grpc-gateway resources
 		--grpc-gateway_opt logtostderr=true \
 		--grpc-gateway_opt paths=source_relative \
 		--grpc-gateway_opt grpc_api_configuration=stroeer/page/article/v1/api_config_http.yaml \
-		stroeer/page/article/v1/article_page_service.proto
+		--grpc-gateway_opt grpc_api_configuration=stroeer/page/section/v1/api_config_http.yaml \
+		stroeer/page/article/v1/article_page_service.proto stroeer/page/section/v1/section_page_service.proto
 
 .PHONY: clean
 clean: ## Deletes all generated files
