@@ -4,5 +4,6 @@ type: google.api.Service
 
 http:
   rules:
-    - selector: stroeer.page.article.v1.ArticlePageService.GetArticlePage
-      get: /v1/pages/articles/{id}
+    - selector: stroeer.page.section.v1.SectionPageService.GetSectionPage
+      # this maps e.g. to `v1/pages/sections?section_path=/`
+      get: /v1/pages/sections
