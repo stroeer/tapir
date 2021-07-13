@@ -75,17 +75,16 @@ test: generate # Runs all tests
 	cd go && go test -v .
 
 .PHONY: check
-check: lint breaking gateway test ## Runs all checks
+check: lint breaking article section test ## Runs all checks
 
-.PHONY: gateway
-gateway: ## Generates grpc-gateway resources
+GATEWAYS := article section
+$(GATEWAYS):
 	@echo "+ $@"
-	$(PROTOC) -I . --grpc-gateway_out $(GO_DIR) \
+	$(PROTOC) --proto_path=$(DIR) --grpc-gateway_out $(GO_DIR) \
 		--grpc-gateway_opt logtostderr=true \
 		--grpc-gateway_opt paths=source_relative \
-		--grpc-gateway_opt grpc_api_configuration=stroeer/page/article/v1/api_config_http.yaml \
-		--grpc-gateway_opt grpc_api_configuration=stroeer/page/section/v1/api_config_http.yaml \
-		stroeer/page/article/v1/article_page_service.proto stroeer/page/section/v1/section_page_service.proto
+		--grpc-gateway_opt grpc_api_configuration=stroeer/page/$@/v1/api_config_http.yaml \
+    stroeer/page/$@/v1/$@_page_service.proto
 
 .PHONY: clean
 clean: ## Deletes all generated files
