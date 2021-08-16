@@ -84,7 +84,7 @@ jobs:
 
       - run: make LANGUAGE=go
 
-      - run: make gateway
+      - run: make article section
 
       - name: go test
         run: go test -v .

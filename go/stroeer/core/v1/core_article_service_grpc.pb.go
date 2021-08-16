@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArticleServiceClient interface {
-	// Returns a core article by it's `id`
+	// Returns an article by it's `id`
 	GetArticle(ctx context.Context, in *GetArticleRequest, opts ...grpc.CallOption) (*Article, error)
 	// Returns pages of articles by their `home_section`
 	ListArticles(ctx context.Context, in *ListArticlesRequest, opts ...grpc.CallOption) (*ListArticlesResponse, error)
@@ -54,7 +54,7 @@ func (c *articleServiceClient) ListArticles(ctx context.Context, in *ListArticle
 // All implementations must embed UnimplementedArticleServiceServer
 // for forward compatibility
 type ArticleServiceServer interface {
-	// Returns a core article by it's `id`
+	// Returns an article by it's `id`
 	GetArticle(context.Context, *GetArticleRequest) (*Article, error)
 	// Returns pages of articles by their `home_section`
 	ListArticles(context.Context, *ListArticlesRequest) (*ListArticlesResponse, error)
