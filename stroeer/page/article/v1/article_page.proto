@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
+import "stroeer/page/section/v1/section_page.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/page/article/v1;article";
 option java_multiple_files = true;
@@ -18,6 +19,13 @@ message ArticlePage {
   // Additional related editorial articles. Articles which are not published
   // according to their `Metadata` will be filtered.
   repeated RelatedArticle related_articles = 2;
+
+  // Items to be rendered in the companion area of the article page
+  // open question: how to configure particular render positions
+  repeated stroeer.page.section.v1.Stage.Item companion_items = 3;
+
+  // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
+  repeated stroeer.page.section.v1.Stage stages = 4;
 }
 
 // An editorial article, which is related to another article.
