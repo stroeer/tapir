@@ -32,7 +32,7 @@ message Reference {
   // * `target`
   // * `rel`
   // * `flag:internal`
-  // * `layout:tag` or `layout:navigation`
+  // * `layout`
   //
   // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 4;
