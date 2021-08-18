@@ -3,7 +3,7 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
-import "stroeer/page/section/v1/section_page.proto";
+import "stroeer/page/shared/v1/shared.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/page/article/v1;article";
 option java_multiple_files = true;
