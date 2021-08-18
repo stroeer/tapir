@@ -10,14 +10,16 @@ option java_package = "de.stroeer.core.v1";
 // a `Section` or an external website, or a whole tree structure, for example
 // a section tree or navigation.
 message Reference {
-  // The type is only needed for filtering multiple references of the same type
-  // in list of references.
+  // The type is used for filtering in a list of references.
+  // It describes a use-case, which usually has a defined render position.
   //
   // Example entries:
   // * `unspecified`
-  // * `title`
-  // * `navigation`
-  // * `sub_navigation`
+  // * `stage_title`
+  // * `stage_themenbereiche`
+  // * `stage_header_links`
+  // * `stage_top_themen`
+  // * `stage_tag_category`
   string type = 1;
 
   // The text or label of the reference.
@@ -30,6 +32,7 @@ message Reference {
   // * `target`
   // * `rel`
   // * `flag:internal`
+  // * `layout:tag` or `layout:navigation`
   //
   // Clients must be resilient to unknown or missing entry sets.
   map<string, string> fields = 4;
