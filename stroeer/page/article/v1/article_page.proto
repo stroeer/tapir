@@ -20,12 +20,10 @@ message ArticlePage {
   // according to their `Metadata` will be filtered.
   repeated RelatedArticle related_articles = 2;
 
-  // Items to be rendered in the companion area of the article page
-  // open question: how to configure particular render positions
-  repeated stroeer.page.section.v1.Stage.Item companion_items = 3;
+  // reserved: companion_items = 3;
 
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
-  repeated stroeer.page.section.v1.Stage stages = 4;
+  repeated stroeer.page.shared.v1.Stage stages = 4;
 }
 
 // An editorial article, which is related to another article.
