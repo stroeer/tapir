@@ -46,7 +46,11 @@ Run `make check` to run all checks.
 We generate packages for [java](https://github.com/stroeer/tapir/packages/235034) and [node](https://github.com/stroeer/tapir/packages/235031)
 automatically for each new tag which can be integrated in your build system. In addition, the generated [go source code](go/) is tagged for usage with go modules.
 
+## release a new tapir version
 To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
+In most cases you want to run
+
+    make BUMP=minor release
 
 ## protoc docker image
 
