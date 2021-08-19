@@ -3,7 +3,7 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
-import "stroeer/page/shared/v1/shared.proto";
+import "stroeer/page/stage/v1/stage.proto";
 
 option go_package = "github.com/stroeer/tapir/go/stroeer/page/article/v1;article";
 option java_multiple_files = true;
@@ -20,10 +20,8 @@ message ArticlePage {
   // according to their `Metadata` will be filtered.
   repeated RelatedArticle related_articles = 2;
 
-  // reserved: companion_items = 3;
-
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
-  repeated stroeer.page.shared.v1.Stage stages = 4;
+  repeated stroeer.page.stage.v1.Stage stages = 3;
 }
 
 // An editorial article, which is related to another article.

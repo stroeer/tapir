@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package stroeer.page.shared.v1;
+package stroeer.page.stage.v1;
 
 import "stroeer/core/v1/article.proto";
 import "stroeer/core/v1/shared.proto";
 
-option go_package = "github.com/stroeer/tapir/go/stroeer/page/shared/v1;shared";
+option go_package = "github.com/stroeer/tapir/go/stroeer/page/stage/v1;stage";
 option java_multiple_files = true;
-option java_package = "de.stroeer.page.shared.v1";
+option java_package = "de.stroeer.page.stage.v1";
 
 // A stream stage with companions and the main content area.
 // Embedded items can be editorial articles, advertisement and/or stages (only one level deep).

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "stroeer/page/shared/v1/shared.proto";
+import "stroeer/page/stage/v1/stage.proto";
 
 package stroeer.fragment.v1;
 
@@ -53,6 +53,6 @@ message GetStagesRequest {
 // Message for requesting data for single stages
 // All provided ids that could be resolved to stages are part of the response, others are omitted.
 message GetStagesResponse {
-  repeated stroeer.page.shared.v1.Stage stages = 1;
+  repeated stroeer.page.stage.v1.Stage stages = 1;
 }
 
