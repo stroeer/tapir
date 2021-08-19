@@ -28,14 +28,16 @@ type Reference struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The type is only needed for filtering multiple references of the same type
-	// in list of references.
+	// The type is used for filtering in a list of references.
+	// It describes a use-case, which usually has a defined render position.
 	//
 	// Example entries:
 	// * `unspecified`
-	// * `title`
-	// * `navigation`
-	// * `sub_navigation`
+	// * `stage_title`
+	// * `stage_themenbereiche`
+	// * `stage_header_links`
+	// * `stage_top_themen`
+	// * `stage_tag_category`
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
 	// The text or label of the reference.
 	Label string `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
@@ -45,6 +47,7 @@ type Reference struct {
 	// * `target`
 	// * `rel`
 	// * `flag:internal`
+	// * `layout`
 	//
 	// Clients must be resilient to unknown or missing entry sets.
 	Fields map[string]string `protobuf:"bytes,4,rep,name=fields,proto3" json:"fields,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
