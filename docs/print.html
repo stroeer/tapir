@@ -1,0 +1,506 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>tapir</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">tapir</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="article"><a class="header" href="#article">Article</a></h1>
+<p>An article represents a piece of content created in the content management
+system. Different types of content like text or video articles share
+the same message structure distinguished by the <code>Article.type</code> field.</p>
+<p>Depending on the service used to retrieve an article, this message might
+only contain data required on section pages (e.g. with <code>Article.body</code> set to <code>null</code>
+thus not containing any data that is only required on detail pages). This is sometimes
+referred to as <em>Teaser</em>.</p>
+<p>Message fields and map entries are optional unless commented otherwise.</p>
+<pre><code class="language-protobuf">message Article {}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L16-L29">[~]</a></p>
+<p>Unique ID of the article defined by the content management system (required).</p>
+<pre><code class="language-protobuf">int64 id = 1;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L32-L36">[~]</a></p>
+<p>Main content type of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L40-L41">[~]</a></p>
+<p>Subtype of the article. For <code>CONTENT_TYPE_ARTICLE</code> this field holds a
+sub type, for others like <code>CONTENT_TYPE_GALLERY</code> it may not.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L45-L47">[~]</a></p>
+<p>Hierarchical section tree information of the article (required).
+For example:
+<code>/</code> -&gt; <code>/sport/</code> -&gt; <code>/sport/fussball/</code>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L51-L54">[~]</a></p>
+<p>Generic map containing general content and configuration information of
+the article (required).</p>
+<p>The entry set is defined by the content management system and
+will vary depending on the main type of the article.</p>
+<p>For <code>CONTENT_TYPE_ARTICLE</code>, this map will always contain non empty values
+for the following keys:</p>
+<ul>
+<li><code>ref_path</code>: URL path for this article e.g. /section/id_$ID/title.html</li>
+<li><code>ref_canonical</code>: Canonical URL of this article, may differ if external, e.g. https:*www.giga.de/external.html</li>
+<li><code>ref_amp</code>: AMP URL of this article</li>
+<li><code>headline</code></li>
+<li><code>top_line</code></li>
+<li><code>summary</code></li>
+</ul>
+<p>For <code>CONTENT_TYPE_GALLERY</code>, this map will always contain non empty values
+for the following keys:</p>
+<ul>
+<li>headline</li>
+</ul>
+<p>Clients must be resilient to unknown or missing entry sets.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L58-L80">[~]</a></p>
+<p>Recursive body structure of the article to render on detail
+pages.</p>
+<p>This message will be empty for the teaser representation (e.g. section pages) of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L84-L88">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L92-L93">[~]</a></p>
+<p>Elements of the article which are not part of the body, e.g. author information
+opener image/video etc. Those elements should be used to render the article
+as a teaser e.g. on section pages.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L97-L100">[~]</a></p>
+<p>Extracted entities from the article body like people, places, organizations etc.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L104-L105">[~]</a></p>
+<p>IDs of articles related to this article.</p>
+<p>Related articles are defined manually in the content management system
+by the editorial department.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L109-L113">[~]</a></p>
+<p>Main content type of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L117-L118">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L121-L122">[~]</a></p>
+<p>A text article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L126-L127">[~]</a></p>
+<p>An image article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L130-L131">[~]</a></p>
+<p>A video article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L135-L136">[~]</a></p>
+<p>A gallery article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L140-L141">[~]</a></p>
+<p>An oembed article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L145-L146">[~]</a></p>
+<p>An author article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L150-L151">[~]</a></p>
+<p>An agency article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L155-L156">[~]</a></p>
+<p>Subtype of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L161-L162">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L165-L166">[~]</a></p>
+<p>Meldung/Nachricht — this is the default
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L170-L171">[~]</a></p>
+<p>'Kolumne'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L175-L176">[~]</a></p>
+<p>'Bericht'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L180-L181">[~]</a></p>
+<p>'Kommentar'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L185-L186">[~]</a></p>
+<p>'Interview'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L190-L191">[~]</a></p>
+<p>'Pro und Kontra/Streitgespräch'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L195-L196">[~]</a></p>
+<p>'Reportage'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L200-L201">[~]</a></p>
+<p>'Rezension/Kritik'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L205-L206">[~]</a></p>
+<p>'Tagesanbruch'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L210-L211">[~]</a></p>
+<p>'Analyse'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L215-L216">[~]</a></p>
+<p>'Satire/Glosse'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L220-L221">[~]</a></p>
+<p>Content originally imported from agency/tickers by the CMS
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L225-L226">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L231-L232">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="asset"><a class="header" href="#asset">Asset</a></h1>
+<p>Asset of an element.</p>
+<p>An asset configuration is dependant upon its use, it may alter depending
+on its <code>Asset.type</code> field. </p>
+<h3 id="samples"><a class="header" href="#samples">Samples</a></h3>
+<h4 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h4>
+<pre><code class="language-javascript">{
+  &quot;type&quot;: &quot;IMAGE&quot;,
+  &quot;fields&quot;: {
+    &quot;crop&quot;: &quot;16:9&quot;,
+    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+    &quot;width&quot;: &quot;1920&quot;,
+    &quot;x&quot;: &quot;0&quot;,
+    &quot;y&quot;: &quot;37&quot;,
+    &quot;height&quot;: &quot;1079&quot;
+  }
+}
+</code></pre>
+<table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
+<tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
+<tr><td><code>crop</code></td><td>this cropped image's loginal name, e.g. <code>original</code>, <code>16:9</code>, <code>custom</code></td></tr>
+<tr><td><code>x</code></td><td>x-offset off the original image for this crop</td></tr>
+<tr><td><code>y</code></td><td>y-offset off the original image for this crop</td></tr>
+<tr><td><code>width</code></td><td>the width of this cropped image, before scaling.</td></tr>
+<tr><td><code>height</code></td><td>the height of this cropped image, before scaling</td></tr>
+</tbody></table>
+<p>NOTES: </p>
+<ul>
+<li><code>x + width &lt;= width(original_image)</code> otherwise the image genrator will fail</li>
+<li><code>y + height &lt;= height(original_image)</code> otherwise the image genrator will fail</li>
+</ul>
+<pre><code class="language-protbuf">message Asset {
+// ...
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L418-L457">[~]</a></p>
+<p>Type of the asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L460-L461">[~]</a></p>
+<p>Generic map containing general content and configuration information of
+the asset.</p>
+<p>Depending on the type of the asset, this map will contain different
+entry sets, e.g. <code>source</code>, <code>width</code> and <code>height</code> for images.</p>
+<p>Clients must be resilient to unknown or missing entry sets.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L465-L472">[~]</a></p>
+<p>Technical metadata of the asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L476-L477">[~]</a></p>
+<p>Type of an asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L482-L483">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L486-L487">[~]</a></p>
+<p>An image asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L491-L492">[~]</a></p>
+<p>A video asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L496-L497">[~]</a></p>
+<p>An URL asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L501-L502">[~]</a></p>
+<p>A metadata asset.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L506-L507">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L513-L514">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="body"><a class="header" href="#body">Body</a></h1>
+<p>Body of the article to render on detail pages.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L517-L518">[~]</a></p>
+<p>Recursive Body nodes.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L521-L522">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L527-L528">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bodynode"><a class="header" href="#bodynode">BodyNode</a></h1>
+<p>Recursive body structure representing all types of possible
+body nodes inside an article.</p>
+<p>Clients must be resilient to unknown or missing nodes.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L531-L535">[~]</a></p>
+<p>Type of the node (required):</p>
+<ul>
+<li><code>text</code></li>
+<li><code>p</code></li>
+<li><code>sub_headline</code></li>
+<li><code>a</code></li>
+<li><code>strong</code></li>
+<li><code>em</code></li>
+<li><code>br</code></li>
+<li><code>ul</code></li>
+<li><code>ol</code></li>
+<li><code>li</code></li>
+<li><code>img</code>: inline image element</li>
+<li><code>oembed</code>: inline oEmbed element</li>
+<li><code>article_sources</code>: &quot;Quellenapparat&quot;</li>
+<li><code>article_source</code>: A single &quot;Quellenapparat&quot; item containing <code>text</code> or <code>a</code></li>
+<li><code>disclaimer</code>: formatted text that holds a (health) disclaimer, e.g. used in <code>/gesundheit/</code>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L538-L555">[~]</a></li>
+</ul>
+<p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L559-L560">[~]</a></p>
+<p>Additional information for the node depending on it's type,
+e.g. <code>href</code> for <code>a</code> nodes.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L564-L566">[~]</a></p>
+<p>Children of the node, e.g. the <code>text</code> of a <code>p</code>.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L570-L571">[~]</a></p>
+<p>Elements of the node, e.g. inline videos or galleries.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L575-L576">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="element"><a class="header" href="#element">Element</a></h1>
+<p>Elements of the article which are not part of the body, e.g. author information
+opener image/video etc. Those elements should be used to render the article
+as a teaser e.g. on section pages.</p>
+<p>Different types of elements like images or videos share
+the same message structure distinguished by the <code>ElementType</code> field.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L306-L312">[~]</a></p>
+<p>Type of the element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L315-L316">[~]</a></p>
+<p>The usages (relations) of an element.
+Example:
+One image element with the relations <code>teaser</code> and <code>opener</code> is used for
+both places.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L320-L324">[~]</a></p>
+<p>Assets of the element like images, videos or metadata (required).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L328-L329">[~]</a></p>
+<p>Children of the element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L333-L334">[~]</a></p>
+<p>Type of an element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L338-L339">[~]</a></p>
+<p>Not specified, not supported or yet unknown.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L342-L343">[~]</a></p>
+<p>An article element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L347-L348">[~]</a></p>
+<p>An image element.
+//
+IMAGE = 2;</p>
+<p>/** 
+A video element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L352-L358">[~]</a></p>
+<p>A gallery element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L362-L363">[~]</a></p>
+<p>An oembed element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L367-L368">[~]</a></p>
+<p>An author element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L372-L373">[~]</a></p>
+<p>An agency (e.g. DPA) element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L377-L378">[~]</a></p>
+<p>An element that represents a <a href="esi:include">esi:include</a>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L382-L383">[~]</a></p>
+<p>A citation element.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L387-L388">[~]</a></p>
+<p>Relation or usage of an element
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L393-L394">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L397-L398">[~]</a></p>
+<p>As an opener element
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L402-L403">[~]</a></p>
+<p>As an teaser element
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L407-L408">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L414-L415">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="metadata"><a class="header" href="#metadata">Metadata</a></h1>
+<p>Article metadata like publication state and technical timestamps.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L235-L236">[~]</a></p>
+<p>State of the article in the content management system.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L239-L240">[~]</a></p>
+<p>Manually set editorial timestamp ('Gültig von') at which the article is valid to deliver on
+digital platforms in seconds of UTC time since Unix epoch.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L244-L246">[~]</a></p>
+<p>Manually set editorial date ('Gültig bis') till the article is valid to deliver on
+digital platforms in seconds of UTC time since Unix epoch.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L250-L252">[~]</a></p>
+<p>Editorial date ('Publikationsdatum') of the first publication of the
+article in seconds of UTC time since Unix epoch.</p>
+<p>This date will be set automatically by the content management system.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L256-L260">[~]</a></p>
+<p>Editorial date ('Aktualisierungsdatum') at which the article
+was updated in seconds of UTC time since Unix epoch.</p>
+<p>On first publication this timestamp matches <code>publish_time</code>. Afterwards
+it's either updated manually in the content management system or
+automatically if the article content changed significantly.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L264-L270">[~]</a></p>
+<p>Technical timestamp at which the article was transformed in the
+API layer in seconds of UTC time since Unix epoch.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L274-L276">[~]</a></p>
+<p>Number of errors occurred while fetching and/or transforming optional
+article components (e.g. embeds) to an <code>article</code> message.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L280-L282">[~]</a></p>
+<p>State of the article in the content management system.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L286-L287">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L290-L291">[~]</a></p>
+<p>A published article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L295-L296">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L302-L303">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
+<p>A Reference represents a link to another entity, for example an <code>Article</code>,
+a <code>Section</code> or an external website, or a whole tree structure, for example
+a section tree or navigation.</p>
+<pre><code class="language-protobuf">message Reference {}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L11-L17">[~]</a></p>
+<p>The <code>type</code> is used for filtering in a list of references.
+It describes a use-case, which usually has a defined render position.</p>
+<p>Example entries:</p>
+<ul>
+<li><code>unspecified</code></li>
+<li><code>stage_title</code></li>
+<li><code>stage_themenbereiche</code></li>
+<li><code>stage_header_links</code></li>
+<li><code>stage_top_themen</code></li>
+<li><code>stage_tag_category</code></li>
+</ul>
+<pre><code class="language-protobuf">string type = 1;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L20-L33">[~]</a></p>
+<p>The text or label of the reference.</p>
+<pre><code class="language-protobuf">string label = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L37-L41">[~]</a></p>
+<p>The href of the reference. It can be relative or absolute.</p>
+<pre><code class="language-protobuf">string href = 3;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L45-L49">[~]</a></p>
+<p>Contains all optional attributes of the reference.</p>
+<ul>
+<li><code>target</code></li>
+<li><code>rel</code></li>
+<li><code>flag:internal</code></li>
+<li><code>layout</code></li>
+</ul>
+<p>Clients must be resilient to unknown or missing entry sets.</p>
+<pre><code class="language-protobuf">map&lt;string, string&gt; fields = 4;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L52-L62">[~]</a></p>
+<p>Hierarchically structured references for representing a navigation or tree.</p>
+<pre><code class="language-protobuf">repeated Reference children = 5;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample2.proto#L66-L70">[~]</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

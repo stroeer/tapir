@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Article - tapir</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">tapir</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="article"><a class="header" href="#article">Article</a></h1>
+<p>An article represents a piece of content created in the content management
+system. Different types of content like text or video articles share
+the same message structure distinguished by the <code>Article.type</code> field.</p>
+<p>Depending on the service used to retrieve an article, this message might
+only contain data required on section pages (e.g. with <code>Article.body</code> set to <code>null</code>
+thus not containing any data that is only required on detail pages). This is sometimes
+referred to as <em>Teaser</em>.</p>
+<p>Message fields and map entries are optional unless commented otherwise.</p>
+<pre><code class="language-protobuf">message Article {}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L16-L29">[~]</a></p>
+<p>Unique ID of the article defined by the content management system (required).</p>
+<pre><code class="language-protobuf">int64 id = 1;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L32-L36">[~]</a></p>
+<p>Main content type of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L40-L41">[~]</a></p>
+<p>Subtype of the article. For <code>CONTENT_TYPE_ARTICLE</code> this field holds a
+sub type, for others like <code>CONTENT_TYPE_GALLERY</code> it may not.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L45-L47">[~]</a></p>
+<p>Hierarchical section tree information of the article (required).
+For example:
+<code>/</code> -&gt; <code>/sport/</code> -&gt; <code>/sport/fussball/</code>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L51-L54">[~]</a></p>
+<p>Generic map containing general content and configuration information of
+the article (required).</p>
+<p>The entry set is defined by the content management system and
+will vary depending on the main type of the article.</p>
+<p>For <code>CONTENT_TYPE_ARTICLE</code>, this map will always contain non empty values
+for the following keys:</p>
+<ul>
+<li><code>ref_path</code>: URL path for this article e.g. /section/id_$ID/title.html</li>
+<li><code>ref_canonical</code>: Canonical URL of this article, may differ if external, e.g. https:*www.giga.de/external.html</li>
+<li><code>ref_amp</code>: AMP URL of this article</li>
+<li><code>headline</code></li>
+<li><code>top_line</code></li>
+<li><code>summary</code></li>
+</ul>
+<p>For <code>CONTENT_TYPE_GALLERY</code>, this map will always contain non empty values
+for the following keys:</p>
+<ul>
+<li>headline</li>
+</ul>
+<p>Clients must be resilient to unknown or missing entry sets.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L58-L80">[~]</a></p>
+<p>Recursive body structure of the article to render on detail
+pages.</p>
+<p>This message will be empty for the teaser representation (e.g. section pages) of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L84-L88">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L92-L93">[~]</a></p>
+<p>Elements of the article which are not part of the body, e.g. author information
+opener image/video etc. Those elements should be used to render the article
+as a teaser e.g. on section pages.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L97-L100">[~]</a></p>
+<p>Extracted entities from the article body like people, places, organizations etc.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L104-L105">[~]</a></p>
+<p>IDs of articles related to this article.</p>
+<p>Related articles are defined manually in the content management system
+by the editorial department.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L109-L113">[~]</a></p>
+<p>Main content type of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L117-L118">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L121-L122">[~]</a></p>
+<p>A text article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L126-L127">[~]</a></p>
+<p>An image article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L130-L131">[~]</a></p>
+<p>A video article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L135-L136">[~]</a></p>
+<p>A gallery article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L140-L141">[~]</a></p>
+<p>An oembed article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L145-L146">[~]</a></p>
+<p>An author article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L150-L151">[~]</a></p>
+<p>An agency article (not available as standalone article).
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L155-L156">[~]</a></p>
+<p>Subtype of the article.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L161-L162">[~]</a></p>
+<p>Not specified.
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L165-L166">[~]</a></p>
+<p>Meldung/Nachricht — this is the default
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L170-L171">[~]</a></p>
+<p>'Kolumne'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L175-L176">[~]</a></p>
+<p>'Bericht'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L180-L181">[~]</a></p>
+<p>'Kommentar'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L185-L186">[~]</a></p>
+<p>'Interview'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L190-L191">[~]</a></p>
+<p>'Pro und Kontra/Streitgespräch'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L195-L196">[~]</a></p>
+<p>'Reportage'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L200-L201">[~]</a></p>
+<p>'Rezension/Kritik'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L205-L206">[~]</a></p>
+<p>'Tagesanbruch'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L210-L211">[~]</a></p>
+<p>'Analyse'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L215-L216">[~]</a></p>
+<p>'Satire/Glosse'
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L220-L221">[~]</a></p>
+<p>Content originally imported from agency/tickers by the CMS
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L225-L226">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L231-L232">[~]</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="next" href="asset.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="next" href="asset.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
