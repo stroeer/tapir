@@ -280,40 +280,53 @@ on its <code>Asset.type</code> field. </p>
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L418-L457">[~]</a></p>
-<p>Type of the asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L460-L461">[~]</a></p>
+<p>Type of the asset. See <a href="asset.html#assettype">AssetType</a></p>
+<pre><code class="language-protobuf">AssetType type = 1;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L460-L464">[~]</a></p>
 <p>Generic map containing general content and configuration information of
 the asset.</p>
-<p>Depending on the type of the asset, this map will contain different
-entry sets, e.g. <code>source</code>, <code>width</code> and <code>height</code> for images.</p>
-<p>Clients must be resilient to unknown or missing entry sets.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L465-L472">[~]</a></p>
-<p>Technical metadata of the asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L476-L477">[~]</a></p>
-<p>Type of an asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L482-L483">[~]</a></p>
-<p>Not specified.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L486-L487">[~]</a></p>
-<p>An image asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L491-L492">[~]</a></p>
-<p>A video asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L496-L497">[~]</a></p>
-<p>An URL asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L501-L502">[~]</a></p>
-<p>A metadata asset.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L506-L507">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L513-L514">[~]</a></p>
+<p>Clients must be resilient to unknown or missing entry sets.</p>
+<pre><code class="language-protobuf">map&lt;string, string&gt; fields = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L468-L476">[~]</a></p>
+<p>Technical metadata of the asset. See <a href="metadata.html">Metadata</a></p>
+<pre><code class="language-protobuf">Metadata metadata = 3;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L480-L484">[~]</a></p>
+<h2 id="assettype"><a class="header" href="#assettype">AssetType</a></h2>
+<p>Type of an asset.</p>
+<pre><code class="language-protobuf">enum AssetType {
+
+// Not specified.
+ASSET_TYPE_UNSPECIFIED = 0;
+
+// An image asset.
+IMAGE = 1;
+
+// A video asset.
+VIDEO = 2;
+
+// An URL asset.
+URL = 3;
+
+// A metadata asset.
+METADATA = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L489-L511">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L532-L533">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="body"><a class="header" href="#body">Body</a></h1>
 <p>Body of the article to render on detail pages.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L517-L518">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L536-L537">[~]</a></p>
 <p>Recursive Body nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L521-L522">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L527-L528">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L540-L541">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L546-L547">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bodynode"><a class="header" href="#bodynode">BodyNode</a></h1>
 <p>Recursive body structure representing all types of possible
 body nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L531-L535">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L550-L554">[~]</a></p>
 <p>Type of the node (required):</p>
 <ul>
 <li><code>text</code></li>
@@ -331,17 +344,17 @@ body nodes inside an article.</p>
 <li><code>article_sources</code>: &quot;Quellenapparat&quot;</li>
 <li><code>article_source</code>: A single &quot;Quellenapparat&quot; item containing <code>text</code> or <code>a</code></li>
 <li><code>disclaimer</code>: formatted text that holds a (health) disclaimer, e.g. used in <code>/gesundheit/</code>
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L538-L555">[~]</a></li>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L557-L574">[~]</a></li>
 </ul>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L559-L560">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L578-L579">[~]</a></p>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L564-L566">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L583-L585">[~]</a></p>
 <p>Children of the node, e.g. the <code>text</code> of a <code>p</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L570-L571">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L589-L590">[~]</a></p>
 <p>Elements of the node, e.g. inline videos or galleries.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L575-L576">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L594-L595">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="element"><a class="header" href="#element">Element</a></h1>
 <p>Elements of the article which are not part of the body, e.g. author information
 opener image/video etc. Those elements should be used to render the article
