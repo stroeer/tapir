@@ -1,3 +1,6 @@
+/**
+* @FileArticle Article
+*/
 syntax = "proto3";
 
 package stroeer.core.v1;
@@ -9,80 +12,205 @@ option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
-// An article represents a piece of content created in the content management
-// system. Different types of content like text or video articles share
-// the same message structure distinguished by the `Article.type` field.
-//
-// Depending on the service used to retrieve an article, this message might
-// only contain data required on section pages (e.g. with `Article.body` set to `null`
-// thus not containing any data that is only required on detail pages). This is sometimes
-// referred to as _Teaser_.
-//
-// Message fields and map entries are optional unless commented otherwise.
+
+/**
+* ```protobuf
+* message Article {}
+* ```
+* An article represents a piece of content created in the content management
+* system. Different types of content like text or video articles share
+* the same message structure, they can be distinguished by the [`Article.type`](#type) field.
+*
+* Depending on the service used to retrieve an article, this message might
+* only contain data required on section pages (e.g. with `Article.body` set to `null`
+* thus not containing any data that is only required on detail pages). This is sometimes
+* referred to as _Teaser_.
+*
+*/
 message Article {
-  // Unique ID of the article defined by the content management system (required).
+  /**
+  * ## `id`
+  * ```protobuf
+  * int64 id = 1;
+  * ```
+  * Unique ID of the article defined by the content management system (required).
+  */
   int64 id = 1;
 
-  // Main content type of the article.
+  /**
+  * ## `type`
+  * ```protobuf
+  * ContentType type = 2;
+  * ```
+  * Main content type of the article (required).
+  * See list of supported [`ContentType`](#enum-contenttype)
+  */
   ContentType type = 2;
 
-  // Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a
-  // sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
+  /**
+  * ## `sub_type`
+  * ```protobuf
+  * ContentSubType sub_type = 3;
+  * ```
+  * Subtype of the article. For `CONTENT_TYPE_ARTICLE` this field holds a
+  * sub type, for others like `CONTENT_TYPE_GALLERY` it may not.
+  * See list of supported [`ContentSubType`](#enum-contentsubtype)
+  *
+  */
   ContentSubType sub_type = 3;
 
-  // Hierarchical section tree information of the article (required).
-  // For example:
-  // `/` -> `/sport/` -> `/sport/fussball/`
+  /**
+  * ## `section_tree`
+  * ```protobuf
+  * stroeer.core.v1.Reference section_tree = 4;
+  * ```
+  * Hierarchical section tree information of the article (required).
+  * See [`Reference`](reference.html)
+  
+  * Sample:
+  * ```javascript
+  * {
+	*   "label": "Home"
+  *   "href": "/",
+  *   "children": [
+  *         "label": "Spielwiese (Tests)",
+  *         "href": "/test-playground/"
+  *   ]
+  * }
+  * ```
+  */
   stroeer.core.v1.Reference section_tree = 4;
 
-  // Generic map containing general content and configuration information of
-  // the article (required).
-  //
-  // The entry set is defined by the content management system and
-  // will vary depending on the main type of the article.
-  //
-  // For `CONTENT_TYPE_ARTICLE`, this map will always contain non empty values
-  // for the following keys:
-  //
-  // * `ref_path`: URL path for this article e.g. /section/id_$ID/title.html
-  // * `ref_canonical`: Canonical URL of this article, may differ if external, e.g. https://www.giga.de/external.html
-  // * `ref_amp`: AMP URL of this article
-  // * `headline`
-  // * `top_line`
-  // * `summary`
-  //
-  // For `CONTENT_TYPE_GALLERY`, this map will always contain non empty values
-  // for the following keys:
-  //
-  // * headline
-  //
-  // Clients must be resilient to unknown or missing entry sets.
+  /**
+  * ## `fields`
+  * ```protobuf
+  * map<string, string> fields = 5;
+  * ```
+  *
+  * Generic map containing general content and configuration information of
+  * the article (required).
+  *
+  * The entry set is defined by the content management system and
+  * will vary depending on the main type of the article.
+  *
+  * ⚠ Clients must be resilient to unknown or missing entries. ⚠
+  *
+  * ### For `CONTENT_TYPE_ARTICLE`
+  *
+  * this map will contain the following data:
+  *
+  * | key | mandatory |description |
+  * | --- | --------- | ------------|
+  * | `headline` | * | the headline for this content |
+  * | `top_line` | * | "dachzeile" |
+  * | `ref_path` | * | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html` |
+  * | `ref_canonical`| * | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html |
+  * | `ref_amp` | * | AMP URL of this article |
+  * | `summary` | | summary for this content |
+  * | `teaser_text` | | used on teasers, overrides `summary` |
+  * | `meta_robots` | | |
+  * | `social_headline` | | used for social markup, overrides `headline` |
+  * | `headline_short` | | used for "Schlagzeilen", overrides `headline` |
+  * | `meta_title` | | HTML `<meta title>` |
+  * | `expert_line` | | |
+  * | `social_description` | | |
+  * | `meta_description` | | HTML `<meta description>` |
+  * | `reading_time_minutes` | | estimated reading time in minutes |
+  *
+  * ### For `CONTENT_TYPE_GALLERY`
+  *
+  * this map will contain the following data:
+  *
+  * | key | mandatory |description |
+  * | --- | --------- | ------------|
+  * | `headline` | * | the headline for this content |
+  *
+  *
+  */
   map<string, string> fields = 5;
 
-  // Recursive body structure of the article to render on detail
-  // pages.
-  //
-  // This message will be empty for the teaser representation (e.g. section pages) of the article.
+  /**
+  * ## `body`
+  * ```protobuf
+  * Body body = 6;
+  * ```
+  * Recursive body structure of the article to render on detail pages. See [`BodyNode`](bodynode.html)
+  *
+  * This field will be `empty`/`null` for the teaser representation (e.g. section or overview pages) of the article.
+  */
   Body body = 6;
 
-  // Article metadata like publication state and technical timestamps.
+  /**
+  * ## `metadata`
+  * ```protobuf
+  * Metadata metadata = 7;
+  * ```
+  * Article metadata like publication state and technical timestamps. See [`Metadata`](metadata.html)
+  */
   Metadata metadata = 7;
 
-  // Elements of the article which are not part of the body, e.g. author information
-  // opener image/video etc. Those elements should be used to render the article
-  // as a teaser e.g. on section pages.
+  /**
+  * ## `elements`
+  * ```protobuf
+  * repeated Element elements = 8;
+  * ```
+  * Elements of the article which are not part of the body, e.g. author information
+  * opener image/video etc. Those elements should be used to render the article
+  * as a teaser e.g. on section pages. See [`Element`](element.html)
+  */
   repeated Element elements = 8;
 
-  // Extracted entities from the article body like people, places, organizations etc.
+  /**
+  * ## `keywords`
+  * ```protobuf
+  * repeated string keywords = 9;
+  * ```
+  * Extracted entities from the article body like people, places, organizations etc.
+  */
   repeated string keywords = 9;
 
-  // IDs of articles related to this article.
-  //
-  // Related articles are defined manually in the content management system
-  // by the editorial department.
+  /**
+  * ## `onwards`
+  * ```protobuf
+  * repeated int64 onwards = 10;
+  * ```
+  * IDs of articles related to this article.
+  *
+  * Related articles are defined manually in the content management system
+  * by the editorial department.
+  */
   repeated int64 onwards = 10;
 
-  // Main content type of the article.
+  /**
+  * ## `enum ContentType`
+  * ```protobuf
+  * enum ContentType {
+  *   // Not specified.
+  *   CONTENT_TYPE_UNSPECIFIED = 0;
+  *
+  *   // A text article.
+  *   ARTICLE = 1;
+  *
+  *   // An image article (not available as standalone article).
+  *   IMAGE = 2;
+  *
+  *   // A video article.
+  *   VIDEO = 3;
+  *
+  *   // A gallery article.
+  *   GALLERY = 4;
+  *
+  *   // An oembed article.
+  *   OEMBED = 5;
+  *
+  *   // An author article (not available as standalone article).
+  *   AUTHOR = 6;
+  *
+  *   // An agency article (not available as standalone article).
+  *   AGENCY = 7;
+  * }
+  * ```
+  */
   enum ContentType {
     // Not specified.
     CONTENT_TYPE_UNSPECIFIED = 0;
@@ -109,7 +237,51 @@ message Article {
     AGENCY = 7;
   }
 
-  // Subtype of the article.
+  /**
+  * ## `enum ContentSubType`
+  * ```protobuf
+  * enum ContentSubType {
+  *   // Not specified.
+  *   CONTENT_SUB_TYPE_UNSPECIFIED = 0;
+  *
+  *   // Meldung/Nachricht — this is the default
+  *   NEWS = 1;
+  *
+  *   // 'Kolumne'
+  *   COLUMN = 2;
+  *
+  *   // 'Bericht'
+  *   REPORT = 3;
+  *
+  *   // 'Kommentar'
+  *   COMMENTARY = 4;
+  *
+  *   // 'Interview'
+  *   INTERVIEW = 5;
+  *
+  *   // 'Pro und Kontra/Streitgespräch'
+  *   CONTROVERSY = 6;
+  *
+  *   // 'Reportage'
+  *   STORY = 7;
+  *
+  *   // 'Rezension/Kritik'
+  *   RECENSION = 8;
+  *
+  *   // 'Tagesanbruch'
+  *   TAGESANBRUCH = 9;
+  *
+  *   // 'Analyse'
+  *   ANALYSIS = 10;
+  *
+  *   // 'Satire/Glosse'
+  *   SATIRE = 11;
+  *
+  *   // Content originally imported from agency/tickers by the CMS
+  *   AGENCY_IMPORT = 12;
+  * }
+  * ```
+  */
   enum ContentSubType {
     // Not specified.
     CONTENT_SUB_TYPE_UNSPECIFIED = 0;
@@ -151,43 +323,105 @@ message Article {
     AGENCY_IMPORT = 12;
   }
 }
+/**
+* @FileArticle Metadata
+*/
 
-// Article metadata like publication state and technical timestamps.
+/**
+* ```protobuf
+* message Metadata {}
+* ```
+* Article metadata like publication state and technical timestamps.
+*/
 message Metadata {
-  // State of the article in the content management system.
+  /**
+  * ## `state`
+  * ```protobuf
+  * State state = 1;
+  * ```
+  * State of the article in the content management system. See [`enum State`](#enum-state)
+  */
   State state = 1;
 
-  // Manually set editorial timestamp ('Gültig von') at which the article is valid to deliver on
-  // digital platforms in seconds of UTC time since Unix epoch.
+  /**
+  * ## `start_time`
+  * ```protobuf
+  * google.protobuf.Timestamp start_time = 2;
+  * ```
+  * Manually set editorial timestamp (_Gültig von_) at which the article is valid to deliver on
+  * digital platforms in seconds of UTC time since Unix epoch.
+  */
   google.protobuf.Timestamp start_time = 2;
 
-  // Manually set editorial date ('Gültig bis') till the article is valid to deliver on
-  // digital platforms in seconds of UTC time since Unix epoch.
+  /**
+  * ## `start_time`
+  * ```protobuf
+  * google.protobuf.Timestamp start_time = 2;
+  * ```
+  * Manually set editorial date (_Gültig bis_) till the article is valid to deliver on
+  * digital platforms in seconds of UTC time since Unix epoch.
+  */
   google.protobuf.Timestamp end_time = 3;
 
-  // Editorial date ('Publikationsdatum') of the first publication of the
-  // article in seconds of UTC time since Unix epoch.
-  //
-  // This date will be set automatically by the content management system.
+  /**
+  * ## `start_time`
+  * ```protobuf
+  * google.protobuf.Timestamp start_time = 2;
+  * ```
+  * Editorial date (_Publikationsdatum_) of the first publication of the
+  * article in seconds of UTC time since Unix epoch.
+  *
+  * This date will be set automatically by the content management system.
+  */
   google.protobuf.Timestamp publish_time = 4;
 
-  // Editorial date ('Aktualisierungsdatum') at which the article
-  // was updated in seconds of UTC time since Unix epoch.
-  //
-  // On first publication this timestamp matches `publish_time`. Afterwards
-  // it's either updated manually in the content management system or
-  // automatically if the article content changed significantly.
+  /**
+  * ## `update_time`
+  * ```protobuf
+  * google.protobuf.Timestamp update_time = 5;
+  * ```
+  * Editorial date (_Aktualisierungsdatum_) at which the article
+  * was updated in seconds of UTC time since Unix epoch.
+  *
+  * On first publication this timestamp matches `publish_time`. Afterwards
+  * it's either updated manually in the content management system or
+  * automatically if the article content changed significantly.
+  */
   google.protobuf.Timestamp update_time = 5;
 
-  // Technical timestamp at which the article was transformed in the
-  // API layer in seconds of UTC time since Unix epoch.
+  /**
+  * ## `transformation_time`
+  * ```protobuf
+  * google.protobuf.Timestamp transformation_time = 6;
+  * ```
+  * Technical timestamp at which the article was transformed in the
+  * API layer in seconds of UTC time since Unix epoch.
+  */
   google.protobuf.Timestamp transformation_time = 6;
 
-  // Number of errors occurred while fetching and/or transforming optional
-  // article components (e.g. embeds) to an `article` message.
+  /**
+  * ## `transformation_errors`
+  *```protobuf
+  * int64 transformation_errors = 7;
+  *```
+  * Number of errors occurred while fetching and/or transforming optional
+  * article components (e.g. embeds) to an `article` message.
+  */
   int64 transformation_errors = 7;
 
-  // State of the article in the content management system.
+  /**
+  * ## `enum State`
+  * State of the article in the content management system.
+  * ```protobuf
+  *   enum State {
+  *   // Not specified.
+  *   STATE_UNSPECIFIED = 0;
+  *
+  *   // A published article.
+  *   PUBLISHED = 1;
+  * }
+  * ```
+  */
   enum State {
     // Not specified.
     STATE_UNSPECIFIED = 0;
@@ -197,28 +431,102 @@ message Metadata {
   }
 }
 
-// Elements of the article which are not part of the body, e.g. author information
-// opener image/video etc. Those elements should be used to render the article
-// as a teaser e.g. on section pages.
-//
-// Different types of elements like images or videos share
-// the same message structure distinguished by the `ElementType` field.
+/**
+* @FileArticle Element
+*/
+
+/**
+* ```protobuf
+* message Element {}
+* ```
+* Elements of the article which are not part of the body, e.g. author information
+* opener image/video etc. Those elements should be used to render the article
+* as a teaser e.g. on section pages.
+*
+* Different types of elements like images or videos share
+* the same message structure distinguished by the `ElementType` field.
+*/
 message Element {
-  // Type of the element.
+  /**
+  * ## `type`
+  * ```protobuf
+  * ElementType type = 1;
+  * ```
+  * [`Type`](#type-1) of the element.
+  */
   ElementType type = 1;
 
-  // The usages (relations) of an element.
-  // Example:
-  // One image element with the relations `teaser` and `opener` is used for
-  // both places.
+  /**
+  * ## `relations`
+  * ```protobuf
+  * repeated ElementRelation relations = 2;
+  * ```
+  * The usages (relations) of an element.
+  * Example:
+  * One image element with the relations `teaser` and `opener` is used for
+  * both places. See [`enum ElementRelation`](#enum-elementrelation)
+  */
   repeated ElementRelation relations = 2;
 
-  // Assets of the element like images, videos or metadata (required).
+  /**
+  * ## `asset`
+  * ```protobuf
+  * repeated Asset assets = 3;
+  * ```
+  * [`Asset(s)`](asset.html) of the element like images, videos or metadata (required).
+  */
   repeated Asset assets = 3;
 
-  // Children of the element.
+  /**
+  * ## `children`
+  * ```protobuf
+  * repeated Element children = 4;
+  * ```
+  * Children of the element. Some Elements can have nested elements themself,
+  * see sample section for `video` and `gallery` elements.
+  */
   repeated Element children = 4;
-  // Type of an element.
+
+  /**
+  * ## `type`
+  *
+  * Type of an element.
+  * 
+  * ```protobuf
+  *   enum ElementType {
+  *   // Not specified, not supported or yet unknown.
+  *   ELEMENT_TYPE_UNSPECIFIED = 0;
+  *
+  *   // An article element.
+  *   ARTICLE = 1;
+  *
+  *   // An image element.
+  *   IMAGE = 2;
+  *
+  *   // A video element.
+  *   VIDEO = 3;
+  *
+  *   // A gallery element.
+  *   GALLERY = 4;
+  *
+  *   // An oembed element.
+  *   OEMBED = 5;
+  *
+  *   // An author element.
+  *   AUTHOR = 6;
+  *
+  *   // An agency (e.g. DPA) element.
+  *   AGENCY = 7;
+  *
+  *   // An element that represents a <esi:include>, it's important
+  *   // to be rendered server side due to SEO reasons
+  *   EDGE_SIDE_INCLUDE = 8;
+  *
+  *   // A citation element.
+  *   CITATION = 9;
+  * }
+  * ```
+  */
   enum ElementType {
     // Not specified, not supported or yet unknown.
     ELEMENT_TYPE_UNSPECIFIED = 0;
@@ -244,46 +552,284 @@ message Element {
     // An agency (e.g. DPA) element.
     AGENCY = 7;
 
-    // An element that represents a <esi:include>
+    // An element that represents a <esi:include>, it's important
+    // to be rendered server side due to SEO reasons
     EDGE_SIDE_INCLUDE = 8;
 
     // A citation element.
     CITATION = 9;
   }
 
-  // Relation or usage of an element
+  /**
+  * ## Enum ElementRelation
+  * ```protobuf
+  * enum ElementRelation {
+  *   // Not specified.
+  *   ELEMENT_RELATION_UNSPECIFIED = 0;
+  *
+  *   // As an opener element
+  *   OPENER = 1;
+  *
+  *   // As an teaser element
+  *   TEASER = 2;
+  * }
+  * ```
+  * Relation or usage of an element
+  */
   enum ElementRelation {
     // Not specified.
     ELEMENT_RELATION_UNSPECIFIED = 0;
 
-    // As an opener element
+    // As an opener element (within the content)
     OPENER = 1;
 
-    // As an teaser element
+    // As an teaser element (when externally viewed)
     TEASER = 2;
   }
 }
+  /**
+   * ## Samples
+   *
+   * For details on certain `fields` or usages of [`Assets`, please follow this link.](asset.html#samples)
+   *
+   * ### `image element`
+   *
+   * - usually consist of one `Asset[@type=METADATA]` and several `Asset[@type=IMAGE]`, one for each crop.
+   *
+   * ```json
+   * {
+   *  "type": "IMAGE"
+   *  "relations": [ "OPENER", "TEASER" ],
+   *  "assets": [{
+   *    "fields": {
+   *      "media_id": "90635672v2",
+   *      "caption": "Annalena Baerbock und Joschka Fischer bei einer Wahlkampfveranstaltung: Die Grünen-Kanzlerkandidatin fordert von der Bundesregierung, mindestens 10.000 Menschen aus Afghanistan aufzunehmen.",
+   *      "alt_text": "Annalena Baerbock und Joschka Fischer bei einer Wahlkampfveranstaltung: Die Grünen-Kanzlerkandidatin fordert von der Bundesregierung, mindestens 10.000 Menschen aus Afghanistan aufzunehmen.",
+   *      "description": "Annalena Baerbock und Joschka Fischer bei einer Wahlkampfveranstaltung: Die Grünen-Kanzlerkandidatin fordert von der Bundesregierung, mindestens 10.000 Menschen aus Afghanistan aufzunehmen.",
+   *      "source": "/Reuters-bilder"
+   *    },
+   *    "type": "METADATA",
+   *    "metadata": {
+   *      "state": "STATE_UNSPECIFIED",
+   *      "start_time": { "seconds": "-62135596800" },
+   *      "end_time": { "seconds": "253402300799" }
+   *    }
+   *  },
+   *  {
+   *    "type": "IMAGE",
+   *    "fields": {
+   *      "crop": "original",
+   *      "url": "https://di7yufqc6mgnl.cloudfront.net/2021/08/90635672v2/fit-in/0x0/annalena-baerbock-und-joschka-fischer-bei-einer-wahlkampfveranstaltung-die-gruenen-kanzlerkandidatin-fordert-von-der-bundesregierung-mindestens-10000-menschen-aus-afghanistan-aufzunehmen.jpg",
+   *      "width": "1920",
+   *      "height": "1280"
+   *    },
+   *  },
+   *  {
+   *    "type": "IMAGE",
+   *    "fields": {
+   *      "crop": "16:9",
+   *      "url": "https://di7yufqc6mgnl.cloudfront.net/2021/08/90635672v2/0x0:1920x1077/fit-in/0x0/annalena-baerbock-und-joschka-fischer-bei-einer-wahlkampfveranstaltung-die-gruenen-kanzlerkandidatin-fordert-von-der-bundesregierung-mindestens-10000-menschen-aus-afghanistan-aufzunehmen.jpg",
+   *      "width": "1920",
+   *      "height": "1077"
+   *    }
+   *  }
+   *  ]}
+   * ```
+   *
+   * ### `video element`
+   *
+   * - usually consist of one `Asset[@type=METADATA]` and one `Asset[@type=VIDEO]`.
+   * - If the video has a poster image, it can be found as a nested child `Element[type=IMAGE]` within `children[]`
+   *
+   * ```json
+   * {
+   *   "relations": [ "OPENER" ],
+   *   "type": "VIDEO"
+   *   "assets": [
+   *     {
+   *       "type": "METADATA",
+   *       "fields": {
+   *         "media_id": "0DgeZjJtJ8EC",
+   *         "caption": "Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.",
+   *         "frame_capture:url": "https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/thumbnails/maas-haben-500-menschen-aus-kabul-ausgeflogen_thumb.0000031.jpg",
+   *         "frame_capture:numerator": "1",
+   *         "frame_capture:denominator": "5"
+   *       },
+   *       "metadata": {
+   *         "state": "STATE_UNSPECIFIED",
+   *         "start_time": { "seconds": "-62135596800" },
+   *         "end_time": { "seconds": "253402300799" }
+   *       }
+   *     },
+   *     {
+   *       "type": "VIDEO"
+   *       "fields": {
+   *         "duration_seconds": "157.576",
+   *         "mime_type": "application/vnd.apple.mpegurl",
+   *         "url": "https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8",
+   *         "height": "1080",
+   *         "width": "1920"
+   *       },
+   *     }
+   *   ],
+   *   "children": [
+   *     {
+   *       "type": "IMAGE"
+   *       "assets": [
+   *         {
+   *           "fields": {
+   *             "media_id": "amOyEe-u5llZ"
+   *           },
+   *           "type": "METADATA",
+   *           "metadata": {
+   *             "start_time": { "seconds": "-62135596800" },
+   *             "end_time": { "seconds": "253402300799" }
+   *           }
+   *         },
+   *         {
+   *           "type": "IMAGE",
+   *           "fields": {
+   *             "crop": "original",
+   *             "url": "https://di7yufqc6mgnl.cloudfront.net/2021/08/amOyEe-u5llZ/fit-in/0x0/image.png",
+   *             "width": "1500",
+   *             "height": "844"
+   *           }
+   *         }
+   *       ]
+   *     }
+   *   ]
+   * }
+   * ```
+   *
+   * ### `gallery element`
+   *
+   * - usually consist of one `Asset[@type=METADATA]` describing the gallery itself
+   * - several nested `Element[@type=IMAGE]` within `children[]`, one for each image of this gallery
+   *
+   * ```json
+   * {
+   *   "relations": [ "OPENER" ],
+   *   "type": "GALLERY",
+   *   "assets": [
+   *     {
+   *       "type": "METADATA",
+   *       "fields": {
+   *         "headline": "Gallery ipsum dolor",
+   *         "ref_path": "/test-playground/id_100000067/gallery-ipsum-dolor.html",
+   *         "ref_canonical": "https://www.t-online.de/test-playground/id_100000067/gallery-ipsum-dolor.html",
+   *         "ref_amp": "https://www.t-online.de/amp/test-playground/id_100000067/gallery-ipsum-dolor.html",
+   *         "url": "/test-playground/id_100000067/gallery-ipsum-dolor.html"
+   *       }
+   *     }
+   *   ],
+   *   "children": [
+   *     {
+   *       "type": "IMAGE",
+   *       "assets": [
+   *         {
+   *           "type": "METADATA",
+   *           "fields": {
+   *             "media_id": "82333994v1",
+   *             "caption": "Wer unterwegs Äpfel pflückt, kann sich strafbar machen.",
+   *             "alt_text": "Wer unterwegs Äpfel pflückt, kann sich strafbar machen.",
+   *             "description": "Wer unterwegs Äpfel pflückt, kann sich strafbar machen.",
+   *             "source": "Patrick Seeger/dpa-tmn/dpa"
+   *           },
+   *           "metadata": {
+   *             "start_time": { "seconds": "-62135596800" },
+   *             "end_time": { "seconds": "253402300799" }
+   *           }
+   *         },
+   *         {
+   *           "type": "IMAGE",
+   *           "fields": {
+   *             "crop": "original",
+   *             "url": "https://di7yufqc6mgnl.cloudfront.net/2021/05/82333994v1/fit-in/0x0/wer-unterwegs-aepfel-pflueckt-kann-sich-strafbar-machen.jpg",
+   *             "width": "640",
+   *             "height": "360"
+   *           }
+   *         }
+   *       ]
+   *     }
+   *   ]
+   * }
+   * ```
+   */
 
-// Asset of an element.
+  /**
+  * @FileArticle Asset
+  */
+
+  /**
+  * ```protobuf
+  * message Asset {}
+  * ```
+  * Asset of an [Element](element.html).
+  *
+  * An asset configuration is dependant upon its use, it may alter depending
+  * on its [`type`](#enum-assettype) field.
+  *
+  */
+
 message Asset {
-  // Type of the asset.
+  /**
+  * ## `type`
+  * Type of the asset. See [`AssetType`](#assettype)
+  * ```protobuf
+  AssetType type = 1;
+  ```
+  */
   AssetType type = 1;
 
-  // Generic map containing general content and configuration information of
-  // the asset.
-  //
-  // Depending on the type of the asset, this map will contain different
-  // entry sets, e.g. `source`, `width` and `height` for images.
-  //
-  // Clients must be resilient to unknown or missing entry sets.
+  /**
+  * ## `fields`
+  * ```protobuf
+  * map<string, string> fields = 2;
+  * ```
+  * Generic map containing general content and configuration information of
+  * the asset.
+  *
+  * Clients must be resilient to unknown or missing entry sets.
+  *
+  */
   map<string, string> fields = 2;
 
-  // Technical metadata of the asset.
+  /**
+  * ## `metadata`
+  * ```protobuf
+  * Metadata metadata = 3;
+  * ```
+  * Technical metadata for this asset (state, validity, ...). See [`Metadata`](metadata.html)
+  */
   Metadata metadata = 3;
 
 
-  // Type of an asset.
+  /**
+  * ## `enum AssetType`
+  *
+  * Type of an asset.
+  * ```protobuf
+  *   enum AssetType {
+  *
+  *   // Not specified.
+  *   ASSET_TYPE_UNSPECIFIED = 0;
+  *
+  *   // An image asset.
+  *   IMAGE = 1;
+  *
+  *   // A video asset.
+  *   VIDEO = 2;
+  *
+  *   // An URL asset.
+  *   URL = 3;
+  *
+  *   // A metadata asset.
+  *   METADATA = 4;
+  * }
+  * ```
+  */
   enum AssetType {
+
     // Not specified.
     ASSET_TYPE_UNSPECIFIED = 0;
 
@@ -301,46 +847,247 @@ message Asset {
   }
 }
 
-// Body of the article to render on detail pages.
+  /**
+  * ## Samples
+  *
+  * ### Image Asset
+  *
+  * ```javascript
+  * {
+  *   "type": "IMAGE",
+  *   "fields": {
+  *     "crop": "16:9",
+  *     "url": "https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg",
+  *     "width": "1920",
+  *     "x": "0",
+  *     "y": "37",
+  *     "height": "1079"
+  *   }
+  * }
+  * ```
+  * | field | description |
+  * |-------|-------------|
+  * | `url`   | the URL for this cropped images withou scaling. If scaling is desired, replace the `/0x0/` with the desired dimensions, `/fit-in/` will make sure that the cropped image will fit inside this rectangle.
+  * | `crop`  | this cropped image's loginal name, e.g. `original`, `16:9`, `custom` |
+  * | `x`   | x-offset off the original image for this crop |
+  * | `y`   | y-offset off the original image for this crop |
+  * | `width` | the width of this cropped image, before scaling. |
+  * | `height`| the height of this cropped image, before scaling |
+  *
+  * NOTES:
+  * - `x + width <= width(original_image)` otherwise the image generator will fail
+  * - `y + height <= height(original_image)` otherwise the image generator will fail
+  *
+  * ### Video Asset
+  * ```json
+  * {
+  *   "type": "VIDEO"
+  *   "fields": {
+  *     "duration_seconds": "157.576",
+  *     "mime_type": "application/vnd.apple.mpegurl",
+  *     "url": "https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8",
+  *     "height": "1080",
+  *     "width": "1920"
+  *   }
+  * }
+  * ```
+  * | field | description |
+  * |-------|-------------|
+  * | `url`   | the URL of this asset, usually a m3u8 playlist URL |
+  * | `mime_type`  | the mime type of this asset, usually a m3u8/HLS |
+  * | `duration_seconds`  | video duration in seconds |
+  * | `height`  | the height of the original video, may differ from the transcoded video. |
+  * | `width`  | the width of the original video, may differ from the transcoded video. |
+  *
+  * ### Video Metadata Asset
+  * ```json
+  * {
+  *   "type": "METADATA",
+  *   "fields": {
+  *     "media_id": "0DgeZjJtJ8EC",
+  *     "caption": "Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.",
+  *     "frame_capture:url": "https://example.com/thumbnails/thumb.0000031.jpg",
+  *     "frame_capture:numerator": "1",
+  *     "frame_capture:denominator": "5"
+  *   }
+  * }
+  * ```
+  * | field | description |
+  * |-------|-------------|
+  * | `media_id` | alpha-numeric CMS id of the media |
+  * | `caption`  | the video's caption |
+  * | `frame_capture:url` | if _frame capture_ was enabled during transcoding, this is the URL of the last _frame capture_ |
+  * | `frame_capture:numerator`  | _frame capture_ images are numerated, starting at `0000000` which can be used as the poster image. |
+  * | `frame_capture:denominator`  | `numerator` and `denominator` can be used to to calculate which _frame capture_ image must be displayed at a given time. |
+  *
+  * Example: for `numerator=1` and `denominator=5`, we have to increment the _frame capture_ every `5  / 1 == 5 seconds`:
+  * ```
+  * 00:00.000 --> 00:05.000
+  * /thumbnails/thumb.0000000.jpg
+  *
+  * 00:05.000 --> 00:10.000
+  * /thumbnails/thumb.0000001.jpg
+  *
+  * 00:10.000 --> 00:15.000
+  * /thumbnails/thumb.0000002.jpg
+  *
+  * 00:15.000 --> 00:20.000
+  * /thumbnails/thumb.0000003.jpg
+  *
+  * ...
+  * ```
+  *
+  */
+
+
+/**
+* @FileArticle Body
+*/
+
+/**
+* ```protobuf
+* message Body {}
+* ```
+* Body of the article to render on detail pages.
+*/
 message Body {
-  // Recursive Body nodes.
+  /**
+  * ## `children`
+  * ```protobuf
+  * repeated BodyNode children = 1;
+  * ```
+  * Recursive Body nodes. See [body nodes](bodynode.html).
+  */
   repeated BodyNode children = 1;
 }
 
-// Recursive body structure representing all types of possible
-// body nodes inside an article.
-//
-// Clients must be resilient to unknown or missing nodes.
+/**
+* @FileArticle BodyNode
+*/
+
+/**
+* ```protobuf
+* message BodyNode {}
+* ```
+* Recursive body structure representing all types of possible
+* body nodes inside an article.
+*
+* Clients must be resilient to unknown or missing nodes.
+*/
 message BodyNode {
-  // Type of the node (required):
-  //
-  // * `text`
-  // * `p`
-  // * `sub_headline`
-  // * `a`
-  // * `strong`
-  // * `em`
-  // * `br`
-  // * `ul`
-  // * `ol`
-  // * `li`
-  // * `img`: inline image element
-  // * `oembed`: inline oEmbed element
-  // * `article_sources`: "Quellenapparat"
-  // * `article_source`: A single "Quellenapparat" item containing `text` or `a`
-  // * `disclaimer`: formatted text that holds a (health) disclaimer, e.g. used in `/gesundheit/`
+  /**
+  * ## `type`
+  * ```protobuf
+  * string type = 1;
+  * ```
+  * Type of the node (required).
+  *
+  * ### HTML `types`
+  * | type | description |
+  * | -----| ------------|
+  * | `text` | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
+  * | `p` | `paragraph` / `<p>`  |
+  * | `sub_headline` | a sub headline, may be part of the _table of contents_  |
+  * | `a` | `anchor` / `<a>`  |
+  * | `strong` | `strong` / `<strong>` |
+  * | `em` | `emphasis` / `<em>` |
+  * | `br` | `line break` / `<br>` |
+  * | `ul` | `unordered list` / `<ul>` |
+  * | `ol` | `ordered list` / `<ol>` |
+  * | `li` | `list` / `<li>`  |
+  *
+  * ### Custom `types`
+  * | type | description |
+  * | -----| ------------|
+  * | `img` | inline image element, check `elements` |
+  * | `video` | inline video element, check `elements` |
+  * | `gallery` | inline gallery element, check `elements` |
+  * | `oembed` | inline oEmbed element, check `elements` |
+  * | `disclaimer` | formatted text that holds a disclaimer, e.g. used in `/gesundheit/` or `/kaufbertatung/` |
+  * | `infobox` | todo |
+  * | `table_of_contents` | todo |
+  * | `article_sources`| "Quellenapparat", list like structure containing `children[type=article_source]`. See [Samples](#article_sources). |
+  * | `article_source` | A single "Quellenapparat" item usually containing `text` or `a` |
+  *
+  * ### Samples
+  *
+  * #### `disclaimer`
+  *
+  * ```json
+  * {
+  *   "type": "disclaimer",
+  *   "children": [
+  *     {
+  *       "type": "strong",
+  *       "children": [
+  *         {
+  *           "type": "text",
+  *           "text": "Wichtiger Hinweis: "
+  *         }
+  *       ]
+  *     },
+  *     {
+  *       "type": "text",
+  *       "text": "Die Informationen ersetzen ..."
+  *     }
+  *   ]
+  * }
+  * ```
+  *
+  * #### `article_sources`
+  * ```json
+  * {
+  *   "type": "article_sources",
+  *   "children": [
+  *     {
+  *       "type": "article_source"
+  *       "children": [
+  *         {
+  *           "type": "text",
+  *           "text": "Nachrichtenagenturen dpa und AFP"
+  *         }
+  *       ],
+  *     }
+  *   ]
+  * }
+  * ```
+  */
   string type = 1;
 
-  // Text of the node, only set for text nodes (`type == 'text'`).
+  /**
+  * ## `text`
+  *  ```protobuf
+  * string text = 2;
+  * ```
+  * Text of the node, only set for text nodes (`type == 'text'`).
+  */
   string text = 2;
 
-  // Additional information for the node depending on it's type,
-  // e.g. `href` for `a` nodes.
+  /**
+  * ## `fields`
+  * ```protobuf
+  * map<string, string> fields = 3;
+  * ```
+  * Additional information for the node depending on it's type,
+  * e.g. `href` for `a` nodes.
+  */
   map<string, string> fields = 3;
 
-  // Children of the node, e.g. the `text` of a `p`.
+  /**
+  * ## `children`
+  * ```protobuf
+  * repeated BodyNode children = 4;
+  * ```
+  * Children of the node, e.g. the `text` node of a `<p>` or a `<a>`.
+  */
   repeated BodyNode children = 4;
 
-  // Elements of the node, e.g. inline videos or galleries.
+  /**
+  * ## `elements`
+  * ```protobuf
+  * repeated Element elements = 5;
+  * ```
+  * [Elements](element.html) of the node, e.g. video, image, gallery, embed, ...
+  */
   repeated Element elements = 5;
 }

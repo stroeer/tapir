@@ -1,3 +1,6 @@
+/**
+* @FileArticle Reference
+*/
 syntax = "proto3";
 
 package stroeer.core.v1;
@@ -5,39 +8,67 @@ package stroeer.core.v1;
 option go_package = "github.com/stroeer/tapir/go/stroeer/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
-
-// A Reference represents a link to another entity, for example an `Article`,
-// a `Section` or an external website, or a whole tree structure, for example
-// a section tree or navigation.
+/**
+* A Reference represents a link to another entity, for example an `Article`,
+* a `Section` or an external website, or a whole tree structure, for example
+* a section tree or navigation.
+* ```protobuf
+* message Reference {}
+* ```
+*/
 message Reference {
-  // The type is used for filtering in a list of references.
-  // It describes a use-case, which usually has a defined render position.
-  //
-  // Example entries:
-  // * `unspecified`
-  // * `stage_title`
-  // * `stage_themenbereiche`
-  // * `stage_header_links`
-  // * `stage_top_themen`
-  // * `stage_tag_category`
+  /**
+  * The `type` is used for filtering in a list of references.
+  * It describes a use-case, which usually has a defined render position.
+  *
+  * Example entries:
+  * * `unspecified`
+  * * `stage_title`
+  * * `stage_themenbereiche`
+  * * `stage_header_links`
+  * * `stage_top_themen`
+  * * `stage_tag_category`
+  * ```protobuf
+  * string type = 1;
+  * ```
+  */
   string type = 1;
 
-  // The text or label of the reference.
+  /**
+   * The text or label of the reference.
+   * ```protobuf
+   * string label = 2;
+   * ```
+   */
   string label = 2;
 
-  // The href of the reference. It can be relative or absolute.
+  /**
+   * The href of the reference. It can be relative or absolute.
+   * ```protobuf
+   * string href = 3;
+   * ```
+   */
   string href = 3;
-
-  // Contains all optional attributes of the reference.
-  // * `target`
-  // * `rel`
-  // * `flag:internal`
-  // * `layout`
-  //
-  // Clients must be resilient to unknown or missing entry sets.
+  /**
+  * Contains all optional attributes of the reference.
+  * * `target`
+  * * `rel`
+  * * `flag:internal`
+  * * `layout`
+  *
+  * Clients must be resilient to unknown or missing entry sets.
+  * ```protobuf
+  * map<string, string> fields = 4;
+  * ```
+  */
   map<string, string> fields = 4;
 
-  // Hierarchically structured references for representing a navigation or tree.
+  /**
+   * Hierarchically structured references for representing a navigation or tree.
+   * ```protobuf
+   * repeated Reference children = 5;
+   * ```
+   */
   repeated Reference children = 5;
 }
 

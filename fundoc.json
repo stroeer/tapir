@@ -1,0 +1,15 @@
+{
+  "docs_folder": "./docs_src",
+  "project_path": "./stroeer",
+  "files_patterns": [
+    "**/*.proto"
+  ],
+  "repositories": null,
+  "repository_host": "https://github.com/stroeer/tapir/blob/master/",
+  "comment_start_string": null,
+  "comment_prefix": null,
+  "comment_end_string": null,
+  "mdbook": true,
+  "book_name": "tapir",
+  "book_build_dir": "./docs/fundoc"
+}

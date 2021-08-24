@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Metadata - tapir</title>
+        <title>BodyNode - tapir</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html" class="active"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html" class="active"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,49 +134,110 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="metadata"><a class="header" href="#metadata">Metadata</a></h1>
-<p>Article metadata like publication state and technical timestamps.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L235-L236">[~]</a></p>
-<p>State of the article in the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L239-L240">[~]</a></p>
-<p>Manually set editorial timestamp ('Gültig von') at which the article is valid to deliver on
-digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L244-L246">[~]</a></p>
-<p>Manually set editorial date ('Gültig bis') till the article is valid to deliver on
-digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L250-L252">[~]</a></p>
-<p>Editorial date ('Publikationsdatum') of the first publication of the
-article in seconds of UTC time since Unix epoch.</p>
-<p>This date will be set automatically by the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L256-L260">[~]</a></p>
-<p>Editorial date ('Aktualisierungsdatum') at which the article
-was updated in seconds of UTC time since Unix epoch.</p>
-<p>On first publication this timestamp matches <code>publish_time</code>. Afterwards
-it's either updated manually in the content management system or
-automatically if the article content changed significantly.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L264-L270">[~]</a></p>
-<p>Technical timestamp at which the article was transformed in the
-API layer in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L274-L276">[~]</a></p>
-<p>Number of errors occurred while fetching and/or transforming optional
-article components (e.g. embeds) to an <code>article</code> message.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L280-L282">[~]</a></p>
-<p>State of the article in the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L286-L287">[~]</a></p>
-<p>Not specified.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L290-L291">[~]</a></p>
-<p>A published article.
-<a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L295-L296">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L302-L303">[~]</a></p>
+                        <h1 id="bodynode"><a class="header" href="#bodynode">BodyNode</a></h1>
+<pre><code class="language-protobuf">message BodyNode {}
+</code></pre>
+<p>Recursive body structure representing all types of possible
+body nodes inside an article.</p>
+<p>Clients must be resilient to unknown or missing nodes.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L968-L975">[~]</a></p>
+<h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
+<pre><code class="language-protobuf">string type = 1;
+</code></pre>
+<p>Type of the node (required).</p>
+<h3 id="html-types"><a class="header" href="#html-types">HTML <code>types</code></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+</tbody></table>
+<h3 id="custom-types"><a class="header" href="#custom-types">Custom <code>types</code></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>img</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>disclaimer</code></td><td>formatted text that holds a disclaimer, e.g. used in <code>/gesundheit/</code> or <code>/kaufbertatung/</code></td></tr>
+<tr><td><code>infobox</code></td><td>todo</td></tr>
+<tr><td><code>table_of_contents</code></td><td>todo</td></tr>
+<tr><td><code>article_sources</code></td><td>&quot;Quellenapparat&quot;, list like structure containing <code>children[type=article_source]</code>. See <a href="#article_sources">Samples</a>.</td></tr>
+<tr><td><code>article_source</code></td><td>A single &quot;Quellenapparat&quot; item usually containing <code>text</code> or <code>a</code></td></tr>
+</tbody></table>
+<h3 id="samples"><a class="header" href="#samples">Samples</a></h3>
+<h4 id="disclaimer"><a class="header" href="#disclaimer"><code>disclaimer</code></a></h4>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;disclaimer&quot;,
+  &quot;children&quot;: [
+    {
+      &quot;type&quot;: &quot;strong&quot;,
+      &quot;children&quot;: [
+        {
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;text&quot;: &quot;Wichtiger Hinweis: &quot;
+        }
+      ]
+    },
+    {
+      &quot;type&quot;: &quot;text&quot;,
+      &quot;text&quot;: &quot;Die Informationen ersetzen ...&quot;
+    }
+  ]
+}
+</code></pre>
+<h4 id="article_sources"><a class="header" href="#article_sources"><code>article_sources</code></a></h4>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;article_sources&quot;,
+  &quot;children&quot;: [
+    {
+      &quot;type&quot;: &quot;article_source&quot;
+      &quot;children&quot;: [
+        {
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;text&quot;: &quot;Nachrichtenagenturen dpa und AFP&quot;
+        }
+      ],
+    }
+  ]
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L978-L1053">[~]</a></p>
+<h2 id="text"><a class="header" href="#text"><code>text</code></a></h2>
+<pre><code class="language-protobuf">string text = 2;
+</code></pre>
+<p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1057-L1062">[~]</a></p>
+<h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
+<pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
+</code></pre>
+<p>Additional information for the node depending on it's type,
+e.g. <code>href</code> for <code>a</code> nodes.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1066-L1072">[~]</a></p>
+<h2 id="children"><a class="header" href="#children"><code>children</code></a></h2>
+<pre><code class="language-protobuf">repeated BodyNode children = 4;
+</code></pre>
+<p>Children of the node, e.g. the <code>text</code> node of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1076-L1081">[~]</a></p>
+<h2 id="elements"><a class="header" href="#elements"><code>elements</code></a></h2>
+<pre><code class="language-protobuf">repeated Element elements = 5;
+</code></pre>
+<p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1085-L1090">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="element.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="body.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="element.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -185,10 +246,10 @@ article components (e.g. embeds) to an <code>article</code> message.
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="element.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="body.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="element.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

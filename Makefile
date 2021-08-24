@@ -174,3 +174,7 @@ release: clean check check-git-branch ## Releases new version of gRPC source cod
 .PHONY:
 release-local-java: ## Releases generated Java code to your local maven repository
 	cd java && ./gradlew clean build publishToMavenLocal
+
+# to test locally, install fundoc via `cargo install fundoc`
+fundoc ::
+	@fundoc && cp docs/highlight.js docs/fundoc

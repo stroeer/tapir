@@ -135,11 +135,52 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="asset"><a class="header" href="#asset">Asset</a></h1>
-<p>Asset of an element.</p>
+<pre><code class="language-protobuf">message Asset {}
+</code></pre>
+<p>Asset of an <a href="element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
-on its <code>Asset.type</code> field. </p>
-<h3 id="samples"><a class="header" href="#samples">Samples</a></h3>
-<h4 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h4>
+on its <a href="#enum-assettype"><code>type</code></a> field.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L763-L771">[~]</a></p>
+<h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
+<p>Type of the asset. See <a href="#assettype"><code>AssetType</code></a></p>
+<pre><code class="language-protobuf">AssetType type = 1;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L775-L780">[~]</a></p>
+<h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
+<pre><code class="language-protobuf">map&lt;string, string&gt; fields = 2;
+</code></pre>
+<p>Generic map containing general content and configuration information of
+the asset.</p>
+<p>Clients must be resilient to unknown or missing entry sets.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L784-L793">[~]</a></p>
+<h2 id="metadata"><a class="header" href="#metadata"><code>metadata</code></a></h2>
+<pre><code class="language-protobuf">Metadata metadata = 3;
+</code></pre>
+<p>Technical metadata for this asset (state, validity, ...). See <a href="metadata.html"><code>Metadata</code></a>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L797-L802">[~]</a></p>
+<h2 id="enum-assettype"><a class="header" href="#enum-assettype"><code>enum AssetType</code></a></h2>
+<p>Type of an asset.</p>
+<pre><code class="language-protobuf">  enum AssetType {
+
+  // Not specified.
+  ASSET_TYPE_UNSPECIFIED = 0;
+
+  // An image asset.
+  IMAGE = 1;
+
+  // A video asset.
+  VIDEO = 2;
+
+  // An URL asset.
+  URL = 3;
+
+  // A metadata asset.
+  METADATA = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L807-L829">[~]</a></p>
+<h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
+<h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
 <pre><code class="language-javascript">{
   &quot;type&quot;: &quot;IMAGE&quot;,
   &quot;fields&quot;: {
@@ -160,52 +201,66 @@ on its <code>Asset.type</code> field. </p>
 <tr><td><code>width</code></td><td>the width of this cropped image, before scaling.</td></tr>
 <tr><td><code>height</code></td><td>the height of this cropped image, before scaling</td></tr>
 </tbody></table>
-<p>NOTES: </p>
+<p>NOTES:</p>
 <ul>
-<li><code>x + width &lt;= width(original_image)</code> otherwise the image genrator will fail</li>
-<li><code>y + height &lt;= height(original_image)</code> otherwise the image genrator will fail</li>
+<li><code>x + width &lt;= width(original_image)</code> otherwise the image generator will fail</li>
+<li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
-<pre><code class="language-protbuf">message Asset {
-// ...
+<h3 id="video-asset"><a class="header" href="#video-asset">Video Asset</a></h3>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;VIDEO&quot;
+  &quot;fields&quot;: {
+    &quot;duration_seconds&quot;: &quot;157.576&quot;,
+    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+    &quot;height&quot;: &quot;1080&quot;,
+    &quot;width&quot;: &quot;1920&quot;
+  }
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L418-L457">[~]</a></p>
-<p>Type of the asset. See <a href="#assettype">AssetType</a></p>
-<pre><code class="language-protobuf">AssetType type = 1;
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L460-L464">[~]</a></p>
-<p>Generic map containing general content and configuration information of
-the asset.</p>
-<p>Clients must be resilient to unknown or missing entry sets.</p>
-<pre><code class="language-protobuf">map&lt;string, string&gt; fields = 2;
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L468-L476">[~]</a></p>
-<p>Technical metadata of the asset. See <a href="metadata.html">Metadata</a></p>
-<pre><code class="language-protobuf">Metadata metadata = 3;
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L480-L484">[~]</a></p>
-<h2 id="assettype"><a class="header" href="#assettype">AssetType</a></h2>
-<p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum AssetType {
-
-// Not specified.
-ASSET_TYPE_UNSPECIFIED = 0;
-
-// An image asset.
-IMAGE = 1;
-
-// A video asset.
-VIDEO = 2;
-
-// An URL asset.
-URL = 3;
-
-// A metadata asset.
-METADATA = 4;
+<table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
+<tr><td><code>url</code></td><td>the URL of this asset, usually a m3u8 playlist URL</td></tr>
+<tr><td><code>mime_type</code></td><td>the mime type of this asset, usually a m3u8/HLS</td></tr>
+<tr><td><code>duration_seconds</code></td><td>video duration in seconds</td></tr>
+<tr><td><code>height</code></td><td>the height of the original video, may differ from the transcoded video.</td></tr>
+<tr><td><code>width</code></td><td>the width of the original video, may differ from the transcoded video.</td></tr>
+</tbody></table>
+<h3 id="video-metadata-asset"><a class="header" href="#video-metadata-asset">Video Metadata Asset</a></h3>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;METADATA&quot;,
+  &quot;fields&quot;: {
+    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+    &quot;frame_capture:denominator&quot;: &quot;5&quot;
+  }
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L489-L511">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/src/sample.proto#L532-L533">[~]</a></p>
+<table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
+<tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
+<tr><td><code>caption</code></td><td>the video's caption</td></tr>
+<tr><td><code>frame_capture:url</code></td><td>if <em>frame capture</em> was enabled during transcoding, this is the URL of the last <em>frame capture</em></td></tr>
+<tr><td><code>frame_capture:numerator</code></td><td><em>frame capture</em> images are numerated, starting at <code>0000000</code> which can be used as the poster image.</td></tr>
+<tr><td><code>frame_capture:denominator</code></td><td><code>numerator</code> and <code>denominator</code> can be used to to calculate which <em>frame capture</em> image must be displayed at a given time.</td></tr>
+</tbody></table>
+<p>Example: for <code>numerator=1</code> and <code>denominator=5</code>, we have to increment the <em>frame capture</em> every <code>5  / 1 == 5 seconds</code>:</p>
+<pre><code>00:00.000 --&gt; 00:05.000
+/thumbnails/thumb.0000000.jpg
+
+00:05.000 --&gt; 00:10.000
+/thumbnails/thumb.0000001.jpg
+
+00:10.000 --&gt; 00:15.000
+/thumbnails/thumb.0000002.jpg
+
+00:15.000 --&gt; 00:20.000
+/thumbnails/thumb.0000003.jpg
+
+...
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L850-L939">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L943-L944">[~]</a></p>
 
                     </main>
 
