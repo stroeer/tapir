@@ -20,7 +20,8 @@ jobs:
 
       - name: update highlight.js
         run: |
-          cp docs/highlight.js docs/fundoc
+          ls -lisa
+          cp ./docs_resources/highlight.js docs/highlight.js
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/tapir.png" height="200" alt="tapir"/>
+  <img src="docs_resources/tapir.png" height="200" alt="tapir"/>
    <h1>tapir</h1>
 </div>
 

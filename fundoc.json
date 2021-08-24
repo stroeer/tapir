@@ -11,5 +11,5 @@
   "comment_end_string": null,
   "mdbook": true,
   "book_name": "tapir",
-  "book_build_dir": "./docs/fundoc"
+  "book_build_dir": "./docs"
 }

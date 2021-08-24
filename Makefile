@@ -177,4 +177,4 @@ release-local-java: ## Releases generated Java code to your local maven reposito
 
 # to test locally, install fundoc via `cargo install fundoc`
 fundoc ::
-	@fundoc && cp docs/highlight.js docs/fundoc
+	@fundoc && cp docs_resources/highlight.js docs
