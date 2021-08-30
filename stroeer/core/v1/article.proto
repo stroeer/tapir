@@ -66,11 +66,11 @@ message Article {
   * ```
   * Hierarchical section tree information of the article (required).
   * See [`Reference`](reference.html)
-  
+  *
   * Sample:
   * ```javascript
   * {
-	*   "label": "Home"
+  *   "label": "Home"
   *   "href": "/",
   *   "children": [
   *         "label": "Spielwiese (Tests)",
@@ -200,8 +200,8 @@ message Article {
   *   // A gallery article.
   *   GALLERY = 4;
   *
-  *   // An oembed article.
-  *   OEMBED = 5;
+  *   // An embed article including an oembed or edge_side_include element
+  *   EMBED = 5;
   *
   *   // An author article (not available as standalone article).
   *   AUTHOR = 6;
@@ -227,8 +227,8 @@ message Article {
     // A gallery article.
     GALLERY = 4;
 
-    // An oembed article.
-    OEMBED = 5;
+    // An embed article including an oembed or edge_side_include element
+    EMBED = 5;
 
     // An author article (not available as standalone article).
     AUTHOR = 6;
@@ -491,7 +491,7 @@ message Element {
   * ## `type`
   *
   * Type of an element.
-  * 
+  *
   * ```protobuf
   *   enum ElementType {
   *   // Not specified, not supported or yet unknown.
