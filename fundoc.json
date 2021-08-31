@@ -2,7 +2,8 @@
   "docs_folder": "./docs_src",
   "project_path": "./stroeer",
   "files_patterns": [
-    "**/*.proto"
+    "**/*.proto",
+    "**/*.md"
   ],
   "repositories": null,
   "repository_host": "https://github.com/stroeer/tapir/blob/master/",

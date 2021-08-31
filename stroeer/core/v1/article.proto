@@ -354,9 +354,9 @@ message Metadata {
   google.protobuf.Timestamp start_time = 2;
 
   /**
-  * ## `start_time`
+  * ## `end_time`
   * ```protobuf
-  * google.protobuf.Timestamp start_time = 2;
+  * google.protobuf.Timestamp end_time = 3;
   * ```
   * Manually set editorial date (_Gültig bis_) till the article is valid to deliver on
   * digital platforms in seconds of UTC time since Unix epoch.
@@ -364,9 +364,9 @@ message Metadata {
   google.protobuf.Timestamp end_time = 3;
 
   /**
-  * ## `start_time`
+  * ## `publish_time`
   * ```protobuf
-  * google.protobuf.Timestamp start_time = 2;
+  * google.protobuf.Timestamp publish_time = 4;
   * ```
   * Editorial date (_Publikationsdatum_) of the first publication of the
   * article in seconds of UTC time since Unix epoch.
@@ -411,23 +411,28 @@ message Metadata {
 
   /**
   * ## `enum State`
-  * State of the article in the content management system.
-  * ```protobuf
-  *   enum State {
-  *   // Not specified.
-  *   STATE_UNSPECIFIED = 0;
   *
-  *   // A published article.
+  * State of the item ([`Article`](article.html), [`Element`](element.html))
+  * in the content management system. The `state` in combination with
+  * [start_time](#start_time) and [end_time](#end_time) determines whether or not
+  * this item should be rendered; this must be respected by all consumers especially
+  * when content is duplicated or cached.
+  *
+  * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
+  * This API combines those two into `State.DELETED`.
+  *
+  * ```protobuf
+  * enum State {
+  *   STATE_UNSPECIFIED = 0;
   *   PUBLISHED = 1;
+  *   DELETED = 2;
   * }
   * ```
   */
   enum State {
-    // Not specified.
     STATE_UNSPECIFIED = 0;
-
-    // A published article.
     PUBLISHED = 1;
+    DELETED = 2;
   }
 }
 
