@@ -66,7 +66,7 @@ message Article {
   * ```
   * Hierarchical section tree information of the article (required).
   * See [`Reference`](reference.html)
-  
+
   * Sample:
   * ```javascript
   * {
@@ -139,6 +139,7 @@ message Article {
   * This field will be `empty`/`null` for the teaser representation (e.g. section or overview pages) of the article.
   */
   Body body = 6;
+  repeated BodyPart bodyParts = 66;
 
   /**
   * ## `metadata`
@@ -491,7 +492,7 @@ message Element {
   * ## `type`
   *
   * Type of an element.
-  * 
+  *
   * ```protobuf
   *   enum ElementType {
   *   // Not specified, not supported or yet unknown.
@@ -959,6 +960,54 @@ message Body {
   * Recursive Body nodes. See [body nodes](bodynode.html).
   */
   repeated BodyNode children = 1;
+}
+
+// todo: rename to `Body`
+message BodyPart {
+  /*
+  * ### `types`
+  * | type | description |
+  * | -----| ------------|
+  * | `body` | formatted text and inlined elements |
+  * | `disclaimer` | formatted text that holds a disclaimer, e.g. used in `/gesundheit/` or `/kaufbertatung/` |
+  * | `infobox` | todo |
+  * | `table_of_contents` | todo |
+  * | `article_sources`| "Quellenapparat", list like structure containing `children[type=article_source]`. See [Samples](#article_sources). |
+  * | `article_source` | A single "Quellenapparat" item usually containing `text` or `a` |
+  */
+  string type = 1;
+  repeated BodyPart.Node children = 2;
+
+  message Node {
+    /**
+    * ### HTML `types`
+    * | type | description |
+    * | -----| ------------|
+    * | `text` | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
+    * | `p` | `paragraph` / `<p>`  |
+    * | `sub_headline` | a sub headline, may be part of the _table of contents_  |
+    * | `a` | `anchor` / `<a>`  |
+    * | `strong` | `strong` / `<strong>` |
+    * | `em` | `emphasis` / `<em>` |
+    * | `br` | `line break` / `<br>` |
+    * | `ul` | `unordered list` / `<ul>` |
+    * | `ol` | `ordered list` / `<ol>` |
+    * | `li` | `list` / `<li>`  |
+    *
+    * ### Inlined custom `types`
+    * | type | description |
+    * | -----| ------------|
+    * | `img` | inline image element, check `elements` |
+    * | `video` | inline video element, check `elements` |
+    * | `gallery` | inline gallery element, check `elements` |
+    * | `oembed` | inline oEmbed element, check `elements` |
+    */
+    string type = 1;
+    string text = 2;
+    map<string, string> fields = 3;
+    repeated BodyPart.Node children = 4;
+    repeated Element elements = 5;
+  }
 }
 
 /**
