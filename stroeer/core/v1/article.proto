@@ -419,7 +419,7 @@ message Metadata {
   * when content is duplicated or cached.
   *
   * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
-  * This API combines those two into `State.DELETED`.
+  * This message combines those two into `State.DELETED`.
   *
   * An Article is in `State.DRAFT` if it has never been published, or if the
   * [start_time](#start_time) lies in the future.
