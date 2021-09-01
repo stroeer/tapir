@@ -421,11 +421,15 @@ message Metadata {
   * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
   * This API combines those two into `State.DELETED`.
   *
+  * An Article is in `State.DRAFT` if it has never been published, or if the
+  * [start_time](#start_time) lies in the future.
+  *
   * ```protobuf
   * enum State {
   *   STATE_UNSPECIFIED = 0;
   *   PUBLISHED = 1;
   *   DELETED = 2;
+  *   DRAFT = 3;
   * }
   * ```
   */
@@ -433,6 +437,7 @@ message Metadata {
     STATE_UNSPECIFIED = 0;
     PUBLISHED = 1;
     DELETED = 2;
+    DRAFT = 3;
   }
 }
 
