@@ -176,5 +176,9 @@ release-local-java: ## Releases generated Java code to your local maven reposito
 	cd java && ./gradlew clean build publishToMavenLocal
 
 # to test locally, install fundoc via `cargo install fundoc`
-fundoc ::
+fundoc :: introduction.md
 	@fundoc && cp docs_resources/highlight.js docs
+	@rm stroeer/introduction.md || true
+
+introduction.md ::
+	awk 'BEGINFILE{print "/**\n* @Article 00 Introduction"}{print "* " $$0} END{ print "*/"}' docs_resources/introduction.md > stroeer/$@

@@ -15,6 +15,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: generate introduction
+        run: |
+          make introduction.md
+
       - name: Fundoc Action
         uses: daynin/fundoc-action@v0.2.1
 
@@ -22,6 +26,7 @@ jobs:
         run: |
           ls -lisa ./docs_resources ./docs
           sudo cp ./docs_resources/highlight.js ./docs/highlight.js
+          sudo rm stroeer/introduction.md || true
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
