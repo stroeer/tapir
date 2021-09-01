@@ -26,7 +26,7 @@ jobs:
         run: |
           ls -lisa ./docs_resources ./docs
           sudo cp ./docs_resources/highlight.js ./docs/highlight.js
-          sudo rm stroeer/introduction.md || true
+          sudo rm stroeer/introduction.md book.toml || true
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
