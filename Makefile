@@ -163,22 +163,26 @@ check-git-branch: check-git-clean
 	git checkout master
 
 .PHONY: release
-release: clean check check-git-branch ## Releases new version of gRPC source code packages
+release: clean check check-git-branch fundoc ## Releases new version of gRPC source code packages
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
 	git tag -a $(NEXT_GO_TAG) -m "$(NEXT_GO_TAG)"
 	git push origin $(NEXT_GO_TAG)
 
-
 .PHONY:
 release-local-java: ## Releases generated Java code to your local maven repository
 	cd java && ./gradlew clean build publishToMavenLocal
 
 # to test locally, install fundoc via `cargo install fundoc`
-fundoc :: introduction.md
-	@fundoc && cp docs_resources/highlight.js docs
+fundoc :: introduction.md ## Generate, Commit and Push documentation.
+	docker build --tag fundoc docs_resources
+	docker run --rm --volume ${CURDIR}/:/opt fundoc
+	cp docs_resources/highlight.js docs
 	@rm stroeer/introduction.md || true
+	git add --all docs/
+	git commit --message "updated docs"
+	git push
 
 introduction.md ::
 	awk 'BEGINFILE{print "/**\n* @Article 00 Introduction"}{print "* " $$0} END{ print "*/"}' docs_resources/introduction.md > stroeer/$@
