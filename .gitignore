@@ -21,5 +21,3 @@ java/.*
 
 # binaries
 protoc-gen-grpc-java
-
-docs/
