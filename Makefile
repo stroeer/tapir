@@ -156,7 +156,6 @@ else
 NEXT_VERSION		= $(shell echo $(MAJOR).$(MINOR).$$(($(PATCH)+1)))
 endif
 NEXT_TAG 			= v$(NEXT_VERSION)
-NEXT_GO_TAG 		= go/$(NEXT_TAG)
 
 .PHONY: check-git-clean
 check-git-clean: ## Verifies clean working directory
@@ -175,8 +174,6 @@ release: clean check check-git-branch fundoc ## Releases new version of gRPC sou
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
-	git tag -a $(NEXT_GO_TAG) -m "$(NEXT_GO_TAG)"
-	git push origin $(NEXT_GO_TAG)
 
 .PHONY:
 release-local-java: ## Releases generated Java code to your local maven repository
