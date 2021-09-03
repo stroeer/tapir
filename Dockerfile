@@ -25,7 +25,7 @@ RUN mv installer /
 
 
 # Go
-FROM golang:1.16 as gopher
+FROM golang:1.17.0 as gopher
 ARG GO_GRPC_TOOLS_VERSION
 
 COPY go /temp
