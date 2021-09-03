@@ -44,13 +44,17 @@ Run `make check` to run all checks.
 ### client libraries
 
 We generate packages for [java](https://github.com/stroeer/tapir/packages/235034) and [node](https://github.com/stroeer/tapir/packages/235031)
-automatically for each new tag which can be integrated in your build system. In addition, the generated [go source code](go/) is tagged for usage with go modules.
+automatically for each new tag which can be integrated in your build system. 
+
+In addition, a go module will be generated and pushed to [go-tapir](https://github.com/stroeer/go-tapir). 
 
 ## release a new tapir version
-To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
-In most cases you want to run
 
-    make BUMP=minor release
+To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
+
+## gRPC gateway
+
+To generate go code for a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) run `make [article|section]`.
 
 ## protoc docker image
 
