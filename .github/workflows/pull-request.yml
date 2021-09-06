@@ -8,37 +8,17 @@ on:
 jobs:
   buf:
     runs-on: ubuntu-latest
-    container: bufbuild/buf
-    env:
-      BUF_INPUT_HTTPS_USERNAME: $GITHUB_ACTOR
-      BUF_INPUT_HTTPS_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
-      - name: lint
-        run: buf lint
+      - uses: bufbuild/buf-setup-action@v0.3.1
 
-      - name: check breaking change
-        id: buf_breaking
-        run: |
-          buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml > message.txt || true
-          echo "::set-output name=message::$(cat message.txt)"
-          if [ -s message.txt ]; then
-            echo ::set-output name=failed::'true';
-          fi
+      - uses: bufbuild/buf-lint-action@v0.3.0
 
-      - if: steps.buf_breaking.outputs.failed == 'true'
-        name: comment PR
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: bufbuild/buf-breaking-action@v0.4.0
+        if: always()
         with:
-          msg: |
-            ## :fire: Breaking Changes
-            ```
-            ${{ steps.buf_breaking.outputs.message }}
-            ```
-          check_for_duplicate_msg: false
+          against: "https://github.com/stroeer/tapir.git#branch=master"
 
   java:
     runs-on: ubuntu-latest
