@@ -16,7 +16,7 @@ RUN npm ci
 
 
 # Java
-FROM gradle:7.1.1 as java
+FROM gradle:7.2.0 as java
 
 COPY java .
 
@@ -25,7 +25,7 @@ RUN mv installer /
 
 
 # Go
-FROM golang:1.16 as gopher
+FROM golang:1.17.0 as gopher
 ARG GO_GRPC_TOOLS_VERSION
 
 COPY go /temp
