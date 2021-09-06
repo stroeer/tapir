@@ -60,3 +60,15 @@ jobs:
           echo $RELEASE_TAG
           npm version $RELEASE_TAG
           npm publish
+
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: start release workflow in go-tapir
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          curl -X POST https://api.github.com/repos/stroeer/go-tapir/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.GO_TAPIR_TOKEN }} \
+          --data '{"event_type": "publish", "client_payload": { "tag": "'"$RELEASE_TAG"'" }}'

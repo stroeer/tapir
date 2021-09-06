@@ -3,9 +3,9 @@ package test
 import (
 	"testing"
 
-	"github.com/stroeer/tapir/go/stroeer/core/v1"
-	"github.com/stroeer/tapir/go/stroeer/page/article/v1"
-	"github.com/stroeer/tapir/go/stroeer/page/section/v1"
+	"github.com/stroeer/go-tapir/core/v1"
+	"github.com/stroeer/go-tapir/page/article/v1"
+	"github.com/stroeer/go-tapir/page/section/v1"
 	"google.golang.org/protobuf/proto"
 )
 

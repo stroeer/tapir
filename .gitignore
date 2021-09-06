@@ -21,3 +21,7 @@ java/.*
 
 # binaries
 protoc-gen-grpc-java
+
+# generated code
+gen/
+book.toml
