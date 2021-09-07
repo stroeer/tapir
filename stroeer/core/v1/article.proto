@@ -163,11 +163,11 @@ message Article {
   /**
   * ## `keywords`
   * ```protobuf
-  * repeated string keywords = 9;
+  * repeated Keyword keywords = 9;
   * ```
-  * Extracted entities from the article body like people, places, organizations etc.
+  * Extracted keywords from the article body like persons, locations, organizations etc.
   */
-  repeated string keywords = 9;
+  repeated Keyword keywords = 9;
 
   /**
   * ## `onwards`
@@ -180,6 +180,17 @@ message Article {
   * by the editorial department.
   */
   repeated int64 onwards = 10;
+
+  /**
+  * ## `entities`
+  * ```protobuf
+  * repeated string entities = 100;
+  * ```
+  * Extracted entities from the article body like persons, locations, organizations etc.
+  *
+  * `entities` are deprecated and should not be used by clients, use `keywords` instead.
+  */
+  repeated string entities = 100 [deprecated = true];
 
   /**
   * ## `enum ContentType`
@@ -1078,4 +1089,35 @@ message BodyNode {
   * [Elements](element.html) of the node, e.g. video, image, gallery, embed, ...
   */
   repeated Element elements = 5;
+}
+
+/**
+* @FileArticle Keyword
+*/
+
+/**
+* ```protobuf
+* message Keyword {}
+* ```
+* Extracted keywords from the article body like persons, locations, organizations etc.
+*/
+message Keyword {
+
+  /**
+  * ## `value`
+  * ```protobuf
+  * string value = 1;
+  * ```
+  * Unique value of this keyword.
+  */
+  string value = 1;
+
+  /**
+  * ## `type`
+  * ```protobuf
+  * string type = 2;
+  * ```
+  * Type of this keyword like `location`, `organization`, `person`
+  */
+  string type = 2;
 }
