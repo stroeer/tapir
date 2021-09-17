@@ -37,28 +37,35 @@ service ArticlePageService {
     scenario: not found
     description: article was not found in the datastore
     gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo
+    gRPC error payload: none
     HTTP status: 404
     cacheable: yes
 
-    scenario: not published yet
-    description: article was found in the datastore but according to it's metadata the article is not published yet
+    scenario: not activated
+    description: article was found in the datastore, but is not activated according to `metadata.start_time`
     gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo with info about the 'start_time'
+    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
+    HTTP status: 404
+    cacheable: yes
+
+    scenario: not published
+    description: article was found in the datastore, but it's state is neither `State.DELETED` nor `State.PUBLISHED`
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
     HTTP status: 404
     cacheable: yes
 
     scenario: expired
-    description: article was found in the datastore but is expired according to it's metadata
+    description: article was found in the datastore, but is expired according to `metadata.end_time`
     gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo with info about the 'end_time'
-    HTTP status: 404
+    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
+    HTTP status: 410
     cacheable: yes
 
     scenario: deleted/archived
-    description: article was found in the datastore but it's state is marked as deleted/archived
-    gRPC status: FAILED_PRECONDITION
-    gRPC error payload: google.rpc.PreconditionFailure with info about the state
+    description: article was found in the datastore, but it's state is `State.DELETED`
+    gRPC status: NOT_FOUND
+    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
     HTTP status: 410
     cacheable: yes
 
@@ -75,8 +82,6 @@ service ArticlePageService {
     gRPC error payload: none
     HTTP status: 504
     cacheable: no
-
-    **Redirect cases should be defined after requirements are clear**
    */
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
