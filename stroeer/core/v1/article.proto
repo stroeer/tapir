@@ -419,7 +419,9 @@ message Metadata {
   * when content is duplicated or cached.
   *
   * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
-  * This message combines those two into `State.DELETED`.
+  * This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
+  * if it was deleted in the content management system, or if it's [end_time](#end_time)
+  * has been reached.
   *
   * An Article is in `State.DRAFT` if it has never been published, or if the
   * [start_time](#start_time) lies in the future.
