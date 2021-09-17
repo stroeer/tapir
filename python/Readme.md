@@ -1,7 +1,7 @@
 # Setup
 
 ```shell
-$ pipenv install
+$ pipenv install --dev
 $ find ../stroeer -name "*.proto" -exec python -m grpc_tools.protoc \
     -I.. \
     --python_out=. \

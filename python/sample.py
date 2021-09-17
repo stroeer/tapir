@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
   with grpc.secure_channel(os.getenv('GRPC_ENDPOINT'), credentials) as channel:
     stub: ArticlePageServiceStub = ArticlePageServiceStub(channel)
-    response: GetArticlePageResponse = stub.GetArticlePage(GetArticlePageRequest(id=87971076))
+    response: GetArticlePageResponse = stub.GetArticlePage(GetArticlePageRequest(id=46716628))
 
     article_page: ArticlePage = response.article_page
 
