@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+/**
+ * @FileArticle ℠ArticleService
+ */
+
 package stroeer.core.v1;
 
 import "stroeer/core/v1/article.proto";

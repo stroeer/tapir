@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+/**
+ * @FileArticle ℠ArticlePageService
+ */
+
 package stroeer.page.article.v1;
 
 import "stroeer/page/article/v1/article_page.proto";
@@ -8,97 +12,147 @@ option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 option java_multiple_files = true;
 option java_package = "de.stroeer.page.article.v1";
 
-// Service for article pages.
+/**
+ * ```protobuf
+ * service ArticlePageService {
+ *   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+ * }
+ *```
+ * # Description
+ *
+ * turns the requested article with all render relevant data for the user and SEO bots.
+ *
+ */
 service ArticlePageService {
-  /**
-    ############################################################################
-    # Description
-    ############################################################################
-    Returns the requested article with all render relevant data for the user and SEO bots.
-
-    ############################################################################
-    # Status/Error scenario's
-    ############################################################################
-
-    scenario: found
-    description: article was found in the datastore and is published according to it's metadata
-    gRPC status: OK
-    gRPC error payload: none
-    HTTP status: OK
-    cacheable: yes
-
-    scenario: invalid id
-    description: article id is invalid
-    gRPC status: INVALID_ARGUMENT
-    gRPC error payload: google.rpc.BadRequest
-    HTTP status: 400
-    cacheable: yes
-
-    scenario: not found
-    description: article was not found in the datastore
-    gRPC status: NOT_FOUND
-    gRPC error payload: none
-    HTTP status: 404
-    cacheable: yes
-
-    scenario: not activated
-    description: article was found in the datastore, but is not activated according to `metadata.start_time`
-    gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
-    HTTP status: 404
-    cacheable: yes
-
-    scenario: not published
-    description: article was found in the datastore, but it's state is neither `State.DELETED` nor `State.PUBLISHED`
-    gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
-    HTTP status: 404
-    cacheable: yes
-
-    scenario: expired
-    description: article was found in the datastore, but is expired according to `metadata.end_time`
-    gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
-    HTTP status: 410
-    cacheable: yes
-
-    scenario: deleted/archived
-    description: article was found in the datastore, but it's state is `State.DELETED`
-    gRPC status: NOT_FOUND
-    gRPC error payload: google.rpc.ResourceInfo, check `description` field for recommended http status code
-    HTTP status: 410
-    cacheable: yes
-
-    scenario: internal
-    description: internal error processing the article
-    gRPC status: INTERNAL
-    gRPC error payload: none
-    HTTP status: 500
-    cacheable: no
-
-    scenario: timeout
-    description: timeout loading and processing the article
-    gRPC status: DEADLINE_EXCEEDED
-    gRPC error payload: none
-    HTTP status: 504
-    cacheable: no
-   */
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 
-// Request message to get an article page.
+/**
+ * ## Request message to get an article page.
+ * ```protobuf
+ * message GetArticlePageRequest {
+ *   # ID of the article defined by the content management system (required).
+ *   int64 id = 1;
+ * }
+ * ```
+ */
 message GetArticlePageRequest {
-  // ID of the article defined by the content management system (required).
   int64 id = 1;
 }
 
-// Response message for an article page request.
-//
-// Status codes:
-// * `OK`: article exists and is published
-// * `NOT_FOUND`: article doesn't exist or is not published according to it's `Metadata`
+/**
+ * ## Response message for an article page request.
+ *
+ * Status codes:
+ * - `OK` | article exists and is published
+ * - `NOT_FOUND` | article doesn't exist or is not published according to it's `Metadata`
+ *
+ * ```protobuf
+ * message GetArticlePageResponse {
+ *  # Article page with all render relevant data for the user and SEO bots.
+ *  stroeer.page.article.v1.ArticlePage article_page = 1;
+ * }
+ * ```
+ */
 message GetArticlePageResponse {
   // Article page with all render relevant data for the user and SEO bots.
   stroeer.page.article.v1.ArticlePage article_page = 1;
 }
+
+/**
+ *
+ * # Status/Error scenario's
+ *
+ * ## scenario `found`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article was found in the datastore and is published and valid according to it's [`metadata`](metadata.html) |
+ * | gRPC status | `OK (0)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `200 (OK)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `invalid id`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article id is invalid |
+ * | gRPC status | `INVALID_ARGUMENT (3)` |
+ * | gRPC error payload | google.rpc.Bad |
+ * | HTTP status | `400 (BAD REQUEST)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `not found`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article was not found in the datastore |
+ * | gRPC status | `NOT_FOUND (5)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `404 (NOT FOUND)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `not yet valid`
+ *
+ * |   |   |
+ * |---|---|
+ * | description |  article was found in the datastore, but is not valid yet according to its [`metadata.start_time`](metadata.html#start_time) |
+ * | gRPC status |  `NOT_FOUND (5)` |
+ * | gRPC error payload | google.rpc.ResourceInfo, check `description` field for recommended http status code |
+ * | HTTP status|  `404 (NOT FOUND)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `not published`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article was found in the datastore, but it's [`state`](metadata.html#state) is neither `State.DELETED` nor `State.PUBLISHED` |
+ * | gRPC status | `NOT_FOUND (5)` |
+ * | gRPC error payload | google.rpc.ResourceInfo, check `description` field for recommended http status code |
+ * | HTTP status | `404 (NOT FOUND)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `expired`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article was found in the datastore, but is expired according to `metadata.end_time` |
+ * | gRPC status | `NOT_FOUND (5)` |
+ * | gRPC error payload | google.rpc.ResourceInfo, check `description` field for recommended http status code |
+ * | HTTP status | `410 (GONE)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `deleted/archived`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | article was found in the datastore, but it's state is `State.DELETED` |
+ * | gRPC status | `NOT_FOUND (5)` |
+ * | gRPC error payload | google.rpc.ResourceInfo, check `description` field for recommended http status code |
+ * | HTTP status | `410 (GONE)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `internal`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | internal error processing the article |
+ * | gRPC status | `INTERNAL (13)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `500 (INTERNAL SERVER ERROR)`|
+ * | cacheable | `no` |
+ *
+ * ## scenario `timeout`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | timeout loading and processing the article |
+ * | gRPC status | `DEADLINE_EXCEEDED (4)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `504 (GATEWAY TIMEOUT)` |
+ * | cacheable | `no` |
+ *
+ */
+
 

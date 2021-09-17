@@ -187,13 +187,19 @@ release-local-java: ## Releases generated Java code to your local maven reposito
 # to test locally, install fundoc via `cargo install fundoc`
 fundoc: introduction.md ## Generate, Commit and Push documentation.
 	@echo "+ $@"
-	docker build --tag fundoc docs_resources
-	docker run --rm --volume ${CURDIR}/:/opt fundoc
+  ifeq (, $(shell which fundoc))
+	@echo "fundoc not installed natively, running docker build. When running locally, consider installing it."
+		docker build --tag fundoc docs_resources
+		docker run --rm --volume ${CURDIR}/:/opt fundoc
+  else
+		@echo "local fundoc installation found!"
+		fundoc
+  endif
 	cp docs_resources/highlight.js docs
 	@rm stroeer/introduction.md || true
-	git add --all docs/
-	git commit --message "updated docs"
-	git push
+	# git add --all docs/
+	# git commit --message "updated docs"
+	# git push
 
 introduction.md ::
 	awk 'BEGINFILE{print "/**\n* @Article 00 Introduction"}{print "* " $$0} END{ print "*/"}' docs_resources/introduction.md > stroeer/$@
