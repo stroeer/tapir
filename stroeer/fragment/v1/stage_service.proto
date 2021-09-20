@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+/**
+ * @FileArticle ℠StageService
+ */
+
 import "stroeer/page/stage/v1/stage.proto";
 
 package stroeer.fragment.v1;

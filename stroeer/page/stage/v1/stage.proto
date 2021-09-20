@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+/**
+ * @FileArticle Stage
+ */
+
 package stroeer.page.stage.v1;
 
 import "stroeer/core/v1/article.proto";
@@ -9,8 +13,16 @@ option go_package = "github.com/stroeer/go-tapir/page/stage/v1;stage";
 option java_multiple_files = true;
 option java_package = "de.stroeer.page.stage.v1";
 
-// A stream stage with companions and the main content area.
-// Embedded items can be editorial articles, advertisement and/or stages (only one level deep).
+/**
+ * A stream stage with companions and the main content area.
+ * Embedded items can be editorial articles, advertisement and/or stages (only one level deep).
+ * ```protobuf
+ * message Stage {
+ *   Configuration configuration = 1;
+ *   repeated Item stream_items = 2;
+ *   repeated Item companion_items = 3;
+ * ```
+ */
 message Stage {
   Configuration configuration = 1;
   repeated Item stream_items = 2;
