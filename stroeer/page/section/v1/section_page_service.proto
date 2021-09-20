@@ -68,7 +68,8 @@ service SectionPageService {
 
     Scenarios about incomplete section data needs to be defined
    */
-  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {}
+  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {
+  }
 }
 
 // Message to provide parameters when requesting data for a section page, currently only the path of the page.
@@ -93,4 +94,17 @@ message GetSectionPageResponse {
 
   // Total number of pages in this `section_path`
   int32 total_pages = 2;
+
+  PaginationType pagination_type = 3;
+}
+
+enum PaginationType {
+  // Not specified.
+  PAGINATION_TYPE_UNSPECIFIED = 0;
+
+  // The default pagination type.
+  FIXED_BLOCK = 1;
+
+  // Pagination type for Evergreen-Ressorts.
+  GHOST_BLOCK = 2;
 }
