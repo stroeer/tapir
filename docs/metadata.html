@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html" class="active"><strong aria-hidden="true">7.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html" class="active"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">9.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">10.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">11.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">12.</strong> ℠StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -220,7 +220,9 @@ in the content management system. The <code>state</code> in combination with
 this item should be rendered; this must be respected by all consumers especially
 when content is duplicated or cached.</p>
 <p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
-This message combines those two into <code>State.DELETED</code>.</p>
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
 <p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
 <a href="#start_time">start_time</a> lies in the future.</p>
 <pre><code class="language-protobuf">enum State {
@@ -230,8 +232,8 @@ This message combines those two into <code>State.DELETED</code>.</p>
   DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L412-L434">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L444-L445">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L412-L436">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L446-L447">[~]</a></p>
 
                     </main>
 

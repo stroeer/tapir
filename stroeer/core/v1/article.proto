@@ -250,35 +250,23 @@ message Article {
   *   // 'Kolumne'
   *   COLUMN = 2;
   *
-  *   // 'Bericht'
-  *   REPORT = 3;
-  *
   *   // 'Kommentar'
-  *   COMMENTARY = 4;
+  *   COMMENTARY = 3;
   *
   *   // 'Interview'
-  *   INTERVIEW = 5;
+  *   INTERVIEW = 4;
   *
   *   // 'Pro und Kontra/Streitgespräch'
-  *   CONTROVERSY = 6;
-  *
-  *   // 'Reportage'
-  *   STORY = 7;
-  *
-  *   // 'Rezension/Kritik'
-  *   RECENSION = 8;
+  *   CONTROVERSY = 5;
   *
   *   // 'Tagesanbruch'
-  *   TAGESANBRUCH = 9;
+  *   TAGESANBRUCH = 6;
   *
-  *   // 'Analyse'
-  *   ANALYSIS = 10;
-  *
-  *   // 'Satire/Glosse'
-  *   SATIRE = 11;
+  *   // 'Evergreen'
+  *   EVERGREEN = 7;
   *
   *   // Content originally imported from agency/tickers by the CMS
-  *   AGENCY_IMPORT = 12;
+  *   AGENCY_IMPORT = 8;
   * }
   * ```
   */
@@ -292,35 +280,23 @@ message Article {
     // 'Kolumne'
     COLUMN = 2;
 
-    // 'Bericht'
-    REPORT = 3;
-
     // 'Kommentar'
-    COMMENTARY = 4;
+    COMMENTARY = 3;
 
     // 'Interview'
-    INTERVIEW = 5;
+    INTERVIEW = 4;
 
     // 'Pro und Kontra/Streitgespräch'
-    CONTROVERSY = 6;
-
-    // 'Reportage'
-    STORY = 7;
-
-    // 'Rezension/Kritik'
-    RECENSION = 8;
+    CONTROVERSY = 5;
 
     // 'Tagesanbruch'
-    TAGESANBRUCH = 9;
+    TAGESANBRUCH = 6;
 
-    // 'Analyse'
-    ANALYSIS = 10;
-
-    // 'Satire/Glosse'
-    SATIRE = 11;
+    // 'Evergreen'
+    EVERGREEN = 7;
 
     // Content originally imported from agency/tickers by the CMS
-    AGENCY_IMPORT = 12;
+    AGENCY_IMPORT = 8;
   }
 }
 /**
@@ -419,7 +395,9 @@ message Metadata {
   * when content is duplicated or cached.
   *
   * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
-  * This message combines those two into `State.DELETED`.
+  * This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
+  * if it was deleted in the content management system, or if it's [end_time](#end_time)
+  * has been reached.
   *
   * An Article is in `State.DRAFT` if it has never been published, or if the
   * [start_time](#start_time) lies in the future.

@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html" class="active"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">7.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html" class="active"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">9.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">10.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">11.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">12.</strong> ℠StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,12 +171,12 @@ opener image/video etc. Those elements should be used to render the article
 as a teaser e.g. on section pages.</p>
 <p>Different types of elements like images or videos share
 the same message structure distinguished by the <code>ElementType</code> field.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L448-L457">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L450-L459">[~]</a></p>
 <h2><a class="header" href="#type" id="type"><code>type</code></a></h2>
 <pre><code class="language-protobuf">ElementType type = 1;
 </code></pre>
 <p><a href="#type-1"><code>Type</code></a> of the element.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L460-L465">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L462-L467">[~]</a></p>
 <h2><a class="header" href="#relations" id="relations"><code>relations</code></a></h2>
 <pre><code class="language-protobuf">repeated ElementRelation relations = 2;
 </code></pre>
@@ -184,18 +184,18 @@ the same message structure distinguished by the <code>ElementType</code> field.
 Example:
 One image element with the relations <code>teaser</code> and <code>opener</code> is used for
 both places. See <a href="#enum-elementrelation"><code>enum ElementRelation</code></a>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L469-L477">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L471-L479">[~]</a></p>
 <h2><a class="header" href="#asset" id="asset"><code>asset</code></a></h2>
 <pre><code class="language-protobuf">repeated Asset assets = 3;
 </code></pre>
 <p><a href="asset.html"><code>Asset(s)</code></a> of the element like images, videos or metadata (required).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L481-L486">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L483-L488">[~]</a></p>
 <h2><a class="header" href="#children" id="children"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated Element children = 4;
 </code></pre>
 <p>Children of the element. Some Elements can have nested elements themself,
 see sample section for <code>video</code> and <code>gallery</code> elements.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L490-L496">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L492-L498">[~]</a></p>
 <h2><a class="header" href="#type-1" id="type-1"><code>type</code></a></h2>
 <p>Type of an element.</p>
 <pre><code class="language-protobuf">  enum ElementType {
@@ -231,7 +231,7 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
   CITATION = 9;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L500-L538">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L502-L540">[~]</a></p>
 <h2><a class="header" href="#enum-elementrelation" id="enum-elementrelation">Enum ElementRelation</a></h2>
 <pre><code class="language-protobuf">enum ElementRelation {
   // Not specified.
@@ -245,7 +245,7 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
 }
 </code></pre>
 <p>Relation or usage of an element
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L573-L587">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L575-L589">[~]</a></p>
 <h2><a class="header" href="#samples" id="samples">Samples</a></h2>
 <p>For details on certain <code>fields</code> or usages of <a href="asset.html#samples"><code>Assets</code>, please follow this link.</a></p>
 <h3><a class="header" href="#image-element" id="image-element"><code>image element</code></a></h3>
@@ -405,8 +405,8 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L600-L766">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L769-L770">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L602-L768">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L771-L772">[~]</a></p>
 
                     </main>
 

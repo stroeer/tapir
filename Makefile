@@ -19,7 +19,7 @@ LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
 
 PROTO_FILES		:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
-PROTOC_VERSION	?= 3.17.3
+PROTOC_VERSION	?= 3.18.0
 PROTOC			?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS			+= --proto_path=$(DIR)
@@ -187,8 +187,14 @@ release-local-java: ## Releases generated Java code to your local maven reposito
 # to test locally, install fundoc via `cargo install fundoc`
 fundoc: introduction.md ## Generate, Commit and Push documentation.
 	@echo "+ $@"
-	docker build --tag fundoc docs_resources
-	docker run --rm --volume ${CURDIR}/:/opt fundoc
+  ifeq (, $(shell which fundoc))
+	@echo "fundoc not installed natively, running docker build. When running locally, consider installing it."
+		docker build --tag fundoc docs_resources
+		docker run --rm --volume ${CURDIR}/:/opt fundoc
+  else
+		@echo "local fundoc installation found!"
+		fundoc
+  endif
 	cp docs_resources/highlight.js docs
 	@rm stroeer/introduction.md || true
 	git add --all docs/

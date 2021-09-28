@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html" class="active"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">7.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html" class="active"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">9.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">10.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">11.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">12.</strong> ℠StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,7 +169,7 @@
 <p>Recursive body structure representing all types of possible
 body nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L978-L985">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L980-L987">[~]</a></p>
 <h2><a class="header" href="#type" id="type"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 1;
 </code></pre>
@@ -236,28 +236,28 @@ body nodes inside an article.</p>
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L988-L1063">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L990-L1065">[~]</a></p>
 <h2><a class="header" href="#text" id="text"><code>text</code></a></h2>
 <pre><code class="language-protobuf">string text = 2;
 </code></pre>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1067-L1072">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1069-L1074">[~]</a></p>
 <h2><a class="header" href="#fields" id="fields"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
 </code></pre>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1076-L1082">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1078-L1084">[~]</a></p>
 <h2><a class="header" href="#children" id="children"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated BodyNode children = 4;
 </code></pre>
 <p>Children of the node, e.g. the <code>text</code> node of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1086-L1091">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1088-L1093">[~]</a></p>
 <h2><a class="header" href="#elements" id="elements"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 5;
 </code></pre>
 <p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1095-L1100">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1097-L1102">[~]</a></p>
 
                     </main>
 
