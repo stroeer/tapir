@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html" class="active"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">9.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">10.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">11.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">12.</strong> ℠StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">6.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html" class="active"><strong aria-hidden="true">7.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">10.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">11.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">12.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">13.</strong> ℠StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -167,31 +167,31 @@
 <pre><code class="language-protobuf">message Metadata {}
 </code></pre>
 <p>Article metadata like publication state and technical timestamps.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L330-L334">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L317-L321">[~]</a></p>
 <h2><a class="header" href="#state" id="state"><code>state</code></a></h2>
 <pre><code class="language-protobuf">State state = 1;
 </code></pre>
 <p>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L337-L342">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L324-L329">[~]</a></p>
 <h2><a class="header" href="#start_time" id="start_time"><code>start_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp start_time = 2;
 </code></pre>
 <p>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L346-L352">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L333-L339">[~]</a></p>
 <h2><a class="header" href="#end_time" id="end_time"><code>end_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp end_time = 3;
 </code></pre>
 <p>Manually set editorial date (<em>Gültig bis</em>) till the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L356-L362">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L343-L349">[~]</a></p>
 <h2><a class="header" href="#publish_time" id="publish_time"><code>publish_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp publish_time = 4;
 </code></pre>
 <p>Editorial date (<em>Publikationsdatum</em>) of the first publication of the
 article in seconds of UTC time since Unix epoch.</p>
 <p>This date will be set automatically by the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L366-L374">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L353-L361">[~]</a></p>
 <h2><a class="header" href="#update_time" id="update_time"><code>update_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp update_time = 5;
 </code></pre>
@@ -200,19 +200,19 @@ was updated in seconds of UTC time since Unix epoch.</p>
 <p>On first publication this timestamp matches <code>publish_time</code>. Afterwards
 it's either updated manually in the content management system or
 automatically if the article content changed significantly.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L378-L388">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L365-L375">[~]</a></p>
 <h2><a class="header" href="#transformation_time" id="transformation_time"><code>transformation_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp transformation_time = 6;
 </code></pre>
 <p>Technical timestamp at which the article was transformed in the
 API layer in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L392-L398">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L379-L385">[~]</a></p>
 <h2><a class="header" href="#transformation_errors" id="transformation_errors"><code>transformation_errors</code></a></h2>
 <pre><code class="language-protobuf">int64 transformation_errors = 7;
 </code></pre>
 <p>Number of errors occurred while fetching and/or transforming optional
 article components (e.g. embeds) to an <code>article</code> message.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L402-L408">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L389-L395">[~]</a></p>
 <h2><a class="header" href="#enum-state" id="enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -232,15 +232,15 @@ has been reached.</p>
   DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L412-L436">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L446-L447">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L399-L423">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L433-L434">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="element.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="keyword.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -258,7 +258,7 @@ has been reached.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="element.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="keyword.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 

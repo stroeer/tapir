@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">6.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">9.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">10.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">11.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">12.</strong> ℠StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">2.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">3.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">4.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">5.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">6.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">7.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">10.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠curationservice.html"><strong aria-hidden="true">11.</strong> ℠CurationService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">12.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">13.</strong> ℠StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -260,9 +260,9 @@ opener image/video etc. Those elements should be used to render the article
 as a teaser e.g. on section pages. See <a href="element.html"><code>Element</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L152-L159">[~]</a></p>
 <h2><a class="header" href="#keywords" id="keywords"><code>keywords</code></a></h2>
-<pre><code class="language-protobuf">repeated string keywords = 9;
+<pre><code class="language-protobuf">repeated Keyword keywords = 9;
 </code></pre>
-<p>Extracted entities from the article body like people, places, organizations etc.
+<p>Extracted keywords from the article body like persons, locations, organizations etc.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L163-L168">[~]</a></p>
 <h2><a class="header" href="#onwards" id="onwards"><code>onwards</code></a></h2>
 <pre><code class="language-protobuf">repeated int64 onwards = 10;
@@ -271,6 +271,12 @@ as a teaser e.g. on section pages. See <a href="element.html"><code>Element</cod
 <p>Related articles are defined manually in the content management system
 by the editorial department.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L172-L180">[~]</a></p>
+<h2><a class="header" href="#entities" id="entities"><code>entities</code></a></h2>
+<pre><code class="language-protobuf">repeated string entities = 100;
+</code></pre>
+<p>Extracted entities from the article body like persons, locations, organizations etc.</p>
+<p><code>entities</code> are deprecated and should not be used by clients, use <code>keywords</code> instead.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L184-L191">[~]</a></p>
 <h2><a class="header" href="#enum-contenttype" id="enum-contenttype"><code>enum ContentType</code></a></h2>
 <pre><code class="language-protobuf">enum ContentType {
   // Not specified.
@@ -298,7 +304,7 @@ by the editorial department.
   AGENCY = 7;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L184-L212">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L195-L223">[~]</a></p>
 <h2><a class="header" href="#enum-contentsubtype" id="enum-contentsubtype"><code>enum ContentSubType</code></a></h2>
 <pre><code class="language-protobuf">enum ContentSubType {
   // Not specified.
@@ -310,39 +316,27 @@ by the editorial department.
   // 'Kolumne'
   COLUMN = 2;
 
-  // 'Bericht'
-  REPORT = 3;
-
   // 'Kommentar'
-  COMMENTARY = 4;
+  COMMENTARY = 3;
 
   // 'Interview'
-  INTERVIEW = 5;
+  INTERVIEW = 4;
 
   // 'Pro und Kontra/Streitgespräch'
-  CONTROVERSY = 6;
-
-  // 'Reportage'
-  STORY = 7;
-
-  // 'Rezension/Kritik'
-  RECENSION = 8;
+  CONTROVERSY = 5;
 
   // 'Tagesanbruch'
-  TAGESANBRUCH = 9;
+  TAGESANBRUCH = 6;
 
-  // 'Analyse'
-  ANALYSIS = 10;
-
-  // 'Satire/Glosse'
-  SATIRE = 11;
+  // 'Evergreen'
+  EVERGREEN = 7;
 
   // Content originally imported from agency/tickers by the CMS
-  AGENCY_IMPORT = 12;
+  AGENCY_IMPORT = 8;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L240-L283">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L326-L327">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L251-L282">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L313-L314">[~]</a></p>
 
                     </main>
 
