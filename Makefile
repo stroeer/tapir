@@ -59,8 +59,8 @@ all: $(PROTO_FILES)
 	@mkdir -p $(OUTPUT)
 	$(PROTOC) $(FLAGS) $*.proto
 
-LANGUAGES := java node go
-.PHONY: generate java node go
+LANGUAGES := java node node-legacy go
+.PHONY: generate java node node-legacy go
 generate: $(LANGUAGES) ## Generates source files for all supported languages
 
 $(LANGUAGES):
