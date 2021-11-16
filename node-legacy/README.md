@@ -3,9 +3,9 @@
 ## Usage
 
 ```bash
-npm i @stroeer/tapir-v1
+npm i @stroeer/tapir-v1-legacy
 # or
-yarn add @stroeer/tapir-v1
+yarn add @stroeer/tapir-v1-legacy
 ```
 
 ## Development
@@ -21,10 +21,10 @@ brew install nvm
 # add this to your shell/bash profile:
 # source /usr/local/opt/nvm/nvm.sh
 
-nvm install 16
-nvm use 16
+nvm install 14
+nvm use 14
 # optional
-nvm alias system 16
+nvm alias system 14
 ```
 
 ### install
@@ -59,7 +59,7 @@ A very basic example script to call the article page via the given node module a
 ```js
 import ArticlePageService from '@stroeer/tapir-v1/stroeer/page/article/v1/article_page_service_pb.js';
 import { ArticlePageServiceClient } from '@stroeer/tapir-v1/stroeer/page/article/v1/article_page_service_grpc_pb.js';
-import { ChannelCredentials } from '@grpc/grpc-js';
+import { ChannelCredentials } from 'grpc';
 
 // Client
 const credentials = ChannelCredentials.createSsl();

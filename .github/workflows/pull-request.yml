@@ -55,6 +55,25 @@ jobs:
         run: npm run checks
         working-directory: node
 
+  node-legacy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+
+      - name: npm ci
+        run: npm ci
+        working-directory: node-legacy
+
+      - run: make LANGUAGE=node-legacy
+
+      - name: Run node checks
+        run: npm run checks
+        working-directory: node-legacy
+
   go:
     runs-on: ubuntu-latest
     steps:

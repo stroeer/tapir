@@ -1,0 +1,44 @@
+{
+  "name": "@stroeer/tapir-v1-legacy",
+  "version": "0.0.1",
+  "description": "T-Online API Repo",
+  "engines": {
+    "node": "14",
+    "npm": "6"
+  },
+  "scripts": {
+    "checks": "npm run lint && npm run test",
+    "test": "jest",
+    "lint": "tsc -b",
+    "update": "npx npm-check --update",
+    "format": "prettier --write '__tests__/**/*.ts'"
+  },
+  "dependencies": {
+    "grpc": "1.24.11",
+    "@types/google-protobuf": "3.15.5",
+    "google-protobuf": "3.18.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "1.11.2",
+    "jest": "27.3.1",
+    "prettier": "2.4.1",
+    "ts-jest": "27.0.7",
+    "ts-protoc-gen": "0.15.0",
+    "typescript": "4.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stroeer/tapir.git"
+  },
+  "files": [
+    "stroeer"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stroeer/tapir/issues"
+  },
+  "homepage": "https://github.com/stroeer/tapir#readme",
+  "prettier": {
+    "singleQuote": true
+  }
+}
