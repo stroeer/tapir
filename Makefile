@@ -80,7 +80,8 @@ breaking: ## Detects breaking changes using https://docs.buf.build/breaking-over
 test: generate go-mod ## Runs all tests
 	@echo "+ $@"
 	cd java && ./gradlew clean build
-	cd node && npm run checks
+#	cd node && nvm use && npm run checks
+#	cd node-legacy && nvm use && npm run checks
 	cd go && go test -v .
 
 .PHONY: go-mod
