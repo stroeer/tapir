@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "16.x"
           registry-url: "https://npm.pkg.github.com"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,6 +60,41 @@ jobs:
           echo $RELEASE_TAG
           npm version $RELEASE_TAG
           npm publish
+
+
+  node-legacy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+          registry-url: "https://npm.pkg.github.com"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: npm ci
+        run: npm ci
+        working-directory: node-legacy
+
+      - name: make
+        run: make LANGUAGE=node-legacy
+
+      - name: Run node checks
+        run: npm run checks
+        working-directory: node-legacy
+
+      - name: npm publish
+        working-directory: node-legacy
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          npm version $RELEASE_TAG
+          npm publish
+
 
   go:
     runs-on: ubuntu-latest

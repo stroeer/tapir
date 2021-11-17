@@ -1,10 +1,10 @@
 {
-  "name": "@stroeer/tapir-v1",
-  "version": "0.16.1",
+  "name": "@stroeer/tapir-v1-legacy",
+  "version": "0.0.1",
   "description": "T-Online API Repo",
   "engines": {
-    "node": "16",
-    "npm": "8"
+    "node": "14",
+    "npm": "6"
   },
   "scripts": {
     "checks": "npm run lint && npm run test",
@@ -14,12 +14,11 @@
     "format": "prettier --write '__tests__/**/*.ts'"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.4.4",
+    "grpc": "1.24.11",
     "@types/google-protobuf": "3.15.5",
     "google-protobuf": "3.18.0"
   },
   "devDependencies": {
-    "@jest/types": "27.2.5",
     "grpc-tools": "1.11.2",
     "jest": "27.3.1",
     "prettier": "2.4.1",

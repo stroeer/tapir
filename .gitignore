@@ -8,6 +8,7 @@
 # node
 node_modules
 node/stroeer
+node-legacy/stroeer
 bin/protoc
 *.tgz
 
