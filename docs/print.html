@@ -4,28 +4,49 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>tapir</title>
+        
         <meta name="robots" content="noindex" />
+        
+        
+
+
         <!-- Custom HTML head -->
+        
+
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="icon" href="favicon.svg">
+        
+        
         <link rel="shortcut icon" href="favicon.png">
+        
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
+        
         <link rel="stylesheet" href="css/print.css" media="print">
+        
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
         <link rel="stylesheet" href="fonts/fonts.css">
+        
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        
+
+        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -84,6 +105,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
+                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -100,23 +122,29 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
+                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
+                        
                     </div>
 
                     <h1 class="menu-title">tapir</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
+                        
                     </div>
                 </div>
 
+                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -124,6 +152,8 @@
                         </ul>
                     </div>
                 </div>
+                
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -135,8 +165,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="00-introduction"><a class="header" href="#00-introduction">00 Introduction</a></h1>
-<h1 id="welcome-to-tapir"><a class="header" href="#welcome-to-tapir">Welcome to tAPIr</a></h1>
+                        <h1><a class="header" href="#00-introduction" id="00-introduction">00 Introduction</a></h1>
+<h1><a class="header" href="#welcome-to-tapir" id="welcome-to-tapir">Welcome to tAPIr</a></h1>
 <p><img src="../docs_resources/tapir.png" alt="img" /></p>
 <p>The <strong>t</strong>-online <strong>API</strong> <strong>r</strong>epository contains the interface definitions of 
 t-online APIs that support the <a href="https://grpc.io/">gRPC</a> protocol. 
@@ -146,7 +176,7 @@ client libraries, documentation and other artifacts.</p>
 (proto3) as their Interface Definition Language (IDL) to define the 
 API interface and the structure of the payload messages.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/introduction.md#L2-L14">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="article"><a class="header" href="#article">Article</a></h1>
+<h1><a class="header" href="#article" id="article">Article</a></h1>
 <pre><code class="language-protobuf">message Article {}
 </code></pre>
 <p>An article represents a piece of content created in the content management
@@ -157,25 +187,25 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This is sometimes
 referred to as <em>Teaser</em>.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L16-L28">[~]</a></p>
-<h2 id="id"><a class="header" href="#id"><code>id</code></a></h2>
+<h2><a class="header" href="#id" id="id"><code>id</code></a></h2>
 <pre><code class="language-protobuf">int64 id = 1;
 </code></pre>
 <p>Unique ID of the article defined by the content management system (required).
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L31-L36">[~]</a></p>
-<h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
+<h2><a class="header" href="#type" id="type"><code>type</code></a></h2>
 <pre><code class="language-protobuf">ContentType type = 2;
 </code></pre>
 <p>Main content type of the article (required).
 See list of supported <a href="article.html#enum-contenttype"><code>ContentType</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L40-L46">[~]</a></p>
-<h2 id="sub_type"><a class="header" href="#sub_type"><code>sub_type</code></a></h2>
+<h2><a class="header" href="#sub_type" id="sub_type"><code>sub_type</code></a></h2>
 <pre><code class="language-protobuf">ContentSubType sub_type = 3;
 </code></pre>
 <p>Subtype of the article. For <code>CONTENT_TYPE_ARTICLE</code> this field holds a
 sub type, for others like <code>CONTENT_TYPE_GALLERY</code> it may not.
 See list of supported <a href="article.html#enum-contentsubtype"><code>ContentSubType</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L50-L58">[~]</a></p>
-<h2 id="section_tree"><a class="header" href="#section_tree"><code>section_tree</code></a></h2>
+<h2><a class="header" href="#section_tree" id="section_tree"><code>section_tree</code></a></h2>
 <pre><code class="language-protobuf">stroeer.core.v1.Reference section_tree = 4;
 </code></pre>
 <p>Hierarchical section tree information of the article (required).
@@ -191,7 +221,7 @@ See <a href="reference.html"><code>Reference</code></a></p>
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L62-L80">[~]</a></p>
-<h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
+<h2><a class="header" href="#fields" id="fields"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 5;
 </code></pre>
 <p>Generic map containing general content and configuration information of
@@ -199,7 +229,7 @@ the article (required).</p>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
 <p>⚠ Clients must be resilient to unknown or missing entries. ⚠</p>
-<h3 id="for-content_type_article"><a class="header" href="#for-content_type_article">For <code>CONTENT_TYPE_ARTICLE</code></a></h3>
+<h3><a class="header" href="#for-content_type_article" id="for-content_type_article">For <code>CONTENT_TYPE_ARTICLE</code></a></h3>
 <p>this map will contain the following data:</p>
 <table><thead><tr><th>key</th><th>mandatory</th><th>description</th></tr></thead><tbody>
 <tr><td><code>headline</code></td><td>*</td><td>the headline for this content</td></tr>
@@ -218,49 +248,49 @@ will vary depending on the main type of the article.</p>
 <tr><td><code>meta_description</code></td><td></td><td>HTML <code>&lt;meta description&gt;</code></td></tr>
 <tr><td><code>reading_time_minutes</code></td><td></td><td>estimated reading time in minutes</td></tr>
 </tbody></table>
-<h3 id="for-content_type_gallery"><a class="header" href="#for-content_type_gallery">For <code>CONTENT_TYPE_GALLERY</code></a></h3>
+<h3><a class="header" href="#for-content_type_gallery" id="for-content_type_gallery">For <code>CONTENT_TYPE_GALLERY</code></a></h3>
 <p>this map will contain the following data:</p>
 <table><thead><tr><th>key</th><th>mandatory</th><th>description</th></tr></thead><tbody>
 <tr><td><code>headline</code></td><td>*</td><td>the headline for this content</td></tr>
 <tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L84-L128">[~]</a></td><td></td><td></td></tr>
 </tbody></table>
-<h2 id="body"><a class="header" href="#body"><code>body</code></a></h2>
+<h2><a class="header" href="#body" id="body"><code>body</code></a></h2>
 <pre><code class="language-protobuf">Body body = 6;
 </code></pre>
 <p>Recursive body structure of the article to render on detail pages. See <a href="bodynode.html"><code>BodyNode</code></a></p>
 <p>This field will be <code>empty</code>/<code>null</code> for the teaser representation (e.g. section or overview pages) of the article.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L132-L139">[~]</a></p>
-<h2 id="metadata"><a class="header" href="#metadata"><code>metadata</code></a></h2>
+<h2><a class="header" href="#metadata" id="metadata"><code>metadata</code></a></h2>
 <pre><code class="language-protobuf">Metadata metadata = 7;
 </code></pre>
 <p>Article metadata like publication state and technical timestamps. See <a href="metadata.html"><code>Metadata</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L143-L148">[~]</a></p>
-<h2 id="elements"><a class="header" href="#elements"><code>elements</code></a></h2>
+<h2><a class="header" href="#elements" id="elements"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 8;
 </code></pre>
 <p>Elements of the article which are not part of the body, e.g. author information
 opener image/video etc. Those elements should be used to render the article
 as a teaser e.g. on section pages. See <a href="element.html"><code>Element</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L152-L159">[~]</a></p>
-<h2 id="keywords"><a class="header" href="#keywords"><code>keywords</code></a></h2>
+<h2><a class="header" href="#keywords" id="keywords"><code>keywords</code></a></h2>
 <pre><code class="language-protobuf">repeated Keyword keywords = 9;
 </code></pre>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L163-L168">[~]</a></p>
-<h2 id="onwards"><a class="header" href="#onwards"><code>onwards</code></a></h2>
+<h2><a class="header" href="#onwards" id="onwards"><code>onwards</code></a></h2>
 <pre><code class="language-protobuf">repeated int64 onwards = 10;
 </code></pre>
 <p>IDs of articles related to this article.</p>
 <p>Related articles are defined manually in the content management system
 by the editorial department.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L172-L180">[~]</a></p>
-<h2 id="entities"><a class="header" href="#entities"><code>entities</code></a></h2>
+<h2><a class="header" href="#entities" id="entities"><code>entities</code></a></h2>
 <pre><code class="language-protobuf">repeated string entities = 100;
 </code></pre>
 <p>Extracted entities from the article body like persons, locations, organizations etc.</p>
 <p><code>entities</code> are deprecated and should not be used by clients, use <code>keywords</code> instead.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L184-L191">[~]</a></p>
-<h2 id="enum-contenttype"><a class="header" href="#enum-contenttype"><code>enum ContentType</code></a></h2>
+<h2><a class="header" href="#enum-contenttype" id="enum-contenttype"><code>enum ContentType</code></a></h2>
 <pre><code class="language-protobuf">enum ContentType {
   // Not specified.
   CONTENT_TYPE_UNSPECIFIED = 0;
@@ -288,7 +318,7 @@ by the editorial department.
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L195-L223">[~]</a></p>
-<h2 id="enum-contentsubtype"><a class="header" href="#enum-contentsubtype"><code>enum ContentSubType</code></a></h2>
+<h2><a class="header" href="#enum-contentsubtype" id="enum-contentsubtype"><code>enum ContentSubType</code></a></h2>
 <pre><code class="language-protobuf">enum ContentSubType {
   // Not specified.
   CONTENT_SUB_TYPE_UNSPECIFIED = 0;
@@ -320,31 +350,31 @@ by the editorial department.
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L251-L282">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L313-L314">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="asset"><a class="header" href="#asset">Asset</a></h1>
+<h1><a class="header" href="#asset" id="asset">Asset</a></h1>
 <pre><code class="language-protobuf">message Asset {}
 </code></pre>
 <p>Asset of an <a href="element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="asset.html#enum-assettype"><code>type</code></a> field.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L762-L770">[~]</a></p>
-<h2 id="type-1"><a class="header" href="#type-1"><code>type</code></a></h2>
+<h2><a class="header" href="#type-1" id="type-1"><code>type</code></a></h2>
 <p>Type of the asset. See <a href="asset.html#assettype"><code>AssetType</code></a></p>
 <pre><code class="language-protobuf">AssetType type = 1;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L774-L779">[~]</a></p>
-<h2 id="fields-1"><a class="header" href="#fields-1"><code>fields</code></a></h2>
+<h2><a class="header" href="#fields-1" id="fields-1"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 2;
 </code></pre>
 <p>Generic map containing general content and configuration information of
 the asset.</p>
 <p>Clients must be resilient to unknown or missing entry sets.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L783-L792">[~]</a></p>
-<h2 id="metadata-1"><a class="header" href="#metadata-1"><code>metadata</code></a></h2>
+<h2><a class="header" href="#metadata-1" id="metadata-1"><code>metadata</code></a></h2>
 <pre><code class="language-protobuf">Metadata metadata = 3;
 </code></pre>
 <p>Technical metadata for this asset (state, validity, ...). See <a href="metadata.html"><code>Metadata</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L796-L801">[~]</a></p>
-<h2 id="enum-assettype"><a class="header" href="#enum-assettype"><code>enum AssetType</code></a></h2>
+<h2><a class="header" href="#enum-assettype" id="enum-assettype"><code>enum AssetType</code></a></h2>
 <p>Type of an asset.</p>
 <pre><code class="language-protobuf">  enum AssetType {
 
@@ -365,8 +395,8 @@ the asset.</p>
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L806-L828">[~]</a></p>
-<h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
-<h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
+<h2><a class="header" href="#samples" id="samples">Samples</a></h2>
+<h3><a class="header" href="#image-asset" id="image-asset">Image Asset</a></h3>
 <pre><code class="language-javascript">{
   &quot;type&quot;: &quot;IMAGE&quot;,
   &quot;fields&quot;: {
@@ -392,7 +422,7 @@ the asset.</p>
 <li><code>x + width &lt;= width(original_image)</code> otherwise the image generator will fail</li>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
-<h3 id="video-asset"><a class="header" href="#video-asset">Video Asset</a></h3>
+<h3><a class="header" href="#video-asset" id="video-asset">Video Asset</a></h3>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;VIDEO&quot;
   &quot;fields&quot;: {
@@ -411,7 +441,7 @@ the asset.</p>
 <tr><td><code>height</code></td><td>the height of the original video, may differ from the transcoded video.</td></tr>
 <tr><td><code>width</code></td><td>the width of the original video, may differ from the transcoded video.</td></tr>
 </tbody></table>
-<h3 id="video-metadata-asset"><a class="header" href="#video-metadata-asset">Video Metadata Asset</a></h3>
+<h3><a class="header" href="#video-metadata-asset" id="video-metadata-asset">Video Metadata Asset</a></h3>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;METADATA&quot;,
   &quot;fields&quot;: {
@@ -447,29 +477,29 @@ the asset.</p>
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L849-L938">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L942-L943">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="body-1"><a class="header" href="#body-1">Body</a></h1>
+<h1><a class="header" href="#body-1" id="body-1">Body</a></h1>
 <pre><code class="language-protobuf">message Body {}
 </code></pre>
 <p>Body of the article to render on detail pages.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L946-L950">[~]</a></p>
-<h2 id="children"><a class="header" href="#children"><code>children</code></a></h2>
+<h2><a class="header" href="#children" id="children"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated BodyNode children = 1;
 </code></pre>
 <p>Recursive Body nodes. See <a href="bodynode.html">body nodes</a>.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L953-L958">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L963-L964">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bodynode"><a class="header" href="#bodynode">BodyNode</a></h1>
+<h1><a class="header" href="#bodynode" id="bodynode">BodyNode</a></h1>
 <pre><code class="language-protobuf">message BodyNode {}
 </code></pre>
 <p>Recursive body structure representing all types of possible
 body nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L967-L974">[~]</a></p>
-<h2 id="type-2"><a class="header" href="#type-2"><code>type</code></a></h2>
+<h2><a class="header" href="#type-2" id="type-2"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 1;
 </code></pre>
 <p>Type of the node (required).</p>
-<h3 id="html-types"><a class="header" href="#html-types">HTML <code>types</code></a></h3>
+<h3><a class="header" href="#html-types" id="html-types">HTML <code>types</code></a></h3>
 <table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
 <tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
 <tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
@@ -482,7 +512,7 @@ body nodes inside an article.</p>
 <tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
 <tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
 </tbody></table>
-<h3 id="custom-types"><a class="header" href="#custom-types">Custom <code>types</code></a></h3>
+<h3><a class="header" href="#custom-types" id="custom-types">Custom <code>types</code></a></h3>
 <table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
 <tr><td><code>img</code></td><td>inline image element, check <code>elements</code></td></tr>
 <tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
@@ -494,8 +524,8 @@ body nodes inside an article.</p>
 <tr><td><code>article_sources</code></td><td>&quot;Quellenapparat&quot;, list like structure containing <code>children[type=article_source]</code>. See <a href="bodynode.html#article_sources">Samples</a>.</td></tr>
 <tr><td><code>article_source</code></td><td>A single &quot;Quellenapparat&quot; item usually containing <code>text</code> or <code>a</code></td></tr>
 </tbody></table>
-<h3 id="samples-1"><a class="header" href="#samples-1">Samples</a></h3>
-<h4 id="disclaimer"><a class="header" href="#disclaimer"><code>disclaimer</code></a></h4>
+<h3><a class="header" href="#samples-1" id="samples-1">Samples</a></h3>
+<h4><a class="header" href="#disclaimer" id="disclaimer"><code>disclaimer</code></a></h4>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;disclaimer&quot;,
   &quot;children&quot;: [
@@ -515,7 +545,7 @@ body nodes inside an article.</p>
   ]
 }
 </code></pre>
-<h4 id="article_sources"><a class="header" href="#article_sources"><code>article_sources</code></a></h4>
+<h4><a class="header" href="#article_sources" id="article_sources"><code>article_sources</code></a></h4>
 <pre><code class="language-json">{
   &quot;type&quot;: &quot;article_sources&quot;,
   &quot;children&quot;: [
@@ -531,98 +561,30 @@ body nodes inside an article.</p>
   ]
 }
 </code></pre>
-<h4 id="toc-table-of-contents"><a class="header" href="#toc-table-of-contents"><code>toc</code> (table of contents)</a></h4>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;toc&quot;,
-  &quot;children&quot;: [
-    {
-      &quot;type&quot;: &quot;ul&quot;,
-      &quot;children&quot;: [
-        {
-          &quot;type&quot;: &quot;li&quot;,
-          &quot;children&quot;: [
-            {
-              &quot;type&quot;: &quot;a&quot;,
-              &quot;fields&quot;: {
-                &quot;href&quot;: &quot;#item-1&quot;
-              },
-              &quot;children&quot;: [
-                {
-                  &quot;type&quot;: &quot;text&quot;,
-                  &quot;text&quot;: &quot;Item (1)&quot;
-                }
-              ]
-            }
-          ]
-        },
-        {
-          &quot;type&quot;: &quot;li&quot;,
-          &quot;children&quot;: [
-            {
-              &quot;type&quot;: &quot;a&quot;,
-              &quot;fields&quot;: {
-                &quot;href&quot;: &quot;#item-2&quot;
-              },
-              &quot;children&quot;: [
-                {
-                  &quot;type&quot;: &quot;text&quot;,
-                  &quot;text&quot;: &quot;Item (2)&quot;
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-</code></pre>
-<p>The <em>toc</em> links to some corresponding <code>sub_headline</code> indicated by special flags
-that start with the prefix <code>toc_</code>. The API does not guarantee the uniqueness
-of the ids, this is in the hands of the CMS / the Editor.</p>
-<ul>
-<li><code>toc_id</code> correlates to the <code>href</code> attribute of the <code>BodyNode[@type=a]</code> above, The
-API guarantees this is a web-safe string (no umlauts, special characters or whitespaces)</li>
-<li><code>toc_included</code> is an indicator, whether or not this <code>sub_headline</code> is part of the toc.</li>
-</ul>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;sub_headline&quot;,
-  &quot;fields&quot;: {
-    &quot;toc_id&quot;: &quot;item-1&quot;,
-    &quot;toc_included&quot;: &quot;true&quot;
-  },
-  &quot;children&quot;: [
-    {
-      &quot;type&quot;: &quot;text&quot;,
-      &quot;text&quot;: &quot;Item (1)&quot;
-    }
-  ]
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L977-L1125">[~]</a></p>
-<h2 id="text"><a class="header" href="#text"><code>text</code></a></h2>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L977-L1052">[~]</a></p>
+<h2><a class="header" href="#text" id="text"><code>text</code></a></h2>
 <pre><code class="language-protobuf">string text = 2;
 </code></pre>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1129-L1134">[~]</a></p>
-<h2 id="fields-2"><a class="header" href="#fields-2"><code>fields</code></a></h2>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1056-L1061">[~]</a></p>
+<h2><a class="header" href="#fields-2" id="fields-2"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
 </code></pre>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1138-L1144">[~]</a></p>
-<h2 id="children-1"><a class="header" href="#children-1"><code>children</code></a></h2>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1065-L1071">[~]</a></p>
+<h2><a class="header" href="#children-1" id="children-1"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated BodyNode children = 4;
 </code></pre>
 <p>Children of the node, e.g. the <code>text</code> node of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1148-L1153">[~]</a></p>
-<h2 id="elements-1"><a class="header" href="#elements-1"><code>elements</code></a></h2>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1075-L1080">[~]</a></p>
+<h2><a class="header" href="#elements-1" id="elements-1"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 5;
 </code></pre>
 <p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1157-L1162">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1167-L1168">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="element"><a class="header" href="#element">Element</a></h1>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1084-L1089">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1094-L1095">[~]</a></p>
+<h1><a class="header" href="#element" id="element">Element</a></h1>
 <pre><code class="language-protobuf">message Element {}
 </code></pre>
 <p>Elements of the article which are not part of the body, e.g. author information
@@ -631,12 +593,12 @@ as a teaser e.g. on section pages.</p>
 <p>Different types of elements like images or videos share
 the same message structure distinguished by the <code>ElementType</code> field.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L437-L446">[~]</a></p>
-<h2 id="type-3"><a class="header" href="#type-3"><code>type</code></a></h2>
+<h2><a class="header" href="#type-3" id="type-3"><code>type</code></a></h2>
 <pre><code class="language-protobuf">ElementType type = 1;
 </code></pre>
 <p><a href="element.html#type-1"><code>Type</code></a> of the element.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L449-L454">[~]</a></p>
-<h2 id="relations"><a class="header" href="#relations"><code>relations</code></a></h2>
+<h2><a class="header" href="#relations" id="relations"><code>relations</code></a></h2>
 <pre><code class="language-protobuf">repeated ElementRelation relations = 2;
 </code></pre>
 <p>The usages (relations) of an element.
@@ -644,18 +606,18 @@ Example:
 One image element with the relations <code>teaser</code> and <code>opener</code> is used for
 both places. See <a href="element.html#enum-elementrelation"><code>enum ElementRelation</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L458-L466">[~]</a></p>
-<h2 id="asset-1"><a class="header" href="#asset-1"><code>asset</code></a></h2>
+<h2><a class="header" href="#asset-1" id="asset-1"><code>asset</code></a></h2>
 <pre><code class="language-protobuf">repeated Asset assets = 3;
 </code></pre>
 <p><a href="asset.html"><code>Asset(s)</code></a> of the element like images, videos or metadata (required).
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L470-L475">[~]</a></p>
-<h2 id="children-2"><a class="header" href="#children-2"><code>children</code></a></h2>
+<h2><a class="header" href="#children-2" id="children-2"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated Element children = 4;
 </code></pre>
 <p>Children of the element. Some Elements can have nested elements themself,
 see sample section for <code>video</code> and <code>gallery</code> elements.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L479-L485">[~]</a></p>
-<h2 id="type-4"><a class="header" href="#type-4"><code>type</code></a></h2>
+<h2><a class="header" href="#type-4" id="type-4"><code>type</code></a></h2>
 <p>Type of an element.</p>
 <pre><code class="language-protobuf">  enum ElementType {
   // Not specified, not supported or yet unknown.
@@ -691,7 +653,7 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L489-L527">[~]</a></p>
-<h2 id="enum-elementrelation"><a class="header" href="#enum-elementrelation">Enum ElementRelation</a></h2>
+<h2><a class="header" href="#enum-elementrelation" id="enum-elementrelation">Enum ElementRelation</a></h2>
 <pre><code class="language-protobuf">enum ElementRelation {
   // Not specified.
   ELEMENT_RELATION_UNSPECIFIED = 0;
@@ -705,9 +667,9 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
 </code></pre>
 <p>Relation or usage of an element
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L562-L576">[~]</a></p>
-<h2 id="samples-2"><a class="header" href="#samples-2">Samples</a></h2>
+<h2><a class="header" href="#samples-2" id="samples-2">Samples</a></h2>
 <p>For details on certain <code>fields</code> or usages of <a href="asset.html#samples"><code>Assets</code>, please follow this link.</a></p>
-<h3 id="image-element"><a class="header" href="#image-element"><code>image element</code></a></h3>
+<h3><a class="header" href="#image-element" id="image-element"><code>image element</code></a></h3>
 <ul>
 <li>usually consist of one <code>Asset[@type=METADATA]</code> and several <code>Asset[@type=IMAGE]</code>, one for each crop.</li>
 </ul>
@@ -749,7 +711,7 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
  }
  ]}
 </code></pre>
-<h3 id="video-element"><a class="header" href="#video-element"><code>video element</code></a></h3>
+<h3><a class="header" href="#video-element" id="video-element"><code>video element</code></a></h3>
 <ul>
 <li>usually consist of one <code>Asset[@type=METADATA]</code> and one <code>Asset[@type=VIDEO]</code>.</li>
 <li>If the video has a poster image, it can be found as a nested child <code>Element[type=IMAGE]</code> within <code>children[]</code></li>
@@ -812,7 +774,7 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
   ]
 }
 </code></pre>
-<h3 id="gallery-element"><a class="header" href="#gallery-element"><code>gallery element</code></a></h3>
+<h3><a class="header" href="#gallery-element" id="gallery-element"><code>gallery element</code></a></h3>
 <ul>
 <li>usually consist of one <code>Asset[@type=METADATA]</code> describing the gallery itself</li>
 <li>several nested <code>Element[@type=IMAGE]</code> within <code>children[]</code>, one for each image of this gallery</li>
@@ -866,51 +828,51 @@ see sample section for <code>video</code> and <code>gallery</code> elements.
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L589-L755">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L758-L759">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="keyword"><a class="header" href="#keyword">Keyword</a></h1>
+<h1><a class="header" href="#keyword" id="keyword">Keyword</a></h1>
 <pre><code class="language-protobuf">message Keyword {}
 </code></pre>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1171-L1175">[~]</a></p>
-<h2 id="value"><a class="header" href="#value"><code>value</code></a></h2>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1098-L1102">[~]</a></p>
+<h2><a class="header" href="#value" id="value"><code>value</code></a></h2>
 <pre><code class="language-protobuf">string value = 1;
 </code></pre>
 <p>Unique value of this keyword.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1179-L1184">[~]</a></p>
-<h2 id="type-5"><a class="header" href="#type-5"><code>type</code></a></h2>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1106-L1111">[~]</a></p>
+<h2><a class="header" href="#type-5" id="type-5"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 2;
 </code></pre>
 <p>Type of this keyword like <code>location</code>, <code>organization</code>, <code>person</code>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1188-L1193">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="metadata-2"><a class="header" href="#metadata-2">Metadata</a></h1>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1115-L1120">[~]</a></p>
+<h1><a class="header" href="#metadata-2" id="metadata-2">Metadata</a></h1>
 <pre><code class="language-protobuf">message Metadata {}
 </code></pre>
 <p>Article metadata like publication state and technical timestamps.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L317-L321">[~]</a></p>
-<h2 id="state"><a class="header" href="#state"><code>state</code></a></h2>
+<h2><a class="header" href="#state" id="state"><code>state</code></a></h2>
 <pre><code class="language-protobuf">State state = 1;
 </code></pre>
 <p>State of the article in the content management system. See <a href="metadata.html#enum-state"><code>enum State</code></a>
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L324-L329">[~]</a></p>
-<h2 id="start_time"><a class="header" href="#start_time"><code>start_time</code></a></h2>
+<h2><a class="header" href="#start_time" id="start_time"><code>start_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp start_time = 2;
 </code></pre>
 <p>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L333-L339">[~]</a></p>
-<h2 id="end_time"><a class="header" href="#end_time"><code>end_time</code></a></h2>
+<h2><a class="header" href="#end_time" id="end_time"><code>end_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp end_time = 3;
 </code></pre>
 <p>Manually set editorial date (<em>Gültig bis</em>) till the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L343-L349">[~]</a></p>
-<h2 id="publish_time"><a class="header" href="#publish_time"><code>publish_time</code></a></h2>
+<h2><a class="header" href="#publish_time" id="publish_time"><code>publish_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp publish_time = 4;
 </code></pre>
 <p>Editorial date (<em>Publikationsdatum</em>) of the first publication of the
 article in seconds of UTC time since Unix epoch.</p>
 <p>This date will be set automatically by the content management system.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L353-L361">[~]</a></p>
-<h2 id="update_time"><a class="header" href="#update_time"><code>update_time</code></a></h2>
+<h2><a class="header" href="#update_time" id="update_time"><code>update_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp update_time = 5;
 </code></pre>
 <p>Editorial date (<em>Aktualisierungsdatum</em>) at which the article
@@ -919,19 +881,19 @@ was updated in seconds of UTC time since Unix epoch.</p>
 it's either updated manually in the content management system or
 automatically if the article content changed significantly.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L365-L375">[~]</a></p>
-<h2 id="transformation_time"><a class="header" href="#transformation_time"><code>transformation_time</code></a></h2>
+<h2><a class="header" href="#transformation_time" id="transformation_time"><code>transformation_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp transformation_time = 6;
 </code></pre>
 <p>Technical timestamp at which the article was transformed in the
 API layer in seconds of UTC time since Unix epoch.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L379-L385">[~]</a></p>
-<h2 id="transformation_errors"><a class="header" href="#transformation_errors"><code>transformation_errors</code></a></h2>
+<h2><a class="header" href="#transformation_errors" id="transformation_errors"><code>transformation_errors</code></a></h2>
 <pre><code class="language-protobuf">int64 transformation_errors = 7;
 </code></pre>
 <p>Number of errors occurred while fetching and/or transforming optional
 article components (e.g. embeds) to an <code>article</code> message.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L389-L395">[~]</a></p>
-<h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
+<h2><a class="header" href="#enum-state" id="enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
 <a href="metadata.html#start_time">start_time</a> and <a href="metadata.html#end_time">end_time</a> determines whether or not
@@ -952,7 +914,7 @@ has been reached.</p>
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L399-L423">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L433-L434">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
+<h1><a class="header" href="#reference" id="reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
 a <code>Section</code> or an external website, or a whole tree structure, for example
 a section tree or navigation.</p>
@@ -996,7 +958,7 @@ It describes a use-case, which usually has a defined render position.</p>
 <pre><code class="language-protobuf">repeated Reference children = 5;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L66-L70">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="stage"><a class="header" href="#stage">Stage</a></h1>
+<h1><a class="header" href="#stage" id="stage">Stage</a></h1>
 <p>A stream stage with companions and the main content area.
 Embedded items can be editorial articles, advertisement and/or stages (only one level deep).</p>
 <pre><code class="language-protobuf">message Stage {
@@ -1005,22 +967,22 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
   repeated Item companion_items = 3;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/stage/v1/stage.proto#L16-L24">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="articlepageservice"><a class="header" href="#articlepageservice">℠ArticlePageService</a></h1>
+<h1><a class="header" href="#articlepageservice" id="articlepageservice">℠ArticlePageService</a></h1>
 <pre><code class="language-protobuf">service ArticlePageService {
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 </code></pre>
-<h1 id="description"><a class="header" href="#description">Description</a></h1>
+<h1><a class="header" href="#description" id="description">Description</a></h1>
 <p>turns the requested article with all render relevant data for the user and SEO bots.
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L15-L24">[~]</a></p>
-<h2 id="request-message-to-get-an-article-page"><a class="header" href="#request-message-to-get-an-article-page">Request message to get an article page.</a></h2>
+<h2><a class="header" href="#request-message-to-get-an-article-page" id="request-message-to-get-an-article-page">Request message to get an article page.</a></h2>
 <pre><code class="language-protobuf">message GetArticlePageRequest {
   # ID of the article defined by the content management system (required).
   int64 id = 1;
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L30-L37">[~]</a></p>
-<h2 id="response-message-for-an-article-page-request"><a class="header" href="#response-message-for-an-article-page-request">Response message for an article page request.</a></h2>
+<h2><a class="header" href="#response-message-for-an-article-page-request" id="response-message-for-an-article-page-request">Response message for an article page request.</a></h2>
 <p>Status codes:</p>
 <ul>
 <li><code>OK</code> | article exists and is published</li>
@@ -1032,8 +994,8 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L43-L55">[~]</a></p>
-<h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
-<h2 id="scenario-found"><a class="header" href="#scenario-found">scenario <code>found</code></a></h2>
+<h1><a class="header" href="#statuserror-scenarios" id="statuserror-scenarios">Status/Error scenario's</a></h1>
+<h2><a class="header" href="#scenario-found" id="scenario-found">scenario <code>found</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was found in the datastore and is published and valid according to it's <a href="metadata.html"><code>metadata</code></a></td></tr>
 <tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
@@ -1041,7 +1003,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-invalid-id"><a class="header" href="#scenario-invalid-id">scenario <code>invalid id</code></a></h2>
+<h2><a class="header" href="#scenario-invalid-id" id="scenario-invalid-id">scenario <code>invalid id</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article id is invalid</td></tr>
 <tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
@@ -1049,7 +1011,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-not-found"><a class="header" href="#scenario-not-found">scenario <code>not found</code></a></h2>
+<h2><a class="header" href="#scenario-not-found" id="scenario-not-found">scenario <code>not found</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was not found in the datastore</td></tr>
 <tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
@@ -1057,7 +1019,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-not-yet-valid"><a class="header" href="#scenario-not-yet-valid">scenario <code>not yet valid</code></a></h2>
+<h2><a class="header" href="#scenario-not-yet-valid" id="scenario-not-yet-valid">scenario <code>not yet valid</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was found in the datastore, but is not valid yet according to its <a href="metadata.html#start_time"><code>metadata.start_time</code></a></td></tr>
 <tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
@@ -1065,7 +1027,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-not-published"><a class="header" href="#scenario-not-published">scenario <code>not published</code></a></h2>
+<h2><a class="header" href="#scenario-not-published" id="scenario-not-published">scenario <code>not published</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was found in the datastore, but it's <a href="metadata.html#state"><code>state</code></a> is neither <code>State.DELETED</code> nor <code>State.PUBLISHED</code></td></tr>
 <tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
@@ -1073,7 +1035,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-expired"><a class="header" href="#scenario-expired">scenario <code>expired</code></a></h2>
+<h2><a class="header" href="#scenario-expired" id="scenario-expired">scenario <code>expired</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was found in the datastore, but is expired according to <code>metadata.end_time</code></td></tr>
 <tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
@@ -1081,7 +1043,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-deletedarchived"><a class="header" href="#scenario-deletedarchived">scenario <code>deleted/archived</code></a></h2>
+<h2><a class="header" href="#scenario-deletedarchived" id="scenario-deletedarchived">scenario <code>deleted/archived</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>article was found in the datastore, but it's state is <code>State.DELETED</code></td></tr>
 <tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
@@ -1089,7 +1051,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
 <tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
-<h2 id="scenario-internal"><a class="header" href="#scenario-internal">scenario <code>internal</code></a></h2>
+<h2><a class="header" href="#scenario-internal" id="scenario-internal">scenario <code>internal</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>internal error processing the article</td></tr>
 <tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
@@ -1097,7 +1059,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
 <tr><td>cacheable</td><td><code>no</code></td></tr>
 </tbody></table>
-<h2 id="scenario-timeout"><a class="header" href="#scenario-timeout">scenario <code>timeout</code></a></h2>
+<h2><a class="header" href="#scenario-timeout" id="scenario-timeout">scenario <code>timeout</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>timeout loading and processing the article</td></tr>
 <tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
@@ -1106,7 +1068,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>cacheable</td><td><code>no</code></td></tr>
 <tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L62-L155">[~]</a></td><td></td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="curationservice"><a class="header" href="#curationservice">℠CurationService</a></h1>
+<h1><a class="header" href="#curationservice" id="curationservice">℠CurationService</a></h1>
 <p>Get curation information from editors / CvD for overview pages, namely the homepage</p>
 <pre><code class="language-protobuf">service CurationService {
   # Responds with curation data for the provided request parameters.
@@ -1114,13 +1076,13 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/coremedia/v1/curation_service.proto#L15-L23">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sectionpageservice"><a class="header" href="#sectionpageservice">℠SectionPageService</a></h1>
+<h1><a class="header" href="#sectionpageservice" id="sectionpageservice">℠SectionPageService</a></h1>
 <p>############################################################################</p>
-<h1 id="description-1"><a class="header" href="#description-1">Description</a></h1>
+<h1><a class="header" href="#description-1" id="description-1">Description</a></h1>
 <p>############################################################################
 Get section data for a given section path</p>
 <p>############################################################################</p>
-<h1 id="statuserror-scenarios-1"><a class="header" href="#statuserror-scenarios-1">Status/Error scenario's</a></h1>
+<h1><a class="header" href="#statuserror-scenarios-1" id="statuserror-scenarios-1">Status/Error scenario's</a></h1>
 <p>############################################################################</p>
 <p>scenario: found
 description: all data for the section page was found
@@ -1160,13 +1122,13 @@ HTTP status: 504
 cacheable: no</p>
 <p>Scenarios about incomplete section data needs to be defined
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L17-L69">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="stageservice"><a class="header" href="#stageservice">℠StageService</a></h1>
+<h1><a class="header" href="#stageservice" id="stageservice">℠StageService</a></h1>
 <p>############################################################################</p>
-<h1 id="description-2"><a class="header" href="#description-2">Description</a></h1>
+<h1><a class="header" href="#description-2" id="description-2">Description</a></h1>
 <p>############################################################################
 Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
 <p>############################################################################</p>
-<h1 id="statuserror-scenarios-2"><a class="header" href="#statuserror-scenarios-2">Status/Error scenario's</a></h1>
+<h1><a class="header" href="#statuserror-scenarios-2" id="statuserror-scenarios-2">Status/Error scenario's</a></h1>
 <p>############################################################################</p>
 <p>scenario: found
 description: service responded without encountering exceptions
@@ -1192,31 +1154,59 @@ cacheable: no
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                        
+
+                        
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
             </nav>
 
         </div>
 
+        
+
+        
+
+        
+
+        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
+        
+
+        
+
+        
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+        
+
+        
+        
         <script type="text/javascript">
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
+        
+        
+
     </body>
 </html>
