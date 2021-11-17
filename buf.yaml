@@ -5,6 +5,7 @@ build:
     - .
   excludes:
     - node/node_modules
+    - node-legacy/node_modules
 lint:
   use:
     - DEFAULT
