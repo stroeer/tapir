@@ -183,6 +183,14 @@ release: clean check check-git-branch fundoc ## Releases new version of gRPC sou
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
+	if [ ! -z "${GITHUB_TOKEN}" ] ; then 								\
+    		curl 																					\
+    			-H "Authorization: token ${GITHUB_TOKEN}" 	\
+    			-X POST 																		\
+    			-H "Accept: application/vnd.github.v3+json"	\
+    			https://api.github.com/repos/stroeer/terraform-aws-ecs-fargate/releases \
+    			-d "{\"tag_name\":\"$(NEXT_TAG)\"}"; \
+    fi;
 
 .PHONY:
 release-local-java: ## Releases generated Java code to your local maven repository
