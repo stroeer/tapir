@@ -819,8 +819,8 @@ message Asset {
   *   // A video asset.
   *   VIDEO = 2;
   *
-  *   // An URL asset.
-  *   URL = 3;
+  *   // An external video asset (e.g. "glomex")
+  *   EXTERNAL_VIDEO = 3;
   *
   *   // A metadata asset.
   *   METADATA = 4;
@@ -838,8 +838,8 @@ message Asset {
     // A video asset.
     VIDEO = 2;
 
-    // An URL asset.
-    URL = 3;
+    // An external video asset (e.g. "glomex")
+    EXTERNAL_VIDEO = 3;
 
     // A metadata asset.
     METADATA = 4;
