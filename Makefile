@@ -188,8 +188,8 @@ release: clean check check-git-branch fundoc ## Releases new version of gRPC sou
     			-H "Authorization: token ${GITHUB_TOKEN}" 	\
     			-X POST 																		\
     			-H "Accept: application/vnd.github.v3+json"	\
-    			https://api.github.com/repos/stroeer/terraform-aws-ecs-fargate/releases \
-    			-d "{\"tag_name\":\"$(NEXT_TAG)\"}"; \
+    			https://api.github.com/repos/stroeer/tapir/releases \
+    			-d "{\"tag_name\":\"$(NEXT_TAG)\",\"generate_release_notes\":true}"; \
     fi;
 
 .PHONY:
