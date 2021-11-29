@@ -130,15 +130,15 @@ message Article {
   map<string, string> fields = 5;
 
   /**
-  * ## `body`
+  * ## `content`
   * ```protobuf
-  * Body body = 6;
+  * repeated Content content = 6;
   * ```
   * Recursive body structure of the article to render on detail pages. See [`BodyNode`](bodynode.html)
   *
   * This field will be `empty`/`null` for the teaser representation (e.g. section or overview pages) of the article.
   */
-  Body body = 6;
+  repeated Content content = 6;
 
   /**
   * ## `metadata`
@@ -920,155 +920,162 @@ message Asset {
 
 
 /**
-* @FileArticle Body
+* @FileArticle Content
 */
 
 /**
 * ```protobuf
-* message Body {}
+* message Content {}
 * ```
-* Body of the article to render on detail pages.
-*/
-message Body {
-  /**
-  * ## `children`
-  * ```protobuf
-  * repeated BodyNode children = 1;
-  * ```
-  * Recursive Body nodes. See [body nodes](bodynode.html).
-  */
-  repeated BodyNode children = 1;
-}
-
-/**
-* @FileArticle BodyNode
-*/
-
-/**
-* ```protobuf
-* message BodyNode {}
-* ```
-* Recursive body structure representing all types of possible
-* body nodes inside an article.
 *
-* Clients must be resilient to unknown or missing nodes.
 */
-message BodyNode {
-  /**
-  * ## `type`
-  * ```protobuf
-  * string type = 1;
-  * ```
-  * Type of the node (required).
-  *
-  * ### HTML `types`
-  * | type | description |
-  * | -----| ------------|
-  * | `text` | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
-  * | `p` | `paragraph` / `<p>`  |
-  * | `sub_headline` | a sub headline, may be part of the _table of contents_  |
-  * | `a` | `anchor` / `<a>`  |
-  * | `strong` | `strong` / `<strong>` |
-  * | `em` | `emphasis` / `<em>` |
-  * | `br` | `line break` / `<br>` |
-  * | `ul` | `unordered list` / `<ul>` |
-  * | `ol` | `ordered list` / `<ol>` |
-  * | `li` | `list` / `<li>`  |
-  *
-  * ### Custom `types`
-  * | type | description |
-  * | -----| ------------|
-  * | `img` | inline image element, check `elements` |
-  * | `video` | inline video element, check `elements` |
-  * | `gallery` | inline gallery element, check `elements` |
-  * | `oembed` | inline oEmbed element, check `elements` |
-  * | `disclaimer` | formatted text that holds a disclaimer, e.g. used in `/gesundheit/` or `/kaufbertatung/` |
-  * | `infobox` | todo |
-  * | `table_of_contents` | todo |
-  * | `article_sources`| "Quellenapparat", list like structure containing `children[type=article_source]`. See [Samples](#article_sources). |
-  * | `article_source` | A single "Quellenapparat" item usually containing `text` or `a` |
-  *
-  * ### Samples
-  *
-  * #### `disclaimer`
-  *
-  * ```json
-  * {
-  *   "type": "disclaimer",
-  *   "children": [
-  *     {
-  *       "type": "strong",
-  *       "children": [
-  *         {
-  *           "type": "text",
-  *           "text": "Wichtiger Hinweis: "
-  *         }
-  *       ]
-  *     },
-  *     {
-  *       "type": "text",
-  *       "text": "Die Informationen ersetzen ..."
-  *     }
-  *   ]
-  * }
-  * ```
-  *
-  * #### `article_sources`
-  * ```json
-  * {
-  *   "type": "article_sources",
-  *   "children": [
-  *     {
-  *       "type": "article_source"
-  *       "children": [
-  *         {
-  *           "type": "text",
-  *           "text": "Nachrichtenagenturen dpa und AFP"
-  *         }
-  *       ],
-  *     }
-  *   ]
-  * }
-  * ```
-  */
-  string type = 1;
-
-  /**
-  * ## `text`
-  *  ```protobuf
-  * string text = 2;
-  * ```
-  * Text of the node, only set for text nodes (`type == 'text'`).
-  */
-  string text = 2;
-
-  /**
-  * ## `fields`
-  * ```protobuf
-  * map<string, string> fields = 3;
-  * ```
-  * Additional information for the node depending on it's type,
-  * e.g. `href` for `a` nodes.
-  */
-  map<string, string> fields = 3;
+message Content {
 
   /**
   * ## `children`
   * ```protobuf
-  * repeated BodyNode children = 4;
+  * repeated ContentNode children = 1;
   * ```
-  * Children of the node, e.g. the `text` node of a `<p>` or a `<a>`.
+  * Recursive Content nodes.
   */
-  repeated BodyNode children = 4;
+  repeated ContentNode children = 1;
 
   /**
-  * ## `elements`
   * ```protobuf
-  * repeated Element elements = 5;
+  * enum ContentType {
+  *   // Not specified.
+  *   Content_TYPE_UNSPECIFIED = 0;
+  *
+  *   // The article body incl. all inline elements.
+  *   BODY = 1;
+  *
+  *   // A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.
+  *   ARTICLE_SOURCES = 2;
+  *
+  *   // A single article source ("Quelle")
+  *   ARTICLE_SOURCE = 3;
+  *
+  *   // A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles
+  *   DISCLAIMER = 4;
+  *
+  *   // Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.
+  *   TRUST_BOX = 5;
+  * }
   * ```
-  * [Elements](element.html) of the node, e.g. video, image, gallery, embed, ...
+  * Recursive structure representing all types of possible nodes inside an article.
+  *
+  * Clients must be resilient to unknown or missing nodes.
   */
-  repeated Element elements = 5;
+  enum ContentType {
+
+    // Not specified.
+    Content_TYPE_UNSPECIFIED = 0;
+
+    // The article body incl. all inline elements.
+    BODY = 1;
+
+    // A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.
+    ARTICLE_SOURCES = 2;
+
+    // A single article source ("Quelle")
+    ARTICLE_SOURCE = 3;
+
+    // A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles
+    DISCLAIMER = 4;
+
+    // Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.
+    TRUST_BOX = 5;
+  }
+
+  /**
+  * ```protobuf
+  * message ContentNode {}
+  * ```
+  * Recursive structure representing all types of possible nodes inside an article.
+  *
+  * Clients must be resilient to unknown or missing nodes.
+  */
+  message ContentNode {
+    /**
+    * ## `type`
+    * ```protobuf
+    * string type = 1;
+    * ```
+    * Type of the node (required).
+    *
+    * ### HTML `types`
+    * | type | description |
+    * | -----| ------------|
+    * | `text` | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
+    * | `p` | `paragraph` / `<p>`  |
+    * | `span` | todo / `<span>`  |
+    * | `sub_headline` | a sub headline, may be part of the _table of contents_  |
+    * | `a` | `anchor` / `<a>`  |
+    * | `strong` | `strong` / `<strong>` |
+    * | `em` | `emphasis` / `<em>` |
+    * | `br` | `line break` / `<br>` |
+    * | `ul` | `unordered list` / `<ul>` |
+    * | `ol` | `ordered list` / `<ol>` |
+    * | `li` | `list` / `<li>`  |
+    * | `table` | `table` / `<table>`  |
+    * | `thead` | `table head` / `<thead>`  |
+    * | `tbody` | `table body` / `<tbody>`  |
+    * | `tfoot` | `table footer` / `<tfoot>`  |
+    * | `th` | `table header` / `<th>`  |
+    * | `tr` | `table row` / `<tr>`  |
+    * | `td` | `table data cell` / `<td>`  |
+    *
+    * ### Custom `types`
+    * | type | description |
+    * | -----| ------------|
+    * | `img` | inline image element, check `elements` |
+    * | `video` | inline video element, check `elements` |
+    * | `gallery` | inline gallery element, check `elements` |
+    * | `oembed` | inline oEmbed element, check `elements` |
+    * | `esi` | inline edge side include element, check `elements` |
+    * | `quote` | inline quotation element, check `elements` |
+    * | `infobox` | todo |
+    * | `toc` | todo |
+    */
+    string type = 1;
+
+    /**
+    * ## `text`
+    *  ```protobuf
+    * string text = 2;
+    * ```
+    * Text of the node, only set for text nodes (`type == 'text'`).
+    */
+    string text = 2;
+
+    /**
+    * ## `fields`
+    * ```protobuf
+    * map<string, string> fields = 3;
+    * ```
+    * Additional information for the node depending on it's type,
+    * e.g. `href` for `a` nodes.
+    */
+    map<string, string> fields = 3;
+
+    /**
+    * ## `children`
+    * ```protobuf
+    * repeated ContentNode children = 4;
+    * ```
+    * Children of the node, e.g. the `text` node of a `<p>` or a `<a>`.
+    */
+    repeated ContentNode children = 4;
+
+    /**
+    * ## `elements`
+    * ```protobuf
+    * repeated Element elements = 5;
+    * ```
+    * [Elements](element.html) of the node, e.g. video, image, gallery, embed, ...
+    */
+    repeated Element elements = 5;
+  }
 }
 
 /**
