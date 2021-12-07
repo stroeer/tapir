@@ -215,7 +215,7 @@ fundoc: introduction.md ## Generate, Commit and Push documentation.
 	cp docs_resources/highlight.js docs
 	@rm stroeer/introduction.md || true
 	git add --all docs/
-	git commit --message "updated docs"
+	git commit --message "updated docs" || true # in case nothing changes
 	git push
 
 introduction.md ::
