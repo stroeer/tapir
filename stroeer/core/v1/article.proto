@@ -278,6 +278,9 @@ message Article {
   *
   *   // Content originally imported from agency/tickers by the CMS
   *   AGENCY_IMPORT = 8;
+  *
+  *   // Advertorial
+  *   ADVERTORIAL = 9;
   * }
   * ```
   */
@@ -308,6 +311,9 @@ message Article {
 
     // Content originally imported from agency/tickers by the CMS
     AGENCY_IMPORT = 8;
+
+    // Advertorial
+    ADVERTORIAL = 9;
   }
 }
 /**
