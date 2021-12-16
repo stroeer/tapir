@@ -4,6 +4,7 @@ package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
 import "stroeer/page/stage/v1/stage.proto";
+import "stroeer/page/configuration/v1/page_configuration.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 option java_multiple_files = true;
@@ -22,6 +23,9 @@ message ArticlePage {
 
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
   repeated stroeer.page.stage.v1.Stage stages = 3;
+
+  // Page configuration from the backend to control logic in the templates
+  stroeer.page.configuration.v1.PageConfiguration page_configuration = 4;
 }
 
 // An editorial article, which is related to another article.

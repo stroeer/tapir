@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package stroeer.page.configuration.v1;
+
+option go_package = "github.com/stroeer/go-tapir/page/configuration/v1;article";
+option java_multiple_files = true;
+option java_package = "de.stroeer.page.configuration.v1";
+
+// Page configuration from the backend to control logic in the templates
+message PageConfiguration {
+
+  // all page configuration regarding advertisement
+  message Advertisement {
+
+    // AdUnit values for loading ad scripts
+    message AdUnit {
+      // examples: "homepage", "sport", "gesundheit"
+      string one = 1;
+
+      // e.g. "sport_fussball_1bundesliga" or "sport_mehr-sport_DUMMY"
+      string two = 2;
+    }
+
+    // configuration for the taboola page integration
+    message Taboola {
+      // enable oder disable the rendering of the taboola widget on the page
+      bool enabled = 1;
+    }
+  }
+}
