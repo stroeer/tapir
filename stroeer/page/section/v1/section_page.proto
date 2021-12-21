@@ -4,7 +4,6 @@ package stroeer.page.section.v1;
 
 import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
-import "stroeer/page/configuration/v1/page_configuration.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/section/v1;section";
 option java_multiple_files = true;
@@ -14,9 +13,6 @@ option java_package = "de.stroeer.page.section.v1";
 message SectionPage {
   Section section = 1;
   repeated stroeer.page.stage.v1.Stage stages = 2;
-
-  // Page configuration from the backend to control logic in the templates
-  stroeer.page.configuration.v1.PageConfiguration page_configuration = 3;
 
   // All meta information to render a section page.
   message Section {

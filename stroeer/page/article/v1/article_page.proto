@@ -24,8 +24,8 @@ message ArticlePage {
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
   repeated stroeer.page.stage.v1.Stage stages = 3;
 
-  // Page configuration from the backend to control logic in the templates
-  stroeer.page.configuration.v1.PageConfiguration page_configuration = 4;
+  // companion items
+  repeated stroeer.page.stage.v1.Stage.Item companions = 4;
 }
 
 // An editorial article, which is related to another article.
