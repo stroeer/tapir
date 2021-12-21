@@ -52,10 +52,6 @@ In addition, a go module will be generated and pushed to [go-tapir](https://gith
 
 To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
 
-## gRPC gateway
-
-To generate go code for a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) run `make [article|section]`.
-
 ## protoc docker image
 
 We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) including `protoc` and all required

@@ -14,7 +14,6 @@ JAVA_DIR		= ./java/src/main/java
 NODE_DIR		= ./node
 NODE_LEGACY_DIR		= ./node-legacy
 GO_DIR			= ./gen/go
-GATEWAY_DIR	= ./gen/gateway
 
 LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
@@ -91,17 +90,6 @@ go-mod: ## Create tapir go module for generated code
 
 .PHONY: check
 check: lint breaking test ## Runs all checks
-
-GATEWAYS := article section
-$(GATEWAYS):
-	@echo "+ $@"
-	mkdir -p $(GATEWAY_DIR)
-	$(PROTOC) --proto_path=$(DIR) --grpc-gateway_out $(GATEWAY_DIR) \
-		--grpc-gateway_opt logtostderr=true \
-		--grpc-gateway_opt module=github.com/stroeer/go-tapir \
-		--grpc-gateway_opt standalone=true \
-		--grpc-gateway_opt grpc_api_configuration=stroeer/page/$@/v1/api_config_http.yaml \
-    stroeer/page/$@/v1/$@_page_service.proto
 
 .PHONY: clean
 clean: ## Deletes all generated files
