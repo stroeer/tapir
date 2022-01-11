@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 /**
- * @FileArticle ℠StageService
+ * @FileArticle ⚙︎ StageService
  */
 
 import "stroeer/page/stage/v1/stage.proto";
