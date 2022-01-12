@@ -194,58 +194,32 @@ message Article {
 
   /**
   * ## `enum ContentType`
-  * ```protobuf
-  * enum ContentType {
-  *   // Not specified.
-  *   CONTENT_TYPE_UNSPECIFIED = 0;
   *
-  *   // A text article.
-  *   ARTICLE = 1;
+  * | Enum value                  | Description                                                 |
+  * |-----------------------------|-------------------------------------------------------------|
+  * | `CONTENT_TYPE_UNSPECIFIED`  | unspecified                                                 |
+  * | `ARTICLE`                   | A text article, usually [_sub typed_][sub_type]             |
+  * | `IMAGE`                     | An image article, unused, deprecated                        |
+  * | `VIDEO`                     | A video article, contains HLS-videos, as well as external live streams or partner videos (glomex) |
+  * | `GALLERY`                   | A gallery article                                           |
+  * | `EMBED`                     | An embed article including an oembed or edge_side_include element |
+  * | `AUTHOR`                    | An author article, currently not implemented                |
+  * | `AGENCY`                    | An agency article, unused, deprecated                       |
+  * | `EXTERNAL`                  | An external article (teaser-like external article)          |
   *
-  *   // An image article (not available as standalone article).
-  *   IMAGE = 2;
+  * [sub_type]: #enum-contentsubtype
   *
-  *   // A video article.
-  *   VIDEO = 3;
-  *
-  *   // A gallery article.
-  *   GALLERY = 4;
-  *
-  *   // An embed article including an oembed or edge_side_include element
-  *   EMBED = 5;
-  *
-  *   // An author article (not available as standalone article).
-  *   AUTHOR = 6;
-  *
-  *   // An agency article (not available as standalone article).
-  *   AGENCY = 7;
-  * }
-  * ```
   */
   enum ContentType {
-    // Not specified.
     CONTENT_TYPE_UNSPECIFIED = 0;
-
-    // A text article.
     ARTICLE = 1;
-
-    // An image article (not available as standalone article).
-    IMAGE = 2;
-
-    // A video article.
+    IMAGE = 2 [deprecated = true];
     VIDEO = 3;
-
-    // A gallery article.
     GALLERY = 4;
-
-    // An embed article including an oembed or edge_side_include element
     EMBED = 5;
-
-    // An author article (not available as standalone article).
     AUTHOR = 6;
-
-    // An agency article (not available as standalone article).
-    AGENCY = 7;
+    AGENCY = 7 [deprecated = true];
+    EXTERNAL = 8;
   }
 
   /**
