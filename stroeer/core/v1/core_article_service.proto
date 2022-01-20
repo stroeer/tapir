@@ -37,6 +37,8 @@ option java_package = "de.stroeer.core.v1";
 service ArticleService {
   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
   rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
+  // Allow Empty as request param
+  // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
   rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
 }
 /**
