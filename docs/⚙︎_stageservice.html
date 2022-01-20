@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>℠SectionPageService - tapir</title>
+        <title>⚙︎ StageService - tapir</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">7.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">8.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">11.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html" class="active"><strong aria-hidden="true">12.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">13.</strong> ℠StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">7.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">8.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html" class="active"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,62 +134,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="sectionpageservice"><a class="header" href="#sectionpageservice">℠SectionPageService</a></h1>
+                        <h1 id="-stageservice"><a class="header" href="#-stageservice">⚙︎ StageService</a></h1>
 <p>############################################################################</p>
 <h1 id="description"><a class="header" href="#description">Description</a></h1>
 <p>############################################################################
-Get section data for a given section path</p>
+Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
 <p>############################################################################</p>
 <h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
 <p>############################################################################</p>
 <p>scenario: found
-description: all data for the section page was found
+description: service responded without encountering exceptions
 gRPC status: OK
 gRPC error payload: none
 HTTP status: OK
 cacheable: yes</p>
-<p>scenario: section path is empty
-description: client did not provide a section path
-gRPC status: INVALID_ARGUMENT
-gRPC error payload: google.rpc.BadRequest
-HTTP status: 400
-cacheable: yes</p>
-<p>scenario: section path is invalid
-description: client provided an invalid section path
-gRPC status: INVALID_ARGUMENT
-gRPC error payload: google.rpc.BadRequest
-HTTP status: 400
-cacheable: yes</p>
-<p>scenario: section path is unknown
-description: client provided an unknown section path
-gRPC status: NOT_FOUND
-gRPC error payload: none
-HTTP status: 404
-cacheable: yes</p>
 <p>scenario: internal
-description: internal error while loading section data
+description: internal error while loading data
 gRPC status: INTERNAL
 gRPC error payload: none
 HTTP status: 500
 cacheable: no</p>
 <p>scenario: timeout
-description: timeout while loading section data
+description: timeout while loading data
 gRPC status: DEADLINE_EXCEEDED
 gRPC error payload: none
 HTTP status: 504
-cacheable: no</p>
-<p>Scenarios about incomplete section data needs to be defined
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L17-L69">[~]</a></p>
+cacheable: no
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L16-L45">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="℠articlepageservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="⚙︎_sectionpageservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a rel="next" href="℠stageservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
                     </nav>
@@ -197,11 +175,8 @@ cacheable: no</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="℠articlepageservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="⚙︎_sectionpageservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a rel="next" href="℠stageservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 

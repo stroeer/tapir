@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">7.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">8.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="℠articlepageservice.html"><strong aria-hidden="true">11.</strong> ℠ArticlePageService</a></li><li class="chapter-item expanded "><a href="℠sectionpageservice.html"><strong aria-hidden="true">12.</strong> ℠SectionPageService</a></li><li class="chapter-item expanded "><a href="℠stageservice.html"><strong aria-hidden="true">13.</strong> ℠StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="asset.html"><strong aria-hidden="true">3.</strong> Asset</a></li><li class="chapter-item expanded "><a href="body.html"><strong aria-hidden="true">4.</strong> Body</a></li><li class="chapter-item expanded "><a href="bodynode.html"><strong aria-hidden="true">5.</strong> BodyNode</a></li><li class="chapter-item expanded "><a href="element.html"><strong aria-hidden="true">6.</strong> Element</a></li><li class="chapter-item expanded "><a href="keyword.html"><strong aria-hidden="true">7.</strong> Keyword</a></li><li class="chapter-item expanded "><a href="metadata.html"><strong aria-hidden="true">8.</strong> Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -925,7 +925,7 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
   repeated Item companion_items = 3;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/stage/v1/stage.proto#L16-L24">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="articlepageservice"><a class="header" href="#articlepageservice">℠ArticlePageService</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-articlepageservice"><a class="header" href="#-articlepageservice">⚙︎ ArticlePageService</a></h1>
 <pre><code class="language-protobuf">service ArticlePageService {
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
@@ -1026,7 +1026,178 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <tr><td>cacheable</td><td><code>no</code></td></tr>
 <tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L62-L155">[~]</a></td><td></td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sectionpageservice"><a class="header" href="#sectionpageservice">℠SectionPageService</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-corearticleservice"><a class="header" href="#-corearticleservice">⚙︎ CoreArticleService</a></h1>
+<pre><code class="language-protobuf">service ArticleService {
+  // get a single article by its `article_id`
+  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+  // query multiple articles at once
+  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
+  // list the available root sections
+  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
+}
+</code></pre>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
+by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
+a query.</p>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
+<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
+is not <code>PUBLISHED</code>.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L17-L34">[~]</a></p>
+<h1 id="-getarticle"><a class="header" href="#-getarticle"><code>⚙︎ GetArticle</code></a></h1>
+<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+</code></pre>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
+an <code>Error</code>, otherwise. (todo: describe errors)</p>
+<h2 id="getarticlerequest"><a class="header" href="#getarticlerequest"><code>GetArticleRequest</code></a></h2>
+<pre><code class="language-protobuf">message GetArticleRequest {
+  int64 id = 1;
+}
+</code></pre>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>id</code></td><td>[required] Unique ID of the article defined by the content management system</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L44-L61">[~]</a></td><td></td><td></td></tr>
+</tbody></table>
+<h1 id="-listarticles"><a class="header" href="#-listarticles"><code>⚙︎ ListArticles</code></a></h1>
+<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
+</code></pre>
+<p>returns a <a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
+articles matching the query. If the results exceed 100 Articles or 1 MB
+the response can be paginated to obtain additional results.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L67-L76">[~]</a></p>
+<h2 id="listarticlesrequest"><a class="header" href="#listarticlesrequest"><code>ListArticlesRequest</code></a></h2>
+<pre><code class="language-protobuf">message ListArticlesRequest {
+   Query query = 1;
+   Filters filters = 2;
+   int32 page_size = 3;
+   string page_token = 4;
+}
+</code></pre>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>query</code></td><td><a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#query"><code>Query</code></a></td><td>[required] find items based on query values</td></tr>
+<tr><td><code>filters</code></td><td><a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#filters"><code>Filters</code></a></td><td>[optional] A filter expression is applied after a Query finishes, but before the results are returned.</td></tr>
+<tr><td><code>page_size</code></td><td><code>int32</code></td><td>[optional] limit the results per page, default is <code>10</code>; max is <code>100</code> (or result exceeds <code>1 MB</code>). Values above 100 will be coerced to 100. If results get truncated, you can use pagination.</td></tr>
+<tr><td><code>page_token</code></td><td><code>string</code></td><td>[optional]  A page token, received from a previous <code>ListArticles</code> call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to <code>ListArticles</code> must match the call that provided the page token.</td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L79-L98">[~]</a></p>
+<h2 id="query"><a class="header" href="#query"><code>Query</code></a></h2>
+<pre><code class="language-protobuf">message Query {
+   string path = 1;
+   Type type = 2;
+   SortBy sort_by = 3;
+   Order order = 4;
+   google.protobuf.Timestamp from_time = 5;
+   google.protobuf.Timestamp to_time = 6;
+}
+</code></pre>
+<p>Specify the search criteria. The list-API is build around sections which
+come in two flavors:</p>
+<ol>
+<li><code>home_section</code>: find all articles that resides within that exact section.
+The <code>home_section</code> is equal to the settings found in the CMS, e.g. <code>/nachrichten/wissen/</code></li>
+<li><code>root_section</code>: this property is derived from the <code>home_section</code> path
+by retaining only the <em>root</em> folder, e.g. for <code>/nachrichten/wissen/</code> the <code>root_section</code>
+becomes <code>/nachrichten/</code></li>
+</ol>
+<p>In most cases using the <code>root_section</code> should yield better results since
+it will also find content in nested sections whereas <code>home_section</code> would
+only return content which was curated into the exact section that was queried.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>path</code></td><td><code>string</code></td><td>[required] <code>path</code>, with leading and trailing slash (e.g. <code>/nachrichten/</code>)</td></tr>
+<tr><td><code>type</code></td><td><a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#type"><code>Type</code></a></td><td>[required] query type, either <code>Type.HOME_SECTION</code> or <code>Type.ROOT_SECTION</code></td></tr>
+<tr><td><code>sort_by</code></td><td><a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#sortby"><code>SortBy</code></a></td><td>[required] sorting of the result set, either <code>SortBy.UPDATE_TIME</code> or <code>SortBy.PUBLISH_TIME</code></td></tr>
+<tr><td><code>order</code></td><td><a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#order"><code>Order</code></a></td><td>[optional] sorting direction for the results regarding the <code>sort_by</code> field, default is <code>Order.ASCENDING</code></td></tr>
+<tr><td><code>from_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>[optional] time constraint that refers to the <code>sort_by</code> field.</td></tr>
+<tr><td><code>to_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>[optional] time constraint that refers to the <code>sort_by</code> field.</td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L107-L144">[~]</a></p>
+<h2 id="type-6"><a class="header" href="#type-6"><code>Type</code></a></h2>
+<pre><code class="language-protobuf">enum Type {
+   TYPE_UNSPECIFIED = 0;
+   HOME_SECTION = 1;
+   ROOT_SECTION = 2;
+}
+</code></pre>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>HOME_SECTION</code></td><td>query by exact <em>home section</em> which is configured in the CMS</td></tr>
+<tr><td><code>ROOT_SECTION</code></td><td>query by exact <em>root section</em> which is derived from <em>home section</em> when only retaining the first level of the <code>path</code></td></tr>
+</tbody></table>
+<p>see the description <a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#query">above</a> why these query types exist, also see
+<a href="article.html#section_tree"><code>Reference</code></a> how section information are stored.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L155-L172">[~]</a></p>
+<h2 id="sortby"><a class="header" href="#sortby"><code>SortBy</code></a></h2>
+<pre><code class="language-protobuf">enum SortBy {
+   SORT_BY_UNSPECIFIED = 0;
+   UPDATE_TIME = 1;
+   PUBLISH_TIME = 2;
+}
+</code></pre>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>SORT_BY_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>UPDATE_TIME</code></td><td>sort by the content's <a href="metadata.html#update_time"><code>update_time</code></a></td></tr>
+<tr><td><code>PUBLISH_TIME</code></td><td>sort by the content's <a href="metadata.html#publish_time"><code>publish_time</code></a></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L180-L197">[~]</a></p>
+<h2 id="order"><a class="header" href="#order"><code>Order</code></a></h2>
+<pre><code class="language-protobuf">enum Order {
+   ORDER_UNSPECIFIED = 0;
+   ASCENDING = 1;
+   DESCENDING = 2;
+}
+</code></pre>
+<p>order of index traversal, default: ascending.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ORDER_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>ASCENDING</code></td><td>ascending order index traversal</td></tr>
+<tr><td><code>DESCENDING</code></td><td>descending order index traversal</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L205-L222">[~]</a></td><td></td></tr>
+</tbody></table>
+<h2 id="filters"><a class="header" href="#filters"><code>Filters</code></a></h2>
+<pre><code class="language-protobuf">message Filters {
+   repeated Article.ContentType type_includes = 1;
+   repeated Article.ContentType type_excludes = 2;
+   repeated Article.ContentSubType sub_type_includes = 3;
+   repeated Article.ContentSubType sub_type_excludes = 4;
+}
+</code></pre>
+<p>If you need to further refine the Query results, you can optionally provide
+a filter expression. A filter expression determines which items within the
+Query results should be returned to you. All of the other results are discarded.</p>
+<p>A filter expression is applied after a Query finishes, but before the results
+are returned. Therefore, a Query consumes the same amount of read capacity,
+regardless of whether a filter expression is present.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type_includes</code></td><td><a href="article.html#type"><code>ContentType</code></a></td><td><code>type</code> to include into the result set</td></tr>
+<tr><td><code>type_includes</code></td><td><a href="article.html#type"><code>ContentType</code></a></td><td><code>type</code> to exclude from the result set</td></tr>
+<tr><td><code>sub_type_includes</code></td><td><a href="article.html#sub_type"><code>ContentSubType</code></a></td><td><code>sub_type</code> to include into the result set</td></tr>
+<tr><td><code>sub_type_excludes</code></td><td><a href="article.html#sub_type"><code>ContentSubType</code></a></td><td><code>sub_type</code> to exclude from the result set</td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L232-L258">[~]</a></p>
+<h2 id="listarticlesresponse"><a class="header" href="#listarticlesresponse"><code>ListArticlesResponse</code></a></h2>
+<pre><code class="language-protobuf">// query multiple articles
+message ListArticlesResponse {
+  repeated stroeer.core.v1.Article articles = 1;
+  string next_page_token = 2;
+}
+</code></pre>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>articles</code></td><td><a href="article.html"><code>Article</code></a></td><td>list of articles that match the <code>query</code> and also the <code>filter</code>, otherwise <code>empty</code>.</td></tr>
+<tr><td><code>next_page_token</code></td><td><code>string</code></td><td>A token that can be sent as <code>page_token</code> to retrieve the next page. If this field is omitted, there are no subsequent pages.</td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L269-L284">[~]</a></p>
+<h1 id="-listarticles-1"><a class="header" href="#-listarticles-1"><code>⚙︎ ListArticles</code></a></h1>
+<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
+</code></pre>
+<p>list the available root sections
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L290-L297">[~]</a></p>
+<h2 id="listsectionsresponse"><a class="header" href="#listsectionsresponse"><code>ListSectionsResponse</code></a></h2>
+<p>list all available <code>root_sections</code> that can be used in the <a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#query"><code>query</code></a> above.</p>
+<pre><code class="language-protobuf">message ListSectionsResponse {
+  repeated string sections = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L301-L311">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-sectionpageservice"><a class="header" href="#-sectionpageservice">⚙︎ SectionPageService</a></h1>
 <p>############################################################################</p>
 <h1 id="description-1"><a class="header" href="#description-1">Description</a></h1>
 <p>############################################################################
@@ -1072,7 +1243,7 @@ HTTP status: 504
 cacheable: no</p>
 <p>Scenarios about incomplete section data needs to be defined
 <a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L17-L69">[~]</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="stageservice"><a class="header" href="#stageservice">℠StageService</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-stageservice"><a class="header" href="#-stageservice">⚙︎ StageService</a></h1>
 <p>############################################################################</p>
 <h1 id="description-2"><a class="header" href="#description-2">Description</a></h1>
 <p>############################################################################
