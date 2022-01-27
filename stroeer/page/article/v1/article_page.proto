@@ -23,8 +23,8 @@ message ArticlePage {
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
   repeated stroeer.page.stage.v1.Stage stages = 3;
 
-  // companion items
-  repeated stroeer.page.stage.v1.Stage.Item companions = 4;
+  // deprecated companion items. field is getting replaced by a standalone CompanionService due to performance issues.
+  repeated stroeer.page.stage.v1.Stage.Item companions = 4 [deprecated = true];
 }
 
 // An editorial article, which is related to another article.
