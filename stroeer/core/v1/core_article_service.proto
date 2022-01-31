@@ -288,7 +288,7 @@ message ListArticlesResponse {
 }
 
 /**
-* # `⚙︎ ListArticles`
+* # `⚙︎ ListSections`
 * ```protobuf
 * rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
 * ```
