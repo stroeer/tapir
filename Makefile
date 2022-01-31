@@ -96,7 +96,8 @@ clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf $(JAVA_DIR) || true
 	rm -rf $(GO_DIR) || true
-	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "src" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find $(NODE_LEGACY_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "src" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 .PHONY: help
 help: ## Display this help screen
