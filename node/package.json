@@ -11,7 +11,10 @@
     "test": "jest",
     "lint": "tsc -b",
     "update": "npx npm-check --update",
-    "format": "prettier --write '__tests__/**/*.ts'"
+    "format": "prettier --write '__tests__/**/*.ts'",
+    "client": "tsc -w -p tsconfig.client.json",
+    "server": "npx nodemon ./dist/src/server.js",
+    "start": "node ./dist/src/server.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "1.5.3",
