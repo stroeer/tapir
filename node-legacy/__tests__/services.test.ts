@@ -52,6 +52,17 @@ test('gRPC article page service client is generated and matches the snapshot', (
     Object {
       "ArticlePageServiceClient": [Function],
       "ArticlePageServiceService": Object {
+        "getArticleCompanions": Object {
+          "path": "/stroeer.page.article.v1.ArticlePageService/GetArticleCompanions",
+          "requestDeserialize": [Function],
+          "requestSerialize": [Function],
+          "requestStream": false,
+          "requestType": [Function],
+          "responseDeserialize": [Function],
+          "responseSerialize": [Function],
+          "responseStream": false,
+          "responseType": [Function],
+        },
         "getArticlePage": Object {
           "path": "/stroeer.page.article.v1.ArticlePageService/GetArticlePage",
           "requestDeserialize": [Function],
