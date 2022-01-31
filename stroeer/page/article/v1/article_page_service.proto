@@ -89,7 +89,7 @@ message GetArticleCompanionsRequest {
  * ```
  */
 message GetArticleCompanionsResponse {
-  // Article page with all render relevant data for the user and SEO bots.
+  // companions with current article teasers to allure seo users to make additional page impressions.
   repeated stroeer.page.stage.v1.Stage.Item companions = 1;
 }
 
