@@ -71,7 +71,7 @@ To access our docker image you need a valid GitHub PAT (personal access token) a
 1. bump versions
 
     - protoc version in `Makefile` - this version will be used as the docker image tag
-    - go dependency versions in `go.mod`
+    - go dependency versions in `go/go.mod` (run `go mod tidy -compat=1.17` afterwards)
     - java dependency versions in `build.gradle`
     - node dependency versions in `package.json`
 
