@@ -257,10 +257,10 @@ message ListArticlesRequest {
      * [6]: article.html#type
      * [7]: article.html#sub_type
      */
-    repeated Article.ContentType type_includes = 1;
-    repeated Article.ContentType type_excludes = 2;
-    repeated Article.ContentSubType sub_type_includes = 3;
-    repeated Article.ContentSubType sub_type_excludes = 4;
+    repeated Article.Type type_includes = 1;
+    repeated Article.Type type_excludes = 2;
+    repeated Article.SubType sub_type_includes = 3;
+    repeated Article.SubType sub_type_excludes = 4;
   }
 }
 
