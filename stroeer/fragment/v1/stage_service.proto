@@ -44,14 +44,26 @@ service StageService {
     HTTP status: 504
     cacheable: no
   **/
-  rpc GetStages (GetStagesRequest) returns (GetStagesResponse) {
-  }
+  rpc GetStages (GetStagesRequest) returns (GetStagesResponse) {}
+
+  // request data to render Article Companions as individual html for esi integration on ArticlePages
+  rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
 }
 
 // Message to request stages independent of SectionPages, for client side rendering or ESIs
 message GetStagesRequest {
   // ids must be well-known to the frontend and backend, for example "schlagzeilen"
   repeated string ids = 1;
+}
+
+// token is base64 encoded and contains an index and a section path
+message GetArticleCompanionsRequest {
+  repeated string token = 1;
+}
+
+// contains the actual companions (stages with content), that resulted out of the parameters index and section path
+message GetArticleCompanionsResponse {
+  repeated stroeer.page.stage.v1.Stage.Item companions = 1;
 }
 
 // Message for requesting data for single stages

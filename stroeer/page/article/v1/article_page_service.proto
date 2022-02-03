@@ -7,7 +7,6 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/page/article/v1/article_page.proto";
-import "stroeer/page/stage/v1/stage.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 option java_multiple_files = true;
@@ -27,7 +26,6 @@ option java_package = "de.stroeer.page.article.v1";
  */
 service ArticlePageService {
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
-  rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
 }
 
 /**
@@ -60,37 +58,6 @@ message GetArticlePageRequest {
 message GetArticlePageResponse {
   // Article page with all render relevant data for the user and SEO bots.
   stroeer.page.article.v1.ArticlePage article_page = 1;
-}
-
-/**
- * ## Request message to get companions for an article page.
- * ```protobuf
- * message GetArticleCompanionsRequest {
- *   # section path of the article, e.g. "/sport/fussball/"
- *   string section_path = 1;
- * }
- * ```
- */
-message GetArticleCompanionsRequest {
-  string section_path = 1;
-}
-
-/**
- * ## Response message for an companions request.
- *
- * Status codes:
- * - `OK`
- *
- * ```protobuf
- * message GetArticleCompanionsResponse {
- *  # List of companions as Stage.Items.
- *  repeated stroeer.page.stage.v1.Stage.Item companions = 1;
- * }
- * ```
- */
-message GetArticleCompanionsResponse {
-  // companions with current article teasers to allure seo users to make additional page impressions.
-  repeated stroeer.page.stage.v1.Stage.Item companions = 1;
 }
 
 /**
