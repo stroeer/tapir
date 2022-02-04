@@ -7,6 +7,7 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/page/article/v1/article_page.proto";
+import "stroeer/page/stage/v1/stage.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 option java_multiple_files = true;
@@ -15,17 +16,22 @@ option java_package = "de.stroeer.page.article.v1";
 /**
  * ```protobuf
  * service ArticlePageService {
+ *   # turns the requested article with editorial render relevant data for the user and SEO bots.
  *   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+ *
+ *   # request data to render Article Companions as individual html for esi integration on ArticlePages
  *   rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
  * }
  *```
  * # Description
  *
- * turns the requested article with editorial render relevant data for the user and SEO bots.
  *
  */
 service ArticlePageService {
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+
+  // request data to render Article Companions as individual html for esi integration on ArticlePages
+  rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
 }
 
 /**
@@ -157,3 +163,33 @@ message GetArticlePageResponse {
  */
 
 
+/**
+ * ## Request message to get article companions.
+ * ```protobuf
+ * message GetArticlePageRequest {
+ *   # Tokenized companion path from article ESIs.
+ *   string token = 1;
+ * }
+ * ```
+ */
+message GetArticleCompanionsRequest {
+  string token = 1;
+}
+
+/**
+ * ## Response message for a companion request.
+ *
+ * Status codes:
+ * - `OK`               | companions returned
+ * - `INVALID_ARGUMENT` | invalid token provided
+ *
+ * ```protobuf
+ * message GetArticleCompanionsResponse {
+ *   # stage item(s) with companion(s)
+ *   repeated stroeer.page.stage.v1.Stage.Item companions = 1;
+ * }
+ * ```
+ */
+message GetArticleCompanionsResponse {
+  repeated stroeer.page.stage.v1.Stage.Item companions = 1;
+}
