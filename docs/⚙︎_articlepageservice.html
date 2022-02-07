@@ -165,20 +165,22 @@
                     <main>
                         <h1><a class="header" href="#-articlepageservice" id="-articlepageservice">⚙︎ ArticlePageService</a></h1>
 <pre><code class="language-protobuf">service ArticlePageService {
+  # turns the requested article with editorial render relevant data for the user and SEO bots.
   rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+
+  # request data to render Article Companions as individual html for esi integration on ArticlePages
   rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
 }
 </code></pre>
 <h1><a class="header" href="#description" id="description">Description</a></h1>
-<p>turns the requested article with editorial render relevant data for the user and SEO bots.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L16-L26">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L16-L28">[~]</a></p>
 <h2><a class="header" href="#request-message-to-get-an-article-page" id="request-message-to-get-an-article-page">Request message to get an article page.</a></h2>
 <pre><code class="language-protobuf">message GetArticlePageRequest {
   # ID of the article defined by the content management system (required).
   int64 id = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L33-L40">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L37-L44">[~]</a></p>
 <h2><a class="header" href="#response-message-for-an-article-page-request" id="response-message-for-an-article-page-request">Response message for an article page request.</a></h2>
 <p>Status codes:</p>
 <ul>
@@ -190,25 +192,7 @@
  stroeer.page.article.v1.ArticlePage article_page = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L46-L58">[~]</a></p>
-<h2><a class="header" href="#request-message-to-get-companions-for-an-article-page" id="request-message-to-get-companions-for-an-article-page">Request message to get companions for an article page.</a></h2>
-<pre><code class="language-protobuf">message GetArticleCompanionsRequest {
-  # section path of the article, e.g. &quot;/sport/fussball/&quot;
-  string section_path = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L65-L72">[~]</a></p>
-<h2><a class="header" href="#response-message-for-an-companions-request" id="response-message-for-an-companions-request">Response message for an companions request.</a></h2>
-<p>Status codes:</p>
-<ul>
-<li><code>OK</code></li>
-</ul>
-<pre><code class="language-protobuf">message GetArticleCompanionsResponse {
- # List of companions as Stage.Items.
- repeated stroeer.page.stage.v1.Stage.Item companions = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L78-L89">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L50-L62">[~]</a></p>
 <h1><a class="header" href="#statuserror-scenarios" id="statuserror-scenarios">Status/Error scenario's</a></h1>
 <h2><a class="header" href="#scenario-found" id="scenario-found">scenario <code>found</code></a></h2>
 <table><thead><tr><th></th><th></th></tr></thead><tbody>
@@ -281,8 +265,27 @@
 <tr><td>gRPC error payload</td><td>none</td></tr>
 <tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
 <tr><td>cacheable</td><td><code>no</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L96-L189">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L69-L162">[~]</a></td><td></td></tr>
 </tbody></table>
+<h2><a class="header" href="#request-message-to-get-article-companions" id="request-message-to-get-article-companions">Request message to get article companions.</a></h2>
+<pre><code class="language-protobuf">message GetArticlePageRequest {
+  # Tokenized companion path from article ESIs.
+  string token = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L166-L173">[~]</a></p>
+<h2><a class="header" href="#response-message-for-a-companion-request" id="response-message-for-a-companion-request">Response message for a companion request.</a></h2>
+<p>Status codes:</p>
+<ul>
+<li><code>OK</code>               | companions returned</li>
+<li><code>INVALID_ARGUMENT</code> | invalid token provided</li>
+</ul>
+<pre><code class="language-protobuf">message GetArticleCompanionsResponse {
+  # stage item(s) with companion(s)
+  repeated stroeer.page.stage.v1.Stage.Item companions = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L179-L191">[~]</a></p>
 
                     </main>
 
