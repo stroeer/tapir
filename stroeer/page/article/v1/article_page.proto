@@ -23,7 +23,7 @@ message ArticlePage {
   // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
   repeated stroeer.page.stage.v1.Stage stages = 3;
 
-  // contains placeholders to be replaced by paper with dynamically loaded companions
+  // contains placeholders to be replaced with GetArticleCompanions with dynamically loaded companions
   repeated stroeer.page.stage.v1.Stage.Item companions = 4;
 }
 
