@@ -138,7 +138,7 @@ message Article {
   *
   * This field will be `empty`/`null` for the teaser representation (e.g. section or overview pages) of the article.
   */
-  repeated Part parts = 6;
+  repeated Body bodies = 6;
 
   /**
   * ## `metadata`
@@ -713,7 +713,7 @@ message Article {
   * ```
   *
   */
-  message Part {
+  message Body {
 
     /**
     * ## `children`
@@ -722,7 +722,7 @@ message Article {
     * ```
     * Recursive Items nodes.
     */
-    repeated Item items = 1;
+    repeated BodyNode children = 1;
 
     Type type = 2;
 
@@ -752,7 +752,7 @@ message Article {
     enum Type {
 
       // Not specified.
-      CONTENT_TYPE_UNSPECIFIED = 0;
+      TYPE_UNSPECIFIED = 0;
 
       // The article body incl. all inline elements.
       BODY = 1;
@@ -765,6 +765,8 @@ message Article {
 
       // Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.
       TRUST_BOX = 4;
+
+      TABLE_OF_CONTENTS = 5;
     }
 
     /**
@@ -775,7 +777,7 @@ message Article {
     *
     * Clients must be resilient to unknown or missing nodes.
     */
-    message Item {
+    message BodyNode {
       /**
       * ## `type`
       * ```protobuf
@@ -841,11 +843,11 @@ message Article {
       /**
       * ## `children`
       * ```protobuf
-      * repeated Item items = 4;
+      * repeated BodyNode children = 4;
       * ```
       * Nested Items, e.g. the `text` of a `<p>` or a `<a>`.
       */
-      repeated Item items = 4;
+      repeated BodyNode children = 4;
 
       /**
       * ## `elements`
