@@ -12,8 +12,7 @@ class ArticleTest {
   void ModelCompiles() {
     Builder articleBuilder = Article.newBuilder();
     articleBuilder.setId(42L)
-      // such nice enums. I luv it.
-      .setType(Article.ContentType.ARTICLE);
+      .setType(Article.Type.ARTICLE);
 
     Article article = articleBuilder.build();
 
