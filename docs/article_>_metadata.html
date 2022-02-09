@@ -138,31 +138,31 @@
 <pre><code class="language-protobuf">message Metadata {}
 </code></pre>
 <p>Article metadata like publication state and technical timestamps.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L865-L869">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L867-L871">[~]</a></p>
 <h2 id="state"><a class="header" href="#state"><code>state</code></a></h2>
 <pre><code class="language-protobuf">State state = 1;
 </code></pre>
 <p>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L872-L877">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L874-L879">[~]</a></p>
 <h2 id="start_time"><a class="header" href="#start_time"><code>start_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp start_time = 2;
 </code></pre>
 <p>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L881-L887">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L883-L889">[~]</a></p>
 <h2 id="end_time"><a class="header" href="#end_time"><code>end_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp end_time = 3;
 </code></pre>
 <p>Manually set editorial date (<em>Gültig bis</em>) till the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L891-L897">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L893-L899">[~]</a></p>
 <h2 id="publish_time"><a class="header" href="#publish_time"><code>publish_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp publish_time = 4;
 </code></pre>
 <p>Editorial date (<em>Publikationsdatum</em>) of the first publication of the
 article in seconds of UTC time since Unix epoch.</p>
 <p>This date will be set automatically by the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L901-L909">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L903-L911">[~]</a></p>
 <h2 id="update_time"><a class="header" href="#update_time"><code>update_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp update_time = 5;
 </code></pre>
@@ -171,19 +171,19 @@ was updated in seconds of UTC time since Unix epoch.</p>
 <p>On first publication this timestamp matches <code>publish_time</code>. Afterwards
 it's either updated manually in the content management system or
 automatically if the article content changed significantly.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L913-L923">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L915-L925">[~]</a></p>
 <h2 id="transformation_time"><a class="header" href="#transformation_time"><code>transformation_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp transformation_time = 6;
 </code></pre>
 <p>Technical timestamp at which the article was transformed in the
 API layer in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L927-L933">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L929-L935">[~]</a></p>
 <h2 id="transformation_errors"><a class="header" href="#transformation_errors"><code>transformation_errors</code></a></h2>
 <pre><code class="language-protobuf">int64 transformation_errors = 7;
 </code></pre>
 <p>Number of errors occurred while fetching and/or transforming optional
 article components (e.g. embeds) to an <code>article</code> message.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L937-L943">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L939-L945">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -203,8 +203,8 @@ has been reached.</p>
   DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L947-L971">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L981-L982">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L949-L973">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L983-L984">[~]</a></p>
 
                     </main>
 

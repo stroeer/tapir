@@ -167,7 +167,7 @@
 </code></pre>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L770-L776">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L772-L778">[~]</a></p>
 <h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 1;
 </code></pre>
@@ -203,30 +203,30 @@
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>todo</td></tr>
 <tr><td><code>toc</code></td><td>todo</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L779-L818">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L781-L820">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2 id="text"><a class="header" href="#text"><code>text</code></a></h2>
 <pre><code class="language-protobuf">string text = 2;
 </code></pre>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L822-L827">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L824-L829">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
 </code></pre>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L831-L837">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L833-L839">[~]</a></p>
 <h2 id="children-1"><a class="header" href="#children-1"><code>children</code></a></h2>
-<pre><code class="language-protobuf">repeated Item items = 4;
+<pre><code class="language-protobuf">repeated BodyNode children = 4;
 </code></pre>
 <p>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L841-L846">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L843-L848">[~]</a></p>
 <h2 id="elements"><a class="header" href="#elements"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 5;
 </code></pre>
 <p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L850-L855">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L861-L862">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L852-L857">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L863-L864">[~]</a></p>
 
                     </main>
 

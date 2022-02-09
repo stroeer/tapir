@@ -636,17 +636,17 @@ the asset.</p>
 <pre><code class="language-protobuf">message Keyword {}
 </code></pre>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L985-L989">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L987-L991">[~]</a></p>
 <h2 id="value"><a class="header" href="#value"><code>value</code></a></h2>
 <pre><code class="language-protobuf">string value = 1;
 </code></pre>
 <p>Unique value of this keyword.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L993-L998">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L995-L1000">[~]</a></p>
 <h2 id="type-4"><a class="header" href="#type-4"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 2;
 </code></pre>
 <p>Type of this keyword like <code>location</code>, <code>organization</code>, <code>person</code>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1002-L1007">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1004-L1009">[~]</a></p>
 <h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
 <table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -659,7 +659,7 @@ the asset.</p>
 <tr><td><code>AGENCY</code></td><td>An agency article, unused, deprecated</td></tr>
 <tr><td><code>EXTERNAL</code></td><td>An external article (teaser-like external article)</td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1013-L1029">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1015-L1031">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <pre><code class="language-protobuf">enum SubType {
   // Not specified.
@@ -693,36 +693,36 @@ the asset.</p>
   ADVERTORIAL = 9;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1043-L1077">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1045-L1079">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article--metadata"><a class="header" href="#article--metadata">Article &gt; Metadata</a></h1>
 <pre><code class="language-protobuf">message Metadata {}
 </code></pre>
 <p>Article metadata like publication state and technical timestamps.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L865-L869">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L867-L871">[~]</a></p>
 <h2 id="state"><a class="header" href="#state"><code>state</code></a></h2>
 <pre><code class="language-protobuf">State state = 1;
 </code></pre>
 <p>State of the article in the content management system. See <a href="article_%3E_metadata.html#enum-state"><code>enum State</code></a>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L872-L877">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L874-L879">[~]</a></p>
 <h2 id="start_time"><a class="header" href="#start_time"><code>start_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp start_time = 2;
 </code></pre>
 <p>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L881-L887">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L883-L889">[~]</a></p>
 <h2 id="end_time"><a class="header" href="#end_time"><code>end_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp end_time = 3;
 </code></pre>
 <p>Manually set editorial date (<em>Gültig bis</em>) till the article is valid to deliver on
 digital platforms in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L891-L897">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L893-L899">[~]</a></p>
 <h2 id="publish_time"><a class="header" href="#publish_time"><code>publish_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp publish_time = 4;
 </code></pre>
 <p>Editorial date (<em>Publikationsdatum</em>) of the first publication of the
 article in seconds of UTC time since Unix epoch.</p>
 <p>This date will be set automatically by the content management system.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L901-L909">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L903-L911">[~]</a></p>
 <h2 id="update_time"><a class="header" href="#update_time"><code>update_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp update_time = 5;
 </code></pre>
@@ -731,19 +731,19 @@ was updated in seconds of UTC time since Unix epoch.</p>
 <p>On first publication this timestamp matches <code>publish_time</code>. Afterwards
 it's either updated manually in the content management system or
 automatically if the article content changed significantly.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L913-L923">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L915-L925">[~]</a></p>
 <h2 id="transformation_time"><a class="header" href="#transformation_time"><code>transformation_time</code></a></h2>
 <pre><code class="language-protobuf">google.protobuf.Timestamp transformation_time = 6;
 </code></pre>
 <p>Technical timestamp at which the article was transformed in the
 API layer in seconds of UTC time since Unix epoch.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L927-L933">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L929-L935">[~]</a></p>
 <h2 id="transformation_errors"><a class="header" href="#transformation_errors"><code>transformation_errors</code></a></h2>
 <pre><code class="language-protobuf">int64 transformation_errors = 7;
 </code></pre>
 <p>Number of errors occurred while fetching and/or transforming optional
 article components (e.g. embeds) to an <code>article</code> message.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L937-L943">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L939-L945">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -763,8 +763,8 @@ has been reached.</p>
   DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L947-L971">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L981-L982">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L949-L973">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L983-L984">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article--part"><a class="header" href="#article--part">Article &gt; Part</a></h1>
 <pre><code class="language-protobuf">message Content {}
 </code></pre>
@@ -798,7 +798,7 @@ has been reached.</p>
 </code></pre>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L770-L776">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L772-L778">[~]</a></p>
 <h2 id="type-5"><a class="header" href="#type-5"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 1;
 </code></pre>
@@ -834,30 +834,30 @@ has been reached.</p>
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>todo</td></tr>
 <tr><td><code>toc</code></td><td>todo</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L779-L818">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L781-L820">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2 id="text"><a class="header" href="#text"><code>text</code></a></h2>
 <pre><code class="language-protobuf">string text = 2;
 </code></pre>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L822-L827">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L824-L829">[~]</a></p>
 <h2 id="fields-2"><a class="header" href="#fields-2"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
 </code></pre>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L831-L837">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L833-L839">[~]</a></p>
 <h2 id="children-2"><a class="header" href="#children-2"><code>children</code></a></h2>
-<pre><code class="language-protobuf">repeated Item items = 4;
+<pre><code class="language-protobuf">repeated BodyNode children = 4;
 </code></pre>
 <p>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L841-L846">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L843-L848">[~]</a></p>
 <h2 id="elements-1"><a class="header" href="#elements-1"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 5;
 </code></pre>
 <p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L850-L855">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L861-L862">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L852-L857">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L863-L864">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
 a <code>Section</code> or an external website, or a whole tree structure, for example
