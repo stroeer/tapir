@@ -752,7 +752,7 @@ message Article {
     enum Type {
 
       // Not specified.
-      Content_TYPE_UNSPECIFIED = 0;
+      CONTENT_TYPE_UNSPECIFIED = 0;
 
       // The article body incl. all inline elements.
       BODY = 1;
