@@ -260,42 +260,20 @@ the asset.</p>
 ...
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L511-L600">[~]</a></p>
-<h2 id="type-1"><a class="header" href="#type-1"><code>type</code></a></h2>
-<p>Type of an element.</p>
-<pre><code class="language-protobuf">  enum ElementType {
-  // Not specified, not supported or yet unknown.
-  ELEMENT_TYPE_UNSPECIFIED = 0;
-
-  // An article element.
-  ARTICLE = 1;
-
-  // An image element.
-  IMAGE = 2;
-
-  // A video element.
-  VIDEO = 3;
-
-  // A gallery element.
-  GALLERY = 4;
-
-  // An oembed element.
-  OEMBED = 5;
-
-  // An author element.
-  AUTHOR = 6;
-
-  // An agency (e.g. DPA) element.
-  AGENCY = 7;
-
-  // An element that represents a &lt;esi:include&gt;, it's important
-  // to be rendered server side due to SEO reasons
-  EDGE_SIDE_INCLUDE = 8;
-
-  // A citation element.
-  CITATION = 9;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L603-L641">[~]</a></p>
+<h2 id="elementtype"><a class="header" href="#elementtype"><code>Element.Type</code></a></h2>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>ARTICLE</code></td><td>unused</td></tr>
+<tr><td><code>IMAGE</code></td><td>image, containing further <a href="#asset"><code>Assets</code></a>. <a href="#image-element">Sample</a></td></tr>
+<tr><td><code>VIDEO</code></td><td>video, containing nested <a href="#asset"><code>Asset</code></a> and an optional nested image <a href="#element"><code>Element</code></a>. <a href="#image-element">Sample</a></td></tr>
+<tr><td><code>GALLERY</code></td><td>gallery, consists of many nested image <a href="#element"><code>Element</code></a>s.</td></tr>
+<tr><td><code>OEMBED</code></td><td>oEmbed, contains one <code>metadata</code> <a href="#asset"><code>Asset</code></a>. Todo: sample</td></tr>
+<tr><td><code>AUTHOR</code></td><td>author, contains one <code>metadata</code> <a href="#asset"><code>Asset</code></a> and an optional image <a href="#element"><code>Element</code></a>. Todo: sample</td></tr>
+<tr><td><code>AGENCY</code></td><td>author, contains one <code>metadata</code> <a href="#asset"><code>Asset</code></a></td></tr>
+<tr><td><code>EDGE_SIDE_INCLUDE</code></td><td><code>&lt;esi:include&gt;</code> that must be resolved server-side for SEO reasons, otherwise similar to <code>OEMBED</code></td></tr>
+<tr><td><code>CITATION</code></td><td>oEmbed, contains one <code>metadata</code> <a href="#asset"><code>Asset</code></a>. Todo: sample</td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L604-L624">[~]</a></p>
 <h2 id="enum-relation"><a class="header" href="#enum-relation">Enum Relation</a></h2>
 <pre><code class="language-protobuf">enum Relation {
   // Not specified.
@@ -309,8 +287,8 @@ the asset.</p>
 }
 </code></pre>
 <p>Relation or usage of an element
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L676-L690">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L706-L707">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L643-L657">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L673-L674">[~]</a></p>
 
                     </main>
 

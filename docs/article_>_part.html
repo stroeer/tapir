@@ -137,12 +137,12 @@
                         <h1 id="article--part"><a class="header" href="#article--part">Article &gt; Part</a></h1>
 <pre><code class="language-protobuf">message Content {}
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L710-L714">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L677-L681">[~]</a></p>
 <h2 id="children"><a class="header" href="#children"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated Item items = 1;
 </code></pre>
 <p>Recursive Items nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L718-L723">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L685-L690">[~]</a></p>
 <pre><code class="language-protobuf">enum ContentType {
   // Not specified.
   Content_TYPE_UNSPECIFIED = 0;
@@ -162,12 +162,12 @@
 </code></pre>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L729-L750">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L696-L717">[~]</a></p>
 <pre><code class="language-protobuf">message ContentNode {}
 </code></pre>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>Clients must be resilient to unknown or missing nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L772-L778">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L739-L745">[~]</a></p>
 <h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
 <pre><code class="language-protobuf">string type = 1;
 </code></pre>
@@ -203,30 +203,30 @@
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>todo</td></tr>
 <tr><td><code>toc</code></td><td>todo</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L781-L820">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L748-L787">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2 id="text"><a class="header" href="#text"><code>text</code></a></h2>
 <pre><code class="language-protobuf">string text = 2;
 </code></pre>
 <p>Text of the node, only set for text nodes (<code>type == 'text'</code>).
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L824-L829">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L791-L796">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <pre><code class="language-protobuf">map&lt;string, string&gt; fields = 3;
 </code></pre>
 <p>Additional information for the node depending on it's type,
 e.g. <code>href</code> for <code>a</code> nodes.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L833-L839">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L800-L806">[~]</a></p>
 <h2 id="children-1"><a class="header" href="#children-1"><code>children</code></a></h2>
 <pre><code class="language-protobuf">repeated BodyNode children = 4;
 </code></pre>
 <p>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L843-L848">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L810-L815">[~]</a></p>
 <h2 id="elements"><a class="header" href="#elements"><code>elements</code></a></h2>
 <pre><code class="language-protobuf">repeated Element elements = 5;
 </code></pre>
 <p><a href="element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L852-L857">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L863-L864">[~]</a></p>
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L819-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L830-L831">[~]</a></p>
 
                     </main>
 
