@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_>_element.html"><strong aria-hidden="true">3.</strong> Article &gt; Element</a></li><li class="chapter-item expanded "><a href="article_>_element_>_asset.html"><strong aria-hidden="true">4.</strong> Article &gt; Element &gt; Asset</a></li><li class="chapter-item expanded "><a href="article_>_keyword.html" class="active"><strong aria-hidden="true">5.</strong> Article &gt; Keyword</a></li><li class="chapter-item expanded "><a href="article_>_metadata.html"><strong aria-hidden="true">6.</strong> Article &gt; Metadata</a></li><li class="chapter-item expanded "><a href="article_>_part.html"><strong aria-hidden="true">7.</strong> Article &gt; Part</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_>_body.html"><strong aria-hidden="true">3.</strong> Article &gt; Body</a></li><li class="chapter-item expanded "><a href="article_>_element.html"><strong aria-hidden="true">4.</strong> Article &gt; Element</a></li><li class="chapter-item expanded "><a href="article_>_element_>_asset.html"><strong aria-hidden="true">5.</strong> Article &gt; Element &gt; Asset</a></li><li class="chapter-item expanded "><a href="article_>_keyword.html" class="active"><strong aria-hidden="true">6.</strong> Article &gt; Keyword</a></li><li class="chapter-item expanded "><a href="article_>_metadata.html"><strong aria-hidden="true">7.</strong> Article &gt; Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,67 +135,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="article--keyword"><a class="header" href="#article--keyword">Article &gt; Keyword</a></h1>
-<pre><code class="language-protobuf">message Keyword {}
-</code></pre>
-<p>Extracted keywords from the article body like persons, locations, organizations etc.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L954-L958">[~]</a></p>
-<h2 id="value"><a class="header" href="#value"><code>value</code></a></h2>
-<pre><code class="language-protobuf">string value = 1;
-</code></pre>
-<p>Unique value of this keyword.
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L962-L967">[~]</a></p>
-<h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
-<pre><code class="language-protobuf">string type = 2;
-</code></pre>
-<p>Type of this keyword like <code>location</code>, <code>organization</code>, <code>person</code>
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L971-L976">[~]</a></p>
-<h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
-<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
-<tr><td><code>ARTICLE</code></td><td>A text article, usually <a href="#enum-contentsubtype"><em>sub typed</em></a></td></tr>
-<tr><td><code>IMAGE</code></td><td>An image article, unused, deprecated</td></tr>
-<tr><td><code>VIDEO</code></td><td>A video article, contains HLS-videos, as well as external live streams or partner videos (glomex)</td></tr>
-<tr><td><code>GALLERY</code></td><td>A gallery article</td></tr>
-<tr><td><code>EMBED</code></td><td>An embed article including an oembed or edge_side_include element</td></tr>
-<tr><td><code>AUTHOR</code></td><td>An author article, currently not implemented</td></tr>
-<tr><td><code>AGENCY</code></td><td>An agency article, unused, deprecated</td></tr>
-<tr><td><code>EXTERNAL</code></td><td>An external article (teaser-like external article)</td></tr>
-</tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L982-L998">[~]</a></p>
-<h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
-<pre><code class="language-protobuf">enum SubType {
-  // Not specified.
-  SUB_TYPE_UNSPECIFIED = 0;
-
-  // Meldung/Nachricht — this is the default
-  NEWS = 1;
-
-  // 'Kolumne'
-  COLUMN = 2;
-
-  // 'Kommentar'
-  COMMENTARY = 3;
-
-  // 'Interview'
-  INTERVIEW = 4;
-
-  // 'Pro und Kontra/Streitgespräch'
-  CONTROVERSY = 5;
-
-  // 'Tagesanbruch'
-  TAGESANBRUCH = 6;
-
-  // 'Evergreen'
-  EVERGREEN = 7;
-
-  // Content originally imported from agency/tickers by the CMS
-  AGENCY_IMPORT = 8;
-
-  // Advertorial
-  ADVERTORIAL = 9;
+<p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
+<h2 id="proto"><a class="header" href="#proto">Proto</a></h2>
+<pre><code class="language-protobuf">message Keyword {
+    string value = 1;
+    string type = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L1012-L1046">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>value</code></td><td><code>string</code></td><td>Unique value of this keyword.</td></tr>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type/Category of this keyword like <code>location</code>, <code>organization</code>, <code>person</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L918-L932">[~]</a></td><td></td><td></td></tr>
+</tbody></table>
 
                     </main>
 
