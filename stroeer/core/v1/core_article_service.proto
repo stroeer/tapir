@@ -187,11 +187,11 @@ message ListArticlesRequest {
        * }
        * ```
        *
-       * | Enum value            | Description                                                 |
-       * |-----------------------|-------------------------------------------------------------|
-       * | `SORT_BY_UNSPECIFIED` | unspecified |
-       * | `UPDATE_TIME`         | sort by the content's [`update_time`][8] |
-       * | `PUBLISH_TIME`        | sort by the content's [`publish_time`][9] |
+       * | Enum value            | Description                                                |
+       * |-----------------------|------------------------------------------------------------|
+       * | `SORT_BY_UNSPECIFIED` | unspecified                                                |
+       * | `UPDATE_TIME`         | sort by the content's [`update_time`][8]                   |
+       * | `PUBLISH_TIME`        | sort by the content's [`publish_time`][9]                  |
        *
        * [8]: metadata.html#update_time
        * [9]: metadata.html#publish_time

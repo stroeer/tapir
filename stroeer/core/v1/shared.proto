@@ -1,6 +1,3 @@
-/**
-* @FileArticle Reference
-*/
 syntax = "proto3";
 
 package stroeer.core.v1;
@@ -8,67 +5,80 @@ package stroeer.core.v1;
 option go_package = "github.com/stroeer/go-tapir/core/v1;core";
 option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
-/**
-* A Reference represents a link to another entity, for example an `Article`,
-* a `Section` or an external website, or a whole tree structure, for example
-* a section tree or navigation.
-* ```protobuf
-* message Reference {}
-* ```
-*/
+
 message Reference {
   /**
-  * The `type` is used for filtering in a list of references.
-  * It describes a use-case, which usually has a defined render position.
-  *
-  * Example entries:
-  * * `unspecified`
-  * * `stage_title`
-  * * `stage_themenbereiche`
-  * * `stage_header_links`
-  * * `stage_top_themen`
-  * * `stage_tag_category`
-  * ```protobuf
-  * string type = 1;
-  * ```
+   * @FileArticle Reference
+   */
+
+  /**
+A Reference represents a link to another entity, for example an `Article`,
+a `Section` or an external website, or a whole tree structure, for example
+a section tree or breadcrumb navigation.
+
+### Proto
+```protobuf
+* message Reference {
+*   string type = 1;
+*   string label = 2;
+*   string href = 3;
+*   map<string, string> fields = 4;
+*   repeated Reference children = 5;
+* }
+```
+
+| Field name | Type                          | Description                                                                                                                                         |
+|------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`     | `string`                      | The `type` is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See [`type`](#type) |
+| `label`    | `string`                      | The label of the reference.                                                                                                                         |
+| `href`     | `string`                      | The href of the reference. It can be relative or absolute.                                                                                          |
+| `fields`   | `map<string, string>`         | Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See [`fields`](#fields)                 |
+| `children` | `repeated` [`Reference`][ref] | Hierarchically structured references for representing a navigation or tree.                                                                         |
+
+[ref]: reference.html
+
   */
+
   string type = 1;
-
-  /**
-   * The text or label of the reference.
-   * ```protobuf
-   * string label = 2;
-   * ```
-   */
   string label = 2;
-
-  /**
-   * The href of the reference. It can be relative or absolute.
-   * ```protobuf
-   * string href = 3;
-   * ```
-   */
   string href = 3;
-  /**
-  * Contains all optional attributes of the reference.
-  * * `target`
-  * * `rel`
-  * * `flag:internal`
-  * * `layout`
-  *
-  * Clients must be resilient to unknown or missing entry sets.
-  * ```protobuf
-  * map<string, string> fields = 4;
-  * ```
-  */
   map<string, string> fields = 4;
+  repeated Reference children = 5;
 
   /**
-   * Hierarchically structured references for representing a navigation or tree.
-   * ```protobuf
-   * repeated Reference children = 5;
-   * ```
-   */
-  repeated Reference children = 5;
+## `type`
+
+Example entries:
+
+- `unspecified` text
+- `stage_title`
+- `stage_themenbereiche`
+- `stage_header_links`
+- `stage_top_themen`
+- `stage_tag_category`
+
+
+## `fields`
+
+Contains one or more optional attributes of the reference:
+
+- `target`
+- `rel`
+- `flag:internal`
+- `layout`
+
+## `Samples`
+
+```json
+* {
+*   "label": "Home"
+*   "href": "/",
+*   "children": [
+*         "label": "Spielwiese (Tests)",
+*         "href": "/test-playground/"
+*   ]
+* }
+```
+*/
 }
 
