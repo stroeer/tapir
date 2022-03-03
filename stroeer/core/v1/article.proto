@@ -92,7 +92,6 @@ this map will contain the following data:
 | `top_line`             | *         | "dachzeile"                                                                                       |
 | `ref_path`             | *         | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html`                          |
 | `ref_canonical`        | *         | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html |
-| `ref_amp`              | *         | AMP URL of this article                                                                           |
 | `summary`              |           | summary for this content                                                                          |
 | `teaser_text`          |           | used on teasers, overrides `summary`                                                              |
 | `meta_robots`          |           |                                                                                                   |
@@ -465,7 +464,6 @@ For details on certain `fields` or usages of [`Assets`, please follow this link.
 *         "headline": "Gallery ipsum dolor",
 *         "ref_path": "/test-playground/id_100000067/gallery-ipsum-dolor.html",
 *         "ref_canonical": "https://www.t-online.de/test-playground/id_100000067/gallery-ipsum-dolor.html",
-*         "ref_amp": "https://www.t-online.de/amp/test-playground/id_100000067/gallery-ipsum-dolor.html",
 *         "url": "/test-playground/id_100000067/gallery-ipsum-dolor.html"
 *       }
 *     }
