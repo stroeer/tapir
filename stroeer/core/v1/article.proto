@@ -807,7 +807,7 @@ Clients must be resilient to unknown or missing nodes.
 
 | type            | description                                                                   |
 |-----------------|-------------------------------------------------------------------------------|
-| `img`           | inline image element, check `elements`                                        |
+| `image`         | inline image element, check `elements`                                        |
 | `video`         | inline video element, check `elements`                                        |
 | `gallery`       | inline gallery element, check `elements`                                      |
 | `oembed`        | inline oEmbed element, check `elements`                                       |
