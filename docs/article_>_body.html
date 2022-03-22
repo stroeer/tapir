@@ -178,7 +178,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
 <tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L680-L702">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L678-L700">[~]</a></p>
 <h2><a class="header" href="#type" id="type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -199,7 +199,7 @@ the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
 <tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
 <tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L708-L734">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L706-L732">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2><a class="header" href="#bodynode" id="bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
@@ -249,7 +249,7 @@ can be rendered independently if required.</p>
 </tbody></table>
 <h3><a class="header" href="#custom" id="custom"><em>Custom</em></a></h3>
 <table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
-<tr><td><code>img</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
 <tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
 <tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
 <tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
@@ -257,9 +257,9 @@ can be rendered independently if required.</p>
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L745-L818">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L743-L816">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L829-L830">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L827-L828">[~]</a></p>
 
                     </main>
 
