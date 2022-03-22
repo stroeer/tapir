@@ -921,6 +921,7 @@ Extracted keywords from the article body like persons, locations, organizations 
 * message Keyword {
 *     string value = 1;
 *     string type = 2;
+*     float score = 3;
 * }
 ```
 
@@ -928,8 +929,10 @@ Extracted keywords from the article body like persons, locations, organizations 
 |-------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `value`                 | `string`          | Unique value of this keyword.                                                                                                                                                                                                                                |
 | `type`                 | `string`          | Type/Category of this keyword like `location`, `organization`, `person`                                                                                                                                                                                                                                |
+| `score`                 | `float`          | Score for the relevance of this keyword set by the engine |
     */
     string value = 1;
     string type = 2;
+    float score = 3;
   }
 }
