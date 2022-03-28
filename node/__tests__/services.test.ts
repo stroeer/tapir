@@ -94,6 +94,17 @@ test('gRPC fragment stage service client is generated and matches the snapshot',
     Object {
       "StageServiceClient": [Function],
       "StageServiceService": Object {
+        "getArticleCompanions": Object {
+          "path": "/stroeer.fragment.v1.StageService/GetArticleCompanions",
+          "requestDeserialize": [Function],
+          "requestSerialize": [Function],
+          "requestStream": false,
+          "requestType": [Function],
+          "responseDeserialize": [Function],
+          "responseSerialize": [Function],
+          "responseStream": false,
+          "responseType": [Function],
+        },
         "getStages": Object {
           "path": "/stroeer.fragment.v1.StageService/GetStages",
           "requestDeserialize": [Function],

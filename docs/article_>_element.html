@@ -204,7 +204,7 @@ the same message structure distinguished by the <code>ElementType</code> field.<
 <tr><td><code>assets</code></td><td><code>repeated</code> <a href="article_%3E_element_%3E_asset.html"><code>Asset</code></a></td><td><a href="article_%3E_element_%3E_asset.html"><code>Assets</code></a> describing this <code>Element</code>, See <a href="#samples">Samples</a></td></tr>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#element"><code>Element</code></a></td><td>nested <code>Elements</code>, e.g. for <code>Element</code> of type <code>gallery</code> and <code>video</code></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L225-L279">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L224-L278">[~]</a></p>
 <h2><a class="header" href="#elementtype" id="elementtype"><code>Element.Type</code></a></h2>
 <table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -218,13 +218,13 @@ the same message structure distinguished by the <code>ElementType</code> field.<
 <tr><td><code>EDGE_SIDE_INCLUDE</code></td><td><code>&lt;esi:include&gt;</code> that must be resolved server-side for SEO reasons, otherwise similar to <code>OEMBED</code></td></tr>
 <tr><td><code>CITATION</code></td><td>oEmbed, contains one <code>metadata</code> <a href="article_%3E_element_%3E_asset.html"><code>Asset</code></a>. Todo: sample</td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L288-L308">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L287-L307">[~]</a></p>
 <h2><a class="header" href="#elementrelation" id="elementrelation"><code>Element.Relation</code></a></h2>
 <table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>RELATION_UNSPECIFIED</code></td><td>unspecified</td></tr>
 <tr><td><code>OPENER</code></td><td>As an opener element (within the content)</td></tr>
 <tr><td><code>TEASER</code></td><td>As an teaser element (when externally viewed)</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L322-L329">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L321-L328">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2><a class="header" href="#samples" id="samples">Samples</a></h2>
 <p>For details on certain <code>fields</code> or usages of <a href="asset.html#samples"><code>Assets</code>, please follow this link.</a></p>
@@ -349,7 +349,6 @@ the same message structure distinguished by the <code>ElementType</code> field.<
         &quot;headline&quot;: &quot;Gallery ipsum dolor&quot;,
         &quot;ref_path&quot;: &quot;/test-playground/id_100000067/gallery-ipsum-dolor.html&quot;,
         &quot;ref_canonical&quot;: &quot;https://www.t-online.de/test-playground/id_100000067/gallery-ipsum-dolor.html&quot;,
-        &quot;ref_amp&quot;: &quot;https://www.t-online.de/amp/test-playground/id_100000067/gallery-ipsum-dolor.html&quot;,
         &quot;url&quot;: &quot;/test-playground/id_100000067/gallery-ipsum-dolor.html&quot;
       }
     }
@@ -386,8 +385,8 @@ the same message structure distinguished by the <code>ElementType</code> field.<
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L337-L504">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L508-L509">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L336-L502">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L506-L507">[~]</a></p>
 
                     </main>
 

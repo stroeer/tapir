@@ -179,7 +179,7 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Generic map containing general content and configuration information of the asset. Clients must be resilient to unknown or missing entry sets.</td></tr>
 <tr><td><code>metadata</code></td><td><a href="article_%3E_metadata.html"><code>Metadata</code></a></td><td>Only present for <code>assets</code> of <code>TYPE.METADATA</code>. Technical metadata for the parent <code>element</code> (state, validity, ...). See <a href="article_%3E_metadata.html"><code>Metadata</code></a></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L512-L534">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L510-L532">[~]</a></p>
 <h2><a class="header" href="#enum-type" id="enum-type"><code>enum Type</code></a></h2>
 <p>Type of an asset.</p>
 <pre><code class="language-protobuf">enum Type {
@@ -196,7 +196,7 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L541-L564">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L539-L562">[~]</a></td><td></td></tr>
 </tbody></table>
 <h2><a class="header" href="#samples" id="samples">Samples</a></h2>
 <h3><a class="header" href="#image-asset" id="image-asset">Image Asset</a></h3>
@@ -279,8 +279,8 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L575-L671">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L676-L677">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L573-L669">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L674-L675">[~]</a></p>
 
                     </main>
 
