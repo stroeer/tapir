@@ -76,12 +76,12 @@ breaking: ## Detects breaking changes using https://docs.buf.build/breaking-over
 	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
 
 .PHONY: test
-test: generate go-mod ## Runs all tests
+test: generate ## Runs all tests
 	@echo "+ $@"
 	cd java && ./gradlew clean build
 #	cd node && nvm use && npm run checks
 #	cd node-legacy && nvm use && npm run checks
-	cd go && go test -v .
+#	cd go && go test -v .
 
 .PHONY: go-mod
 go-mod: ## Create tapir go module for generated code
