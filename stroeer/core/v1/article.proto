@@ -218,7 +218,7 @@ Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
 
   message Element {
     /**
-     * @FileArticle Article > Element
+     * @FileArticle Article ۰ Element
      */
 
     /**
@@ -504,7 +504,7 @@ For details on certain `fields` or usages of [`Assets`, please follow this link.
 
     message Asset {
       /**
-       * @FileArticle Article > Element > Asset
+       * @FileArticle Article ۰ Element ۰ Asset
        */
 
       /**
@@ -672,7 +672,7 @@ Example: for `numerator=1` and `denominator=5`, we have to increment the _frame 
 
   message Body {
     /**
-     * @FileArticle Article > Body
+     * @FileArticle Article ۰ Body
      */
 
     /**
@@ -825,7 +825,7 @@ Clients must be resilient to unknown or missing nodes.
 
   message Metadata {
     /**
-     * @FileArticle Article > Metadata
+     * @FileArticle Article ۰ Metadata
      */
 
     /**
@@ -910,7 +910,7 @@ An Article is in `State.DRAFT` if it has never been published, or if the
 
   message Keyword {
     /**
-     * @FileArticle Article > Keyword
+     * @FileArticle Article ۰ Keyword
      */
 
     /**
