@@ -20,7 +20,7 @@
   "dependencies": {
     "@grpc/grpc-js": "1.5.10",
     "@types/google-protobuf": "3.15.5",
-    "google-protobuf": "3.19.4"
+    "google-protobuf": "3.20.0"
   },
   "devDependencies": {
     "@jest/types": "27.5.1",
