@@ -187,6 +187,7 @@ Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
 *    EVERGREEN = 7;
 *    AGENCY_IMPORT = 8;
 *    ADVERTORIAL = 9;
+*    QUIZ = 10;
 * }
 ```
 
@@ -202,6 +203,7 @@ Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
 | `EVERGREEN`            | _Evergreen_                                                |
 | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS |
 | `ADVERTORIAL`          | _Advertorial_                                              |
+| `QUIZ`                 | _Quiz_                                                     |
 
   */
     SUB_TYPE_UNSPECIFIED = 0;
@@ -214,6 +216,7 @@ Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
     EVERGREEN = 7;
     AGENCY_IMPORT = 8;
     ADVERTORIAL = 9;
+    QUIZ = 10;
   }
 
   message Element {
