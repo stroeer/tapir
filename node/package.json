@@ -23,7 +23,7 @@
     "google-protobuf": "3.19.4"
   },
   "devDependencies": {
-    "@jest/types": "27.5.1",
+    "@jest/types": "28.0.2",
     "grpc-tools": "1.11.2",
     "jest": "27.5.1",
     "prettier": "2.6.1",
