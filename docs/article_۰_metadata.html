@@ -179,13 +179,14 @@
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
 <tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
-<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial date (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
-<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial date (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
-<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial date (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed significantly.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
 <tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
 <tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L834-L861">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L834-L862">[~]</a></p>
 <h2><a class="header" href="#enum-state" id="enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -211,8 +212,8 @@ has been reached.</p>
     DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L873-L904">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L915-L916">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L875-L906">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L917-L918">[~]</a></p>
 
                     </main>
 
