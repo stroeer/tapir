@@ -71,11 +71,10 @@ To access our docker image you need a valid GitHub PAT (personal access token) a
 1. bump versions
 
     - protoc version in `Makefile` - this version will be used as the docker image tag
-    - go dependency versions in `go/go.mod` (run `go mod tidy -compat=1.17` afterwards)
-    - java dependency versions in `build.gradle`
-    - node dependency versions in `package.json`
-
-
+    - go dependency versions in `go/go.mod` (run `go get -u ./... && go mod tidy`)
+    - java dependency versions in `build.gradle` (run `./gradlew dU -Drevision=release` to see available versions)
+    - node dependency versions in `package.json` of `node`, `node-legacy` (run `npm run update`)
+    
 2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)
 
    - `export GITHUB_ACTOR={yourusername}`
