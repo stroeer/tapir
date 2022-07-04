@@ -15,7 +15,7 @@ jobs:
 
       - uses: bufbuild/buf-lint-action@v1.0.0
 
-      - uses: bufbuild/buf-breaking-action@v1.0.0
+      - uses: bufbuild/buf-breaking-action@v1.1.0
         if: always()
         with:
           against: "https://github.com/stroeer/tapir.git#branch=master"
