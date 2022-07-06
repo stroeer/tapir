@@ -12,69 +12,25 @@ option go_package = "github.com/stroeer/go-tapir/page/section/v1;section";
 option java_multiple_files = true;
 option java_package = "de.stroeer.page.section.v1";
 
-// Service to fetch all data needed to render a section page, like the homepage or "/politik/"
-service SectionPageService {
-  /**
-    ############################################################################
-    # Description
-    ############################################################################
-    Get section data for a given section path
 
-    ############################################################################
-    # Status/Error scenario's
-    ############################################################################
 
-    scenario: found
-    description: all data for the section page was found
-    gRPC status: OK
-    gRPC error payload: none
-    HTTP status: OK
-    cacheable: yes
-
-    scenario: section path is empty
-    description: client did not provide a section path
-    gRPC status: INVALID_ARGUMENT
-    gRPC error payload: google.rpc.BadRequest
-    HTTP status: 400
-    cacheable: yes
-
-    scenario: section path is invalid
-    description: client provided an invalid section path
-    gRPC status: INVALID_ARGUMENT
-    gRPC error payload: google.rpc.BadRequest
-    HTTP status: 400
-    cacheable: yes
-
-    scenario: section path is unknown
-    description: client provided an unknown section path
-    gRPC status: NOT_FOUND
-    gRPC error payload: none
-    HTTP status: 404
-    cacheable: yes
-
-    scenario: internal
-    description: internal error while loading section data
-    gRPC status: INTERNAL
-    gRPC error payload: none
-    HTTP status: 500
-    cacheable: no
-
-    scenario: timeout
-    description: timeout while loading section data
-    gRPC status: DEADLINE_EXCEEDED
-    gRPC error payload: none
-    HTTP status: 504
-    cacheable: no
-
-    Scenarios about incomplete section data needs to be defined
-   */
-  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {
-  }
-}
-
-// Message to provide parameters when requesting data for a section page, currently only the path of the page.
-// Correct paths have a leading and a trailing slash, like `/nachrichten/unterhaltung/`
-// The homepage has the path `/`.
+/**
+ * Message to provide parameters when requesting data for a section page, currently only the path of the page.
+ * Correct paths have a leading and a trailing slash, like `/nachrichten/unterhaltung/`
+ * The homepage has the path `/`.
+ * ```protobuf
+ * message GetSectionPageRequest {
+ *   // valid section_path, with leading and trailing slash
+ *   string section_path = 1;
+ *
+ *   // use to page through sections. If unspecified, it will default to `1`.
+ *   // Paging is 1-based (1 is the first page, there is no page `0`)
+ *   //
+ *   // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
+ *   // The service may return fewer than this value.
+ *   int32 page = 2;
+ * }
+ */
 message GetSectionPageRequest {
   // valid section_path, with leading and trailing slash
   string section_path = 1;
@@ -87,8 +43,32 @@ message GetSectionPageRequest {
   int32 page = 2;
 }
 
-// Response message when requesting data for a section page.
-// Responds with `NOT_FOUND` if an unknown path is requested, or the path is incorrect.
+
+/**
+ * Response message when requesting data for a section page.
+ * Responds with `NOT_FOUND` if an unknown path is requested, or the path is incorrect.
+ * ```protobuf
+ * message GetSectionPageResponse {
+ * stroeer.page.section.v1.SectionPage section_page = 1;
+ *
+ *  // Total number of pages in this `section_path`
+ * int32 total_pages = 2;
+ *
+ * PaginationType pagination_type = 3;
+ *
+ *  enum PaginationType {
+ *    // Not specified.
+ *    PAGINATION_TYPE_UNSPECIFIED = 0;
+ *
+ *    // The default pagination type.
+ *    FIXED_BLOCK = 1;
+ *
+ *    // Pagination type for Evergreen-Ressorts.
+ *    GHOST_BLOCK = 2;
+ *  }
+ * }
+ * ```
+ */
 message GetSectionPageResponse {
   stroeer.page.section.v1.SectionPage section_page = 1;
 
@@ -109,4 +89,87 @@ message GetSectionPageResponse {
   }
 }
 
+/**
+ * Service to fetch all data needed to render a section page, like the homepage or "/politik/"
+ */
+service SectionPageService {
+  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {
+  }
+}
 
+/**
+ *
+ * # Status/Error scenario's
+ *
+ * # scenario: found
+ *
+ * |   |   |
+ * |---|---|
+ * | description | all data for the section page was found |
+ * | gRPC status | `OK (0)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `200 (OK)` |
+ * | cacheable | `yes` |
+
+ * # scenario: section path is empty
+ *
+ * |   |   |
+ * |---|---|
+ * | description |  client did not provide a section path |
+ * | gRPC status | `INVALID_ARGUMENT (3)` |
+ * | gRPC error payload | google.rpc.Bad |
+ * | HTTP status | `400 (BAD REQUEST)` |
+ * | cacheable | `yes` |
+ *
+ * # scenario: section path is invalid
+ *
+ * |   |   |
+ * |---|---|
+ * | description |  client provided an invalid section path |
+ * | gRPC status | `INVALID_ARGUMENT (3)` |
+ * | gRPC error payload | google.rpc.Bad |
+ * | HTTP status | `400 (BAD REQUEST)` |
+ * | cacheable | `yes` |
+ *
+ * # scenario: section path is unknown
+ * |   |   |
+ * |---|---|
+ * | description |  client provided an unknown section path |
+ * | gRPC status | `NOT_FOUND (5)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `404 (NOT FOUND)` |
+ * | cacheable | `yes` |
+ *
+ * ## scenario `partial section data`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | artificial internal error processing parts of this section (no data but valid section) |
+ * | gRPC status | `INTERNAL (13)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `500 (INTERNAL SERVER ERROR)`|
+ * | cacheable | `no` |
+ *
+ * ## scenario `internal`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | internal error processing the section |
+ * | gRPC status | `INTERNAL (13)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `500 (INTERNAL SERVER ERROR)`|
+ * | cacheable | `no` |
+ *
+ * ## scenario `timeout`
+ *
+ * |   |   |
+ * |---|---|
+ * | description | timeout loading and processing the section |
+ * | gRPC status | `DEADLINE_EXCEEDED (4)` |
+ * | gRPC error payload | none |
+ * | HTTP status | `504 (GATEWAY TIMEOUT)` |
+ * | cacheable | `no` |
+ *
+ *  Scenarios about incomplete section data needs to be defined.
+ *  No section data results in an internal server error while incomplete section data might be returned.
+ */
