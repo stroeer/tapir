@@ -164,51 +164,108 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#-sectionpageservice" id="-sectionpageservice">⚙︎ SectionPageService</a></h1>
-<p>############################################################################</p>
-<h1><a class="header" href="#description" id="description">Description</a></h1>
-<p>############################################################################
-Get section data for a given section path</p>
-<p>############################################################################</p>
+<p>Message to provide parameters when requesting data for a section page, currently only the path of the page.
+Correct paths have a leading and a trailing slash, like <code>/nachrichten/unterhaltung/</code>
+The homepage has the path <code>/</code>.</p>
+<pre><code class="language-protobuf">message GetSectionPageRequest {
+  // valid section_path, with leading and trailing slash
+  string section_path = 1;
+
+  // use to page through sections. If unspecified, it will default to `1`.
+  // Paging is 1-based (1 is the first page, there is no page `0`)
+  //
+  // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
+  // The service may return fewer than this value.
+  int32 page = 2;
+}
+[[~]](https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L17-L32)
+
+Response message when requesting data for a section page.
+Responds with `NOT_FOUND` if an unknown path is requested, or the path is incorrect.
+```protobuf
+message GetSectionPageResponse {
+stroeer.page.section.v1.SectionPage section_page = 1;
+
+ // Total number of pages in this `section_path`
+int32 total_pages = 2;
+
+PaginationType pagination_type = 3;
+
+ enum PaginationType {
+   // Not specified.
+   PAGINATION_TYPE_UNSPECIFIED = 0;
+
+   // The default pagination type.
+   FIXED_BLOCK = 1;
+
+   // Pagination type for Evergreen-Ressorts.
+   GHOST_BLOCK = 2;
+ }
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L47-L70">[~]</a></p>
+<p>Service to fetch all data needed to render a section page, like the homepage or &quot;/politik/&quot;
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L92-L93">[~]</a></p>
 <h1><a class="header" href="#statuserror-scenarios" id="statuserror-scenarios">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: all data for the section page was found
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: section path is empty
-description: client did not provide a section path
-gRPC status: INVALID_ARGUMENT
-gRPC error payload: google.rpc.BadRequest
-HTTP status: 400
-cacheable: yes</p>
-<p>scenario: section path is invalid
-description: client provided an invalid section path
-gRPC status: INVALID_ARGUMENT
-gRPC error payload: google.rpc.BadRequest
-HTTP status: 400
-cacheable: yes</p>
-<p>scenario: section path is unknown
-description: client provided an unknown section path
-gRPC status: NOT_FOUND
-gRPC error payload: none
-HTTP status: 404
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading section data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading section data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no</p>
-<p>Scenarios about incomplete section data needs to be defined
-<a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L17-L69">[~]</a></p>
+<h1><a class="header" href="#scenario-found" id="scenario-found">scenario: found</a></h1>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>all data for the section page was found</td></tr>
+<tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+<h1><a class="header" href="#scenario-section-path-is-empty" id="scenario-section-path-is-empty">scenario: section path is empty</a></h1>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client did not provide a section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+<h1><a class="header" href="#scenario-section-path-is-invalid" id="scenario-section-path-is-invalid">scenario: section path is invalid</a></h1>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an invalid section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+<h1><a class="header" href="#scenario-section-path-is-unknown" id="scenario-section-path-is-unknown">scenario: section path is unknown</a></h1>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an unknown section path</td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#scenario-partial-section-data" id="scenario-partial-section-data">scenario <code>partial section data</code></a></h2>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>artificial internal error processing parts of this section (no data but valid section)</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#scenario-internal" id="scenario-internal">scenario <code>internal</code></a></h2>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>internal error processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+<h2><a class="header" href="#scenario-timeout" id="scenario-timeout">scenario <code>timeout</code></a></h2>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>timeout loading and processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+<p>Scenarios about incomplete section data needs to be defined.
+No section data results in an internal server error while incomplete section data might be returned.
+<a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L100-L174">[~]</a></p>
 
                     </main>
 
