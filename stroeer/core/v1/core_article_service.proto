@@ -38,7 +38,7 @@ option java_package = "de.stroeer.core.v1";
 
 service ArticleService {
   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
+  rpc BatchGetArticles (BatchGetArticlesRequest) returns (BatchGetArticlesResponse) {}
   rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
   // Allow Empty as request param
   // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
@@ -79,15 +79,36 @@ message GetArticleRequest {
 *
 * There is a maximum of 100 items that can be queried in one batch.
 *
+* ## BatchGetArticlesRequest
+* ```protobuf
+* message BatchGetArticlesRequest {
+*     repeated int64 ids = 1;
+* }
+* ```
 * | Field name       | Type                | Description                                                 |
 * |------------------|---------------------|-------------------------------------------------------------|
 * | `ids`            | `repeated int64`    | [required] A list of ids of the articles to be fetched      |
 */
-message BatchArticlesRequest {
+message BatchGetArticlesRequest {
   repeated int64 ids = 1;
 }
 
-message BatchArticlesResponse {
+/**
+  * ## BatchGetArticlesResponse
+  * ```protobuf
+  * message BatchGetArticlesResponse {
+  *     repeated stroeer.core.v1.Article articles = 1;
+  * }
+  * ```
+  *
+  * | Field name       | Type                | Description                                                 |
+  * |------------------|---------------------|-------------------------------------------------------------|
+  * | `articles`       | [`stroeer.core.v1.Article`][article]| list of valid articles                                      |
+
+  [article]: article.html
+*/
+
+message BatchGetArticlesResponse {
   repeated stroeer.core.v1.Article articles = 1;
 }
 
