@@ -19,6 +19,8 @@ option java_package = "de.stroeer.core.v1";
 * service ArticleService {
 *   // get a single article by its `article_id`
 *   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+*   // similar to GetArticle(), but retrieves multiple items at once (max == 100)
+*   rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
 *   // query multiple articles at once
 *   rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
 *   // list the available root sections
@@ -36,6 +38,7 @@ option java_package = "de.stroeer.core.v1";
 
 service ArticleService {
   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+  rpc BatchGetArticles (BatchGetArticlesRequest) returns (BatchGetArticlesResponse) {}
   rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
   // Allow Empty as request param
   // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
@@ -58,10 +61,55 @@ service ArticleService {
 * ```
 * | Field name       | Type                | Description                                                 |
 * |------------------|---------------------|-------------------------------------------------------------|
-* | `id`             | `id`                | [required] Unique ID of the article defined by the content management system |
+* | `id`             | `int64`             | [required] Unique id of the article to be fetched.          |
 */
 message GetArticleRequest {
   int64 id = 1;
+}
+
+/**
+* # `⚙︎ BatchGetArticle`
+* ```protobuf
+* rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
+* ```
+*
+* returns multiple [`stroeer.core.v1.Article`](Article.html) for the given `ids`. The
+* ordering of items will the same ordering as the `ids` requested.
+* If an `id` does not exists, it is omitted in the result (no error will be raised).
+*
+* There is a maximum of 100 items that can be queried in one batch.
+*
+* ## BatchGetArticlesRequest
+* ```protobuf
+* message BatchGetArticlesRequest {
+*     repeated int64 ids = 1;
+* }
+* ```
+* | Field name       | Type                | Description                                                 |
+* |------------------|---------------------|-------------------------------------------------------------|
+* | `ids`            | `repeated int64`    | [required] A list of ids of the articles to be fetched      |
+*/
+message BatchGetArticlesRequest {
+  repeated int64 ids = 1;
+}
+
+/**
+  * ## BatchGetArticlesResponse
+  * ```protobuf
+  * message BatchGetArticlesResponse {
+  *     repeated stroeer.core.v1.Article articles = 1;
+  * }
+  * ```
+  *
+  * | Field name       | Type                | Description                                                 |
+  * |------------------|---------------------|-------------------------------------------------------------|
+  * | `articles`       | [`stroeer.core.v1.Article`][article]| list of valid articles                                      |
+
+  [article]: article.html
+*/
+
+message BatchGetArticlesResponse {
+  repeated stroeer.core.v1.Article articles = 1;
 }
 
 /**
