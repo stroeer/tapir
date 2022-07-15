@@ -104,7 +104,7 @@ The ordering of items will the same ordering as the `ids` requested.
 
 */
 message BatchGetCurationRequest {
-  repeated int64 id = 1;
+  repeated int64 ids = 1;
 }
 
 /**
