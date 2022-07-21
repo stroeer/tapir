@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html" class="active"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html" class="active"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,10 +148,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto"><a class="header" href="#proto">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -163,14 +163,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-1"><a class="header" href="#proto-1">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -191,13 +191,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-2"><a class="header" href="#proto-2">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -249,10 +249,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-3"><a class="header" href="#proto-3">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -264,14 +264,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-4"><a class="header" href="#proto-4">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -292,13 +292,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-5"><a class="header" href="#proto-5">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -350,10 +350,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-6"><a class="header" href="#proto-6">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -365,14 +365,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-7"><a class="header" href="#proto-7">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -393,13 +393,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-8"><a class="header" href="#proto-8">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -451,10 +451,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-9"><a class="header" href="#proto-9">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -466,14 +466,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-10"><a class="header" href="#proto-10">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -494,13 +494,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-11"><a class="header" href="#proto-11">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -552,10 +552,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-12"><a class="header" href="#proto-12">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -567,14 +567,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-13"><a class="header" href="#proto-13">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -595,13 +595,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-14"><a class="header" href="#proto-14">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -653,10 +653,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-15"><a class="header" href="#proto-15">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -668,14 +668,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-16"><a class="header" href="#proto-16">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -696,13 +696,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-17"><a class="header" href="#proto-17">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -754,10 +754,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-18"><a class="header" href="#proto-18">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -769,14 +769,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-19"><a class="header" href="#proto-19">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -797,13 +797,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-20"><a class="header" href="#proto-20">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -855,10 +855,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-21"><a class="header" href="#proto-21">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -870,14 +870,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-22"><a class="header" href="#proto-22">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -898,13 +898,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-23"><a class="header" href="#proto-23">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -956,10 +956,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-24"><a class="header" href="#proto-24">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -971,14 +971,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-25"><a class="header" href="#proto-25">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -999,13 +999,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-26"><a class="header" href="#proto-26">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -1057,10 +1057,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-27"><a class="header" href="#proto-27">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -1072,14 +1072,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-28"><a class="header" href="#proto-28">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1100,13 +1100,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-29"><a class="header" href="#proto-29">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
@@ -1158,10 +1158,10 @@ all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
 and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
 <h2 id="proto-30"><a class="header" href="#proto-30">Proto</a></h2>
-<pre><code class="language-protobuf">message Body {
-    repeated BodyNode children = 1;
-    Type type = 2;
-}
+<pre><code class="language-protobuf">* message Body {
+*     repeated BodyNode children = 1;
+*     Type type = 2;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
@@ -1173,14 +1173,14 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <h3 id="proto-31"><a class="header" href="#proto-31">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-    TYPE_UNSPECIFIED = 0;
-    BODY = 1;
-    ARTICLE_SOURCES = 2;
-    DISCLAIMER = 3;
-    TRUST_BOX = 4;
-    TABLE_OF_CONTENTS = 5;
-}
+<pre><code class="language-protobuf">* enum Type {
+*     TYPE_UNSPECIFIED = 0;
+*     BODY = 1;
+*     ARTICLE_SOURCES = 2;
+*     DISCLAIMER = 3;
+*     TRUST_BOX = 4;
+*     TABLE_OF_CONTENTS = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1201,13 +1201,13 @@ textual article body are represented as individual <a href="#article--body"><cod
 can be rendered independently if required.</p>
 <p>Clients must be resilient to unknown or missing nodes.</p>
 <h3 id="proto-32"><a class="header" href="#proto-32">Proto</a></h3>
-<pre><code class="language-protobuf">message BodyNode {
-    string type = 1;
-    string text = 2;
-    map&lt;string, string&gt; fields = 3;
-    repeated BodyNode children = 4;
-    repeated Element elements = 5;
-}
+<pre><code class="language-protobuf">* message BodyNode {
+*     string type = 1;
+*     string text = 2;
+*     map&lt;string, string&gt; fields = 3;
+*     repeated BodyNode children = 4;
+*     repeated Element elements = 5;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>

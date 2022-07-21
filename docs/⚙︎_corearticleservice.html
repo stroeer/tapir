@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html" class="active"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html" class="active"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -143,56 +143,168 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="-corearticleservice"><a class="header" href="#-corearticleservice">⚙︎ CoreArticleService</a></h1>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle"><a class="header" href="#-getarticle"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest"><a class="header" href="#getarticlerequest"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle"><a class="header" href="#-batchgetarticle"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest"><a class="header" href="#batchgetarticlesrequest">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse"><a class="header" href="#batchgetarticlesresponse">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -203,13 +315,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles"><a class="header" href="#-listarticles"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest"><a class="header" href="#listarticlesrequest"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -338,11 +461,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections"><a class="header" href="#-listsections"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse"><a class="header" href="#listsectionsresponse"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -350,56 +484,168 @@ message ListArticlesResponse {
 }
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-1"><a class="header" href="#-getarticle-1"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-1"><a class="header" href="#getarticlerequest-1"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-1"><a class="header" href="#-batchgetarticle-1"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-1"><a class="header" href="#batchgetarticlesrequest-1">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-1"><a class="header" href="#batchgetarticlesresponse-1">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -410,13 +656,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-1"><a class="header" href="#-listarticles-1"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-1"><a class="header" href="#listarticlesrequest-1"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -545,11 +802,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-1"><a class="header" href="#-listsections-1"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-1"><a class="header" href="#listsectionsresponse-1"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -558,56 +826,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-2"><a class="header" href="#-getarticle-2"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-2"><a class="header" href="#getarticlerequest-2"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-2"><a class="header" href="#-batchgetarticle-2"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-2"><a class="header" href="#batchgetarticlesrequest-2">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-2"><a class="header" href="#batchgetarticlesresponse-2">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -618,13 +998,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-2"><a class="header" href="#-listarticles-2"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-2"><a class="header" href="#listarticlesrequest-2"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -753,11 +1144,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-2"><a class="header" href="#-listsections-2"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-2"><a class="header" href="#listsectionsresponse-2"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -766,56 +1168,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-3"><a class="header" href="#-getarticle-3"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-3"><a class="header" href="#getarticlerequest-3"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-3"><a class="header" href="#-batchgetarticle-3"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-3"><a class="header" href="#batchgetarticlesrequest-3">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-3"><a class="header" href="#batchgetarticlesresponse-3">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -826,13 +1340,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-3"><a class="header" href="#-listarticles-3"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-3"><a class="header" href="#listarticlesrequest-3"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -961,11 +1486,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-3"><a class="header" href="#-listsections-3"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-3"><a class="header" href="#listsectionsresponse-3"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -974,56 +1510,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-4"><a class="header" href="#-getarticle-4"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-4"><a class="header" href="#getarticlerequest-4"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-4"><a class="header" href="#-batchgetarticle-4"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-4"><a class="header" href="#batchgetarticlesrequest-4">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-4"><a class="header" href="#batchgetarticlesresponse-4">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -1034,13 +1682,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-4"><a class="header" href="#-listarticles-4"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-4"><a class="header" href="#listarticlesrequest-4"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -1169,11 +1828,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-4"><a class="header" href="#-listsections-4"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-4"><a class="header" href="#listsectionsresponse-4"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -1182,56 +1852,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-5"><a class="header" href="#-getarticle-5"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-5"><a class="header" href="#getarticlerequest-5"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-5"><a class="header" href="#-batchgetarticle-5"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-5"><a class="header" href="#batchgetarticlesrequest-5">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-5"><a class="header" href="#batchgetarticlesresponse-5">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -1242,13 +2024,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-5"><a class="header" href="#-listarticles-5"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-5"><a class="header" href="#listarticlesrequest-5"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -1377,11 +2170,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-5"><a class="header" href="#-listsections-5"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-5"><a class="header" href="#listsectionsresponse-5"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -1390,56 +2194,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-6"><a class="header" href="#-getarticle-6"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-6"><a class="header" href="#getarticlerequest-6"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-6"><a class="header" href="#-batchgetarticle-6"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-6"><a class="header" href="#batchgetarticlesrequest-6">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-6"><a class="header" href="#batchgetarticlesresponse-6">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -1450,13 +2366,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-6"><a class="header" href="#-listarticles-6"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-6"><a class="header" href="#listarticlesrequest-6"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -1585,11 +2512,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-6"><a class="header" href="#-listsections-6"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-6"><a class="header" href="#listsectionsresponse-6"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -1598,56 +2536,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-7"><a class="header" href="#-getarticle-7"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-7"><a class="header" href="#getarticlerequest-7"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-7"><a class="header" href="#-batchgetarticle-7"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-7"><a class="header" href="#batchgetarticlesrequest-7">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-7"><a class="header" href="#batchgetarticlesresponse-7">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -1658,13 +2708,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-7"><a class="header" href="#-listarticles-7"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-7"><a class="header" href="#listarticlesrequest-7"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -1793,11 +2854,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-7"><a class="header" href="#-listsections-7"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-7"><a class="header" href="#listsectionsresponse-7"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -1806,56 +2878,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-8"><a class="header" href="#-getarticle-8"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-8"><a class="header" href="#getarticlerequest-8"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-8"><a class="header" href="#-batchgetarticle-8"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-8"><a class="header" href="#batchgetarticlesrequest-8">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-8"><a class="header" href="#batchgetarticlesresponse-8">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -1866,13 +3050,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-8"><a class="header" href="#-listarticles-8"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-8"><a class="header" href="#listarticlesrequest-8"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -2001,11 +3196,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-8"><a class="header" href="#-listsections-8"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-8"><a class="header" href="#listsectionsresponse-8"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -2014,56 +3220,168 @@ message ListArticlesResponse {
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L349-L359">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/shared.proto#L10-L11">[~]</a></p>
-<pre><code class="language-protobuf">service ArticleService {
-  // get a single article by its `article_id`
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-  rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-  // query multiple articles at once
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-  // list the available root sections
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-}
-</code></pre>
-<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
-by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
-a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
-<a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.
+<ul>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>service ArticleService {</p>
+</li>
+<li>
+<p>// get a single article by its <code>article_id</code></p>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<p>// similar to GetArticle(), but retrieves multiple items at once (max == 100)</p>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<p>// query multiple articles at once</p>
+</li>
+<li>
+<p>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</p>
+</li>
+<li>
+<p>// list the available root sections</p>
+</li>
+<li>
+<p>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified</p>
+</li>
+<li>
+<p>by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing</p>
+</li>
+<li>
+<p>a query.</p>
+</li>
+<li></li>
+<li>
+<p>All results returned from this service are <em>unfiltered</em>, hence they may contain</p>
+</li>
+<li>
+<p><a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a></p>
+</li>
+<li>
+<p>is not <code>PUBLISHED</code>.
 <a href="https://github.com/stroeer/tapir/blob/master/#L17-L36">[~]</a></p>
+</li>
+<li>
 <h1 id="-getarticle-9"><a class="header" href="#-getarticle-9"><code>⚙︎ GetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-</code></pre>
-<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,
-an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns a single <a href="Article.html"><code>stroeer.core.v1.Article</code></a> if the given <code>id</code> exists,</p>
+</li>
+<li>
+<p>an <code>Error</code>, otherwise. (todo: describe errors)</p>
+</li>
+<li></li>
+<li>
 <h2 id="getarticlerequest-9"><a class="header" href="#getarticlerequest-9"><code>GetArticleRequest</code></a></h2>
-<pre><code class="language-protobuf">message GetArticleRequest {
-  int64 id = 1;
-}
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article to be fetched.</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message GetArticleRequest {</p>
+</li>
+<li>
+<p>int64 id = 1;</p>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>id</code>             | <code>int64</code>             | [required] Unique id of the article to be fetched.          |
+<a href="https://github.com/stroeer/tapir/blob/master/#L47-L64">[~]</a></p>
+</li>
+<li>
 <h1 id="-batchgetarticle-9"><a class="header" href="#-batchgetarticle-9"><code>⚙︎ BatchGetArticle</code></a></h1>
-<pre><code class="language-protobuf">rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-</code></pre>
-<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
-ordering of items will the same ordering as the <code>ids</code> requested.
-If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>
+<p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The</p>
+</li>
+<li>
+<p>ordering of items will the same ordering as the <code>ids</code> requested.</p>
+</li>
+<li>
+<p>If an <code>id</code> does not exists, it is omitted in the result (no error will be raised).</p>
+</li>
+<li></li>
+<li>
 <p>There is a maximum of 100 items that can be queried in one batch.</p>
+</li>
+<li></li>
+<li>
 <h2 id="batchgetarticlesrequest-9"><a class="header" href="#batchgetarticlesrequest-9">BatchGetArticlesRequest</a></h2>
-<pre><code class="language-protobuf">message BatchGetArticlesRequest {
-    repeated int64 ids = 1;
-}
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>
+<p>message BatchGetArticlesRequest {</p>
+</li>
+<li>
+<pre><code>repeated int64 ids = 1;
 </code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>[required] A list of ids of the articles to be fetched</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></td><td></td><td></td></tr>
-</tbody></table>
-</div>
+</li>
+<li>
+<p>}</p>
+</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li>
+<p>| Field name       | Type                | Description                                                 |</p>
+</li>
+<li>
+<p>|------------------|---------------------|-------------------------------------------------------------|</p>
+</li>
+<li>
+<p>| <code>ids</code>            | <code>repeated int64</code>    | [required] A list of ids of the articles to be fetched      |
+<a href="https://github.com/stroeer/tapir/blob/master/#L70-L90">[~]</a></p>
+</li>
+</ul>
 <h2 id="batchgetarticlesresponse-9"><a class="header" href="#batchgetarticlesresponse-9">BatchGetArticlesResponse</a></h2>
 <pre><code class="language-protobuf">message BatchGetArticlesResponse {
     repeated stroeer.core.v1.Article articles = 1;
@@ -2074,13 +3392,24 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L96-L108">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listarticles-9"><a class="header" href="#-listarticles-9"><code>⚙︎ ListArticles</code></a></h1>
-<pre><code class="language-protobuf">rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-</code></pre>
-<p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
-articles matching the query. If the results exceed 100 Articles or 1 MB
-the response can be paginated to obtain additional results.
-<a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with</li>
+<li>articles matching the query. If the results exceed 100 Articles or 1 MB</li>
+<li>the response can be paginated to obtain additional results.</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L115-L124">[~]</a></p>
 <h2 id="listarticlesrequest-9"><a class="header" href="#listarticlesrequest-9"><code>ListArticlesRequest</code></a></h2>
 <pre><code class="language-protobuf">message ListArticlesRequest {
    Query query = 1;
@@ -2209,11 +3538,22 @@ message ListArticlesResponse {
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L317-L332">[~]</a></p>
+<ul>
+<li>
 <h1 id="-listsections-9"><a class="header" href="#-listsections-9"><code>⚙︎ ListSections</code></a></h1>
-<pre><code class="language-protobuf">rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-</code></pre>
-<p>list the available root sections
-<a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
+</li>
+<li>
+<pre><code class="language-protobuf"></code></pre>
+</li>
+<li>rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}</li>
+<li>
+<pre><code></code></pre>
+</li>
+<li></li>
+<li>list the available root sections</li>
+<li></li>
+</ul>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L338-L345">[~]</a></p>
 <h2 id="listsectionsresponse-9"><a class="header" href="#listsectionsresponse-9"><code>ListSectionsResponse</code></a></h2>
 <p>list all available <code>root_sections</code> that can be used in the <a href="#query"><code>query</code></a> above.</p>
 <pre><code class="language-protobuf">message ListSectionsResponse {
@@ -2231,7 +3571,7 @@ message ListArticlesResponse {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="⚙︎_curationservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="⚙︎_sectionpageservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -2245,7 +3585,7 @@ message ListArticlesResponse {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="⚙︎_curationservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="⚙︎_sectionpageservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

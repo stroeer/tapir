@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -157,19 +157,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto"><a class="header" href="#proto">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -217,17 +217,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
 <h3 id="proto-1"><a class="header" href="#proto-1">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -245,19 +245,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-2"><a class="header" href="#proto-2">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -289,19 +289,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-3"><a class="header" href="#proto-3">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -349,17 +349,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-1"><a class="header" href="#enum-type-1"><code>enum Type</code></a></h2>
 <h3 id="proto-4"><a class="header" href="#proto-4">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -377,19 +377,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-1"><a class="header" href="#enum-subtype-1"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-5"><a class="header" href="#proto-5">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -421,19 +421,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-6"><a class="header" href="#proto-6">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -481,17 +481,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-2"><a class="header" href="#enum-type-2"><code>enum Type</code></a></h2>
 <h3 id="proto-7"><a class="header" href="#proto-7">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -509,19 +509,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-2"><a class="header" href="#enum-subtype-2"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-8"><a class="header" href="#proto-8">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -553,19 +553,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-9"><a class="header" href="#proto-9">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -613,17 +613,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-3"><a class="header" href="#enum-type-3"><code>enum Type</code></a></h2>
 <h3 id="proto-10"><a class="header" href="#proto-10">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -641,19 +641,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-3"><a class="header" href="#enum-subtype-3"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-11"><a class="header" href="#proto-11">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -685,19 +685,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-12"><a class="header" href="#proto-12">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -745,17 +745,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-4"><a class="header" href="#enum-type-4"><code>enum Type</code></a></h2>
 <h3 id="proto-13"><a class="header" href="#proto-13">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -773,19 +773,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-4"><a class="header" href="#enum-subtype-4"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-14"><a class="header" href="#proto-14">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -817,19 +817,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-15"><a class="header" href="#proto-15">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -877,17 +877,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-5"><a class="header" href="#enum-type-5"><code>enum Type</code></a></h2>
 <h3 id="proto-16"><a class="header" href="#proto-16">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -905,19 +905,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-5"><a class="header" href="#enum-subtype-5"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-17"><a class="header" href="#proto-17">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -949,19 +949,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-18"><a class="header" href="#proto-18">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -1009,17 +1009,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-6"><a class="header" href="#enum-type-6"><code>enum Type</code></a></h2>
 <h3 id="proto-19"><a class="header" href="#proto-19">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1037,19 +1037,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-6"><a class="header" href="#enum-subtype-6"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-20"><a class="header" href="#proto-20">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1081,19 +1081,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-21"><a class="header" href="#proto-21">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -1141,17 +1141,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-7"><a class="header" href="#enum-type-7"><code>enum Type</code></a></h2>
 <h3 id="proto-22"><a class="header" href="#proto-22">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1169,19 +1169,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-7"><a class="header" href="#enum-subtype-7"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-23"><a class="header" href="#proto-23">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1213,19 +1213,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-24"><a class="header" href="#proto-24">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -1273,17 +1273,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-8"><a class="header" href="#enum-type-8"><code>enum Type</code></a></h2>
 <h3 id="proto-25"><a class="header" href="#proto-25">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1301,19 +1301,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-8"><a class="header" href="#enum-subtype-8"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-26"><a class="header" href="#proto-26">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1345,19 +1345,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-27"><a class="header" href="#proto-27">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -1405,17 +1405,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-9"><a class="header" href="#enum-type-9"><code>enum Type</code></a></h2>
 <h3 id="proto-28"><a class="header" href="#proto-28">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1433,19 +1433,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-9"><a class="header" href="#enum-subtype-9"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-29"><a class="header" href="#proto-29">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1477,19 +1477,19 @@ only contain data required on section pages (e.g. with <code>Article.body</code>
 thus not containing any data that is only required on detail pages). This
 lightweight representation is sometimes referred to as <code>Teaser</code>.</p>
 <h2 id="proto-30"><a class="header" href="#proto-30">Proto</a></h2>
-<pre><code class="language-protobuf">message Article {
-    int64 id = 1;
-    Type type = 2;
-    SubType sub_type = 3;
-    stroeer.core.v1.Reference section_tree = 4;
-    map&lt;string, string&gt; fields = 5;
-    repeated Body bodies = 6; # [not present in Teaser]
-    Metadata metadata = 7;
-    repeated Element elements = 8;
-    repeated Keyword keywords = 9;
-    repeated int64 onwards = 10;
-    repeated string entities = 100 [deprecated = true];
-}
+<pre><code class="language-protobuf">* message Article {
+*     int64 id = 1;
+*     Type type = 2;
+*     SubType sub_type = 3;
+*     stroeer.core.v1.Reference section_tree = 4;
+*     map&lt;string, string&gt; fields = 5;
+*     repeated Body bodies = 6; # [not present in Teaser]
+*     Metadata metadata = 7;
+*     repeated Element elements = 8;
+*     repeated Keyword keywords = 9;
+*     repeated int64 onwards = 10;
+*     repeated string entities = 100 [deprecated = true];
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
@@ -1537,17 +1537,17 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type-10"><a class="header" href="#enum-type-10"><code>enum Type</code></a></h2>
 <h3 id="proto-31"><a class="header" href="#proto-31">Proto</a></h3>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   ARTICLE = 1;
-   IMAGE = 2 [deprecated = true];
-   VIDEO = 3;
-   GALLERY = 4;
-   EMBED = 5;
-   AUTHOR = 6;
-   AGENCY = 7 [deprecated = true];
-   EXTERNAL = 8;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    ARTICLE = 1;
+*    IMAGE = 2 [deprecated = true];
+*    VIDEO = 3;
+*    GALLERY = 4;
+*    EMBED = 5;
+*    AUTHOR = 6;
+*    AGENCY = 7 [deprecated = true];
+*    EXTERNAL = 8;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1565,19 +1565,19 @@ will vary depending on the main type of the article.</p>
 <h2 id="enum-subtype-10"><a class="header" href="#enum-subtype-10"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <h3 id="proto-32"><a class="header" href="#proto-32">Proto</a></h3>
-<pre><code class="language-protobuf">enum SubType {
-   SUB_TYPE_UNSPECIFIED = 0;
-   NEWS = 1;
-   COLUMN = 2;
-   COMMENTARY = 3;
-   INTERVIEW = 4;
-   CONTROVERSY = 5;
-   TAGESANBRUCH = 6;
-   EVERGREEN = 7;
-   AGENCY_IMPORT = 8;
-   ADVERTORIAL = 9;
-   QUIZ = 10;
-}
+<pre><code class="language-protobuf">* enum SubType {
+*    SUB_TYPE_UNSPECIFIED = 0;
+*    NEWS = 1;
+*    COLUMN = 2;
+*    COMMENTARY = 3;
+*    INTERVIEW = 4;
+*    CONTROVERSY = 5;
+*    TAGESANBRUCH = 6;
+*    EVERGREEN = 7;
+*    AGENCY_IMPORT = 8;
+*    ADVERTORIAL = 9;
+*    QUIZ = 10;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SUB_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>

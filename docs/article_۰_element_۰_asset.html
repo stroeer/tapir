@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html" class="active"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html" class="active"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,11 +147,11 @@
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf"><a class="header" href="#protobuf">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -160,15 +160,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -181,17 +185,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
 <h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -208,16 +212,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset"><a class="header" href="#video-asset">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -229,16 +233,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset"><a class="header" href="#video-metadata-asset">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -269,11 +273,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-1"><a class="header" href="#protobuf-1">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -282,15 +286,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-1"><a class="header" href="#enum-type-1"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -303,17 +311,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-1"><a class="header" href="#samples-1">Samples</a></h2>
 <h3 id="image-asset-1"><a class="header" href="#image-asset-1">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -330,16 +338,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-1"><a class="header" href="#video-asset-1">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -351,16 +359,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-1"><a class="header" href="#video-metadata-asset-1">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -391,11 +399,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-2"><a class="header" href="#protobuf-2">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -404,15 +412,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-2"><a class="header" href="#enum-type-2"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -425,17 +437,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-2"><a class="header" href="#samples-2">Samples</a></h2>
 <h3 id="image-asset-2"><a class="header" href="#image-asset-2">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -452,16 +464,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-2"><a class="header" href="#video-asset-2">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -473,16 +485,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-2"><a class="header" href="#video-metadata-asset-2">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -513,11 +525,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-3"><a class="header" href="#protobuf-3">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -526,15 +538,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-3"><a class="header" href="#enum-type-3"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -547,17 +563,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-3"><a class="header" href="#samples-3">Samples</a></h2>
 <h3 id="image-asset-3"><a class="header" href="#image-asset-3">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -574,16 +590,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-3"><a class="header" href="#video-asset-3">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -595,16 +611,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-3"><a class="header" href="#video-metadata-asset-3">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -635,11 +651,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-4"><a class="header" href="#protobuf-4">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -648,15 +664,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-4"><a class="header" href="#enum-type-4"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -669,17 +689,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-4"><a class="header" href="#samples-4">Samples</a></h2>
 <h3 id="image-asset-4"><a class="header" href="#image-asset-4">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -696,16 +716,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-4"><a class="header" href="#video-asset-4">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -717,16 +737,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-4"><a class="header" href="#video-metadata-asset-4">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -757,11 +777,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-5"><a class="header" href="#protobuf-5">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -770,15 +790,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-5"><a class="header" href="#enum-type-5"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -791,17 +815,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-5"><a class="header" href="#samples-5">Samples</a></h2>
 <h3 id="image-asset-5"><a class="header" href="#image-asset-5">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -818,16 +842,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-5"><a class="header" href="#video-asset-5">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -839,16 +863,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-5"><a class="header" href="#video-metadata-asset-5">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -879,11 +903,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-6"><a class="header" href="#protobuf-6">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -892,15 +916,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-6"><a class="header" href="#enum-type-6"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -913,17 +941,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-6"><a class="header" href="#samples-6">Samples</a></h2>
 <h3 id="image-asset-6"><a class="header" href="#image-asset-6">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -940,16 +968,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-6"><a class="header" href="#video-asset-6">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -961,16 +989,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-6"><a class="header" href="#video-metadata-asset-6">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -1001,11 +1029,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-7"><a class="header" href="#protobuf-7">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -1014,15 +1042,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-7"><a class="header" href="#enum-type-7"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1035,17 +1067,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-7"><a class="header" href="#samples-7">Samples</a></h2>
 <h3 id="image-asset-7"><a class="header" href="#image-asset-7">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -1062,16 +1094,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-7"><a class="header" href="#video-asset-7">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -1083,16 +1115,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-7"><a class="header" href="#video-metadata-asset-7">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -1123,11 +1155,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-8"><a class="header" href="#protobuf-8">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -1136,15 +1168,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-8"><a class="header" href="#enum-type-8"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1157,17 +1193,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-8"><a class="header" href="#samples-8">Samples</a></h2>
 <h3 id="image-asset-8"><a class="header" href="#image-asset-8">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -1184,16 +1220,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-8"><a class="header" href="#video-asset-8">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -1205,16 +1241,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-8"><a class="header" href="#video-metadata-asset-8">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -1245,11 +1281,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-9"><a class="header" href="#protobuf-9">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -1258,15 +1294,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-9"><a class="header" href="#enum-type-9"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1279,17 +1319,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-9"><a class="header" href="#samples-9">Samples</a></h2>
 <h3 id="image-asset-9"><a class="header" href="#image-asset-9">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -1306,16 +1346,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-9"><a class="header" href="#video-asset-9">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -1327,16 +1367,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-9"><a class="header" href="#video-metadata-asset-9">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
@@ -1367,11 +1407,11 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
 <h3 id="protobuf-10"><a class="header" href="#protobuf-10">Protobuf</a></h3>
-<pre><code class="language-protobuf">message Asset {
-     Type type = 1;
-     map&lt;string, string&gt; fields = 2;
-     Metadata metadata = 3;
-}
+<pre><code class="language-protobuf">* message Asset {
+*      Type type = 1;
+*      map&lt;string, string&gt; fields = 2;
+*      Metadata metadata = 3;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
@@ -1380,15 +1420,19 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L513-L535">[~]</a></p>
+<ul>
+<li>
 <h2 id="enum-type-10"><a class="header" href="#enum-type-10"><code>enum Type</code></a></h2>
+</li>
+</ul>
 <p>Type of an asset.</p>
-<pre><code class="language-protobuf">enum Type {
-   TYPE_UNSPECIFIED = 0;
-   IMAGE = 1;
-   VIDEO = 2;
-   EXTERNAL_VIDEO = 3;
-   METADATA = 4;
-}
+<pre><code class="language-protobuf">* enum Type {
+*    TYPE_UNSPECIFIED = 0;
+*    IMAGE = 1;
+*    VIDEO = 2;
+*    EXTERNAL_VIDEO = 3;
+*    METADATA = 4;
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1401,17 +1445,17 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </div>
 <h2 id="samples-10"><a class="header" href="#samples-10">Samples</a></h2>
 <h3 id="image-asset-10"><a class="header" href="#image-asset-10">Image Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;IMAGE&quot;,
-  &quot;fields&quot;: {
-    &quot;crop&quot;: &quot;16:9&quot;,
-    &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
-    &quot;width&quot;: &quot;1920&quot;,
-    &quot;x&quot;: &quot;0&quot;,
-    &quot;y&quot;: &quot;37&quot;,
-    &quot;height&quot;: &quot;1079&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;IMAGE&quot;,
+*   &quot;fields&quot;: {
+*     &quot;crop&quot;: &quot;16:9&quot;,
+*     &quot;url&quot;: &quot;https://${CDN_URL}/89670804v20/0x37:1920x1079/fit-in/0x0/das-covid-19-dashboard-vom-robert-koch-institut-symbolbild-die-corona-inzidenz-in-muenchen-ist-deutlich-gesunken.jpg&quot;,
+*     &quot;width&quot;: &quot;1920&quot;,
+*     &quot;x&quot;: &quot;0&quot;,
+*     &quot;y&quot;: &quot;37&quot;,
+*     &quot;height&quot;: &quot;1079&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>url</code></td><td>the URL for this cropped images withou scaling. If scaling is desired, replace the <code>/0x0/</code> with the desired dimensions, <code>/fit-in/</code> will make sure that the cropped image will fit inside this rectangle.</td></tr>
@@ -1428,16 +1472,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <li><code>y + height &lt;= height(original_image)</code> otherwise the image generator will fail</li>
 </ul>
 <h3 id="video-asset-10"><a class="header" href="#video-asset-10">Video Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;VIDEO&quot;
-  &quot;fields&quot;: {
-    &quot;duration_seconds&quot;: &quot;157.576&quot;,
-    &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
-    &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
-    &quot;height&quot;: &quot;1080&quot;,
-    &quot;width&quot;: &quot;1920&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;VIDEO&quot;
+*   &quot;fields&quot;: {
+*     &quot;duration_seconds&quot;: &quot;157.576&quot;,
+*     &quot;mime_type&quot;: &quot;application/vnd.apple.mpegurl&quot;,
+*     &quot;url&quot;: &quot;https://d1q9f0uk9ts7gc.cloudfront.net/2021/08/0DgeZjJtJ8EC/hls/maas-haben-500-menschen-aus-kabul-ausgeflogen.m3u8&quot;,
+*     &quot;height&quot;: &quot;1080&quot;,
+*     &quot;width&quot;: &quot;1920&quot;
+*   }
+* }
 
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
@@ -1449,16 +1493,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 </tbody></table>
 </div>
 <h3 id="video-metadata-asset-10"><a class="header" href="#video-metadata-asset-10">Video Metadata Asset</a></h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;METADATA&quot;,
-  &quot;fields&quot;: {
-    &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
-    &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
-    &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
-    &quot;frame_capture:numerator&quot;: &quot;1&quot;,
-    &quot;frame_capture:denominator&quot;: &quot;5&quot;
-  }
-}
+<pre><code class="language-json">* {
+*   &quot;type&quot;: &quot;METADATA&quot;,
+*   &quot;fields&quot;: {
+*     &quot;media_id&quot;: &quot;0DgeZjJtJ8EC&quot;,
+*     &quot;caption&quot;: &quot;Eine Statue der Justitia mit einer Waage und einem Schwert in ihren Händen.&quot;,
+*     &quot;frame_capture:url&quot;: &quot;https://example.com/thumbnails/thumb.0000031.jpg&quot;,
+*     &quot;frame_capture:numerator&quot;: &quot;1&quot;,
+*     &quot;frame_capture:denominator&quot;: &quot;5&quot;
+*   }
+* }
 </code></pre>
 <div class="table-wrapper"><table><thead><tr><th>field</th><th>description</th></tr></thead><tbody>
 <tr><td><code>media_id</code></td><td>alpha-numeric CMS id of the media</td></tr>
