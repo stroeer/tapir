@@ -11,8 +11,8 @@ option java_package = "de.stroeer.core.v1";
 
 message Article {
   /**
-  * @FileArticle Article
-  */
+   * @FileArticle Article
+   */
 
   /**
 An article represents a piece of content created in the content management
@@ -63,9 +63,9 @@ lightweight representation is sometimes referred to as `Teaser`.
 | `entities`     | `string` `[deprecated]`   | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
 
 [t]:   #enum-type
-[b]:   body.html
-[e]:   article.element.html
-[k]:   article.keyword.html
+[b]:   article_%DB%B0_body.html
+[e]:   article_%DB%B0_element.html
+[k]:   article_%DB%B0_keyword.html
 [st]:  #enum-subtype
 [ref]: reference.html
 */
@@ -303,7 +303,7 @@ See [Sample](#samples) section.
 | `EDGE_SIDE_INCLUDE`    | `<esi:include>` that must be resolved server-side for SEO reasons, otherwise similar to `OEMBED`             |
 | `CITATION`             | oEmbed, contains one `metadata` [`Asset`][a]. Todo: sample                                                   |
 
-[a]: article_%3E_element_%3E_asset.html
+[a]: article_%DB%B0_element_%DB%B0_asset.html
 [e]: #element
 [image-sample]: #image-element
 [video-sample]: #image-element
@@ -844,22 +844,26 @@ Article metadata like publication state and technical timestamps.
 *     google.protobuf.Timestamp update_time = 5;
 *     google.protobuf.Timestamp transformation_time = 6;
 *     int64 transformation_errors = 7;
+*     google.protobuf.Timestamp last_modification_time = 8;
+*     EventSource event_source = 9;
 * }
 ```
 
-| Field name               | Type              | Description                                                                                                                                                                                                                                                                                                             |
-|--------------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `state`                  | [`State`][state]  | State of the article in the content management system. See [`enum State`](#enum-state)                                                                                                                                                                                                                                  |
-| `start_time`             | [`Timestamp`][ts] | Manually set editorial timestamp (_Gültig von_) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                  |
-| `end_time`               | [`Timestamp`][ts] | Manually set editorial timestamp (_Gültig bis_) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                           |
-| `publish_time`           | [`Timestamp`][ts] | Editorial timestamp (_Publikationsdatum_) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.                                                                                                                             |
-| `update_time`            | [`Timestamp`][ts] | Editorial timestamp (_Aktualisierungsdatum_) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches `publish_time`. Afterwards it's either updated manually in the content management system or automatically if the article content changed *significantly*. |
-| `transformation_time`    | [`Timestamp`][ts] | Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.                                                                                                                                                                                                      |
-| `transformation_errors`  | `int64`           | Number of errors occurred while fetching and/or transforming optional article components (e.g. `embeds` or nested `documents`) to an `article` message.                                                                                                                                                                 |
-| `last_modification_time` | [`Timestamp`][ts] | Technical timestamp at which the article was published regardless of the amount and significance of the change.                                                                                                                                                                                                        |
+| Field name               | Type                | Description                                                                                                                                                                                                                                                                                                                  |
+|--------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `state`                  | [`State`][state]    | State of the article in the content management system. See [`enum State`](#enum-state)                                                                                                                                                                                                                                       |
+| `start_time`             | [`Timestamp`][ts]   | Manually set editorial timestamp (_Gültig von_) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                       |
+| `end_time`               | [`Timestamp`][ts]   | Manually set editorial timestamp (_Gültig bis_) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                           |
+| `publish_time`           | [`Timestamp`][ts]   | Editorial timestamp (_Publikationsdatum_) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.                                                                                                                             |
+| `update_time`            | [`Timestamp`][ts]   | Editorial timestamp (_Aktualisierungsdatum_) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches `publish_time`. Afterwards it's either updated manually in the content management system or automatically if the article content changed *significantly*. |
+| `transformation_time`    | [`Timestamp`][ts]   | Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.                                                                                                                                                                                                           |
+| `transformation_errors`  | `int64`             | Number of errors occurred while fetching and/or transforming optional article components (e.g. `embeds` or nested `documents`) to an `article` message.                                                                                                                                                                      |
+| `last_modification_time` | [`Timestamp`][ts]   | Technical timestamp at which the article was published regardless of the amount and significance of the change.                                                                                                                                                                                                              |
+| `event_source`           | [`EventSource`][es] | Source of the event that caused this item to be transformed and to be written into the DB.                                                                                                                                                                                                                                   |
 
 [ts]:    https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
 [state]: #state
+[es]:    #enum-eventsource
     */
     State state = 1;
     google.protobuf.Timestamp start_time = 2;
@@ -869,49 +873,71 @@ Article metadata like publication state and technical timestamps.
     google.protobuf.Timestamp transformation_time = 6;
     int64 transformation_errors = 7;
     google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
 
+
+    /**
+    * ## `enum State`
+
+    State of the item ([`Article`](article.html), [`Element`](article.element.html))
+    in the content management system. The `state` in combination with
+    `start_time` and `end_time` determines whether or not this item should be
+    rendered; this must be respected by all consumers especially
+    when content is duplicated or cached.
+
+    The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
+    This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
+    if it was deleted in the content management system, or if it's [end_time](#end_time)
+    has been reached.
+
+    An Article is in `State.DRAFT` if it has never been published, or if the
+    `start_time` lies in the future.
+
+    | Enum value          | description                                                    |
+    |---------------------|----------------------------------------------------------------|
+    | `STATE_UNSPECIFIED` | unspecified                                                    |
+    | `PUBLISHED`         | published content which is currently within its validity dates |
+    | `DELETED`           | this content is deleted or expired in the CMS                  |
+    | `DRAFT`             | this content was never published in the CMS                    |
+
+    */
     enum State {
-
-      /**
-* ## `enum State`
-
-State of the item ([`Article`](article.html), [`Element`](article.element.html))
-in the content management system. The `state` in combination with
-`start_time` and `end_time` determines whether or not this item should be
-rendered; this must be respected by all consumers especially
-when content is duplicated or cached.
-
-The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
-This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
-if it was deleted in the content management system, or if it's [end_time](#end_time)
-has been reached.
-
-An Article is in `State.DRAFT` if it has never been published, or if the
-`start_time` lies in the future.
-
-| Enum value          | description                                                    |
-|---------------------|----------------------------------------------------------------|
-| `STATE_UNSPECIFIED` | unspecified                                                    |
-| `PUBLISHED`         | published content which is currently within its validity dates |
-| `DELETED`           | this content is deleted or expired in the CMS                  |
-| `DRAFT`             | this content was never published in the CMS                    |
-
-```protobuf
-* enum State {
-*     STATE_UNSPECIFIED = 0;
-*     PUBLISHED = 1;
-*     DELETED = 2;
-*     DRAFT = 3;
-* }
-```
-*/
-
       STATE_UNSPECIFIED = 0;
       PUBLISHED = 1;
       DELETED = 2;
       DRAFT = 3;
     }
+
+    /**
+    * ## `enum EventSource`
+    *
+    * Even more detail about the circumstances of transformation for this article.
+    *
+    * The `EventSource` will be of type:
+    *
+    * - `PRIMARY` in case this article was directly _updated_ and _published_
+    * - `SECONDARY` in case this article was indirectly updated.
+    * This can be caused by updates of _nested elements_,
+    * such as _Videos_ that may expire at some point. Another source of change may be
+    * _Scheduled Events_ like this item becomes _valid_ or _invalid_ at some
+    * point in time in the future after the item's original publication time.
+    *
+    * | Enum value               | description                                                            |
+    * |--------------------------|------------------------------------------------------------------------|
+    * | EVENT_SOURCE_UNSPECIFIED | unspecified                                                            |
+    * | PRIMARY                  | this article's transformation was caused by a direct change in the CMS |
+    * | SECONDARY                | this article's transformation was caused by a transitive update        |
+    *
+    * @CodeBlockStart protobuf
+    */
+    enum EventSource {
+      EVENT_SOURCE_UNSPECIFIED = 0;
+      PRIMARY = 1;
+      SECONDARY = 2;
+    }
+    /** @CodeBlockEnd */
   }
+
 
   message Keyword {
     /**
@@ -919,22 +945,13 @@ An Article is in `State.DRAFT` if it has never been published, or if the
      */
 
     /**
-Extracted keywords from the article body like persons, locations, organizations etc.
-
-## Proto
-```protobuf
-* message Keyword {
-*     string value = 1;
-*     string type = 2;
-*     float score = 3;
-* }
-```
-
-| Field name              | Type              | Description                                                                                                                                                                                                                                                                                                           |
-|-------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `value`                 | `string`          | Unique value of this keyword.                                                                                                                                                                                                                                |
-| `type`                 | `string`          | Type/Category of this keyword like `location`, `organization`, `person`                                                                                                                                                                                                                                |
-| `score`                 | `float`          | Score for the relevance of this keyword set by the engine |
+     * Extracted keywords from the article body like persons, locations, organizations etc.
+     *
+     * | Field name              | Type              | Description                                                                                                                                                                                                                                                                                                           |
+     * |-------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `value`                 | `string`          | Unique value of this keyword.                                                                                                                                                                                                                                |
+     * | `type`                 | `string`          | Type/Category of this keyword like `location`, `organization`, `person`                                                                                                                                                                                                                                |
+     * | `score`                 | `float`          | Score for the relevance of this keyword set by the engine |
     */
     string value = 1;
     string type = 2;

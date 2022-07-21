@@ -183,7 +183,7 @@ release: clean check check-git-branch fundoc ## Releases new version of gRPC sou
     fi;
 
 .PHONY:
-release-local-java: ## Releases generated Java code to your local maven repository
+release-local-java: java ## Releases generated Java code to your local maven repository
 	cd java && ./gradlew clean build publishToMavenLocal
 
 ###########

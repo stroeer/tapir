@@ -29,7 +29,7 @@ service CurationService {
 }
 
 /**
-# `⚙︎ GetCuration`
+ * # `⚙︎ GetCuration`
 ```protobuf
   rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
 ```
@@ -81,7 +81,7 @@ message GetCurationResponse {
 }
 
 /**
-# `⚙︎ BatchGetCuration`
+ * # `⚙︎ BatchGetCuration`
 ```protobuf
 *   rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
 ```
