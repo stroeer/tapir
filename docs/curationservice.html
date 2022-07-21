@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html" class="active"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html" class="active"><strong aria-hidden="true">7.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -586,71 +586,6 @@ The ordering of items will the same ordering as the <code>ids</code> requested.<
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
 <h3 id="batchgetcurationresponse-6"><a class="header" href="#batchgetcurationresponse-6">BatchGetCurationResponse</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf">
-message BatchGetCurationResponse {
-  repeated GetCurationResponse curations = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L106">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L3-L4">[~]</a></p>
-<pre><code class="language-protobuf">
-service CurationService {
-  rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
-  rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
-}
-
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L16-L24">[~]</a></p>
-<h2 id="getcuration-7"><a class="header" href="#getcuration-7">GetCuration</a></h2>
-<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
-curation contains. The response may be empty in case the curation does not contain any items.</p>
-<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
-<h3 id="getcurationrequest-7"><a class="header" href="#getcurationrequest-7">GetCurationRequest</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf">
-message GetCurationRequest {
-  int64 id = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L27-L45">[~]</a></p>
-<h3 id="getcurationresponse-7"><a class="header" href="#getcurationresponse-7">GetCurationResponse</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
-<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
-<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf">message GetCurationResponse {
-  int64 id = 1;
-  string label = 2;
-  google.protobuf.Timestamp update_time = 3;
-  repeated stroeer.core.v1.Article articles = 4;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L68">[~]</a></p>
-<h2 id="batchgetcuration-7"><a class="header" href="#batchgetcuration-7">BatchGetCuration</a></h2>
-<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
-curations contain. The response may be empty in case the curation does not contain any items.
-The ordering of items will the same ordering as the <code>ids</code> requested.</p>
-<h3 id="batchgetcurationrequest-7"><a class="header" href="#batchgetcurationrequest-7">BatchGetCurationRequest</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf">message BatchGetCurationRequest {
-  repeated int64 ids = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
-<h3 id="batchgetcurationresponse-7"><a class="header" href="#batchgetcurationresponse-7">BatchGetCurationResponse</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
 </tbody></table>

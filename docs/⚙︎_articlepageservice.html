@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">8.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">9.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">10.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html" class="active"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">7.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html" class="active"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -571,116 +571,6 @@
 </tbody></table>
 </div>
 <h2 id="scenario-timeout-3"><a class="header" href="#scenario-timeout-3">scenario <code>timeout</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>timeout loading and processing the article</td></tr>
-<tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
-<tr><td>gRPC error payload</td><td>none</td></tr>
-<tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
-<tr><td>cacheable</td><td><code>no</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L62-L155">[~]</a></td><td></td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/section/v1/section_page_service.proto#L3-L4">[~]</a></p>
-<pre><code class="language-protobuf">service ArticlePageService {
-  # turns the requested article with editorial render relevant data for the user and SEO bots.
-  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
-}
-</code></pre>
-<h1 id="description-4"><a class="header" href="#description-4">Description</a></h1>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L15-L24">[~]</a></p>
-<h2 id="request-message-to-get-an-article-page-4"><a class="header" href="#request-message-to-get-an-article-page-4">Request message to get an article page.</a></h2>
-<pre><code class="language-protobuf">message GetArticlePageRequest {
-  # ID of the article defined by the content management system (required).
-  int64 id = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L30-L37">[~]</a></p>
-<h2 id="response-message-for-an-article-page-request-4"><a class="header" href="#response-message-for-an-article-page-request-4">Response message for an article page request.</a></h2>
-<p>Status codes:</p>
-<ul>
-<li><code>OK</code> | article exists and is published</li>
-<li><code>NOT_FOUND</code> | article doesn't exist or is not published according to it's <code>Metadata</code></li>
-</ul>
-<pre><code class="language-protobuf">message GetArticlePageResponse {
- # Article page with all render relevant data for the user and SEO bots.
- stroeer.page.article.v1.ArticlePage article_page = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L43-L55">[~]</a></p>
-<h1 id="statuserror-scenarios-4"><a class="header" href="#statuserror-scenarios-4">Status/Error scenario's</a></h1>
-<h2 id="scenario-found-4"><a class="header" href="#scenario-found-4">scenario <code>found</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was found in the datastore and is published and valid according to it's <a href="metadata.html"><code>metadata</code></a></td></tr>
-<tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
-<tr><td>gRPC error payload</td><td>none</td></tr>
-<tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-invalid-id-4"><a class="header" href="#scenario-invalid-id-4">scenario <code>invalid id</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article id is invalid</td></tr>
-<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
-<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
-<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-not-found-4"><a class="header" href="#scenario-not-found-4">scenario <code>not found</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was not found in the datastore</td></tr>
-<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
-<tr><td>gRPC error payload</td><td>none</td></tr>
-<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-not-yet-valid-4"><a class="header" href="#scenario-not-yet-valid-4">scenario <code>not yet valid</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was found in the datastore, but is not valid yet according to its <a href="metadata.html#start_time"><code>metadata.start_time</code></a></td></tr>
-<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
-<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
-<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-not-published-4"><a class="header" href="#scenario-not-published-4">scenario <code>not published</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was found in the datastore, but it's <a href="metadata.html#state"><code>state</code></a> is neither <code>State.DELETED</code> nor <code>State.PUBLISHED</code></td></tr>
-<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
-<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
-<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-expired-4"><a class="header" href="#scenario-expired-4">scenario <code>expired</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was found in the datastore, but is expired according to <code>metadata.end_time</code></td></tr>
-<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
-<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
-<tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-deletedarchived-4"><a class="header" href="#scenario-deletedarchived-4">scenario <code>deleted/archived</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>article was found in the datastore, but it's state is <code>State.DELETED</code></td></tr>
-<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
-<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
-<tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
-<tr><td>cacheable</td><td><code>yes</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-internal-4"><a class="header" href="#scenario-internal-4">scenario <code>internal</code></a></h2>
-<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
-<tr><td>description</td><td>internal error processing the article</td></tr>
-<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
-<tr><td>gRPC error payload</td><td>none</td></tr>
-<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
-<tr><td>cacheable</td><td><code>no</code></td></tr>
-</tbody></table>
-</div>
-<h2 id="scenario-timeout-4"><a class="header" href="#scenario-timeout-4">scenario <code>timeout</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
 <tr><td>description</td><td>timeout loading and processing the article</td></tr>
 <tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
