@@ -4,7 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Article ۰ Metadata - tapir</title>
+
+
         <!-- Custom HTML head -->
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,15 +19,18 @@
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
         <link rel="stylesheet" href="css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -83,7 +89,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -110,6 +116,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -123,6 +130,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -145,9 +153,11 @@
     google.protobuf.Timestamp update_time = 5;
     google.protobuf.Timestamp transformation_time = 6;
     int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
 }
 </code></pre>
-<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
 <tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
 <tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
@@ -156,8 +166,10 @@
 <tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
 <tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
 <tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L834-L862">[~]</a></p>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -170,21 +182,759 @@ if it was deleted in the content management system, or if it's <a href="#end_tim
 has been reached.</p>
 <p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
 <code>start_time</code> lies in the future.</p>
-<table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
 <tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
 <tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
 <tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
 <tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
 </tbody></table>
-<pre><code class="language-protobuf">enum State {
-    STATE_UNSPECIFIED = 0;
-    PUBLISHED = 1;
-    DELETED = 2;
-    DRAFT = 3;
+</div>
+<h2 id="enum-eventsource"><a class="header" href="#enum-eventsource"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L875-L906">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L917-L918">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-1"><a class="header" href="#proto-1">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-1"><a class="header" href="#enum-state-1"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-1"><a class="header" href="#enum-eventsource-1"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-2"><a class="header" href="#proto-2">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-2"><a class="header" href="#enum-state-2"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-2"><a class="header" href="#enum-eventsource-2"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-3"><a class="header" href="#proto-3">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-3"><a class="header" href="#enum-state-3"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-3"><a class="header" href="#enum-eventsource-3"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-4"><a class="header" href="#proto-4">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-4"><a class="header" href="#enum-state-4"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-4"><a class="header" href="#enum-eventsource-4"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-5"><a class="header" href="#proto-5">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-5"><a class="header" href="#enum-state-5"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-5"><a class="header" href="#enum-eventsource-5"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-6"><a class="header" href="#proto-6">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-6"><a class="header" href="#enum-state-6"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-6"><a class="header" href="#enum-eventsource-6"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-7"><a class="header" href="#proto-7">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-7"><a class="header" href="#enum-state-7"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-7"><a class="header" href="#enum-eventsource-7"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-8"><a class="header" href="#proto-8">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-8"><a class="header" href="#enum-state-8"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-8"><a class="header" href="#enum-eventsource-8"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-9"><a class="header" href="#proto-9">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-9"><a class="header" href="#enum-state-9"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-9"><a class="header" href="#enum-eventsource-9"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
+<p>Article metadata like publication state and technical timestamps.</p>
+<h2 id="proto-10"><a class="header" href="#proto-10">Proto</a></h2>
+<pre><code class="language-protobuf">message Metadata {
+    State state = 1;
+    google.protobuf.Timestamp start_time = 2;
+    google.protobuf.Timestamp end_time = 3;
+    google.protobuf.Timestamp publish_time = 4;
+    google.protobuf.Timestamp update_time = 5;
+    google.protobuf.Timestamp transformation_time = 6;
+    int64 transformation_errors = 7;
+    google.protobuf.Timestamp last_modification_time = 8;
+    EventSource event_source = 9;
+}
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>state</code></td><td><a href="#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="#enum-state"><code>enum State</code></a></td></tr>
+<tr><td><code>start_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig von</em>) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>end_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Manually set editorial timestamp (<em>Gültig bis</em>) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>publish_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Publikationsdatum</em>) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Editorial timestamp (<em>Aktualisierungsdatum</em>) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches <code>publish_time</code>. Afterwards it's either updated manually in the content management system or automatically if the article content changed <em>significantly</em>.</td></tr>
+<tr><td><code>transformation_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.</td></tr>
+<tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
+<tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
+<tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L834-L866">[~]</a></p>
+<h2 id="enum-state-10"><a class="header" href="#enum-state-10"><code>enum State</code></a></h2>
+<p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
+in the content management system. The <code>state</code> in combination with
+<code>start_time</code> and <code>end_time</code> determines whether or not this item should be
+rendered; this must be respected by all consumers especially
+when content is duplicated or cached.</p>
+<p>The terms <code>deleted</code> (articles) and <code>archived</code> (media lib) are interchangeable/synonyms.
+This enum combines those two into <code>State.DELETED</code>. An Article is in <code>State.DELETED</code>
+if it was deleted in the content management system, or if it's <a href="#end_time">end_time</a>
+has been reached.</p>
+<p>An Article is in <code>State.DRAFT</code> if it has never been published, or if the
+<code>start_time</code> lies in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td><code>STATE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>PUBLISHED</code></td><td>published content which is currently within its validity dates</td></tr>
+<tr><td><code>DELETED</code></td><td>this content is deleted or expired in the CMS</td></tr>
+<tr><td><code>DRAFT</code></td><td>this content was never published in the CMS</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L879-L902">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<h2 id="enum-eventsource-10"><a class="header" href="#enum-eventsource-10"><code>enum EventSource</code></a></h2>
+<p>Even more detail about the circumstances of transformation for this article.</p>
+<p>The <code>EventSource</code> will be of type:</p>
+<ul>
+<li><code>PRIMARY</code> in case this article was directly <em>updated</em> and <em>published</em></li>
+<li><code>SECONDARY</code> in case this article was indirectly updated.
+This can be caused by updates of <em>nested elements</em>,
+such as <em>Videos</em> that may expire at some point. Another source of change may be
+<em>Scheduled Events</em> like this item becomes <em>valid</em> or <em>invalid</em> at some
+point in time in the future after the item's original publication time.</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>description</th></tr></thead><tbody>
+<tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
+<tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
+<tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">enum EventSource {
+EVENT_SOURCE_UNSPECIFIED = 0;
+PRIMARY = 1;
+SECONDARY = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L911-L937">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L943-L944">[~]</a></p>
 
                     </main>
 
@@ -193,9 +943,11 @@ has been reached.</p>
                             <a rel="prev" href="article_۰_keyword.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
+
                             <a rel="next" href="reference.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -205,6 +957,7 @@ has been reached.</p>
                     <a rel="prev" href="article_۰_keyword.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="reference.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -212,16 +965,24 @@ has been reached.</p>
 
         </div>
 
+
+
+
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
+
+
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
+
+
     </body>
 </html>
