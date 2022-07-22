@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">7.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html" class="active"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html" class="active"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -146,15 +146,6 @@
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
 a <code>Section</code> or an external website, or a whole tree structure, for example
 a section tree or breadcrumb navigation.</p>
-<h3 id="proto"><a class="header" href="#proto">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
 <tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
@@ -163,7 +154,16 @@ a section tree or breadcrumb navigation.</p>
 <tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
 </tbody></table>
 </div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
+<pre><code class="language-protobuf">
+message Reference {
+  string type = 1;
+  string label = 2;
+  string href = 3;
+  map&lt;string, string&gt; fields = 4;
+  repeated Reference children = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L13-L37">[~]</a></p>
 <h2 id="type"><a class="header" href="#type"><code>type</code></a></h2>
 <p>Example entries:</p>
 <ul>
@@ -183,379 +183,23 @@ a section tree or breadcrumb navigation.</p>
 <li><code>layout</code></li>
 </ul>
 <h2 id="samples"><a class="header" href="#samples"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
+<pre><code class="language-json">{
+  &quot;label&quot;: &quot;Home&quot;
+  &quot;href&quot;: &quot;/&quot;,
+  &quot;children&quot;: [
+        &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
+        &quot;href&quot;: &quot;/test-playground/&quot;
+  ]
+}
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-1"><a class="header" href="#proto-1">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-1"><a class="header" href="#type-1"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-1"><a class="header" href="#fields-1"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-1"><a class="header" href="#samples-1"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-2"><a class="header" href="#proto-2">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-2"><a class="header" href="#type-2"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-2"><a class="header" href="#fields-2"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-2"><a class="header" href="#samples-2"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-3"><a class="header" href="#proto-3">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-3"><a class="header" href="#type-3"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-3"><a class="header" href="#fields-3"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-3"><a class="header" href="#samples-3"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-4"><a class="header" href="#proto-4">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-4"><a class="header" href="#type-4"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-4"><a class="header" href="#fields-4"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-4"><a class="header" href="#samples-4"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-5"><a class="header" href="#proto-5">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-5"><a class="header" href="#type-5"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-5"><a class="header" href="#fields-5"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-5"><a class="header" href="#samples-5"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-6"><a class="header" href="#proto-6">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-6"><a class="header" href="#type-6"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-6"><a class="header" href="#fields-6"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-6"><a class="header" href="#samples-6"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
-<p>A Reference represents a link to another entity, for example an <code>Article</code>,
-a <code>Section</code> or an external website, or a whole tree structure, for example
-a section tree or breadcrumb navigation.</p>
-<h3 id="proto-7"><a class="header" href="#proto-7">Proto</a></h3>
-<pre><code class="language-protobuf">* message Reference {
-*   string type = 1;
-*   string label = 2;
-*   string href = 3;
-*   map&lt;string, string&gt; fields = 4;
-*   repeated Reference children = 5;
-* }
-</code></pre>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>type</code></td><td><code>string</code></td><td>The <code>type</code> is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See <a href="#type"><code>type</code></a></td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>The label of the reference.</td></tr>
-<tr><td><code>href</code></td><td><code>string</code></td><td>The href of the reference. It can be relative or absolute.</td></tr>
-<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See <a href="#fields"><code>fields</code></a></td></tr>
-<tr><td><code>children</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a></td><td>Hierarchically structured references for representing a navigation or tree.</td></tr>
-</tbody></table>
-</div>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L39">[~]</a></p>
-<h2 id="type-7"><a class="header" href="#type-7"><code>type</code></a></h2>
-<p>Example entries:</p>
-<ul>
-<li><code>unspecified</code> text</li>
-<li><code>stage_title</code></li>
-<li><code>stage_themenbereiche</code></li>
-<li><code>stage_header_links</code></li>
-<li><code>stage_top_themen</code></li>
-<li><code>stage_tag_category</code></li>
-</ul>
-<h2 id="fields-7"><a class="header" href="#fields-7"><code>fields</code></a></h2>
-<p>Contains one or more optional attributes of the reference:</p>
-<ul>
-<li><code>target</code></li>
-<li><code>rel</code></li>
-<li><code>flag:internal</code></li>
-<li><code>layout</code></li>
-</ul>
-<h2 id="samples-7"><a class="header" href="#samples-7"><code>Samples</code></a></h2>
-<pre><code class="language-json">* {
-*   &quot;label&quot;: &quot;Home&quot;
-*   &quot;href&quot;: &quot;/&quot;,
-*   &quot;children&quot;: [
-*         &quot;label&quot;: &quot;Spielwiese (Tests)&quot;,
-*         &quot;href&quot;: &quot;/test-playground/&quot;
-*   ]
-* }
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L48-L81">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L40-L73">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="curationservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="article_۰_metadata.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -569,7 +213,7 @@ a section tree or breadcrumb navigation.</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="curationservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="article_۰_metadata.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
