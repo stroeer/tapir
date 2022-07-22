@@ -15,26 +15,16 @@ option java_multiple_files = true;
 option java_package = "de.stroeer.core.v1";
 
 /**
-* ```protobuf
-* service ArticleService {
-*   // get a single article by its `article_id`
-*   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-*   // similar to GetArticle(), but retrieves multiple items at once (max == 100)
-*   rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-*   // query multiple articles at once
-*   rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-*   // list the available root sections
-*   rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-* }
-* ```
-* Core service to either query a single article (`rpc GetArticle()`) identified
-* by its id or to query multiple articles (`rpc ListArticles()`) by providing
-* a query.
-*
-* All results returned from this service are _unfiltered_, hence they may contain
-* [`elements`](element.html) that are *expired*, *not yet valid* or whose [`state`](metadata.html#state)
-* is not `PUBLISHED`.
-*/
+  * Core service to either query a single article (`rpc GetArticle()`) identified
+  * by its id or to query multiple articles (`rpc ListArticles()`) by providing
+  * a query.
+  *
+  * All results returned from this service are _unfiltered_, hence they may contain
+  * [`elements`](element.html) that are *expired*, *not yet valid* or whose [`state`](metadata.html#state)
+  * is not `PUBLISHED`.
+  *
+  * @CodeBlockStart protobuf
+  */
 
 service ArticleService {
   rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
@@ -44,154 +34,126 @@ service ArticleService {
   // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
   rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
 }
+/** @CodeBlockEnd */
+
 /**
-* # `⚙︎ GetArticle`
-* ```protobuf
-* rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-* ```
-*
-* returns a single [`stroeer.core.v1.Article`](Article.html) if the given `id` exists,
-* an `Error`, otherwise. (todo: describe errors)
-*
-* ## `GetArticleRequest`
-* ```protobuf
-* message GetArticleRequest {
-*   int64 id = 1;
-* }
-* ```
-* | Field name       | Type                | Description                                                 |
-* |------------------|---------------------|-------------------------------------------------------------|
-* | `id`             | `int64`             | [required] Unique id of the article to be fetched.          |
-*/
+ * # `⚙︎ GetArticle`
+ * ```protobuf
+ * rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
+ * ```
+ *
+ * returns a single [`stroeer.core.v1.Article`](Article.html) if the given `id` exists,
+ * an `Error`, otherwise. (todo: describe errors)
+ *
+ * | Field name       | Type                | Description                                                 |
+ * |------------------|---------------------|-------------------------------------------------------------|
+ * | `id`             | `int64`             | [required] Unique id of the article to be fetched.          |
+ *
+ * @CodeBlockStart protobuf
+ */
 message GetArticleRequest {
   int64 id = 1;
 }
+/** @CodeBlockEnd */
 
 /**
-* # `⚙︎ BatchGetArticle`
-* ```protobuf
-* rpc BatchGetArticles (BatchArticlesRequest) returns (BatchArticlesResponse) {}
-* ```
-*
-* returns multiple [`stroeer.core.v1.Article`](Article.html) for the given `ids`. The
-* ordering of items will the same ordering as the `ids` requested.
-* If an `id` does not exists, it is omitted in the result (no error will be raised).
-*
-* There is a maximum of 100 items that can be queried in one batch.
-*
-* ## BatchGetArticlesRequest
-* ```protobuf
-* message BatchGetArticlesRequest {
-*     repeated int64 ids = 1;
-* }
-* ```
-* | Field name       | Type                | Description                                                 |
-* |------------------|---------------------|-------------------------------------------------------------|
-* | `ids`            | `repeated int64`    | [required] A list of ids of the articles to be fetched      |
-*/
+ * # `⚙︎ BatchGetArticle`
+ *
+ * returns multiple [`stroeer.core.v1.Article`](Article.html) for the given `ids`. The
+ * ordering of items will the same ordering as the `ids` requested.
+ * If an `id` does not exists, it is omitted in the result (no error will be raised).
+ *
+ * There is a maximum of 100 items that can be queried in one batch.
+ *
+ * | Field name       | Type                | Description                                                 |
+ * |------------------|---------------------|-------------------------------------------------------------|
+ * | `ids`            | `repeated int64`    | [required] A list of ids of the articles to be fetched      |
+ *
+ * @CodeBlockStart protobuf
+ */
 message BatchGetArticlesRequest {
   repeated int64 ids = 1;
 }
+/** @CodeBlockEnd */
 
 /**
   * ## BatchGetArticlesResponse
-  * ```protobuf
-  * message BatchGetArticlesResponse {
-  *     repeated stroeer.core.v1.Article articles = 1;
-  * }
-  * ```
   *
   * | Field name       | Type                | Description                                                 |
   * |------------------|---------------------|-------------------------------------------------------------|
   * | `articles`       | [`stroeer.core.v1.Article`][article]| list of valid articles                                      |
-
-  [article]: article.html
-*/
+  *
+  * [article]: article.html
+  *
+  * @CodeBlockStart protobuf
+  */
 
 message BatchGetArticlesResponse {
   repeated stroeer.core.v1.Article articles = 1;
 }
+/** @CodeBlockEnd */
 
 /**
-* # `⚙︎ ListArticles`
-* ```protobuf
-* rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
-* ```
-*
-* returns a [`message-listarticlesresponse`](#ListArticlesResponse) with
-* articles matching the query. If the results exceed 100 Articles or 1 MB
-* the response can be paginated to obtain additional results.
-*
-*/
+  * returns a [`message-listarticlesresponse`](#ListArticlesResponse) with
+  * articles matching the query. If the results exceed 100 Articles or 1 MB
+  * the response can be paginated to obtain additional results.
+  *
+  * ## `ListArticlesRequest`
+  *
+  * | Field name       | Type                | Description                                                 |
+  * |------------------|---------------------|-------------------------------------------------------------|
+  * | `query`          | [`Query`][1]        | [required] find items based on query values                 |
+  * | `filters`        | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
+  * | `page_size`      | `int32`             | [optional] limit the results per page, default is `10`; max is `100` (or result exceeds `1 MB`). Values above 100 will be coerced to 100. If results get truncated, you can use pagination. |
+  * | `page_token`     | `string`            | [optional]  A page token, received from a previous `ListArticles` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListArticles` must match the call that provided the page token.|
+  *
+  * [1]: #query
+  * [2]: #filters
+  *
+  * @CodeBlockStart protobuf
+  */
 message ListArticlesRequest {
-  /**
-   * ## `ListArticlesRequest`
-   * ```protobuf
-   * message ListArticlesRequest {
-   *    Query query = 1;
-   *    Filters filters = 2;
-   *    int32 page_size = 3;
-   *    string page_token = 4;
-   * }
-   * ```
-   *
-   * | Field name       | Type                | Description                                                 |
-   * |------------------|---------------------|-------------------------------------------------------------|
-   * | `query`          | [`Query`][1]        | [required] find items based on query values                 |
-   * | `filters`        | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
-   * | `page_size`      | `int32`             | [optional] limit the results per page, default is `10`; max is `100` (or result exceeds `1 MB`). Values above 100 will be coerced to 100. If results get truncated, you can use pagination. |
-   * | `page_token`     | `string`            | [optional]  A page token, received from a previous `ListArticles` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListArticles` must match the call that provided the page token.|
-   *
-   * [1]: #query
-   * [2]: #filters
-   */
-
   Query query = 1;
   Filters filters = 2;
   int32 page_size = 3;
   string page_token = 4;
 
-  message Query {
-    /**
-     * ## `Query`
-     * ```protobuf
-     * message Query {
-     *    string path = 1;
-     *    Type type = 2;
-     *    SortBy sort_by = 3;
-     *    Order order = 4;
-     *    google.protobuf.Timestamp from_time = 5;
-     *    google.protobuf.Timestamp to_time = 6;
-     * }
-     * ```
-     * Specify the search criteria. The list-API is build around sections which
-     * come in two flavors:
-     *
-     * 1. `home_section`: find all articles that resides within that exact section.
-     * The `home_section` is equal to the settings found in the CMS, e.g. `/nachrichten/wissen/`
-     * 2. `root_section`: this property is derived from the `home_section` path
-     * by retaining only the _root_ folder, e.g. for `/nachrichten/wissen/` the `root_section`
-     * becomes `/nachrichten/`
-     *
-     * In most cases using the `root_section` should yield better results since
-     * it will also find content in nested sections whereas `home_section` would
-     * only return content which was curated into the exact section that was queried.
-     *
-     * | Field name       | Type                | Description                                                 |
-     * |------------------|---------------------|-------------------------------------------------------------|
-     * | `path`           | `string`            | [required] `path`, with leading and trailing slash (e.g. `/nachrichten/`) |
-     * | `type`           | [`Type`][3]         | [required] query type, either `Type.HOME_SECTION` or `Type.ROOT_SECTION` |
-     * | `sort_by`        | [`SortBy`][4]       | [required] sorting of the result set, either `SortBy.UPDATE_TIME` or `SortBy.PUBLISH_TIME`  |
-     * | `order`          | [`Order`][5]        | [optional] sorting direction for the results regarding the `sort_by` field, default is `Order.ASCENDING` |
-     * | `from_time`      | [`Timestamp`][ts]   | [optional] time constraint that refers to the `sort_by` field. |
-     * | `to_time`        | [`Timestamp`][ts]   | [optional] time constraint that refers to the `sort_by` field. |
-     *
-     * [3]: #type
-     * [4]: #sortby
-     * [5]: #order
-     * [ts]: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
-     */
+  /** @CodeBlockEnd */
 
+
+  /**
+   * ## `Query`
+   *
+   * Specify the search criteria. The list-API is build around sections which
+   * come in two flavors:
+   *
+   * 1. `home_section`: find all articles that resides within that exact section.
+   * The `home_section` is equal to the settings found in the CMS, e.g. `/nachrichten/wissen/`
+   * 2. `root_section`: this property is derived from the `home_section` path
+   * by retaining only the _root_ folder, e.g. for `/nachrichten/wissen/` the `root_section`
+   * becomes `/nachrichten/`
+   *
+   * In most cases using the `root_section` should yield better results since
+   * it will also find content in nested sections whereas `home_section` would
+   * only return content which was curated into the exact section that was queried.
+   *
+   * | Field name       | Type                | Description                                                 |
+   * |------------------|---------------------|-------------------------------------------------------------|
+   * | `path`           | `string`            | [required] `path`, with leading and trailing slash (e.g. `/nachrichten/`) |
+   * | `type`           | [`Type`][3]         | [required] query type, either `Type.HOME_SECTION` or `Type.ROOT_SECTION` |
+   * | `sort_by`        | [`SortBy`][4]       | [required] sorting of the result set, either `SortBy.UPDATE_TIME` or `SortBy.PUBLISH_TIME`  |
+   * | `order`          | [`Order`][5]        | [optional] sorting direction for the results regarding the `sort_by` field, default is `Order.ASCENDING` |
+   * | `from_time`      | [`Timestamp`][ts]   | [optional] time constraint that refers to the `sort_by` field. |
+   * | `to_time`        | [`Timestamp`][ts]   | [optional] time constraint that refers to the `sort_by` field. |
+   *
+   * [3]: #type
+   * [4]: #sortby
+   * [5]: #order
+   * [ts]: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
+   *
+   * @CodeBlockStart protobuf
+   */
+  message Query {
     string path = 1;
     Type type = 2;
     SortBy sort_by = 3;
@@ -199,130 +161,106 @@ message ListArticlesRequest {
     google.protobuf.Timestamp from_time = 5;
     google.protobuf.Timestamp to_time = 6;
 
+    /** @CodeBlockEnd */
+
+    /**
+     * ## `Type`
+     *
+     * | Enum value         | Description                                                 |
+     * |--------------------|-------------------------------------------------------------|
+     * | `TYPE_UNSPECIFIED` | unspecified                                                 |
+     * | `HOME_SECTION`     | query by exact _home section_ which is configured in the CMS|
+     * | `ROOT_SECTION`     | query by exact _root section_ which is derived from _home section_ when only retaining the first level of the `path` |
+     *
+     * see the description [above](#query) why these query types exist, also see
+     * [`Reference`](article.html#section_tree) how section information are stored.
+     *
+     * @CodeBlockStart protobuf
+     */
     enum Type {
-      /**
-       * ## `Type`
-       * ```protobuf
-       * enum Type {
-       *    TYPE_UNSPECIFIED = 0;
-       *    HOME_SECTION = 1;
-       *    ROOT_SECTION = 2;
-       * }
-       * ```
-       *
-       * | Enum value         | Description                                                 |
-       * |--------------------|-------------------------------------------------------------|
-       * | `TYPE_UNSPECIFIED` | unspecified                                                 |
-       * | `HOME_SECTION`     | query by exact _home section_ which is configured in the CMS|
-       * | `ROOT_SECTION`     | query by exact _root section_ which is derived from _home section_ when only retaining the first level of the `path` |
-       *
-       * see the description [above](#query) why these query types exist, also see
-       * [`Reference`](article.html#section_tree) how section information are stored.
-       */
       TYPE_UNSPECIFIED = 0;
       HOME_SECTION = 1;
       ROOT_SECTION = 2;
     }
+    /** @CodeBlockEnd */
 
+    /**
+     * ## `SortBy`
+     *
+     * | Enum value            | Description                                                |
+     * |-----------------------|------------------------------------------------------------|
+     * | `SORT_BY_UNSPECIFIED` | unspecified                                                |
+     * | `UPDATE_TIME`         | sort by the content's [`update_time`][8]                   |
+     * | `PUBLISH_TIME`        | sort by the content's [`publish_time`][9]                  |
+     *
+     * [8]: metadata.html#update_time
+     * [9]: metadata.html#publish_time
+     *
+     * @CodeBlockStart protobuf
+     */
     enum SortBy {
-      /**
-       * ## `SortBy`
-       * ```protobuf
-       * enum SortBy {
-       *    SORT_BY_UNSPECIFIED = 0;
-       *    UPDATE_TIME = 1;
-       *    PUBLISH_TIME = 2;
-       * }
-       * ```
-       *
-       * | Enum value            | Description                                                |
-       * |-----------------------|------------------------------------------------------------|
-       * | `SORT_BY_UNSPECIFIED` | unspecified                                                |
-       * | `UPDATE_TIME`         | sort by the content's [`update_time`][8]                   |
-       * | `PUBLISH_TIME`        | sort by the content's [`publish_time`][9]                  |
-       *
-       * [8]: metadata.html#update_time
-       * [9]: metadata.html#publish_time
-       */
       SORT_BY_UNSPECIFIED = 0;
       UPDATE_TIME = 1;
       PUBLISH_TIME = 2;
     }
+    /** @CodeBlockEnd */
 
+    /**
+     * ## `Order`
+     *
+     * order of index traversal, default: ascending.
+     *
+     * | Enum value          | Description                      |
+     * |---------------------|----------------------------------|
+     * | `ORDER_UNSPECIFIED` | unspecified                      |
+     * | `ASCENDING`         | ascending order index traversal  |
+     * | `DESCENDING`        | descending order index traversal |
+     *
+     * @CodeBlockStart protobuf
+     */
     enum Order {
-      /**
-       * ## `Order`
-       * ```protobuf
-       * enum Order {
-       *    ORDER_UNSPECIFIED = 0;
-       *    ASCENDING = 1;
-       *    DESCENDING = 2;
-       * }
-       * ```
-       *
-       * order of index traversal, default: ascending.
-       *
-       * | Enum value          | Description                      |
-       * |---------------------|----------------------------------|
-       * | `ORDER_UNSPECIFIED` | unspecified                      |
-       * | `ASCENDING`         | ascending order index traversal  |
-       * | `DESCENDING`        | descending order index traversal |
-       *
-       */
       ORDER_UNSPECIFIED = 0;
       ASCENDING = 1;
       DESCENDING = 2;
     }
+    /** @CodeBlockEnd */
   }
 
   // client side filters executed after the query was returned from the database
+  /**
+   * ## `Filters`
+   *
+   * If you need to further refine the Query results, you can optionally provide
+   * a filter expression. A filter expression determines which items within the
+   * Query results should be returned to you. All of the other results are discarded.
+   *
+   *  A filter expression is applied after a Query finishes, but before the results
+   *  are returned. Therefore, a Query consumes the same amount of read capacity,
+   *  regardless of whether a filter expression is present.
+   *
+   * | Field name           | Type                            | Description                                 |
+   * |----------------------|---------------------------------|---------------------------------------------|
+   * | `type_includes`      | [`ContentType`][6]     | `type` to include into the result set       |
+   * | `type_includes`      | [`ContentType`][6]     | `type` to exclude from the result set       |
+   * | `sub_type_includes`  | [`ContentSubType`][7]  | `sub_type` to include into the result set   |
+   * | `sub_type_excludes`  | [`ContentSubType`][7]  | `sub_type` to exclude from the result set   |
+   *
+   * [6]: article.html#type
+   * [7]: article.html#sub_type
+   *
+   * @CodeBlockStart protobuf
+   */
   message Filters {
-    /**
-     * ## `Filters`
-     * ```protobuf
-     * message Filters {
-     *    repeated Article.ContentType type_includes = 1;
-     *    repeated Article.ContentType type_excludes = 2;
-     *    repeated Article.ContentSubType sub_type_includes = 3;
-     *    repeated Article.ContentSubType sub_type_excludes = 4;
-     * }
-     * ```
-     * If you need to further refine the Query results, you can optionally provide
-     * a filter expression. A filter expression determines which items within the
-     * Query results should be returned to you. All of the other results are discarded.
-     *
-     *  A filter expression is applied after a Query finishes, but before the results
-     *  are returned. Therefore, a Query consumes the same amount of read capacity,
-     *  regardless of whether a filter expression is present.
-     *
-     * | Field name           | Type                            | Description                                 |
-     * |----------------------|---------------------------------|---------------------------------------------|
-     * | `type_includes`      | [`ContentType`][6]     | `type` to include into the result set       |
-     * | `type_includes`      | [`ContentType`][6]     | `type` to exclude from the result set       |
-     * | `sub_type_includes`  | [`ContentSubType`][7]  | `sub_type` to include into the result set   |
-     * | `sub_type_excludes`  | [`ContentSubType`][7]  | `sub_type` to exclude from the result set   |
-     *
-     * [6]: article.html#type
-     * [7]: article.html#sub_type
-     */
     repeated Article.Type type_includes = 1;
     repeated Article.Type type_excludes = 2;
     repeated Article.SubType sub_type_includes = 3;
     repeated Article.SubType sub_type_excludes = 4;
   }
+  /** @CodeBlockEnd */
 }
 
-message ListArticlesResponse {
-
-  /**
+/**
   * ## `ListArticlesResponse`
-  * ```protobuf
-  * // query multiple articles
-  * message ListArticlesResponse {
-  *   repeated stroeer.core.v1.Article articles = 1;
-  *   string next_page_token = 2;
-  * }
-  * ```
   *
   * | Field name       | Type                | Description                                                 |
   * |------------------|---------------------|-------------------------------------------------------------|
@@ -330,33 +268,27 @@ message ListArticlesResponse {
   * | `next_page_token`| `string`            | A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. |
   *
   * [article]: article.html
+  *
+  * @CodeBlockStart protobuf
   */
+message ListArticlesResponse {
   repeated stroeer.core.v1.Article articles = 1;
   string next_page_token = 2;
 }
+/** @CodeBlockEnd */
 
 /**
-* # `⚙︎ ListSections`
-* ```protobuf
-* rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
-* ```
-*
-* list the available root sections
-*
-*/
-
-message ListSectionsResponse {
-  /**
+  * # `⚙︎ ListSections`
+  *
+  * list the available root sections
+  *
   * ## `ListSectionsResponse`
   *
   * list all available `root_sections` that can be used in the [`query`](#query) above.
   *
-  *
-  * ```protobuf
-  * message ListSectionsResponse {
-  *   repeated string sections = 1;
-  * }
-  * ```
+  * @CodeBlockStart protobuf
   */
+message ListSectionsResponse {
   repeated string sections = 1;
 }
+/** @CodeBlockEnd */

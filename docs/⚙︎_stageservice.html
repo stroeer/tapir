@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="curationservice.html"><strong aria-hidden="true">7.</strong> CurationService</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html" class="active"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_introduction.html"><strong aria-hidden="true">1.</strong> 00 Introduction</a></li><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">2.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">3.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">4.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">5.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">6.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">7.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html" class="active"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -149,139 +149,6 @@
 Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
 <p>############################################################################</p>
 <h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: service responded without encountering exceptions
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no
-<a href="https://github.com/stroeer/tapir/blob/master/#L16-L45">[~]</a></p>
-<p>############################################################################</p>
-<h1 id="description-1"><a class="header" href="#description-1">Description</a></h1>
-<p>############################################################################
-Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
-<p>############################################################################</p>
-<h1 id="statuserror-scenarios-1"><a class="header" href="#statuserror-scenarios-1">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: service responded without encountering exceptions
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no
-<a href="https://github.com/stroeer/tapir/blob/master/#L16-L45">[~]</a></p>
-<p>############################################################################</p>
-<h1 id="description-2"><a class="header" href="#description-2">Description</a></h1>
-<p>############################################################################
-Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
-<p>############################################################################</p>
-<h1 id="statuserror-scenarios-2"><a class="header" href="#statuserror-scenarios-2">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: service responded without encountering exceptions
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no
-<a href="https://github.com/stroeer/tapir/blob/master/#L16-L45">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L3-L4">[~]</a></p>
-<p>############################################################################</p>
-<h1 id="description-3"><a class="header" href="#description-3">Description</a></h1>
-<p>############################################################################
-Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
-<p>############################################################################</p>
-<h1 id="statuserror-scenarios-3"><a class="header" href="#statuserror-scenarios-3">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: service responded without encountering exceptions
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no
-<a href="https://github.com/stroeer/tapir/blob/master/#L16-L45">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L3-L4">[~]</a></p>
-<p>############################################################################</p>
-<h1 id="description-4"><a class="header" href="#description-4">Description</a></h1>
-<p>############################################################################
-Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
-<p>############################################################################</p>
-<h1 id="statuserror-scenarios-4"><a class="header" href="#statuserror-scenarios-4">Status/Error scenario's</a></h1>
-<p>############################################################################</p>
-<p>scenario: found
-description: service responded without encountering exceptions
-gRPC status: OK
-gRPC error payload: none
-HTTP status: OK
-cacheable: yes</p>
-<p>scenario: internal
-description: internal error while loading data
-gRPC status: INTERNAL
-gRPC error payload: none
-HTTP status: 500
-cacheable: no</p>
-<p>scenario: timeout
-description: timeout while loading data
-gRPC status: DEADLINE_EXCEEDED
-gRPC error payload: none
-HTTP status: 504
-cacheable: no
-<a href="https://github.com/stroeer/tapir/blob/master/#L16-L45">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/article/v1/article_page_service.proto#L3-L4">[~]</a></p>
-<p>############################################################################</p>
-<h1 id="description-5"><a class="header" href="#description-5">Description</a></h1>
-<p>############################################################################
-Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
-<p>############################################################################</p>
-<h1 id="statuserror-scenarios-5"><a class="header" href="#statuserror-scenarios-5">Status/Error scenario's</a></h1>
 <p>############################################################################</p>
 <p>scenario: found
 description: service responded without encountering exceptions
