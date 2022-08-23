@@ -182,7 +182,7 @@ message Article {
    */
 
   /**
-   * 
+   *
    * `Element`s are self-contained objects that represent structured data that
    * is usually too complex to fit into our usual workhorse which is the
    * [`Body`](#body).
@@ -710,11 +710,14 @@ message Article {
      * |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
      * | `text`         | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
      * | `p`            | `paragraph` / `<p>`                                                                                                                                       |
-     * | `span`         | todo / `<span>`                                                                                                                                           |
+     * | `span`         | `<span>`                                                                                                                                                  |
      * | `sub_headline` | a sub headline, may be part of the _table of contents_                                                                                                    |
      * | `a`            | `anchor` / `<a>`                                                                                                                                          |
      * | `strong`       | `strong` / `<strong>`                                                                                                                                     |
      * | `em`           | `emphasis` / `<em>`                                                                                                                                       |
+     * | `sub`          | `subscript` / `sub`                                                                                                                                       |
+     * | `sup`          | `superscript` / `sup`                                                                                                                                     |
+     * | `hr`           | `horizontal rule` / `<hr>`                                                                                                                                |
      * | `br`           | `line break` / `<br>`                                                                                                                                     |
      * | `ul`           | `unordered list` / `<ul>`                                                                                                                                 |
      * | `ol`           | `ordered list` / `<ol>`                                                                                                                                   |
