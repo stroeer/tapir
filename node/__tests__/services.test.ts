@@ -9,6 +9,17 @@ test('gRPC core article service client is generated and matches the snapshot', (
     Object {
       "ArticleServiceClient": [Function],
       "ArticleServiceService": Object {
+        "batchGetArticles": Object {
+          "path": "/stroeer.core.v1.ArticleService/BatchGetArticles",
+          "requestDeserialize": [Function],
+          "requestSerialize": [Function],
+          "requestStream": false,
+          "requestType": [Function],
+          "responseDeserialize": [Function],
+          "responseSerialize": [Function],
+          "responseStream": false,
+          "responseType": [Function],
+        },
         "getArticle": Object {
           "path": "/stroeer.core.v1.ArticleService/GetArticle",
           "requestDeserialize": [Function],
