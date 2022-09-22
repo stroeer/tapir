@@ -206,6 +206,7 @@ will vary depending on the main type of the article.</p>
 <tr><td><code>social_description</code></td><td></td><td></td></tr>
 <tr><td><code>meta_description</code></td><td></td><td>HTML <code>&lt;meta description&gt;</code></td></tr>
 <tr><td><code>reading_time_minutes</code></td><td></td><td>estimated reading time in minutes</td></tr>
+<tr><td><code>flag:hidden</code></td><td></td><td>this content must be excluded from automated curations (CMS: <code>no auto-content</code>/<code>manuell kuratieren</code>)</td></tr>
 </tbody></table>
 </div>
 <h3 id="for-articletypegallery"><a class="header" href="#for-articletypegallery">For <code>Article.Type.GALLERY</code></a></h3>
@@ -240,7 +241,7 @@ enum Type {
   EXTERNAL = 8;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L72-L139">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L72-L140">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -255,6 +256,7 @@ enum Type {
 <tr><td><code>AGENCY_IMPORT</code></td><td>Content originally imported from agency/tickers by the CMS</td></tr>
 <tr><td><code>ADVERTORIAL</code></td><td><em>Advertorial</em></td></tr>
 <tr><td><code>QUIZ</code></td><td><em>Quiz</em></td></tr>
+<tr><td><code>GAME</code></td><td><em>(Browser)Game</em></td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf">
@@ -270,10 +272,11 @@ enum SubType {
   AGENCY_IMPORT = 8;
   ADVERTORIAL = 9;
   QUIZ = 10;
+  GAME = 11;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L143-L177">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L180-L181">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L144-L180">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L183-L184">[~]</a></p>
 
                     </main>
 
