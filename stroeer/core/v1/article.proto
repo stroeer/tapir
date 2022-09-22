@@ -81,22 +81,23 @@ message Article {
    *
    * this map will contain the following data:
    *
-   * | key                    | mandatory | description                                                                                       |
-   * |------------------------|-----------|---------------------------------------------------------------------------------------------------|
-   * | `headline`             | *         | the headline for this content                                                                     |
-   * | `top_line`             | *         | "dachzeile"                                                                                       |
-   * | `ref_path`             | *         | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html`                          |
-   * | `ref_canonical`        | *         | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html |
-   * | `summary`              |           | summary for this content                                                                          |
-   * | `teaser_text`          |           | used on teasers, overrides `summary`                                                              |
-   * | `meta_robots`          |           |                                                                                                   |
-   * | `social_headline`      |           | used for social markup, overrides `headline`                                                      |
-   * | `headline_short`       |           | used for "Schlagzeilen", overrides `headline`                                                     |
-   * | `meta_title`           |           | HTML `<meta title>`                                                                               |
-   * | `expert_line`          |           |                                                                                                   |
-   * | `social_description`   |           |                                                                                                   |
-   * | `meta_description`     |           | HTML `<meta description>`                                                                         |
-   * | `reading_time_minutes` |           | estimated reading time in minutes                                                                 |
+   * | key                    | mandatory | description                                                                                          |
+   * |------------------------|-----------|------------------------------------------------------------------------------------------------------|
+   * | `headline`             | *         | the headline for this content                                                                        |
+   * | `top_line`             | *         | "dachzeile"                                                                                          |
+   * | `ref_path`             | *         | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html`                             |
+   * | `ref_canonical`        | *         | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html    |
+   * | `summary`              |           | summary for this content                                                                             |
+   * | `teaser_text`          |           | used on teasers, overrides `summary`                                                                 |
+   * | `meta_robots`          |           |                                                                                                      |
+   * | `social_headline`      |           | used for social markup, overrides `headline`                                                         |
+   * | `headline_short`       |           | used for "Schlagzeilen", overrides `headline`                                                        |
+   * | `meta_title`           |           | HTML `<meta title>`                                                                                  |
+   * | `expert_line`          |           |                                                                                                      |
+   * | `social_description`   |           |                                                                                                      |
+   * | `meta_description`     |           | HTML `<meta description>`                                                                            |
+   * | `reading_time_minutes` |           | estimated reading time in minutes                                                                    |
+   * | `flag:hidden`          |           | this content must be excluded from automated curations (CMS: `no auto-content`/`manuell kuratieren`) |
    *
    *
    * ### For `Article.Type.GALLERY`
@@ -158,6 +159,7 @@ message Article {
    * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS |
    * | `ADVERTORIAL`          | _Advertorial_                                              |
    * | `QUIZ`                 | _Quiz_                                                     |
+   * | `GAME`                 | _(Browser)Game_                                            |
    *
    * @CodeBlockStart protobuf
    */
@@ -174,6 +176,7 @@ message Article {
     AGENCY_IMPORT = 8;
     ADVERTORIAL = 9;
     QUIZ = 10;
+    GAME = 11;
   }
   /** @CodeBlockEnd */
 
