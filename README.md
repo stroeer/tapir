@@ -50,7 +50,7 @@ In addition, a go module will be generated and pushed to [go-tapir](https://gith
 
 ## release a new tapir version
 
-To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean master branch.
+To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean main branch.
 
 ## protoc docker image
 

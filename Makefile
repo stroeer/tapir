@@ -73,7 +73,7 @@ lint: ## Lints all proto files using https://docs.buf.build/lint-overview
 .PHONY: breaking
 breaking: ## Detects breaking changes using https://docs.buf.build/breaking-overview
 	@echo "+ $@"
-	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=master' --config buf.yaml || true
+	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=main' --config buf.yaml || true
 
 .PHONY: test
 test: generate ## Runs all tests
@@ -166,7 +166,7 @@ check-git-clean: ## Verifies clean working directory
 check-git-branch: check-git-clean
 	@echo "+ $@"
 	git fetch --all --tags --prune
-	git checkout master
+	git checkout main
 
 .PHONY: release
 release: clean check check-git-branch commit_fundoc ## Releases new version of gRPC source code packages

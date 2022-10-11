@@ -3,7 +3,7 @@ name: pull-request
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   buf:
@@ -18,7 +18,7 @@ jobs:
       - uses: bufbuild/buf-breaking-action@v1.1.0
         if: always()
         with:
-          against: "https://github.com/stroeer/tapir.git#branch=master"
+          against: "https://github.com/stroeer/tapir.git#branch=main"
 
   java:
     runs-on: ubuntu-latest
