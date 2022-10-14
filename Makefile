@@ -16,11 +16,15 @@ NODE_LEGACY_DIR		= ./node-legacy
 GO_DIR			= ./gen/go
 
 LANGUAGE		?= java
-GRPCPLUGIN		?= /usr/bin/protoc-gen-grpc-$(LANGUAGE)
+GRPCPLUGIN		?= /usr/bin/grpc_$(LANGUAGE)_plugin
 
-PROTO_FILES		:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
-PROTOC_VERSION	?= 3.19.4
-PROTOC			?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
+PROTOC_VERSION			?= 21.7
+GRPC_VERSION 				= 1.49.1
+GRPC_JAVA_VERSION 	= 1.50.0
+PROTOBUF_JS_VERSION = 3.21.2
+
+PROTO_FILES	:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
+PROTOC ?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
 
 FLAGS			+= --proto_path=$(DIR)
 ifeq ($(LANGUAGE),node)
@@ -121,7 +125,10 @@ protoc-build: ## Build protoc docker image
 	@docker build \
 		--tag ghcr.io/stroeer/protoc-dockerized:latest \
 		--tag ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION) \
-		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) .
+		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) \
+		--build-arg GRPC_JAVA_VERSION=$(GRPC_JAVA_VERSION) \
+		--build-arg PROTOBUF_JS_VERSION=$(PROTOBUF_JS_VERSION) \
+		--build-arg GRPC_VERSION=$(GRPC_VERSION) .
 
 .PHONY: protoc-push
 protoc-push: ghcr-login protoc-build ## Push protoc docker image to https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized
