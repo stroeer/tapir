@@ -18,10 +18,13 @@ GO_DIR			= ./gen/go
 LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/grpc_$(LANGUAGE)_plugin
 
-PROTOC_VERSION			?= 21.7
-GRPC_VERSION 				= 1.49.1
-GRPC_JAVA_VERSION 	= 1.50.0
-PROTOBUF_JS_VERSION = 3.21.2
+PROTOC_VERSION								?= 21.7
+GRPC_VERSION 									= 1.49.1
+GRPC_JAVA_VERSION 						= 1.50.0
+PROTOBUF_JS_VERSION 					= 3.21.2
+GO_PROTOC_GEN_GO_VERSION 			= v1.28.1
+GO_PROTOC_GEN_GO_GRPC_VERSION = v1.2.0
+GRPC_GATEWAY_VERSION 					= v2.11.3
 
 PROTO_FILES	:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
 PROTOC ?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
@@ -85,13 +88,6 @@ test: generate ## Runs all tests
 	cd java && ./gradlew clean build
 #	cd node && nvm use && npm run checks
 #	cd node-legacy && nvm use && npm run checks
-#	cd go && go test -v .
-
-.PHONY: go-mod
-go-mod: ## Create tapir go module for generated code
-	@echo "+ $@"
-	@rm -f $(GO_DIR)/go.mod rm -f $(GO_DIR)/go.sum
-	cd $(GO_DIR) && go mod init github.com/stroeer/go-tapir && go mod tidy
 
 .PHONY: check
 check: lint breaking test ## Runs all checks
@@ -128,7 +124,10 @@ protoc-build: ## Build protoc docker image
 		--build-arg PROTOC_VERSION=$(PROTOC_VERSION) \
 		--build-arg GRPC_JAVA_VERSION=$(GRPC_JAVA_VERSION) \
 		--build-arg PROTOBUF_JS_VERSION=$(PROTOBUF_JS_VERSION) \
-		--build-arg GRPC_VERSION=$(GRPC_VERSION) .
+		--build-arg GRPC_VERSION=$(GRPC_VERSION) \
+		--build-arg GO_PROTOC_GEN_GO_GRPC_VERSION=$(GO_PROTOC_GEN_GO_GRPC_VERSION) \
+		--build-arg GO_PROTOC_GEN_GO_VERSION=$(GO_PROTOC_GEN_GO_VERSION) \
+		--build-arg GRPC_GATEWAY_VERSION=$(GRPC_GATEWAY_VERSION) .
 
 .PHONY: protoc-push
 protoc-push: ghcr-login protoc-build ## Push protoc docker image to https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized
