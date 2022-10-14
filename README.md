@@ -69,10 +69,12 @@ To access our docker image you need a valid GitHub PAT (personal access token) a
 ### release
 
 1. bump versions
-
-    - protoc version in `Makefile` - this version will be used as the docker image tag
+    - protoc and plugin versions in `Makefile`: 
+      - `PROTOC_VERSION` - see [protobuf](https://github.com/protocolbuffers/protobuf/), this version will be used as the docker image tag
+      - `GRPC_VERSION` - see [grpc](https://github.com/grpc/grpc/)
+      - `GRPC_JAVA_VERSION` - see [grpc-java](https://github.com/grpc/grpc-java/)
+      - `PROTOBUF_JS_VERSION` - see [protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript/)
     - go dependency versions in `go/go.mod` (run `go get -u ./... && go mod tidy`)
-    - java dependency versions in `build.gradle` (run `./gradlew dU -Drevision=release` to see available versions)
     - node dependency versions in `package.json` of `node`, `node-legacy` (run `npm run update`)
     
 2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)

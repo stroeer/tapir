@@ -20,23 +20,16 @@ repositories {
   google()
 }
 
-configurations {
-  genGrpc
-}
-
 dependencies {
-  def grpc = '1.49.2'
   def protoc = '3.21.2'
 
-  implementation group: 'io.grpc', name: 'grpc-services', version: grpc
+  implementation group: 'io.grpc', name: 'grpc-services', version: '1.49.2'
   implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 
   implementation group: 'com.google.protobuf', name: 'protobuf-java', version: protoc
   implementation group: 'com.google.protobuf', name: 'protobuf-java-util', version: protoc
 
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.9.1'
-
-  genGrpc group: 'io.grpc', name: 'protoc-gen-grpc-java', version: grpc, classifier: 'linux-x86_64', ext: 'exe'
 }
 
 task printVersion {
@@ -45,14 +38,6 @@ task printVersion {
   }
 }
 publishToMavenLocal.dependsOn printVersion
-
-task download(type: Copy, group: 'help', description: 'Download binaries required for GRPC generation') {
-  from configurations.genGrpc
-  into 'installer'
-  rename { file ->
-    file.replace(file, 'protoc-gen-grpc-java')
-  }
-}
 
 java {
   withSourcesJar()
