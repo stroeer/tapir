@@ -17,13 +17,6 @@ updates:
     reviewers:
       - "stroeer/teams/buzz-end"
 
-  - package-ecosystem: "gomod"
-    directory: "/go"
-    schedule:
-      interval: "weekly"
-    reviewers:
-      - "stroeer/teams/buzz-end"
-
   - package-ecosystem: "npm"
     directory: "/node"
     schedule:
