@@ -19,7 +19,7 @@ LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/grpc_$(LANGUAGE)_plugin
 
 PROTOC_VERSION								?= 21.7
-GRPC_VERSION 									= 1.49.1
+GRPC_VERSION 									= 1.50.0
 GRPC_JAVA_VERSION 						= 1.50.0
 PROTOBUF_JS_VERSION 					= 3.21.2
 GO_PROTOC_GEN_GO_VERSION 			= v1.28.1
