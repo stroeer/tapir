@@ -177,6 +177,7 @@ message Article {
     ADVERTORIAL = 9;
     QUIZ = 10;
     GAME = 11;
+    ADMINISTRATIVE = 12;
   }
   /** @CodeBlockEnd */
 
