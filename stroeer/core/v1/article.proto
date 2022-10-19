@@ -160,6 +160,7 @@ message Article {
    * | `ADVERTORIAL`          | _Advertorial_                                              |
    * | `QUIZ`                 | _Quiz_                                                     |
    * | `GAME`                 | _(Browser)Game_                                            |
+   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms |
    *
    * @CodeBlockStart protobuf
    */
@@ -177,6 +178,7 @@ message Article {
     ADVERTORIAL = 9;
     QUIZ = 10;
     GAME = 11;
+    COMPLIANCE = 12;
   }
   /** @CodeBlockEnd */
 
