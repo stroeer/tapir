@@ -4,6 +4,8 @@
 *.iml
 *.ipr
 *.iws
+kreya
+.kreya
 
 # node
 node_modules
