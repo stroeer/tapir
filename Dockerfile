@@ -61,7 +61,7 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@${GO_PROTOC_GEN_GO_V
 
 
 # Node
-FROM node:lts-alpine as node
+FROM node:lts-alpine3.9 as node
 
 COPY node .
 RUN npm ci
