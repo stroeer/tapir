@@ -146,21 +146,23 @@ message Article {
    *
    * Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
    *
-   * | Enum value             | Description                                                |
-   * |------------------------|------------------------------------------------------------|
-   * | `SUB_TYPE_UNSPECIFIED` | unspecified                                                |
-   * | `NEWS`                 | _Meldung/Nachricht_ — this is the default                  |
-   * | `COLUMN`               | _Kolumne_                                                  |
-   * | `COMMENTARY`           | _Kommentar_                                                |
-   * | `INTERVIEW`            | _Interview_                                                |
-   * | `CONTROVERSY`          | _Pro und Kontra/Streitgespräch_                            |
-   * | `TAGESANBRUCH`         | _Tagesanbruch_                                             |
-   * | `EVERGREEN`            | _Evergreen_                                                |
-   * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS |
-   * | `ADVERTORIAL`          | _Advertorial_                                              |
-   * | `QUIZ`                 | _Quiz_                                                     |
-   * | `GAME`                 | _(Browser)Game_                                            |
-   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms |
+   * | Enum value             | Description                                                              |
+   * |------------------------|--------------------------------------------------------------------------|
+   * | `SUB_TYPE_UNSPECIFIED` | unspecified                                                              |
+   * | `NEWS`                 | _Meldung/Nachricht_ — this is the default                                |
+   * | `COLUMN`               | _Kolumne_                                                                |
+   * | `COMMENTARY`           | _Kommentar_                                                              |
+   * | `INTERVIEW`            | _Interview_                                                              |
+   * | `CONTROVERSY`          | _Pro und Kontra/Streitgespräch_                                          |
+   * | `TAGESANBRUCH`         | _Tagesanbruch_                                                           |
+   * | `EVERGREEN`            | _Evergreen_                                                              |
+   * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS               |
+   * | `ADVERTORIAL`          | _Advertorial_                                                            |
+   * | `QUIZ`                 | _Quiz_                                                                   |
+   * | `GAME`                 | _Game_ (deprecated, will be replaced by `BROWSER_GAME` and `ONLINE_GAME` |
+   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms               |
+   * | `ONLINE_GAME`          | Internal company articles like an imprint or contact forms               |
+   * | `BROWSER_GAME`         | Internal company articles like an imprint or contact forms               |
    *
    * @CodeBlockStart protobuf
    */
@@ -177,8 +179,10 @@ message Article {
     AGENCY_IMPORT = 8;
     ADVERTORIAL = 9;
     QUIZ = 10;
-    GAME = 11;
+    GAME = 11 [deprecated = true];
     COMPLIANCE = 12;
+    ONLINE_GAME = 13;
+    BROWSER_GAME = 14;
   }
   /** @CodeBlockEnd */
 
