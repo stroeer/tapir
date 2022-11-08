@@ -176,7 +176,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type" id="type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -197,7 +197,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode" id="bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -214,7 +214,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -257,9 +257,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -272,7 +272,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-1" id="type-1">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -293,7 +293,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-1" id="bodynode-1"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -310,7 +310,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -353,9 +353,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -368,7 +368,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-2" id="type-2">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -389,7 +389,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-2" id="bodynode-2"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -406,7 +406,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -449,9 +449,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -464,7 +464,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-3" id="type-3">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -485,7 +485,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-3" id="bodynode-3"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -502,7 +502,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -545,9 +545,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -560,7 +560,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-4" id="type-4">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -581,7 +581,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-4" id="bodynode-4"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -598,7 +598,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -641,9 +641,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -656,7 +656,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-5" id="type-5">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -677,7 +677,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-5" id="bodynode-5"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -694,7 +694,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -737,9 +737,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -752,7 +752,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-6" id="type-6">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -773,7 +773,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-6" id="bodynode-6"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -790,7 +790,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -833,9 +833,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -848,7 +848,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-7" id="type-7">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -869,7 +869,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-7" id="bodynode-7"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -886,7 +886,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -929,9 +929,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -944,7 +944,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-8" id="type-8">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -965,7 +965,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-8" id="bodynode-8"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -982,7 +982,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1025,9 +1025,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -1040,7 +1040,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-9" id="type-9">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1061,7 +1061,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-9" id="bodynode-9"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -1078,7 +1078,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1121,9 +1121,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -1136,7 +1136,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-10" id="type-10">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1157,7 +1157,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-10" id="bodynode-10"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -1174,7 +1174,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1217,9 +1217,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 
                     </main>
 

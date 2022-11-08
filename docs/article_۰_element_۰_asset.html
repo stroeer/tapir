@@ -186,6 +186,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -194,9 +195,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples" id="samples">Samples</a></h2>
 <h3><a class="header" href="#image-asset" id="image-asset">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -277,8 +279,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -301,6 +303,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -309,9 +312,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-1" id="samples-1">Samples</a></h2>
 <h3><a class="header" href="#image-asset-1" id="image-asset-1">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -392,8 +396,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -416,6 +420,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -424,9 +429,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-2" id="samples-2">Samples</a></h2>
 <h3><a class="header" href="#image-asset-2" id="image-asset-2">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -507,8 +513,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -531,6 +537,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -539,9 +546,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-3" id="samples-3">Samples</a></h2>
 <h3><a class="header" href="#image-asset-3" id="image-asset-3">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -622,8 +630,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -646,6 +654,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -654,9 +663,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-4" id="samples-4">Samples</a></h2>
 <h3><a class="header" href="#image-asset-4" id="image-asset-4">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -737,8 +747,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -761,6 +771,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -769,9 +780,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-5" id="samples-5">Samples</a></h2>
 <h3><a class="header" href="#image-asset-5" id="image-asset-5">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -852,8 +864,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -876,6 +888,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -884,9 +897,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-6" id="samples-6">Samples</a></h2>
 <h3><a class="header" href="#image-asset-6" id="image-asset-6">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -967,8 +981,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -991,6 +1005,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -999,9 +1014,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-7" id="samples-7">Samples</a></h2>
 <h3><a class="header" href="#image-asset-7" id="image-asset-7">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -1082,8 +1098,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -1106,6 +1122,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -1114,9 +1131,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-8" id="samples-8">Samples</a></h2>
 <h3><a class="header" href="#image-asset-8" id="image-asset-8">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -1197,8 +1215,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -1221,6 +1239,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -1229,9 +1248,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-9" id="samples-9">Samples</a></h2>
 <h3><a class="header" href="#image-asset-9" id="image-asset-9">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -1312,8 +1332,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="#enum-type"><code>type</code></a> field.</p>
@@ -1336,6 +1356,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -1344,9 +1365,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-10" id="samples-10">Samples</a></h2>
 <h3><a class="header" href="#image-asset-10" id="image-asset-10">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -1427,8 +1449,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 
                     </main>
 

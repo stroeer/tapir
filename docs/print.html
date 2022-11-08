@@ -1620,7 +1620,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type" id="type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1641,7 +1641,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode" id="bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -1658,7 +1658,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1701,9 +1701,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -1716,7 +1716,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-1" id="type-1">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1737,7 +1737,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-1" id="bodynode-1"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -1754,7 +1754,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1797,9 +1797,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -1812,7 +1812,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-2" id="type-2">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1833,7 +1833,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-2" id="bodynode-2"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -1850,7 +1850,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1893,9 +1893,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -1908,7 +1908,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-3" id="type-3">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -1929,7 +1929,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-3" id="bodynode-3"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -1946,7 +1946,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -1989,9 +1989,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2004,7 +2004,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-4" id="type-4">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2025,7 +2025,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-4" id="bodynode-4"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2042,7 +2042,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2085,9 +2085,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2100,7 +2100,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-5" id="type-5">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2121,7 +2121,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-5" id="bodynode-5"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2138,7 +2138,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2181,9 +2181,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2196,7 +2196,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-6" id="type-6">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2217,7 +2217,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-6" id="bodynode-6"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2234,7 +2234,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2277,9 +2277,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2292,7 +2292,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-7" id="type-7">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2313,7 +2313,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-7" id="bodynode-7"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2330,7 +2330,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2373,9 +2373,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2388,7 +2388,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-8" id="type-8">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2409,7 +2409,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-8" id="bodynode-8"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2426,7 +2426,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2469,9 +2469,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2484,7 +2484,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-9" id="type-9">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2505,7 +2505,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-9" id="bodynode-9"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2522,7 +2522,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2565,9 +2565,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
 <p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
@@ -2580,7 +2580,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L627-L647">[~]</a></p>
 <h2><a class="header" href="#type-10" id="type-10">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -2601,7 +2601,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L650-L674">[~]</a></p>
 <h2><a class="header" href="#bodynode-10" id="bodynode-10"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -2618,7 +2618,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L677-L698">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -2661,9 +2661,9 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L700-L753">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L757-L758">[~]</a></p>
 <h1><a class="header" href="#article-۰-element" id="article-۰-element">Article ۰ Element</a></h1>
 <p><code>Element</code>s are self-contained objects that represent structured data that
 is usually too complex to fit into our usual workhorse which is the
@@ -5427,6 +5427,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -5435,9 +5436,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-11" id="samples-11">Samples</a></h2>
 <h3><a class="header" href="#image-asset" id="image-asset">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -5518,8 +5520,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -5542,6 +5544,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -5550,9 +5553,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-12" id="samples-12">Samples</a></h2>
 <h3><a class="header" href="#image-asset-1" id="image-asset-1">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -5633,8 +5637,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -5657,6 +5661,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -5665,9 +5670,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-13" id="samples-13">Samples</a></h2>
 <h3><a class="header" href="#image-asset-2" id="image-asset-2">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -5748,8 +5754,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -5772,6 +5778,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -5780,9 +5787,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-14" id="samples-14">Samples</a></h2>
 <h3><a class="header" href="#image-asset-3" id="image-asset-3">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -5863,8 +5871,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -5887,6 +5895,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -5895,9 +5904,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-15" id="samples-15">Samples</a></h2>
 <h3><a class="header" href="#image-asset-4" id="image-asset-4">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -5978,8 +5988,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6002,6 +6012,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6010,9 +6021,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-16" id="samples-16">Samples</a></h2>
 <h3><a class="header" href="#image-asset-5" id="image-asset-5">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6093,8 +6105,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6117,6 +6129,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6125,9 +6138,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-17" id="samples-17">Samples</a></h2>
 <h3><a class="header" href="#image-asset-6" id="image-asset-6">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6208,8 +6222,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6232,6 +6246,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6240,9 +6255,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-18" id="samples-18">Samples</a></h2>
 <h3><a class="header" href="#image-asset-7" id="image-asset-7">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6323,8 +6339,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6347,6 +6363,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6355,9 +6372,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-19" id="samples-19">Samples</a></h2>
 <h3><a class="header" href="#image-asset-8" id="image-asset-8">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6438,8 +6456,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6462,6 +6480,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6470,9 +6489,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-20" id="samples-20">Samples</a></h2>
 <h3><a class="header" href="#image-asset-9" id="image-asset-9">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6553,8 +6573,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
 on its <a href="article_%DB%B0_element_%DB%B0_asset.html#enum-type"><code>type</code></a> field.</p>
@@ -6577,6 +6597,7 @@ Metadata metadata = 3;
 <tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
+<tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 </tbody></table>
 <pre><code class="language-protobuf/">
 enum Type {
@@ -6585,9 +6606,10 @@ IMAGE = 1;
 VIDEO = 2;
 EXTERNAL_VIDEO = 3;
 METADATA = 4;
+LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L519">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L497-L521">[~]</a></p>
 <h2><a class="header" href="#samples-21" id="samples-21">Samples</a></h2>
 <h3><a class="header" href="#image-asset-10" id="image-asset-10">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -6668,8 +6690,8 @@ METADATA = 4;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L523-L617">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L621-L622">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L525-L619">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L623-L624">[~]</a></p>
 <h1><a class="header" href="#article-۰-keyword" id="article-۰-keyword">Article ۰ Keyword</a></h1>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6683,7 +6705,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>value</code></td><td><code>string</code></td><td>Unique value of this keyword.</td></tr>
@@ -6696,7 +6718,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6710,7 +6732,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6724,7 +6746,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6738,7 +6760,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6752,7 +6774,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6766,7 +6788,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6780,7 +6802,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6794,7 +6816,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6808,7 +6830,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -6822,7 +6844,7 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L862-L877">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <h1><a class="header" href="#article-۰-metadata" id="article-۰-metadata">Article ۰ Metadata</a></h1>
 <p>Article metadata like publication state and technical timestamps.</p>
@@ -6849,7 +6871,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state" id="enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -6875,7 +6897,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource" id="enum-eventsource"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -6898,8 +6920,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -6924,7 +6946,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-1" id="enum-state-1"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -6950,7 +6972,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-1" id="enum-eventsource-1"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -6973,8 +6995,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -6999,7 +7021,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-2" id="enum-state-2"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7025,7 +7047,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-2" id="enum-eventsource-2"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7048,8 +7070,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7074,7 +7096,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-3" id="enum-state-3"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7100,7 +7122,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-3" id="enum-eventsource-3"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7123,8 +7145,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7149,7 +7171,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-4" id="enum-state-4"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7175,7 +7197,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-4" id="enum-eventsource-4"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7198,8 +7220,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7224,7 +7246,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-5" id="enum-state-5"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7250,7 +7272,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-5" id="enum-eventsource-5"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7273,8 +7295,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7299,7 +7321,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-6" id="enum-state-6"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7325,7 +7347,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-6" id="enum-eventsource-6"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7348,8 +7370,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7374,7 +7396,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-7" id="enum-state-7"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7400,7 +7422,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-7" id="enum-eventsource-7"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7423,8 +7445,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7449,7 +7471,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-8" id="enum-state-8"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7475,7 +7497,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-8" id="enum-eventsource-8"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7498,8 +7520,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7524,7 +7546,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-9" id="enum-state-9"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7550,7 +7572,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-9" id="enum-eventsource-9"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7573,8 +7595,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <p>Article metadata like publication state and technical timestamps.</p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>state</code></td><td><a href="article_%DB%B0_metadata.html#state"><code>State</code></a></td><td>State of the article in the content management system. See <a href="article_%DB%B0_metadata.html#enum-state"><code>enum State</code></a></td></tr>
@@ -7599,7 +7621,7 @@ google.protobuf.Timestamp last_modification_time = 8;
 EventSource event_source = 9;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L759-L790">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
 <h2><a class="header" href="#enum-state-10" id="enum-state-10"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -7625,7 +7647,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L793-L824">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
 <h2><a class="header" href="#enum-eventsource-10" id="enum-eventsource-10"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -7648,8 +7670,8 @@ PRIMARY = 1;
 SECONDARY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L827-L853">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L858-L859">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
 <h1><a class="header" href="#reference" id="reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
 a <code>Section</code> or an external website, or a whole tree structure, for example
