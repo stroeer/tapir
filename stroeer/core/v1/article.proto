@@ -506,6 +506,7 @@ message Article {
          * | `VIDEO`            | internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `druation`) within `fields`      |
          * | `EXTERNAL_VIDEO`   | holds (`m3u8`/`HLS`) URLS to external videos, such as _live streams_ and _glomex_                                          |
          * | `METADATA`         | holds [`Metadata`][meta] for the parent element and `fields` that also depend on the parent `Element.Type`                 |
+         * | `LINK`             | additional link (href, reference) asset for parent `Element`, e.g. an `image` with an optional link target.                |
          *
          * @CodeBlockStart protobuf
          */
@@ -516,6 +517,7 @@ message Article {
         VIDEO = 2;
         EXTERNAL_VIDEO = 3;
         METADATA = 4;
+        LINK = 5;
       }
       /** @CodeBlockEnd */
     }
