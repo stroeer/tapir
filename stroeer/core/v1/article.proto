@@ -110,17 +110,18 @@ message Article {
    *
    * ## `enum Type`
    *
-   * | Enum value                 | Description                                                        |
-   * |----------------------------|--------------------------------------------------------------------|
-   * | `CONTENT_TYPE_UNSPECIFIED` | unspecified                                                        |
-   * | `ARTICLE`                  | A text article, usually [_sub typed_][sub_type]                    |
-   * | `IMAGE`                    | `[deprecated]` An image article, unused, deprecated                |
-   * | `VIDEO`                    | A video article, contains HLS-videos, as well as external live str |
-   * | `GALLERY`                  | A gallery article                                                  |
-   * | `EMBED`                    | An embed article including an oembed or edge_side_include element  |
-   * | `AUTHOR`                   | An author article, currently not implemented                       |
-   * | `AGENCY`                   | `[deprecated]` An agency article, unused, deprecated               |
-   * | `EXTERNAL`                 | An external article (teaser-like external article)                 |
+   * | Enum value                 | Description                                                           |
+   * |----------------------------|-----------------------------------------------------------------------|
+   * | `CONTENT_TYPE_UNSPECIFIED` | unspecified                                                           |
+   * | `ARTICLE`                  | A text article, usually [_sub typed_][sub_type]                       |
+   * | `IMAGE`                    | `[deprecated]` An image article, unused, deprecated                   |
+   * | `VIDEO`                    | A video article, contains HLS-videos, as well as external live stream |
+   * | `GALLERY`                  | A gallery article                                                     |
+   * | `EMBED`                    | An embed article including an oembed or edge_side_include element     |
+   * | `AUTHOR`                   | An author article, currently not implemented                          |
+   * | `AGENCY`                   | `[deprecated]` An agency article, unused, deprecated                  |
+   * | `EXTERNAL`                 | An external article (teaser-like external article)                    |
+   * | `GAME`                     | A _browser/online game_, usually implemented via an oEmbed opener     |
    *
    * [sub_type]: #enum-contentsubtype
    *
@@ -137,6 +138,7 @@ message Article {
     AUTHOR = 6;
     AGENCY = 7 [deprecated = true];
     EXTERNAL = 8;
+    GAME = 9;
   }
   /** @CodeBlockEnd */
 
@@ -146,21 +148,21 @@ message Article {
    *
    * Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
    *
-   * | Enum value             | Description                                                |
-   * |------------------------|------------------------------------------------------------|
-   * | `SUB_TYPE_UNSPECIFIED` | unspecified                                                |
-   * | `NEWS`                 | _Meldung/Nachricht_ — this is the default                  |
-   * | `COLUMN`               | _Kolumne_                                                  |
-   * | `COMMENTARY`           | _Kommentar_                                                |
-   * | `INTERVIEW`            | _Interview_                                                |
-   * | `CONTROVERSY`          | _Pro und Kontra/Streitgespräch_                            |
-   * | `TAGESANBRUCH`         | _Tagesanbruch_                                             |
-   * | `EVERGREEN`            | _Evergreen_                                                |
-   * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS |
-   * | `ADVERTORIAL`          | _Advertorial_                                              |
-   * | `QUIZ`                 | _Quiz_                                                     |
-   * | `GAME`                 | _(Browser)Game_                                            |
-   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms |
+   * | Enum value             | Description                                                      |
+   * |------------------------|------------------------------------------------------------------|
+   * | `SUB_TYPE_UNSPECIFIED` | unspecified                                                      |
+   * | `NEWS`                 | _Meldung/Nachricht_ — this is the default                        |
+   * | `COLUMN`               | _Kolumne_                                                        |
+   * | `COMMENTARY`           | _Kommentar_                                                      |
+   * | `INTERVIEW`            | _Interview_                                                      |
+   * | `CONTROVERSY`          | _Pro und Kontra/Streitgespräch_                                  |
+   * | `TAGESANBRUCH`         | _Tagesanbruch_                                                   |
+   * | `EVERGREEN`            | _Evergreen_                                                      |
+   * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS       |
+   * | `ADVERTORIAL`          | _Advertorial_                                                    |
+   * | `QUIZ`                 | _Quiz_                                                           |
+   * | `GAME`                 | _(Browser)Game_ (`deprecated`: will be replaced with `Type.Game` |
+   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms       |
    *
    * @CodeBlockStart protobuf
    */
@@ -177,7 +179,7 @@ message Article {
     AGENCY_IMPORT = 8;
     ADVERTORIAL = 9;
     QUIZ = 10;
-    GAME = 11;
+    DEPRECATED_GAME = 11 [deprecated = true];
     COMPLIANCE = 12;
   }
   /** @CodeBlockEnd */
