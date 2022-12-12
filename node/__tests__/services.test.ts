@@ -6,10 +6,10 @@ import FragmentStageService from '../stroeer/fragment/v1/stage_service_grpc_pb';
 
 test('gRPC core article service client is generated and matches the snapshot', () => {
   expect(CoreArticleService).toMatchInlineSnapshot(`
-    Object {
+    {
       "ArticleServiceClient": [Function],
-      "ArticleServiceService": Object {
-        "batchGetArticles": Object {
+      "ArticleServiceService": {
+        "batchGetArticles": {
           "path": "/stroeer.core.v1.ArticleService/BatchGetArticles",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -20,7 +20,7 @@ test('gRPC core article service client is generated and matches the snapshot', (
           "responseStream": false,
           "responseType": [Function],
         },
-        "getArticle": Object {
+        "getArticle": {
           "path": "/stroeer.core.v1.ArticleService/GetArticle",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -31,7 +31,7 @@ test('gRPC core article service client is generated and matches the snapshot', (
           "responseStream": false,
           "responseType": [Function],
         },
-        "listArticles": Object {
+        "listArticles": {
           "path": "/stroeer.core.v1.ArticleService/ListArticles",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -42,7 +42,7 @@ test('gRPC core article service client is generated and matches the snapshot', (
           "responseStream": false,
           "responseType": [Function],
         },
-        "listSections": Object {
+        "listSections": {
           "path": "/stroeer.core.v1.ArticleService/ListSections",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -60,10 +60,10 @@ test('gRPC core article service client is generated and matches the snapshot', (
 
 test('gRPC article page service client is generated and matches the snapshot', () => {
   expect(ArticlePageService).toMatchInlineSnapshot(`
-    Object {
+    {
       "ArticlePageServiceClient": [Function],
-      "ArticlePageServiceService": Object {
-        "getArticlePage": Object {
+      "ArticlePageServiceService": {
+        "getArticlePage": {
           "path": "/stroeer.page.article.v1.ArticlePageService/GetArticlePage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -81,10 +81,10 @@ test('gRPC article page service client is generated and matches the snapshot', (
 
 test('gRPC section page service client is generated and matches the snapshot', () => {
   expect(SectionPageService).toMatchInlineSnapshot(`
-    Object {
+    {
       "SectionPageServiceClient": [Function],
-      "SectionPageServiceService": Object {
-        "getSectionPage": Object {
+      "SectionPageServiceService": {
+        "getSectionPage": {
           "path": "/stroeer.page.section.v1.SectionPageService/GetSectionPage",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -102,10 +102,10 @@ test('gRPC section page service client is generated and matches the snapshot', (
 
 test('gRPC fragment stage service client is generated and matches the snapshot', () => {
   expect(FragmentStageService).toMatchInlineSnapshot(`
-    Object {
+    {
       "StageServiceClient": [Function],
-      "StageServiceService": Object {
-        "getArticleCompanions": Object {
+      "StageServiceService": {
+        "getArticleCompanions": {
           "path": "/stroeer.fragment.v1.StageService/GetArticleCompanions",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
@@ -116,7 +116,7 @@ test('gRPC fragment stage service client is generated and matches the snapshot',
           "responseStream": false,
           "responseType": [Function],
         },
-        "getStages": Object {
+        "getStages": {
           "path": "/stroeer.fragment.v1.StageService/GetStages",
           "requestDeserialize": [Function],
           "requestSerialize": [Function],
