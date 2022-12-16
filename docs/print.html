@@ -790,7 +790,7 @@ enum Type {
   float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L864-L879">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L870-L885">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-metadata"><a class="header" href="#article-۰-metadata">Article ۰ Metadata</a></h1>
 <p>Article metadata like publication state and technical timestamps.</p>
@@ -804,6 +804,8 @@ enum Type {
 <tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
 <tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
 <tr><td><code>event_source</code></td><td><a href="article_%DB%B0_metadata.html#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
+<tr><td><code>article_score</code></td><td><code>double</code></td><td>The <code>article score</code> (originates from team data's <em>Content Engine</em>, higher scores are better)</td></tr>
+<tr><td><code>publication_id</code></td><td><code>int64</code></td><td>The unique <code>publication_id</code> provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf">message Metadata {
@@ -816,9 +818,11 @@ enum Type {
   int64 transformation_errors = 7;
   google.protobuf.Timestamp last_modification_time = 8;
   EventSource event_source = 9;
+  double article_score = 10;
+  int64 publication_id = 11;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L792">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L761-L796">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -845,7 +849,7 @@ has been reached.</p>
   DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L795-L826">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L799-L830">[~]</a></p>
 <h2 id="enum-eventsource"><a class="header" href="#enum-eventsource"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -861,16 +865,18 @@ point in time in the future after the item's original publication time.</li>
 <tr><td>EVENT_SOURCE_UNSPECIFIED</td><td>unspecified</td></tr>
 <tr><td>PRIMARY</td><td>this article's transformation was caused by a direct change in the CMS</td></tr>
 <tr><td>SECONDARY</td><td>this article's transformation was caused by a transitive update</td></tr>
+<tr><td>CONTENT_ENGINE</td><td>this article's transformation was caused by an external system (Content Engine)</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf">enum EventSource {
   EVENT_SOURCE_UNSPECIFIED = 0;
   PRIMARY = 1;
   SECONDARY = 2;
+  CONTENT_ENGINE = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L829-L855">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/master/#L860-L861">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L833-L861">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L866-L867">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
 a <code>Section</code> or an external website, or a whole tree structure, for example
