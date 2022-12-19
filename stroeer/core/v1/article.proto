@@ -772,7 +772,7 @@ message Article {
    * | `transformation_errors`  | `int64`             | Number of errors occurred while fetching and/or transforming optional article components (e.g. `embeds` or nested `documents`) to an `article` message.                                                                                                                                                                      |
    * | `last_modification_time` | [`Timestamp`][ts]   | Technical timestamp at which the article was published regardless of the amount and significance of the change.                                                                                                                                                                                                              |
    * | `event_source`           | [`EventSource`][es] | Source of the event that caused this item to be transformed and to be written into the DB.                                                                                                                                                                                                                                   |
-   * | `article_score`          | `double`            | The `article score` (originates from team data's _Content Engine_, higher scores are better)                                                                                                                                                                                                                                 |
+   * | `seo_score`              | `double`            | The `article score` (originates from team data's _Content Engine_, higher scores are better)                                                                                                                                                                                                                                 |
    * | `publication_id`         | `int64`             | The unique `publication_id` provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.                                                                                                                                                                      |
    *
    * [ts]:    https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
@@ -791,7 +791,7 @@ message Article {
     int64 transformation_errors = 7;
     google.protobuf.Timestamp last_modification_time = 8;
     EventSource event_source = 9;
-    double article_score = 10;
+    double seo_score = 10;
     int64 publication_id = 11;
 
     /** @CodeBlockEnd */
