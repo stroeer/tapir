@@ -154,7 +154,7 @@
 <tr><td><code>transformation_errors</code></td><td><code>int64</code></td><td>Number of errors occurred while fetching and/or transforming optional article components (e.g. <code>embeds</code> or nested <code>documents</code>) to an <code>article</code> message.</td></tr>
 <tr><td><code>last_modification_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the article was published regardless of the amount and significance of the change.</td></tr>
 <tr><td><code>event_source</code></td><td><a href="#enum-eventsource"><code>EventSource</code></a></td><td>Source of the event that caused this item to be transformed and to be written into the DB.</td></tr>
-<tr><td><code>article_score</code></td><td><code>double</code></td><td>The <code>article score</code> (originates from team data's <em>Content Engine</em>, higher scores are better)</td></tr>
+<tr><td><code>seo_score</code></td><td><code>double</code></td><td>The <code>article score</code> (originates from team data's <em>Content Engine</em>, higher scores are better)</td></tr>
 <tr><td><code>publication_id</code></td><td><code>int64</code></td><td>The unique <code>publication_id</code> provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.</td></tr>
 </tbody></table>
 </div>
@@ -168,7 +168,7 @@
   int64 transformation_errors = 7;
   google.protobuf.Timestamp last_modification_time = 8;
   EventSource event_source = 9;
-  double article_score = 10;
+  double seo_score = 10;
   int64 publication_id = 11;
 
 </code></pre>
