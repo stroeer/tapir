@@ -28,7 +28,7 @@ dependencies {
   implementation group: 'com.google.protobuf', name: 'protobuf-java', version: protoc
   implementation group: 'com.google.protobuf', name: 'protobuf-java-util', version: protoc
 
-  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.9.1'
+  testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.9.2'
 }
 
 task printVersion {
