@@ -18,13 +18,13 @@ GO_DIR			= ./gen/go
 LANGUAGE		?= java
 GRPCPLUGIN		?= /usr/bin/grpc_$(LANGUAGE)_plugin
 
-PROTOC_VERSION								?= 21.7
-GRPC_VERSION 									= 1.50.0
-GRPC_JAVA_VERSION 						= 1.50.0
+PROTOC_VERSION								?= 21.12
+GRPC_VERSION 									= 1.51.1
+GRPC_JAVA_VERSION 						= 1.51.1
 PROTOBUF_JS_VERSION 					= 3.21.2
 GO_PROTOC_GEN_GO_VERSION 			= v1.28.1
 GO_PROTOC_GEN_GO_GRPC_VERSION = v1.2.0
-GRPC_GATEWAY_VERSION 					= v2.11.3
+GRPC_GATEWAY_VERSION 					= v2.15.0
 
 PROTO_FILES	:= $(shell find stroeer -iname "*.proto" | sed "s/proto$$/$(TARGET_SUFFIX)/")
 PROTOC ?= docker run --rm --volume $(DIR):$(DIR) --workdir $(DIR) ghcr.io/stroeer/protoc-dockerized:$(PROTOC_VERSION)
