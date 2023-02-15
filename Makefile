@@ -213,7 +213,7 @@ fundoc :: introduction.md ## Generate, Commit and Push documentation.
 
 commit_fundoc :: fundoc
 	git add --all docs/
-	git commit --message "updated docs" || true # in case nothing changes
+	git commit --message "docs released for new tag: $(NEXT_TAG)" || true # in case nothing changes
 	git push
 
 introduction.md ::
