@@ -20,11 +20,9 @@ message ArticlePage {
   // according to their `Metadata` will be filtered.
   repeated RelatedArticle related_articles = 2;
 
-  // stage(s) for the bottom of article pages, mostly seo cases like A-Z Modules
+  // stages for article pages contain companions, links to topic pages, A-Z Modules etc.
+  // configuration.fields contains a `stage_type`, which defines the rendering position
   repeated stroeer.page.stage.v1.Stage stages = 3;
-
-  // contains placeholders to be replaced with GetArticleCompanions with dynamically loaded companions
-  repeated stroeer.page.stage.v1.Stage.Item companions = 4;
 }
 
 // An editorial article, which is related to another article.
