@@ -32,12 +32,12 @@ generation.
 
 Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
 
-It's also possible to generate gRPC source code for `java`, `node`, `node-legacy` and `go` at once: `make generate`.
+It's also possible to generate gRPC source code for `java`, `node` and `go` at once: `make generate`.
 
 ### quality assurance
 
 We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
-successful code generation for `java`, `node`, `node-legacy` and `go`.
+successful code generation for `java`, `node` and `go`.
 
 Run `make check` to run all checks.
 
@@ -55,7 +55,7 @@ To create a new release run `make BUMP=[major|minor|patch] release` (defaults to
 ## protoc docker image
 
 We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) including `protoc` and all required
-grpc plugins to generate source code for `java`, `node`, `node-legacy` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
+grpc plugins to generate source code for `java`, `node` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
 reverse-proxy server.
 
 ### precondition
@@ -77,7 +77,7 @@ To access our docker image you need a valid GitHub PAT (personal access token) a
       - `GO_PROTOC_GEN_GO_VERSION` - see [protobuf-go](https://github.com/protocolbuffers/protobuf-go)
       - `GO_PROTOC_GEN_GO_GRPC_VERSION` - see [grpc-go](https://github.com/grpc/grpc-go)
       - `GRPC_GATEWAY_VERSION` - see [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
-    - node dependency versions in `package.json` of `node`, `node-legacy` (run `npm run update`)
+    - node dependency versions in `package.json` of `node` (run `npm run update`)
     
 2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)
 

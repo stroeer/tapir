@@ -12,7 +12,6 @@
 DIR 			= $(shell pwd)
 JAVA_DIR		= ./java/src/main/java
 NODE_DIR		= ./node
-NODE_LEGACY_DIR		= ./node-legacy
 GO_DIR			= ./gen/go
 
 LANGUAGE		?= java
@@ -37,13 +36,6 @@ ifeq ($(LANGUAGE),node)
 	FLAGS		+= --js_out=import_style=commonjs,binary:$(OUTPUT)
 	FLAGS		+= --ts_out=service=grpc-node,mode=grpc-js:$(OUTPUT)
 	FLAGS		+= --grpc_out=grpc_js:$(OUTPUT)
-else ifeq ($(LANGUAGE),node-legacy)
-	OUTPUT		:= $(NODE_LEGACY_DIR)
-	FLAGS		+= --plugin=protoc-gen-ts=/node_modules/.bin/protoc-gen-ts
-	FLAGS		+= --plugin=protoc-gen-grpc=/node_modules/.bin/grpc_tools_node_protoc_plugin
-	FLAGS		+= --js_out=import_style=commonjs,binary:$(OUTPUT)
-	FLAGS		+= --ts_out=service=grpc-node:$(OUTPUT)
-	FLAGS		+= --grpc_out=$(OUTPUT)
 else ifeq ($(LANGUAGE),go)
 	OUTPUT		:= $(GO_DIR)
 	FLAGS		+= --$(LANGUAGE)_out=$(OUTPUT)
@@ -65,8 +57,8 @@ all: $(PROTO_FILES)
 	@mkdir -p $(OUTPUT)
 	$(PROTOC) $(FLAGS) $*.proto
 
-LANGUAGES := java node node-legacy go
-.PHONY: generate java node node-legacy go
+LANGUAGES := java node go
+.PHONY: generate java node go
 generate: $(LANGUAGES) ## Generates source files for all supported languages
 
 $(LANGUAGES):
@@ -87,7 +79,6 @@ test: generate ## Runs all tests
 	@echo "+ $@"
 	cd java && ./gradlew clean build
 #	cd node && nvm use && npm run checks
-#	cd node-legacy && nvm use && npm run checks
 
 .PHONY: check
 check: lint breaking test ## Runs all checks
@@ -98,7 +89,6 @@ clean: ## Deletes all generated files
 	rm -rf $(JAVA_DIR) || true
 	rm -rf $(GO_DIR) || true
 	rm -rf `find $(NODE_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "src" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
-	rm -rf `find $(NODE_LEGACY_DIR) -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "src" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 .PHONY: help
 help: ## Display this help screen
