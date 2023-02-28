@@ -47,10 +47,6 @@ RUN $bazel build //external:protocol_compiler && \
 WORKDIR /tmp/grpc-java
 RUN $bazel build //compiler:grpc_java_plugin
 
-# protoc-gen-js, this is a workaround for https://github.com/protocolbuffers/protobuf-javascript/issues/127
-WORKDIR /tmp/protobuf-javascript
-RUN $bazel build //generator:protoc-gen-js
-
 # grpc-gateway
 RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@${GRPC_GATEWAY_VERSION}
 RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@${GRPC_GATEWAY_VERSION}
@@ -59,6 +55,9 @@ RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@${
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${GO_PROTOC_GEN_GO_GRPC_VERSION}
 RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@${GO_PROTOC_GEN_GO_VERSION}
 
+# protoc-gen-js, this is a workaround for https://github.com/protocolbuffers/protobuf-javascript/issues/127
+WORKDIR /tmp/protobuf-javascript
+RUN $bazel build //generator:protoc-gen-js
 
 # Node
 FROM node:lts-alpine3.9 as node
