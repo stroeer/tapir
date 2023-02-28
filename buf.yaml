@@ -1,16 +1,11 @@
-version: v1beta1
-
+version: v1
 build:
-  roots:
-    - .
   excludes:
     - node/node_modules
-    - node-legacy/node_modules
 lint:
-  allow_comment_ignores: true
   use:
     - DEFAULT
-    - OTHER
   except:
     - RPC_RESPONSE_STANDARD_NAME
     - ENUM_VALUE_PREFIX
+  allow_comment_ignores: true
