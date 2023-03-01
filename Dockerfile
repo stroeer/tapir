@@ -60,7 +60,7 @@ WORKDIR /tmp/protobuf-javascript
 RUN $bazel build //generator:protoc-gen-js
 
 # Node
-FROM node:lts-alpine3.9 as node
+FROM node:lts-alpine3.17 as node
 
 COPY node .
 RUN npm ci
