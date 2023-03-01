@@ -35,7 +35,9 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          cache: 'npm'
+          cache-dependency-path: 'node/package-lock.json'
+          node-version-file: 'node/.nvmrc'
           registry-url: "https://npm.pkg.github.com"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
