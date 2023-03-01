@@ -3,6 +3,7 @@ syntax = "proto3";
 package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
+import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
@@ -23,6 +24,16 @@ message ArticlePage {
   // stages for article pages contain companions, links to topic pages, A-Z Modules etc.
   // configuration.fields contains a `stage_type`, which defines the rendering position
   repeated stroeer.page.stage.v1.Stage stages = 3;
+
+  // Page navigation including internal and external references
+  // The root references has nested references
+  // root
+  //   - menu
+  //     - submenu
+  //   - menu
+  //     - submenu
+  //     - external references
+  stroeer.core.v1.Reference navigation_menu = 4;
 }
 
 // An editorial article, which is related to another article.
