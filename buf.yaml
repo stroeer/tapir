@@ -1,7 +1,14 @@
 version: v1
+
 build:
   excludes:
-    - node/node_modules
+    - node
+    - java
+
+breaking:
+  use:
+    - FILE
+
 lint:
   use:
     - DEFAULT

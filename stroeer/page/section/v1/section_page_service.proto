@@ -9,10 +9,6 @@ package stroeer.page.section.v1;
 import "stroeer/page/section/v1/section_page.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/section/v1;section";
-option java_multiple_files = true;
-option java_package = "de.stroeer.page.section.v1";
-
-
 
 /**
  * Message to provide parameters when requesting data for a section page, currently only the path of the page.

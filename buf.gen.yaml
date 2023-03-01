@@ -1,0 +1,21 @@
+version: v1
+
+managed:
+  enabled: true
+  optimize_for: SPEED
+  java_multiple_files: true
+  java_package_prefix: de
+
+plugins:
+  - plugin: buf.build/protocolbuffers/java:v22.0
+    out: gen/java
+  - plugin: buf.build/grpc/java:v1.53.0
+    out: gen/java
+  - plugin: buf.build/protocolbuffers/go:v1.28.1
+    out: gen/go
+    opt:
+    - paths=source_relative
+  - plugin: buf.build/grpc/go:v1.2.0
+    out: gen/go
+    opt:
+    - paths=source_relative

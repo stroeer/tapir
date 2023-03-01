@@ -11,8 +11,6 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 option go_package = "github.com/stroeer/go-tapir/core/v1;core";
-option java_multiple_files = true;
-option java_package = "de.stroeer.core.v1";
 
 /**
   * Core service to either query a single article (`rpc GetArticle()`) identified
