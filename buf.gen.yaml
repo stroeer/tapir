@@ -1,7 +1,13 @@
 version: v1
 
 managed:
-  enabled: false
+  enabled: true
+  optimize_for: SPEED
+  java_multiple_files: true
+  java_package_prefix:
+    default: de
+    except:
+      - buf.build/googleapis/googleapis
 
 plugins:
   # Java
