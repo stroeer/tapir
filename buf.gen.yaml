@@ -1,18 +1,15 @@
 version: v1
 
 managed:
-  enabled: true
-  optimize_for: SPEED
-  java_multiple_files: true
-  java_package_prefix: de
+  enabled: false
 
 plugins:
   # Java
   - plugin: buf.build/protocolbuffers/java:v22.0
-    out: gen/java
+    out: ./java/src/main/java
 
   - plugin: buf.build/grpc/java:v1.53.0
-    out: gen/java
+    out: ./java/src/main/java
 
   # Typescript/Node
   - plugin: buf.build/protocolbuffers/js:v3.21.2

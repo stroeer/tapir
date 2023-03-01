@@ -10,6 +10,8 @@ import "google/api/annotations.proto";
 import "stroeer/page/article/v1/article_page.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
+option java_multiple_files = true;
+option java_package = "de.stroeer.page.article.v1";
 
 /**
  * ```protobuf
