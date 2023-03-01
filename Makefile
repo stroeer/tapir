@@ -1,4 +1,4 @@
-all: test lint breaking
+all: test fmt lint breaking
 
 .PHONY: generate
 generate: ## Generates proto and grpc files using https://docs.buf.build/generate/overview
@@ -14,6 +14,11 @@ lint: ## Lints all proto files using https://docs.buf.build/lint-overview
 breaking: ## Detects breaking changes using https://docs.buf.build/breaking-overview
 	@echo "+ $@"
 	@buf breaking --against 'https://github.com/stroeer/tapir.git#branch=main' --config buf.yaml || true
+
+.PHONY: fmt
+fmt: ## Formats all proto files using https://docs.buf.build/format/style
+	@echo "+ $@"
+	@buf format -w
 
 .PHONY: test
 test: generate ## Runs all tests
