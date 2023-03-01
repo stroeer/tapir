@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  # higher rates for GitHub API
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   generate:
     runs-on: ubuntu-latest

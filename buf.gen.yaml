@@ -28,8 +28,15 @@ plugins:
     opt:
     - mode=grpc-js
 
-  - plugin: buf.build/community/timostamm-protobuf-ts:v2.8.2
+#  - plugin: buf.build/community/timostamm-protobuf-ts:v2.8.2
+#    out: gen/node
+
+  - plugin: protoc-gen-ts
     out: gen/node
+    path: ./node/node_modules/.bin/protoc-gen-ts
+    strategy: all
+    opt:
+    - mode=grpc-js
 
   # Go
   - plugin: buf.build/protocolbuffers/go:v1.28.1
