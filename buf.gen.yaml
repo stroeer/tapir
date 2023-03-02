@@ -45,6 +45,14 @@ plugins:
     opt:
     - paths=source_relative
 
+  # Grpc gateway, see https://github.com/grpc-ecosystem/grpc-gateway/issues/3217
+#  - plugin: buf.build/grpc-ecosystem/gateway:v2.15.2
+#    out: gen/gateway
+#    opt:
+#      - logtostderr=true
+#      - paths=source_relative
+#      - standalone=true
+
   # Python
   - plugin: buf.build/protocolbuffers/python:v22.0
     out: gen/python
