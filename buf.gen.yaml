@@ -20,13 +20,11 @@ plugins:
   # Typescript/Node
   - plugin: buf.build/protocolbuffers/js:v3.21.2
     out: ./node
-    opt:
-    - import_style=commonjs,binary
+    opt: import_style=commonjs,binary
 
   - plugin: buf.build/grpc/node:v1.12.4
     out: ./node
-    opt:
-    - mode=grpc-js
+    opt: grpc_js
 
 #  - plugin: buf.build/community/timostamm-protobuf-ts:v2.8.2
 #    out: gen/node
