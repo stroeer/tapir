@@ -19,24 +19,25 @@ plugins:
 
   # Typescript/Node
   - plugin: buf.build/protocolbuffers/js:v3.21.2
-    out: gen/node
+    out: ./node
     opt:
     - import_style=commonjs,binary
 
   - plugin: buf.build/grpc/node:v1.12.4
-    out: gen/node
+    out: ./node
     opt:
     - mode=grpc-js
 
 #  - plugin: buf.build/community/timostamm-protobuf-ts:v2.8.2
 #    out: gen/node
 
+  # TODO: migrate to a remote plugin
   - plugin: protoc-gen-ts
-    out: gen/node
+    out: ./node
     path: ./node/node_modules/.bin/protoc-gen-ts
-    strategy: all
     opt:
     - mode=grpc-js
+    - service=grpc-node
 
   # Go
   - plugin: buf.build/protocolbuffers/go:v1.28.1
