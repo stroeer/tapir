@@ -26,10 +26,7 @@ plugins:
     out: ./node
     opt: grpc_js
 
-#  - plugin: buf.build/community/timostamm-protobuf-ts:v2.8.2
-#    out: gen/node
-
-  # TODO: migrate to a remote plugin
+  # TODO: migrate to a remote plugin for Typescript generation
   - plugin: protoc-gen-ts
     out: ./node
     path: ./node/node_modules/.bin/protoc-gen-ts
@@ -47,14 +44,6 @@ plugins:
     out: gen/go
     opt:
     - paths=source_relative
-
-  # Grpc gateway
-  - plugin: buf.build/grpc-ecosystem/gateway:v2.15.2
-    out: gen/gateway
-    opt:
-      - logtostderr=true
-      - paths=source_relative
-      - standalone=true
 
   # Python
   - plugin: buf.build/protocolbuffers/python:v22.0

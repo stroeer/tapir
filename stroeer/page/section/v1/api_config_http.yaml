@@ -1,0 +1,9 @@
+# The configuration schema is defined by service.proto file
+# https://github.com/googleapis/googleapis/blob/master/google/api/service.proto
+type: google.api.Service
+
+http:
+  rules:
+    - selector: stroeer.page.section.v1.SectionPageService.GetSectionPage
+      # this maps e.g. to `v1/pages/sections?section_path=/`
+      get: /v1/pages/sections

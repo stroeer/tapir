@@ -6,7 +6,6 @@ syntax = "proto3";
 
 package stroeer.page.section.v1;
 
-import "google/api/annotations.proto";
 import "stroeer/page/section/v1/section_page.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/section/v1;section";
@@ -93,12 +92,7 @@ message GetSectionPageResponse {
  * Service to fetch all data needed to render a section page, like the homepage or "/politik/"
  */
 service SectionPageService {
-  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {
-    option (google.api.http) = {
-      // this maps e.g. to `v1/pages/sections?section_path=/`
-      get: "/v1/pages/sections"
-    };
-  }
+  rpc GetSectionPage (GetSectionPageRequest) returns (GetSectionPageResponse) {}
 }
 
 /**

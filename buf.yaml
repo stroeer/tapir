@@ -1,7 +1,6 @@
 version: v1
 
-deps:
-  - buf.build/googleapis/googleapis
+name: buf.build/stroeer/tapir
 
 build:
   excludes:
