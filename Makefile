@@ -23,8 +23,8 @@ fmt: ## Formats all proto files using https://docs.buf.build/format/style
 .PHONY: test
 test: generate ## Runs all tests
 	@echo "+ $@"
-	cd java && ./gradlew clean build
-#	cd node && npm run checks
+	@cd java && ./gradlew clean build
+	@cd node && npm run checks
 
 .PHONY: clean
 clean: ## Deletes all generated files
