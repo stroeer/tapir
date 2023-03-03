@@ -35,15 +35,15 @@ message SectionPage {
     // `/` -> `/sport/` -> `/sport/fussball/`
     // @Deprecated in favor of references
     stroeer.core.v1.Reference section_tree = 2;
-
-    // Page navigation including internal and external references
-    // The root references has nested references
-    // root
-    //   - menu
-    //     - submenu
-    //   - menu
-    //     - submenu
-    //     - external references
-    stroeer.core.v1.Reference navigation_menu = 3;
   }
+
+  // Page navigation including internal and external references
+  // The root references has nested references
+  // root
+  //   - menu
+  //     - submenu
+  //   - menu
+  //     - submenu
+  //     - external references
+  stroeer.core.v1.Reference navigation_menu = 3;
 }
