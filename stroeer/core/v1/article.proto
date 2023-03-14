@@ -137,6 +137,7 @@ message Article {
     AUTHOR = 6;
     AGENCY = 7 [deprecated = true];
     EXTERNAL = 8;
+    INTERNAL_NAVIGATION_MENU = 100;
   }
   /** @CodeBlockEnd */
 
