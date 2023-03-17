@@ -121,6 +121,7 @@ message Article {
    * | `AUTHOR`                   | An author article, currently not implemented                       |
    * | `AGENCY`                   | `[deprecated]` An agency article, unused, deprecated               |
    * | `EXTERNAL`                 | An external article (teaser-like external article)                 |
+   * | `INTERNAL`                 | Used for internal purposes only.                                   |
    *
    * [sub_type]: #enum-contentsubtype
    *
@@ -137,7 +138,7 @@ message Article {
     AUTHOR = 6;
     AGENCY = 7 [deprecated = true];
     EXTERNAL = 8;
-    INTERNAL_NAVIGATION_MENU = 100;
+    INTERNAL = 100;
   }
   /** @CodeBlockEnd */
 
