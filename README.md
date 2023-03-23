@@ -26,13 +26,13 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## generate gRPC source code
 
-To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC on your local machine,
-or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code
-generation.
+To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC plugins on your local machine,
+or you can use our [buf generate template](./buf.gen.yaml) to generate code for `java`, `node` and `go`
+using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
 
-Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
-
-It's also possible to generate gRPC source code for `java`, `node` and `go` at once: `make generate`.
+```shell
+make generate
+```
 
 ### quality assurance
 

@@ -6,17 +6,6 @@ on:
       - 'v*'
 
 jobs:
-  registry:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: bufbuild/buf-setup-action@v1
-
-      - uses: bufbuild/buf-push-action@v1
-        with:
-          buf_token: ${{ secrets.BUF_TOKEN }}
-
   java:
     runs-on: ubuntu-latest
     steps:

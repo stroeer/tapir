@@ -1,4 +1,4 @@
-all: test fmt lint breaking
+all: generate test fmt lint breaking
 
 .PHONY: generate
 generate: ## Generates proto and grpc files using https://docs.buf.build/generate/overview
