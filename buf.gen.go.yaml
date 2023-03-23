@@ -4,12 +4,12 @@ plugins:
   - plugin: buf.build/protocolbuffers/go:v1.30.0
     out: gen/go
     opt:
-      - paths=source_relative
+      - module=github.com/stroeer/go-tapir
 
   - plugin: buf.build/grpc/go:v1.3.0
     out: gen/go
     opt:
-      - paths=source_relative
+      - module=github.com/stroeer/go-tapir
 
   # Grpc gateway, see https://github.com/grpc-ecosystem/grpc-gateway/issues/3217
   #  - plugin: buf.build/grpc-ecosystem/gateway:v2.15.2
