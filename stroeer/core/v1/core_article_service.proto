@@ -6,31 +6,31 @@ syntax = "proto3";
 
 package stroeer.core.v1;
 
-import "stroeer/core/v1/article.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "stroeer/core/v1/article.proto";
 
 option go_package = "github.com/stroeer/go-tapir/core/v1;core";
 
 /**
-  * Core service to either query a single article (`rpc GetArticle()`) identified
-  * by its id or to query multiple articles (`rpc ListArticles()`) by providing
-  * a query.
-  *
-  * All results returned from this service are _unfiltered_, hence they may contain
-  * [`elements`](element.html) that are *expired*, *not yet valid* or whose [`state`](metadata.html#state)
-  * is not `PUBLISHED`.
-  *
-  * @CodeBlockStart protobuf
-  */
+ * Core service to either query a single article (`rpc GetArticle()`) identified
+ * by its id or to query multiple articles (`rpc ListArticles()`) by providing
+ * a query.
+ *
+ * All results returned from this service are _unfiltered_, hence they may contain
+ * [`elements`](element.html) that are *expired*, *not yet valid* or whose [`state`](metadata.html#state)
+ * is not `PUBLISHED`.
+ *
+ * @CodeBlockStart protobuf
+ */
 
 service ArticleService {
-  rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
-  rpc BatchGetArticles (BatchGetArticlesRequest) returns (BatchGetArticlesResponse) {}
-  rpc ListArticles (ListArticlesRequest) returns (ListArticlesResponse) {}
+  rpc GetArticle(GetArticleRequest) returns (stroeer.core.v1.Article) {}
+  rpc BatchGetArticles(BatchGetArticlesRequest) returns (BatchGetArticlesResponse) {}
+  rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse) {}
   // Allow Empty as request param
   // buf:lint:ignore RPC_REQUEST_STANDARD_NAME
-  rpc ListSections (google.protobuf.Empty) returns (ListSectionsResponse) {}
+  rpc ListSections(google.protobuf.Empty) returns (ListSectionsResponse) {}
 }
 /** @CodeBlockEnd */
 
@@ -75,16 +75,16 @@ message BatchGetArticlesRequest {
 /** @CodeBlockEnd */
 
 /**
-  * ## BatchGetArticlesResponse
-  *
-  * | Field name       | Type                | Description                                                 |
-  * |------------------|---------------------|-------------------------------------------------------------|
-  * | `articles`       | [`stroeer.core.v1.Article`][article]| list of valid articles                                      |
-  *
-  * [article]: article.html
-  *
-  * @CodeBlockStart protobuf
-  */
+ * ## BatchGetArticlesResponse
+ *
+ * | Field name       | Type                | Description                                                 |
+ * |------------------|---------------------|-------------------------------------------------------------|
+ * | `articles`       | [`stroeer.core.v1.Article`][article]| list of valid articles                                      |
+ *
+ * [article]: article.html
+ *
+ * @CodeBlockStart protobuf
+ */
 
 message BatchGetArticlesResponse {
   repeated stroeer.core.v1.Article articles = 1;
@@ -92,24 +92,24 @@ message BatchGetArticlesResponse {
 /** @CodeBlockEnd */
 
 /**
-  * returns a [`message-listarticlesresponse`](#ListArticlesResponse) with
-  * articles matching the query. If the results exceed 100 Articles or 1 MB
-  * the response can be paginated to obtain additional results.
-  *
-  * ## `ListArticlesRequest`
-  *
-  * | Field name       | Type                | Description                                                 |
-  * |------------------|---------------------|-------------------------------------------------------------|
-  * | `query`          | [`Query`][1]        | [required] find items based on query values                 |
-  * | `filters`        | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
-  * | `page_size`      | `int32`             | [optional] limit the results per page, default is `10`; max is `100` (or result exceeds `1 MB`). Values above 100 will be coerced to 100. If results get truncated, you can use pagination. |
-  * | `page_token`     | `string`            | [optional]  A page token, received from a previous `ListArticles` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListArticles` must match the call that provided the page token.|
-  *
-  * [1]: #query
-  * [2]: #filters
-  *
-  * @CodeBlockStart protobuf
-  */
+ * returns a [`message-listarticlesresponse`](#ListArticlesResponse) with
+ * articles matching the query. If the results exceed 100 Articles or 1 MB
+ * the response can be paginated to obtain additional results.
+ *
+ * ## `ListArticlesRequest`
+ *
+ * | Field name       | Type                | Description                                                 |
+ * |------------------|---------------------|-------------------------------------------------------------|
+ * | `query`          | [`Query`][1]        | [required] find items based on query values                 |
+ * | `filters`        | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
+ * | `page_size`      | `int32`             | [optional] limit the results per page, default is `10`; max is `100` (or result exceeds `1 MB`). Values above 100 will be coerced to 100. If results get truncated, you can use pagination. |
+ * | `page_token`     | `string`            | [optional]  A page token, received from a previous `ListArticles` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListArticles` must match the call that provided the page token.|
+ *
+ * [1]: #query
+ * [2]: #filters
+ *
+ * @CodeBlockStart protobuf
+ */
 message ListArticlesRequest {
   Query query = 1;
   Filters filters = 2;
@@ -117,7 +117,6 @@ message ListArticlesRequest {
   string page_token = 4;
 
   /** @CodeBlockEnd */
-
 
   /**
    * ## `Query`
@@ -258,17 +257,17 @@ message ListArticlesRequest {
 }
 
 /**
-  * ## `ListArticlesResponse`
-  *
-  * | Field name       | Type                | Description                                                 |
-  * |------------------|---------------------|-------------------------------------------------------------|
-  * | `articles`       | [`Article`][article]| list of articles that match the `query` and also the `filter`, otherwise `empty`. |
-  * | `next_page_token`| `string`            | A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. |
-  *
-  * [article]: article.html
-  *
-  * @CodeBlockStart protobuf
-  */
+ * ## `ListArticlesResponse`
+ *
+ * | Field name       | Type                | Description                                                 |
+ * |------------------|---------------------|-------------------------------------------------------------|
+ * | `articles`       | [`Article`][article]| list of articles that match the `query` and also the `filter`, otherwise `empty`. |
+ * | `next_page_token`| `string`            | A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. |
+ *
+ * [article]: article.html
+ *
+ * @CodeBlockStart protobuf
+ */
 message ListArticlesResponse {
   repeated stroeer.core.v1.Article articles = 1;
   string next_page_token = 2;
@@ -276,16 +275,16 @@ message ListArticlesResponse {
 /** @CodeBlockEnd */
 
 /**
-  * # `⚙︎ ListSections`
-  *
-  * list the available root sections
-  *
-  * ## `ListSectionsResponse`
-  *
-  * list all available `root_sections` that can be used in the [`query`](#query) above.
-  *
-  * @CodeBlockStart protobuf
-  */
+ * # `⚙︎ ListSections`
+ *
+ * list the available root sections
+ *
+ * ## `ListSectionsResponse`
+ *
+ * list all available `root_sections` that can be used in the [`query`](#query) above.
+ *
+ * @CodeBlockStart protobuf
+ */
 message ListSectionsResponse {
   repeated string sections = 1;
 }

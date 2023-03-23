@@ -22,7 +22,7 @@ option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
  *
  */
 service ArticlePageService {
-  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+  rpc GetArticlePage(GetArticlePageRequest) returns (GetArticlePageResponse) {}
 }
 
 /**

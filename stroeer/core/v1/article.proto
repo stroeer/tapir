@@ -12,45 +12,45 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  */
 
 /**
-  * An article represents a piece of content created in the content management
-  * system. Different types of content like text or video articles share
-  * the same message structure, they can be distinguished by the
-  * [`Article.Type`](#type) field.
-  * Text articles (`type = Article.Type.ARTICLE`) also have
-  * [`Article.SubType`](#sub_type) to differentiate its purpose and form.
-  *
-  * ## Teaser
-  *
-  * To improve performance of database access and during network transmission tapir
-  * is using a lightweight representation of `Article` in some places.
-  *
-  * Depending on the service used to retrieve an article, the `Article` message might
-  * only contain data required on section pages (e.g. with `Article.body` set to `null`
-  * thus not containing any data that is only required on detail pages). This
-  * lightweight representation is sometimes referred to as `Teaser`.
-  *
-  * | Field name     | Type                      | Description                                                                                                                                  |
-  * |----------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-  * | `id`           | `int64`                   | Unique ID of the article defined by the content management system (required).                                                                |
-  * | `type`         | [`Type`][t]               | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
-  * | `sub_type`     | [`SubType`][st]           | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
-  * | `section_tree` | [`Reference`][ref]        | Hierarchical section tree information of the article (required).                                                                             |
-  * | `fields`       | `map<string, string>`     | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
-  * | `bodies`       | `repeated` [`Body`][b]    | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
-  * | `elements`     | `repeated` [`Element`][e] | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
-  * | `keywords`     | `repeated` [`Keyword`][k] | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
-  * | `onwards`      | `int64`                   | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
-  * | `entities`     | `string` `[deprecated]`   | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
-  *
-  * [t]:   #enum-type
-  * [b]:   article_%DB%B0_body.html
-  * [e]:   article_%DB%B0_element.html
-  * [k]:   article_%DB%B0_keyword.html
-  * [st]:  #enum-subtype
-  * [ref]: reference.html
-  *
-  * @CodeBlockStart protobuf
-  * */
+ * An article represents a piece of content created in the content management
+ * system. Different types of content like text or video articles share
+ * the same message structure, they can be distinguished by the
+ * [`Article.Type`](#type) field.
+ * Text articles (`type = Article.Type.ARTICLE`) also have
+ * [`Article.SubType`](#sub_type) to differentiate its purpose and form.
+ *
+ * ## Teaser
+ *
+ * To improve performance of database access and during network transmission tapir
+ * is using a lightweight representation of `Article` in some places.
+ *
+ * Depending on the service used to retrieve an article, the `Article` message might
+ * only contain data required on section pages (e.g. with `Article.body` set to `null`
+ * thus not containing any data that is only required on detail pages). This
+ * lightweight representation is sometimes referred to as `Teaser`.
+ *
+ * | Field name     | Type                      | Description                                                                                                                                  |
+ * |----------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+ * | `id`           | `int64`                   | Unique ID of the article defined by the content management system (required).                                                                |
+ * | `type`         | [`Type`][t]               | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
+ * | `sub_type`     | [`SubType`][st]           | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
+ * | `section_tree` | [`Reference`][ref]        | Hierarchical section tree information of the article (required).                                                                             |
+ * | `fields`       | `map<string, string>`     | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
+ * | `bodies`       | `repeated` [`Body`][b]    | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
+ * | `elements`     | `repeated` [`Element`][e] | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
+ * | `keywords`     | `repeated` [`Keyword`][k] | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
+ * | `onwards`      | `int64`                   | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
+ * | `entities`     | `string` `[deprecated]`   | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
+ *
+ * [t]:   #enum-type
+ * [b]:   article_%DB%B0_body.html
+ * [e]:   article_%DB%B0_element.html
+ * [k]:   article_%DB%B0_keyword.html
+ * [st]:  #enum-subtype
+ * [ref]: reference.html
+ *
+ * @CodeBlockStart protobuf
+ * */
 
 message Article {
   int64 id = 1;
@@ -139,7 +139,6 @@ message Article {
     INTERNAL = 100;
   }
   /** @CodeBlockEnd */
-
 
   /**
    * ## `enum SubType`
@@ -296,7 +295,6 @@ message Article {
       TEASER = 2;
     }
     /** @CodeBlockEnd */
-
 
     /**
      * ## Samples
@@ -495,21 +493,21 @@ message Article {
       /** @CodeBlockEnd */
 
       /**
-         * ## `enum Type`
-         *
-         * Type of an asset.
-         *
-         * | Enum value         | Description                                                                                                                |
-         * |--------------------|----------------------------------------------------------------------------------------------------------------------------|
-         * | `TYPE_UNSPECIFIED` | unspecified                                                                                                                |
-         * | `IMAGE`            | image asset with an resizable template URL and some image stats (`width`, `height`, `cropping`). See [`samples`](#samples) |
-         * | `VIDEO`            | internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `druation`) within `fields`      |
-         * | `EXTERNAL_VIDEO`   | holds (`m3u8`/`HLS`) URLS to external videos, such as _live streams_ and _glomex_                                          |
-         * | `METADATA`         | holds [`Metadata`][meta] for the parent element and `fields` that also depend on the parent `Element.Type`                 |
-         * | `LINK`             | additional link (href, reference) asset for parent `Element`, e.g. an `image` with an optional link target.                |
-         *
-         * @CodeBlockStart protobuf
-         */
+       * ## `enum Type`
+       *
+       * Type of an asset.
+       *
+       * | Enum value         | Description                                                                                                                |
+       * |--------------------|----------------------------------------------------------------------------------------------------------------------------|
+       * | `TYPE_UNSPECIFIED` | unspecified                                                                                                                |
+       * | `IMAGE`            | image asset with an resizable template URL and some image stats (`width`, `height`, `cropping`). See [`samples`](#samples) |
+       * | `VIDEO`            | internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `druation`) within `fields`      |
+       * | `EXTERNAL_VIDEO`   | holds (`m3u8`/`HLS`) URLS to external videos, such as _live streams_ and _glomex_                                          |
+       * | `METADATA`         | holds [`Metadata`][meta] for the parent element and `fields` that also depend on the parent `Element.Type`                 |
+       * | `LINK`             | additional link (href, reference) asset for parent `Element`, e.g. an `image` with an optional link target.                |
+       *
+       * @CodeBlockStart protobuf
+       */
 
       enum Type {
         TYPE_UNSPECIFIED = 0;
@@ -831,28 +829,28 @@ message Article {
     /** @CodeBlockEnd */
 
     /**
-    * ## `enum EventSource`
-    *
-    * Even more detail about the circumstances of transformation for this article.
-    *
-    * The `EventSource` will be of type:
-    *
-    * - `PRIMARY` in case this article was directly _updated_ and _published_
-    * - `SECONDARY` in case this article was indirectly updated.
-    * This can be caused by updates of _nested elements_,
-    * such as _Videos_ that may expire at some point. Another source of change may be
-    * _Scheduled Events_ like this item becomes _valid_ or _invalid_ at some
-    * point in time in the future after the item's original publication time.
-    *
-    * | Enum value               | description                                                                     |
-    * |--------------------------|---------------------------------------------------------------------------------|
-    * | EVENT_SOURCE_UNSPECIFIED | unspecified                                                                     |
-    * | PRIMARY                  | this article's transformation was caused by a direct change in the CMS          |
-    * | SECONDARY                | this article's transformation was caused by a transitive update                 |
-    * | CONTENT_ENGINE           | this article's transformation was caused by an external system (Content Engine) |
-    *
-    * @CodeBlockStart protobuf
-    */
+     * ## `enum EventSource`
+     *
+     * Even more detail about the circumstances of transformation for this article.
+     *
+     * The `EventSource` will be of type:
+     *
+     * - `PRIMARY` in case this article was directly _updated_ and _published_
+     * - `SECONDARY` in case this article was indirectly updated.
+     * This can be caused by updates of _nested elements_,
+     * such as _Videos_ that may expire at some point. Another source of change may be
+     * _Scheduled Events_ like this item becomes _valid_ or _invalid_ at some
+     * point in time in the future after the item's original publication time.
+     *
+     * | Enum value               | description                                                                     |
+     * |--------------------------|---------------------------------------------------------------------------------|
+     * | EVENT_SOURCE_UNSPECIFIED | unspecified                                                                     |
+     * | PRIMARY                  | this article's transformation was caused by a direct change in the CMS          |
+     * | SECONDARY                | this article's transformation was caused by a transitive update                 |
+     * | CONTENT_ENGINE           | this article's transformation was caused by an external system (Content Engine) |
+     *
+     * @CodeBlockStart protobuf
+     */
     enum EventSource {
       EVENT_SOURCE_UNSPECIFIED = 0;
       PRIMARY = 1;
@@ -861,7 +859,6 @@ message Article {
     }
     /** @CodeBlockEnd */
   }
-
 
   /**
    * @FileArticle Article ۰ Keyword
@@ -877,7 +874,7 @@ message Article {
    * | `score`                 | `float`          | Score for the relevance of this keyword set by the engine |
    *
    * @CodeBlockStart protobuf
-  */
+   */
   message Keyword {
     string value = 1;
     string type = 2;

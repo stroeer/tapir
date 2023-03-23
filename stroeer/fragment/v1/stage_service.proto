@@ -1,51 +1,51 @@
 syntax = "proto3";
 
+package stroeer.fragment.v1;
+
 /**
  * @FileArticle ⚙︎ StageService
  */
 
 import "stroeer/page/stage/v1/stage.proto";
 
-package stroeer.fragment.v1;
-
 option go_package = "github.com/stroeer/go-tapir/fragment/v1;fragment";
 
 service StageService {
   /**
-    ############################################################################
-    # Description
-    ############################################################################
-    Get single stages by requesting them via well-known ids, e.g. "schlagzeilen" or "meistgelesen".
-
-    ############################################################################
-    # Status/Error scenario's
-    ############################################################################
-
-    scenario: found
-    description: service responded without encountering exceptions
-    gRPC status: OK
-    gRPC error payload: none
-    HTTP status: OK
-    cacheable: yes
-
-    scenario: internal
-    description: internal error while loading data
-    gRPC status: INTERNAL
-    gRPC error payload: none
-    HTTP status: 500
-    cacheable: no
-
-    scenario: timeout
-    description: timeout while loading data
-    gRPC status: DEADLINE_EXCEEDED
-    gRPC error payload: none
-    HTTP status: 504
-    cacheable: no
-  **/
-  rpc GetStages (GetStagesRequest) returns (GetStagesResponse) {}
+       ############################################################################
+       # Description
+       ############################################################################
+       Get single stages by requesting them via well-known ids, e.g. "schlagzeilen" or "meistgelesen".
+     
+       ############################################################################
+       # Status/Error scenario's
+       ############################################################################
+     
+       scenario: found
+       description: service responded without encountering exceptions
+       gRPC status: OK
+       gRPC error payload: none
+       HTTP status: OK
+       cacheable: yes
+     
+       scenario: internal
+       description: internal error while loading data
+       gRPC status: INTERNAL
+       gRPC error payload: none
+       HTTP status: 500
+       cacheable: no
+     
+       scenario: timeout
+       description: timeout while loading data
+       gRPC status: DEADLINE_EXCEEDED
+       gRPC error payload: none
+       HTTP status: 504
+       cacheable: no
+     **/
+  rpc GetStages(GetStagesRequest) returns (GetStagesResponse) {}
 
   // request data to render Article Companions as individual html for esi integration on ArticlePages
-  rpc GetArticleCompanions (GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
+  rpc GetArticleCompanions(GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}
 }
 
 // Message to request stages independent of SectionPages, for client side rendering or ESIs
@@ -69,4 +69,3 @@ message GetArticleCompanionsResponse {
 message GetStagesResponse {
   repeated stroeer.page.stage.v1.Stage stages = 1;
 }
-
