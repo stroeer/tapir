@@ -1,0 +1,20 @@
+version: v1
+
+plugins:
+  - plugin: buf.build/protocolbuffers/go:v1.30.0
+    out: gen/go
+    opt:
+      - paths=source_relative
+
+  - plugin: buf.build/grpc/go:v1.3.0
+    out: gen/go
+    opt:
+      - paths=source_relative
+
+  # Grpc gateway, see https://github.com/grpc-ecosystem/grpc-gateway/issues/3217
+  #  - plugin: buf.build/grpc-ecosystem/gateway:v2.15.2
+  #    out: gen/gateway
+  #    opt:
+  #      - logtostderr=true
+  #      - paths=source_relative
+  #      - standalone=true

@@ -1,9 +1,10 @@
 all: generate test fmt lint breaking
 
+TEMPLATE ?= buf.gen.yaml
 .PHONY: generate
 generate: ## Generates proto and grpc files using https://docs.buf.build/generate/overview
 	@echo "+ $@"
-	@buf generate
+	@buf generate --template $(TEMPLATE)
 
 .PHONY: lint
 lint: ## Lints all proto files using https://docs.buf.build/lint-overview
