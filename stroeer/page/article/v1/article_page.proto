@@ -7,8 +7,6 @@ import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
-option java_multiple_files = true;
-option java_package = "de.stroeer.page.article.v1";
 
 // Article page with all render relevant data for the user and SEO bots.
 message ArticlePage {

@@ -1,0 +1,61 @@
+version: v1
+
+managed:
+  enabled: true
+  optimize_for: SPEED
+  java_multiple_files: true
+  java_package_prefix:
+    default: de
+    except:
+      - buf.build/googleapis/googleapis
+
+plugins:
+  # Java
+  - plugin: buf.build/protocolbuffers/java:v22.0
+    out: ./java/src/main/java
+
+  - plugin: buf.build/grpc/java:v1.53.0
+    out: ./java/src/main/java
+
+  # Typescript/Node
+  - plugin: buf.build/protocolbuffers/js:v3.21.2
+    out: ./node
+    opt: import_style=commonjs,binary
+
+  - plugin: buf.build/grpc/node:v1.12.4
+    out: ./node
+    opt: grpc_js
+
+  # TODO: migrate to a remote plugin for Typescript generation
+  - plugin: protoc-gen-ts
+    out: ./node
+    path: ./node/node_modules/.bin/protoc-gen-ts
+    opt:
+    - mode=grpc-js
+    - service=grpc-node
+
+  # Go
+  - plugin: buf.build/protocolbuffers/go:v1.28.1
+    out: gen/go
+    opt:
+    - paths=source_relative
+
+  - plugin: buf.build/grpc/go:v1.2.0
+    out: gen/go
+    opt:
+    - paths=source_relative
+
+  # Grpc gateway, see https://github.com/grpc-ecosystem/grpc-gateway/issues/3217
+#  - plugin: buf.build/grpc-ecosystem/gateway:v2.15.2
+#    out: gen/gateway
+#    opt:
+#      - logtostderr=true
+#      - paths=source_relative
+#      - standalone=true
+
+  # Python
+  - plugin: buf.build/protocolbuffers/python:v22.0
+    out: gen/python
+
+  - plugin: buf.build/grpc/python:v1.52.1
+    out: gen/python

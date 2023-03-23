@@ -10,8 +10,6 @@ import "google/protobuf/timestamp.proto";
 import "stroeer/core/v1/article.proto";
 
 option go_package = "github.com/stroeer/go-tapir/curation/v1;core";
-option java_multiple_files = true;
-option java_package = "de.stroeer.curation.v1";
 
 /**
   * This services allows to query curations within the CMS. In the CMS domain

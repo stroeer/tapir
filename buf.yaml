@@ -1,7 +1,16 @@
 version: v1
+
+name: buf.build/stroeer/tapir
+
 build:
   excludes:
-    - node/node_modules
+    - node
+    - java
+
+breaking:
+  use:
+    - FILE
+
 lint:
   use:
     - DEFAULT

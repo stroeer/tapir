@@ -26,20 +26,20 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## generate gRPC source code
 
-To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC on your local machine,
-or you can use our [protoc docker image](#protoc-docker-image) which includes all required plugins for `java`, `node` and `go` source code
-generation.
+To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC plugins on your local machine,
+or you can use our [buf generate template](./buf.gen.yaml) to generate code for `java`, `node` and `go`
+using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
 
-Then you can run `make LANGUAGE=xxx` to generate the source code for a specific language.
-
-It's also possible to generate gRPC source code for `java`, `node` and `go` at once: `make generate`.
+```shell
+make generate
+```
 
 ### quality assurance
 
 We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
 successful code generation for `java`, `node` and `go`.
 
-Run `make check` to run all checks.
+Run `make` to run all checks.
 
 ### client libraries
 
@@ -51,39 +51,3 @@ In addition, a go module will be generated and pushed to [go-tapir](https://gith
 ## release a new tapir version
 
 To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean main branch.
-
-## protoc docker image
-
-We provide [stroeer/protoc-dockerized](https://github.com/orgs/stroeer/packages/container/package/protoc-dockerized) including `protoc` and all required
-grpc plugins to generate source code for `java`, `node` and `go`. This docker image also supports generating a [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
-reverse-proxy server.
-
-### precondition
-
-To access our docker image you need a valid GitHub PAT (personal access token) and login to `https://ghcr.io`. You have to do this only once.
-
-1. create (or re-use) a GitHub PAT in your [GitHub settings](https://github.com/settings/tokens)
-2. follow the login instructions via [GitHub docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-docker-registry#authenticating-with-a-personal-access-token)
-3. :warning: login URL is `https://ghcr.io`. Example: `cat ~/TOKEN.txt | docker login https://ghcr.io -u [GITHUB-USERNAME] --password-stdin`
-
-### release
-
-1. bump versions
-    - protoc and plugin versions in `Makefile`: 
-      - `PROTOC_VERSION` - see [protobuf](https://github.com/protocolbuffers/protobuf), this version will be used as the docker image tag
-      - `GRPC_VERSION` - see [grpc](https://github.com/grpc/grpc)
-      - `GRPC_JAVA_VERSION` - see [grpc-java](https://github.com/grpc/grpc-java)
-      - `PROTOBUF_JS_VERSION` - see [protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript)
-      - `GO_PROTOC_GEN_GO_VERSION` - see [protobuf-go](https://github.com/protocolbuffers/protobuf-go)
-      - `GO_PROTOC_GEN_GO_GRPC_VERSION` - see [grpc-go](https://github.com/grpc/grpc-go)
-      - `GRPC_GATEWAY_VERSION` - see [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway)
-    - node dependency versions in `package.json` of `node` (run `npm run update`)
-    
-2. Export actor and token for the [GitHub container registry](https://docs.github.com/en/packages/guides/about-github-container-registry)
-
-   - `export GITHUB_ACTOR={yourusername}`
-   - `export GITHUB_TOKEN={yourtoken}` (needs `read:packages`, `write:packages`, `delete:packages` permissions)
-
-
-3. build and push protoc docker image
-    - `make protoc-push`
