@@ -18,6 +18,21 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          cache-dependency-path: 'node/package-lock.json'
+          node-version-file: 'node/.nvmrc'
+          registry-url: "https://npm.pkg.github.com"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: bufbuild/buf-setup-action@v1
+
+      - name: npm ci
+        run: npm ci
+        working-directory: node
+
       - name: make
         run: make generate
 
