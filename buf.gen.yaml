@@ -17,23 +17,6 @@ plugins:
   - plugin: buf.build/grpc/java:v1.53.0
     out: ./java/src/main/java
 
-  # Typescript/Node
-  - plugin: buf.build/protocolbuffers/js:v3.21.2
-    out: ./node
-    opt: import_style=commonjs,binary
-
-  - plugin: buf.build/grpc/node:v1.12.4
-    out: ./node
-    opt: grpc_js
-
-  # TODO: migrate to a remote plugin for Typescript generation
-  - plugin: protoc-gen-ts
-    out: ./node
-    path: ./node/node_modules/.bin/protoc-gen-ts
-    opt:
-    - mode=grpc-js
-    - service=grpc-node
-
   # Python
   - plugin: buf.build/protocolbuffers/python:v22.0
     out: gen/python

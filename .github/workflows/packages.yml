@@ -18,22 +18,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'npm'
-          cache-dependency-path: 'node/package-lock.json'
-          node-version-file: 'node/.nvmrc'
-          registry-url: "https://npm.pkg.github.com"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: bufbuild/buf-setup-action@v1
-
-      - name: npm ci
-        run: npm ci
-        working-directory: node
-
-      - name: make
+      - name: generate
         run: make generate
 
       - name: publish
@@ -50,6 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # we need Node for the local execution of protoc Typescript plugin
       - uses: actions/setup-node@v3
         with:
           cache: 'npm'
@@ -61,12 +47,13 @@ jobs:
 
       - uses: bufbuild/buf-setup-action@v1
 
+      # we need Node for the local execution of protoc Typescript plugin
       - name: npm ci
         run: npm ci
         working-directory: node
 
-      - name: make
-        run: make generate
+      - name: generate
+        run: make generate TEMPLATE=buf.gen.node.yaml
 
       - name: Run node checks
         run: npm run checks
