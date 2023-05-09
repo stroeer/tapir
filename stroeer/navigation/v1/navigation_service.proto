@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package stroeer.navigation.v1;
+
+import "stroeer/core/v1/shared.proto";
+
+option go_package = "github.com/stroeer/go-tapir/navigation/v1;navigation";
+
+service NavigationService {
+  // Retrieve navigation tree structure
+  rpc GetNavigation(GetNavigationRequest) returns (GetNavigationResponse) {}
+}
+
+message GetNavigationRequest {
+  // use an empty object here so we could add attributes later (e.g. depth or flavors [web|app])?!
+}
+
+message GetNavigationResponse {
+  // Navigation tree structure including internal and external references
+  // The root references has nested references
+  // root
+  //   - menu
+  //     - submenu
+  //   - menu
+  //     - submenu
+  //     - external references
+  stroeer.core.v1.Reference navigation = 1;
+}

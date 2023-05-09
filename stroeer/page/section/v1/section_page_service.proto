@@ -107,7 +107,7 @@ service SectionPageService {
    * | gRPC error payload | none |
    * | HTTP status | `200 (OK)` |
    * | cacheable | `yes` |
-   
+
    * # scenario: section path is empty
    *
    * |   |   |
