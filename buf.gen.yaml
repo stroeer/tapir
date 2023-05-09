@@ -11,15 +11,15 @@ managed:
 
 plugins:
   # Java
-  - plugin: buf.build/protocolbuffers/java:v22.0
+  - plugin: buf.build/protocolbuffers/java:v22.4
     out: ./java/src/main/java
 
-  - plugin: buf.build/grpc/java:v1.53.0
+  - plugin: buf.build/grpc/java:v1.54.1
     out: ./java/src/main/java
 
   # Python
-  - plugin: buf.build/protocolbuffers/python:v22.0
+  - plugin: buf.build/protocolbuffers/python:v22.4
     out: gen/python
 
-  - plugin: buf.build/grpc/python:v1.52.1
+  - plugin: buf.build/grpc/python:v1.54.1
     out: gen/python
