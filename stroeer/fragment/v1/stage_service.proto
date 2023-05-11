@@ -16,25 +16,25 @@ service StageService {
        # Description
        ############################################################################
        Get single stages by requesting them via well-known ids, e.g. "schlagzeilen" or "meistgelesen".
-     
+
        ############################################################################
        # Status/Error scenario's
        ############################################################################
-     
+
        scenario: found
        description: service responded without encountering exceptions
        gRPC status: OK
        gRPC error payload: none
        HTTP status: OK
        cacheable: yes
-     
+
        scenario: internal
        description: internal error while loading data
        gRPC status: INTERNAL
        gRPC error payload: none
        HTTP status: 500
        cacheable: no
-     
+
        scenario: timeout
        description: timeout while loading data
        gRPC status: DEADLINE_EXCEEDED

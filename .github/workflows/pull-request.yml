@@ -13,8 +13,8 @@ jobs:
 
       - uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: '11'
+          distribution: 'corretto'
+          java-version: '17'
 
       - uses: bufbuild/buf-setup-action@v1
 
