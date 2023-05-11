@@ -171,7 +171,7 @@ rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
 rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L14-L23">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
 <h1><a class="header" href="#-getcuration" id="-getcuration"><code>⚙︎ GetCuration</code></a></h1>
 <p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
 curation contains. The response may be empty in case the curation does not contain any items.</p>
@@ -184,7 +184,7 @@ curation contains. The response may be empty in case the curation does not conta
 int64 id = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L26-L44">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
 <h2><a class="header" href="#getcurationresponse" id="getcurationresponse">GetCurationResponse</a></h2>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
@@ -200,7 +200,7 @@ google.protobuf.Timestamp update_time = 3;
 repeated stroeer.core.v1.Article articles = 4;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L47-L68">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
 <h1><a class="header" href="#-batchgetcuration" id="-batchgetcuration"><code>⚙︎ BatchGetCuration</code></a></h1>
 <p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
 curations contain. The response may be empty in case the curation does not contain any items.
@@ -213,7 +213,7 @@ The ordering of items will the same ordering as the <code>ids</code> requested.<
 repeated int64 ids = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L71-L89">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
 <h2><a class="header" href="#batchgetcurationresponse" id="batchgetcurationresponse">BatchGetCurationResponse</a></h2>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
@@ -222,7 +222,487 @@ repeated int64 ids = 1;
 repeated GetCurationResponse curations = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/curation/v1/core_curation_service.proto#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-1" id="-getcuration-1"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-1" id="getcurationrequest-1">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-1" id="getcurationresponse-1">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-1" id="-batchgetcuration-1"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-1" id="batchgetcurationrequest-1">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-1" id="batchgetcurationresponse-1">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-2" id="-getcuration-2"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-2" id="getcurationrequest-2">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-2" id="getcurationresponse-2">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-2" id="-batchgetcuration-2"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-2" id="batchgetcurationrequest-2">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-2" id="batchgetcurationresponse-2">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-3" id="-getcuration-3"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-3" id="getcurationrequest-3">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-3" id="getcurationresponse-3">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-3" id="-batchgetcuration-3"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-3" id="batchgetcurationrequest-3">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-3" id="batchgetcurationresponse-3">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-4" id="-getcuration-4"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-4" id="getcurationrequest-4">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-4" id="getcurationresponse-4">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-4" id="-batchgetcuration-4"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-4" id="batchgetcurationrequest-4">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-4" id="batchgetcurationresponse-4">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-5" id="-getcuration-5"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-5" id="getcurationrequest-5">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-5" id="getcurationresponse-5">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-5" id="-batchgetcuration-5"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-5" id="batchgetcurationrequest-5">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-5" id="batchgetcurationresponse-5">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-6" id="-getcuration-6"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-6" id="getcurationrequest-6">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-6" id="getcurationresponse-6">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-6" id="-batchgetcuration-6"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-6" id="batchgetcurationrequest-6">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-6" id="batchgetcurationresponse-6">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-7" id="-getcuration-7"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-7" id="getcurationrequest-7">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-7" id="getcurationresponse-7">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-7" id="-batchgetcuration-7"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-7" id="batchgetcurationrequest-7">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-7" id="batchgetcurationresponse-7">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p>This services allows to query curations within the CMS. In the CMS domain
+this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
+<pre><code class="language-protobuf/">service CurationService {
+rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
+rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L23">[~]</a></p>
+<h1><a class="header" href="#-getcuration-8" id="-getcuration-8"><code>⚙︎ GetCuration</code></a></h1>
+<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
+curation contains. The response may be empty in case the curation does not contain any items.</p>
+<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
+<h2><a class="header" href="#getcurationrequest-8" id="getcurationrequest-8">GetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message GetCurationRequest {
+int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L26-L44">[~]</a></p>
+<h2><a class="header" href="#getcurationresponse-8" id="getcurationresponse-8">GetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
+<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
+<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
+<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">
+message GetCurationResponse {
+int64 id = 1;
+string label = 2;
+google.protobuf.Timestamp update_time = 3;
+repeated stroeer.core.v1.Article articles = 4;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L47-L68">[~]</a></p>
+<h1><a class="header" href="#-batchgetcuration-8" id="-batchgetcuration-8"><code>⚙︎ BatchGetCuration</code></a></h1>
+<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
+curations contain. The response may be empty in case the curation does not contain any items.
+The ordering of items will the same ordering as the <code>ids</code> requested.</p>
+<h2><a class="header" href="#batchgetcurationrequest-8" id="batchgetcurationrequest-8">BatchGetCurationRequest</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationRequest {
+repeated int64 ids = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L71-L89">[~]</a></p>
+<h2><a class="header" href="#batchgetcurationresponse-8" id="batchgetcurationresponse-8">BatchGetCurationResponse</a></h2>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message BatchGetCurationResponse {
+repeated GetCurationResponse curations = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
 
                     </main>
 

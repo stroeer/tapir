@@ -171,7 +171,15 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
   repeated Item stream_items = 2;
   repeated Item companion_items = 3;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/page/stage/v1/stage.proto#L14-L22">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L22">[~]</a></p>
+<p>A stream stage with companions and the main content area.
+Embedded items can be editorial articles, advertisement and/or stages (only one level deep).</p>
+<pre><code class="language-protobuf">message Stage {
+  Configuration configuration = 1;
+  repeated Item stream_items = 2;
+  repeated Item companion_items = 3;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L14-L22">[~]</a></p>
 
                     </main>
 

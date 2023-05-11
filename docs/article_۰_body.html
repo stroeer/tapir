@@ -176,7 +176,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L625-L645">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
 <h2><a class="header" href="#type" id="type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -197,7 +197,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L648-L672">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
 <h2><a class="header" href="#bodynode" id="bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -214,7 +214,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L675-L696">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
 <table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -257,9 +257,1065 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L698-L751">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
 </tbody></table>
-<p><a href="https://github.com/stroeer/tapir/blob/master/stroeer/core/v1/article.proto#L755-L756">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-1" id="type-1">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-1" id="bodynode-1"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-1" id="fields-1"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-1" id="html-like-1"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-1" id="custom-1"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-2" id="type-2">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-2" id="bodynode-2"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-2" id="fields-2"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-2" id="html-like-2"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-2" id="custom-2"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-3" id="type-3">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-3" id="bodynode-3"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-3" id="fields-3"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-3" id="html-like-3"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-3" id="custom-3"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-4" id="type-4">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-4" id="bodynode-4"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-4" id="fields-4"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-4" id="html-like-4"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-4" id="custom-4"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-5" id="type-5">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-5" id="bodynode-5"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-5" id="fields-5"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-5" id="html-like-5"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-5" id="custom-5"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-6" id="type-6">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-6" id="bodynode-6"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-6" id="fields-6"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-6" id="html-like-6"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-6" id="custom-6"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-7" id="type-7">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-7" id="bodynode-7"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-7" id="fields-7"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-7" id="html-like-7"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-7" id="custom-7"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-8" id="type-8">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-8" id="bodynode-8"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-8" id="fields-8"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-8" id="html-like-8"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-8" id="custom-8"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-9" id="type-9">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-9" id="bodynode-9"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-9" id="fields-9"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-9" id="html-like-9"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-9" id="custom-9"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-10" id="type-10">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-10" id="bodynode-10"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-10" id="fields-10"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-10" id="html-like-10"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-10" id="custom-10"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
+<p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
+all the data required for rendering within its data structures.</p>
+<p>Common use cases for this are <code>Type.BODY</code> where the textual article body can be found
+and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Recursive/Nested structure that usually represents the textual body / Markup / HTML</td></tr>
+<tr><td><code>type</code></td><td><a href="#type"><code>Type</code></a></td><td>Unique ID of the article defined by the content management system (required).</td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">message Body {
+repeated BodyNode children = 1;
+Type type = 2;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L625-L645">[~]</a></p>
+<h2><a class="header" href="#type-11" id="type-11">Type</a></h2>
+<p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
+the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
+<table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
+<tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
+<tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
+<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
+<tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+</tbody></table>
+<pre><code class="language-protobuf/">enum Type {
+TYPE_UNSPECIFIED = 0;
+BODY = 1;
+ARTICLE_SOURCES = 2;
+DISCLAIMER = 3;
+TRUST_BOX = 4;
+TABLE_OF_CONTENTS = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L648-L672">[~]</a></p>
+<h2><a class="header" href="#bodynode-11" id="bodynode-11"><code>BodyNode</code></a></h2>
+<p>Recursive structure representing all types of possible nodes inside an article.</p>
+<p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
+is also used to map <a href="#custom">custom</a> elements that require a strict
+positional placement within the textual body. Things that are not part of the
+textual article body are represented as individual <a href="#article--body"><code>Body</code></a> parts so they
+can be rendered independently if required.</p>
+<p>Clients must be resilient to unknown or missing nodes.</p>
+<pre><code class="language-protobuf/">message BodyNode {
+string type = 1;
+string text = 2;
+map&lt;string, string&gt; fields = 3;
+repeated BodyNode children = 4;
+repeated Element elements = 5;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L675-L696">[~]</a></p>
+<table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
+<tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
+<tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Additional information for the node depending on it's type, e.g. <code>href</code> for <code>a</code> nodes. See <a href="#fields"><code>fields</code></a></td></tr>
+<tr><td><code>children</code></td><td><code>repeated</code> <a href="#bodynode"><code>BodyNode</code></a></td><td>Nested Items, e.g. the <code>text</code> of a <code>&lt;p&gt;</code> or a <code>&lt;a&gt;</code>.</td></tr>
+<tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%3E_element.html"><code>Element</code></a></td><td><a href="article_%3E_element.html">Elements</a> of the node, e.g. video, image, gallery, embed, ...</td></tr>
+</tbody></table>
+<h3><a class="header" href="#fields-11" id="fields-11"><code>fields</code></a></h3>
+<h4><a class="header" href="#html-like-11" id="html-like-11"><em>HTML like</em></a></h4>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>text</code></td><td>most basic <code>type</code>, its text value can be found in the <code>text</code> field. The <code>word_count</code> can be found in the <code>BodyNode.fields</code> for each <code>BodyNode[type=text]</code></td></tr>
+<tr><td><code>p</code></td><td><code>paragraph</code> / <code>&lt;p&gt;</code></td></tr>
+<tr><td><code>span</code></td><td><code>&lt;span&gt;</code></td></tr>
+<tr><td><code>sub_headline</code></td><td>a sub headline, may be part of the <em>table of contents</em></td></tr>
+<tr><td><code>a</code></td><td><code>anchor</code> / <code>&lt;a&gt;</code></td></tr>
+<tr><td><code>strong</code></td><td><code>strong</code> / <code>&lt;strong&gt;</code></td></tr>
+<tr><td><code>em</code></td><td><code>emphasis</code> / <code>&lt;em&gt;</code></td></tr>
+<tr><td><code>sub</code></td><td><code>subscript</code> / <code>sub</code></td></tr>
+<tr><td><code>sup</code></td><td><code>superscript</code> / <code>sup</code></td></tr>
+<tr><td><code>hr</code></td><td><code>horizontal rule</code> / <code>&lt;hr&gt;</code></td></tr>
+<tr><td><code>br</code></td><td><code>line break</code> / <code>&lt;br&gt;</code></td></tr>
+<tr><td><code>ul</code></td><td><code>unordered list</code> / <code>&lt;ul&gt;</code></td></tr>
+<tr><td><code>ol</code></td><td><code>ordered list</code> / <code>&lt;ol&gt;</code></td></tr>
+<tr><td><code>li</code></td><td><code>list</code> / <code>&lt;li&gt;</code></td></tr>
+<tr><td><code>table</code></td><td><code>table</code> / <code>&lt;table&gt;</code></td></tr>
+<tr><td><code>thead</code></td><td><code>table head</code> / <code>&lt;thead&gt;</code></td></tr>
+<tr><td><code>tbody</code></td><td><code>table body</code> / <code>&lt;tbody&gt;</code></td></tr>
+<tr><td><code>tfoot</code></td><td><code>table footer</code> / <code>&lt;tfoot&gt;</code></td></tr>
+<tr><td><code>th</code></td><td><code>table header</code> / <code>&lt;th&gt;</code></td></tr>
+<tr><td><code>tr</code></td><td><code>table row</code> / <code>&lt;tr&gt;</code></td></tr>
+<tr><td><code>td</code></td><td><code>table data cell</code> / <code>&lt;td&gt;</code></td></tr>
+</tbody></table>
+<h3><a class="header" href="#custom-11" id="custom-11"><em>Custom</em></a></h3>
+<table><thead><tr><th>type</th><th>description</th></tr></thead><tbody>
+<tr><td><code>image</code></td><td>inline image element, check <code>elements</code></td></tr>
+<tr><td><code>video</code></td><td>inline video element, check <code>elements</code></td></tr>
+<tr><td><code>gallery</code></td><td>inline gallery element, check <code>elements</code></td></tr>
+<tr><td><code>oembed</code></td><td>inline oEmbed element, check <code>elements</code></td></tr>
+<tr><td><code>esi</code></td><td>inline edge side include element, check <code>elements</code></td></tr>
+<tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
+<tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
+<tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/master/#L698-L751">[~]</a></td><td></td></tr>
+</tbody></table>
+<p><a href="https://github.com/stroeer/tapir/blob/master/#L755-L756">[~]</a></p>
 
                     </main>
 
