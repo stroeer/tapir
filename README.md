@@ -32,6 +32,9 @@ using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
 
 ```shell
 make generate
+
+# node only
+make generate TEMPLATE=buf.gen.node.yaml
 ```
 
 ### quality assurance
