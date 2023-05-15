@@ -20,7 +20,6 @@
     "@bufbuild/protobuf": "1.2.0"
   },
   "devDependencies": {
-    "@bufbuild/protoc-gen-es": "1.2.0",
     "@tsconfig/node18": "2.0.1",
     "@tsconfig/strictest": "2.0.1",
     "prettier": "2.8.8",
