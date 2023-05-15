@@ -11,6 +11,8 @@ kreya
 node_modules
 node/stroeer
 node/dist
+node-buf/stroeer
+node-buf/dist
 bin/protoc
 *.tgz
 

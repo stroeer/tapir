@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": [
+    "@tsconfig/strictest/tsconfig",
+    "@tsconfig/node18/tsconfig"
+  ],
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["demo", "stroeer"],
+  "exclude": ["node_modules"]
+}

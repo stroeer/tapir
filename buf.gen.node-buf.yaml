@@ -1,0 +1,8 @@
+version: v1
+
+plugins:
+  - name: es
+    path: ./node-buf/node_modules/.bin/protoc-gen-es
+    out: ./node-buf
+    opt:
+      - target=ts
