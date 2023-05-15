@@ -31,10 +31,12 @@ or you can use our [buf generate template](./buf.gen.yaml) to generate code for 
 using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
 
 ```shell
+# java and python
 make generate
-
-# node only
+# node
 make generate TEMPLATE=buf.gen.node.yaml
+# go
+make generate TEMPLATE=buf.gen.go.yaml
 ```
 
 ### quality assurance
