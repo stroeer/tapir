@@ -40,14 +40,14 @@ jobs:
           node-version-file: 'node/.nvmrc'
 
       # we need Node for the local execution of protoc Typescript plugin
-      - name: npm ci
+      - name: install
         run: npm ci
         working-directory: node
 
       - name: generate
         run: make generate TEMPLATE=buf.gen.node.yaml
 
-      - name: test
+      - name: checks
         run: npm run checks
         working-directory: node
 
@@ -66,14 +66,14 @@ jobs:
           node-version-file: 'node-proto/.nvmrc'
 
       # we need Node for the local execution of protoc Typescript plugin
-      - name: npm ci
+      - name: install
         run: npm ci
         working-directory: node-proto
 
       - name: generate
         run: make generate TEMPLATE=buf.gen.node-proto.yaml
 
-      - name: test
+      - name: checks
         run: npm run checks
         working-directory: node-proto
 

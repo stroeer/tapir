@@ -1,6 +1,6 @@
 # @stroeer/tapir-proto-v1
 
-This package only includes all tapir models. Without the grpc services.
+This package includes all tapir models without the grpc services.
 It's based on the packages `@bufbuild/protobuf`.
 
 ## Usage
