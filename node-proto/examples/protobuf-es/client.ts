@@ -15,17 +15,10 @@ const getAPIEndpoint = () => {
   return validateEnvVar(apiEndpoint, 'API_ENDPOINT');
 };
 
-const getAuthorizationHeader = () => {
-  const header = process.env['AUTH_HEADER'];
-
-  return validateEnvVar(header, 'AUTH_HEADER');
-};
-
 function fetchData() {
   return fetch(getAPIEndpoint(), {
     headers: {
       'user-agent': 'tapir_node_buf_demo',
-      Authorization: getAuthorizationHeader(),
     },
   }).then((response) => {
     if (!response.ok) {
