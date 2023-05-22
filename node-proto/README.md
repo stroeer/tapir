@@ -17,7 +17,7 @@ Make sure you generated the gRPC models and services for node.
 
 ```shell
 # tapir root folder
-make generate TEMPLATE=buf.gen.node.yaml
+make generate TEMPLATE=buf.gen.node-proto.yaml
 ```
 
 ### node

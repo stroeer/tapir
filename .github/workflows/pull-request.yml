@@ -71,7 +71,7 @@ jobs:
         working-directory: node-proto
 
       - name: generate
-        run: make generate TEMPLATE=buf.gen.node.yaml
+        run: make generate TEMPLATE=buf.gen.node-proto.yaml
 
       - name: test
         run: npm run checks
