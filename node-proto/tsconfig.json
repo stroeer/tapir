@@ -5,8 +5,9 @@
     "@tsconfig/node18/tsconfig"
   ],
   "compilerOptions": {
-    "outDir": "dist"
+    "rootDir": ".",
+    "checkJs": false,
+    "declaration": true
   },
-  "include": ["demo", "stroeer"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "examples"]
 }

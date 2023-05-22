@@ -17,3 +17,8 @@ plugins:
     opt:
     - mode=grpc-js
     - service=grpc-node
+
+  - plugin: buf.build/bufbuild/es:v1.2.0
+    out: ./node-proto/
+    opt:
+      - target=ts

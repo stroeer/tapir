@@ -1,7 +1,0 @@
-version: v1
-
-plugins:
-  - plugin: buf.build/bufbuild/es:v1.2.0
-    out: ./node-buf
-    opt:
-      - target=ts

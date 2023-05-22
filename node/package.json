@@ -1,6 +1,6 @@
 {
   "name": "@stroeer/tapir-v1",
-  "version": "0.16.1",
+  "version": "0.37.0",
   "description": "T-Online API Repo",
   "engines": {
     "node": "18",
@@ -11,11 +11,9 @@
     "test": "vitest run",
     "lint": "tsc -b",
     "update": "npx npm-check --update",
-    "format": "prettier --write '{src,__tests__}/**/*.ts'",
-    "client": "tsc -w -p tsconfig.client.json",
-    "server": "npx nodemon ./dist/src/server.js",
-    "build": "tsc -p tsconfig.client.json",
-    "start": "node ./dist/src/server.js"
+    "format": "prettier --write '{examples,__tests__}/**/*.ts'",
+    "examples:build": "tsc -p tsconfig.examples.json",
+    "examples:grpc-js:run": "node ./dist/examples/grpc-js/server.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "1.8.14",
@@ -23,11 +21,13 @@
     "google-protobuf": "3.21.2"
   },
   "devDependencies": {
+    "@tsconfig/node18": "2.0.1",
+    "@tsconfig/strictest": "2.0.1",
     "grpc-tools": "1.12.4",
     "prettier": "2.8.8",
     "ts-protoc-gen": "0.15.0",
     "typescript": "5.0.4",
-    "vitest": "0.31.0"
+    "vitest": "0.31.1"
   },
   "repository": {
     "type": "git",

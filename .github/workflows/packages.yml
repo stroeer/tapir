@@ -69,6 +69,49 @@ jobs:
           npm version $RELEASE_TAG
           npm publish
 
+  node-proto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # we need Node for the local execution of protoc Typescript plugin
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          cache-dependency-path: 'node-proto/package-lock.json'
+          node-version-file: 'node-proto/.nvmrc'
+          registry-url: "https://npm.pkg.github.com"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: bufbuild/buf-setup-action@v1
+
+      # we need Node for the local execution of protoc Typescript plugin
+      - name: npm ci
+        run: npm ci
+        working-directory: node-proto
+
+      - name: generate
+        run: make generate TEMPLATE=buf.gen.node.yaml
+
+      - name: build
+        run: npm run build
+        working-directory: node-proto
+
+      - name: Run node checks
+        run: npm run checks
+        working-directory: node-proto
+
+      - name: npm publish
+        working-directory: node-proto
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          npm version $RELEASE_TAG
+          npm publish
+
   go:
     runs-on: ubuntu-latest
     steps:
