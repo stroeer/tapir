@@ -35,6 +35,8 @@ using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
 make generate
 # node
 make generate TEMPLATE=buf.gen.node.yaml
+# node-proto
+make generate TEMPLATE=buf.gen.node-proto.yaml
 # go
 make generate TEMPLATE=buf.gen.go.yaml
 ```

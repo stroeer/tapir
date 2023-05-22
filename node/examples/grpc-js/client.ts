@@ -1,12 +1,12 @@
-import { GetSectionPageRequest } from '../stroeer/page/section/v1/section_page_service_pb';
-import { SectionPageServiceClient } from '../stroeer/page/section/v1/section_page_service_grpc_pb';
+import { GetSectionPageRequest } from '../../stroeer/page/section/v1/section_page_service_pb';
+import { SectionPageServiceClient } from '../../stroeer/page/section/v1/section_page_service_grpc_pb';
 import { credentials, Metadata } from '@grpc/grpc-js';
 
 import type { ServiceError, CallOptions } from '@grpc/grpc-js';
-import type { SectionPage } from '../stroeer/page/section/v1/section_page_pb';
+import type { SectionPage } from '../../stroeer/page/section/v1/section_page_pb';
 
-const host: string = process.env.GRPC_HOST ?? '';
-const apiToken: string = process.env.GRPC_API_TOKEN ?? '';
+const host: string = process.env['GRPC_HOST'] ?? '';
+const apiToken: string = process.env['GRPC_API_TOKEN'] ?? '';
 const ssl = credentials.createSsl();
 
 const client = new SectionPageServiceClient(host, ssl, {

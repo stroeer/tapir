@@ -1,33 +1,31 @@
 {
-  "name": "@stroeer/tapir-v1",
+  "name": "@stroeer/tapir-proto-v1",
   "version": "0.37.0",
   "description": "T-Online API Repo",
+  "type": "commonjs",
   "engines": {
     "node": "18",
     "npm": "9"
   },
   "scripts": {
-    "checks": "npm run lint && npm run test",
-    "test": "vitest run",
-    "lint": "tsc -b",
+    "build": "tsc -b",
+    "checks": "npm run lint",
+    "lint": "tsc --noEmit",
     "update": "npx npm-check --update",
     "format": "prettier --write '{examples,__tests__}/**/*.ts'",
     "examples:build": "tsc -p tsconfig.examples.json",
-    "examples:grpc-js:run": "node ./dist/examples/grpc-js/server.js"
+    "examples:protobuf-es:run": "node ./dist/examples/protobuf-es/client.js"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.8.14",
-    "@types/google-protobuf": "3.15.6",
-    "google-protobuf": "3.21.2"
+    "@bufbuild/protobuf": "1.2.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "2.0.1",
     "@tsconfig/strictest": "2.0.1",
-    "grpc-tools": "1.12.4",
+    "@types/node-fetch": "2.6.4",
+    "node-fetch": "2.6.11",
     "prettier": "2.8.8",
-    "ts-protoc-gen": "0.15.0",
-    "typescript": "5.0.4",
-    "vitest": "0.31.1"
+    "typescript": "5.0.4"
   },
   "repository": {
     "type": "git",
