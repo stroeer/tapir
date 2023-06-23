@@ -123,3 +123,8 @@ commit_fundoc :: fundoc
 
 introduction.md ::
 	awk 'BEGINFILE{print "/**\n* @Article 00 Introduction"}{print "* " $$0} END{ print "*/"}' docs_resources/introduction.md > stroeer/$@
+
+postman :: ## Generate postman root.proto than can be imported into postman v10 gRPC APIs
+	echo 'syntax = "proto3";' > root.proto
+	echo 'package stroeer;' >> root.proto
+	find stroeer -name '*service.proto' -type f -exec echo "import \"{}\";" >> root.proto \;
