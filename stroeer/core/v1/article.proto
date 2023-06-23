@@ -160,6 +160,7 @@ message Article {
    * | `QUIZ`                 | _Quiz_                                                     |
    * | `GAME`                 | _(Browser)Game_                                            |
    * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms |
+   * | `RECIPE`               | Cooking recipe                                             |
    *
    * @CodeBlockStart protobuf
    */
@@ -178,6 +179,7 @@ message Article {
     QUIZ = 10;
     GAME = 11;
     COMPLIANCE = 12;
+    RECIPE = 13;
   }
   /** @CodeBlockEnd */
 
