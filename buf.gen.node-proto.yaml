@@ -1,7 +1,7 @@
 version: v1
 
 plugins:
-  - plugin: buf.build/bufbuild/es:v1.2.0
+  - plugin: buf.build/bufbuild/es:v1.2.1
     out: ./node-proto/
     opt:
       - target=ts
