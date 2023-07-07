@@ -6,21 +6,25 @@ import "stroeer/core/v1/shared.proto";
 
 option go_package = "github.com/stroeer/go-tapir/navigation/v1;navigation";
 
+// The navigation service provides access to the navigation tree structure
+// used in t-online products
 service NavigationService {
-  // Retrieve navigation tree structure
+  // Get navigation tree structure for t-online products
   rpc GetNavigation(GetNavigationRequest) returns (GetNavigationResponse) {}
 }
 
+// Request for getting navigation tree structure
 message GetNavigationRequest {}
 
+//Response for getting navigation tree structure
 message GetNavigationResponse {
   // Navigation tree structure including internal and external references
-  // The root references has nested references
+  // The root reference has nested references
   // root
-  //   - menu
-  //     - submenu
-  //   - menu
-  //     - submenu
-  //     - external references
+  //  - menu
+  //    - submenu
+  //  - menu
+  //    - submenu
+  //    - external references
   stroeer.core.v1.Reference navigation_menu = 1;
 }
