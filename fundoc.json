@@ -5,7 +5,7 @@
     "**/*.proto",
     "**/*.md"
   ],
-  "repository_host": "https://github.com/stroeer/tapir/blob/master/",
+  "repository_host": "https://github.com/stroeer/tapir/blob/main/",
   "comment_start_string": null,
   "comment_prefix": null,
   "comment_end_string": null,
