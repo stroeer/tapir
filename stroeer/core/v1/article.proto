@@ -25,9 +25,13 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * is using a lightweight representation of `Article` in some places.
  *
  * Depending on the service used to retrieve an article, the `Article` message might
- * only contain data required on section pages (e.g. with `Article.body` set to `null`
- * thus not containing any data that is only required on detail pages). This
- * lightweight representation is sometimes referred to as `Teaser`.
+ * only contain data required on section pages:
+ *
+ * - `Article.body` set to `null`
+ * - `Article.elements` filtered by `Element.relations` to only contain `TEASER`, but neither `OPENER` nor `SOCIAL`
+ *
+ * Thus, not containing any data that is only required on detail pages.
+ * This lightweight representation is sometimes referred to as `Teaser`.
  *
  * | Field name     | Type                      | Description                                                                                                                                  |
  * |----------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -288,13 +292,16 @@ message Article {
      * |------------------------|---------------------------------------------------------------------------------------------------|
      * | `RELATION_UNSPECIFIED` | unspecified                                                                                       |
      * | `OPENER`               | As an opener element (within the content)                                                         |
-     * | `TEASER`               | As an teaser element (when externally viewed)                                                     |
+     * | `TEASER`               | As a teaser element (when externally viewed)                                                      |
+     * | `SOCIAL`               | Use as social element (mostly images), e.g. `<og:image>` or JSON-LD                               |
+     *
      * @CodeBlockStart protobuf
      */
     enum Relation {
       RELATION_UNSPECIFIED = 0;
       OPENER = 1;
       TEASER = 2;
+      SOCIAL = 3;
     }
     /** @CodeBlockEnd */
 
