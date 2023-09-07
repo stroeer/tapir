@@ -44,6 +44,7 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * | `elements`     | `repeated` [`Element`][e] | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
  * | `keywords`     | `repeated` [`Keyword`][k] | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
  * | `onwards`      | `int64`                   | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
+ * | `variants`     | `repeated` [`Article`][a] | Variants of this article, e.g. for headline testing.                                                                                         |
  * | `entities`     | `string` `[deprecated]`   | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
  *
  * [t]:   #enum-type
@@ -67,6 +68,7 @@ message Article {
   repeated Element elements = 8;
   repeated Keyword keywords = 9;
   repeated int64 onwards = 10;
+  map<string, Article> variants = 11;
   repeated string entities = 100 [deprecated = true];
 
   /** @CodeBlockEnd */
