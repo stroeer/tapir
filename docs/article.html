@@ -194,6 +194,7 @@ This lightweight representation is sometimes referred to as <code>Teaser</code>.
 <tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%DB%B0_element.html"><code>Element</code></a></td><td><code>Element</code>s required to render the teaser, such as <code>IMAGE</code>, <code>VIDEO</code> or <code>AUTHOR</code></td></tr>
 <tr><td><code>keywords</code></td><td><code>repeated</code> <a href="article_%DB%B0_keyword.html"><code>Keyword</code></a></td><td>Extracted keywords from the article body like persons, locations, organizations etc.</td></tr>
 <tr><td><code>onwards</code></td><td><code>int64</code></td><td>IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.</td></tr>
+<tr><td><code>variants</code></td><td><code>repeated</code> [<code>Article</code>][a]</td><td>Variants of this article, e.g. for headline testing.</td></tr>
 <tr><td><code>entities</code></td><td><code>string</code> <code>[deprecated]</code></td><td>Extracted entities from the article body like persons, locations, organizations etc. <code>deprecated</code> — use <code>keywords</code> instead.</td></tr>
 </tbody></table>
 </div>
@@ -209,10 +210,11 @@ Metadata metadata = 7;
 repeated Element elements = 8;
 repeated Keyword keywords = 9;
 repeated int64 onwards = 10;
+map&lt;string, Article&gt; variants = 11;
 repeated string entities = 100 [deprecated = true];
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L71">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L73">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
@@ -271,7 +273,7 @@ EXTERNAL = 8;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L74-L144">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L76-L146">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -309,8 +311,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L147-L187">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L190-L191">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L149-L189">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L192-L193">[~]</a></p>
 
                     </main>
 
