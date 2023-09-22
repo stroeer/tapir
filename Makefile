@@ -27,6 +27,11 @@ test: generate ## Runs all tests
 	@cd java && ./gradlew clean build
 	@cd node && npm run checks
 
+.PHONY: node-examples
+node-examples:  ## Runs all tests
+	@echo "+ $@"
+	@cd node && npm run examples:build  && npm run examples:grpc-js:run
+
 .PHONY: clean
 clean: ## Deletes all generated files
 	@echo "+ $@"
