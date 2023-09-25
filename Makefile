@@ -28,7 +28,7 @@ test: generate ## Runs all tests
 	@cd node && npm run checks
 
 .PHONY: node-examples
-node-examples:  ## Runs all tests
+node-examples:  ## Tests generated client stubs against API
 	@echo "+ $@"
 	@cd node && npm run examples:build  && npm run examples:grpc-js:run
 
