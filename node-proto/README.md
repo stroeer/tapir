@@ -50,3 +50,17 @@ npm run lint
 ## Example Script
 
 Check the `/examples` folder.
+
+### Build examples
+
+```bash
+npm run examples:build
+```
+
+### Run examples
+
+Make sure that you have set the API_ENDPOINT environment variable
+
+```bash
+npm run examples:protobuf-es:run
+```
