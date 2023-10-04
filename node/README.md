@@ -63,3 +63,17 @@ https://github.com/badsyntax/grpc-js-typescript
 ## Example Script
 
 Check the `/examples` folder.
+
+### Build examples
+
+```bash
+npm run examples:build
+```
+
+### Run examples
+
+Make sure that you have set the GRPC_HOST and GRPC_API_TOKEN environment variables
+
+```bash
+npm run examples:grpc-js:run
+```

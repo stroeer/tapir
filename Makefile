@@ -27,6 +27,16 @@ test: generate ## Runs all tests
 	@cd java && ./gradlew clean build
 	@cd node && npm run checks
 
+.PHONY: node-examples
+node-examples:  ## Tests generated node client stubs against API
+	@echo "+ $@"
+	@cd node && npm run examples:build  && npm run examples:grpc-js:run
+
+.PHONY: node-proto-examples
+node-proto-examples:  ## Tests generated node-proto client stubs against API
+	@echo "+ $@"
+	@cd node-proto && npm run examples:build  && npm run examples:protobuf-es:run
+
 .PHONY: clean
 clean: ## Deletes all generated files
 	@echo "+ $@"
