@@ -51,7 +51,9 @@ service ArticleService {
  */
 message GetArticleRequest {
   int64 id = 1;
+  Legal legal = 2;
 }
+
 /** @CodeBlockEnd */
 
 /**
@@ -71,8 +73,8 @@ message GetArticleRequest {
  */
 message BatchGetArticlesRequest {
   repeated int64 ids = 1;
+  Legal legal = 2;
 }
-/** @CodeBlockEnd */
 
 /**
  * ## BatchGetArticlesResponse
@@ -115,6 +117,7 @@ message ListArticlesRequest {
   Filters filters = 2;
   int32 page_size = 3;
   string page_token = 4;
+  Legal legal = 5;
 
   /** @CodeBlockEnd */
 
@@ -255,6 +258,23 @@ message ListArticlesRequest {
   }
   /** @CodeBlockEnd */
 }
+
+/**
+ * | Enum value         | Description                                                 |
+ * |--------------------|-------------------------------------------------------------|
+ * | `TYPE_UNSPECIFIED` | unspecified                                                 |
+ * | `UNFILTERED`       | include all elements regardless of their validity (default) |
+ * | `FILTERED`         | remove elements that are expired and not yet valid          |
+ *
+ * @CodeBlockStart protobuf
+ */
+enum Legal {
+  TYPE_UNSPECIFIED = 0;
+  UNFILTERED = 1;
+  FILTERED = 2;
+}
+/** @CodeBlockEnd */
+
 
 /**
  * ## `ListArticlesResponse`
