@@ -115,14 +115,7 @@ release-local-java: java ## Releases generated Java code to your local maven rep
 # to test locally, install fundoc via `cargo install fundoc`
 fundoc :: introduction.md ## Generate, Commit and Push documentation.
 	@echo "+ $@"
-  ifeq (, $(shell which fundoc))
-	@echo "fundoc not installed natively, running docker build. When running locally, consider installing it."
-		docker build --tag fundoc docs_resources
-		docker run --rm --volume ${CURDIR}/:/opt fundoc
-  else
-		@echo "local fundoc installation found!"
-		fundoc
-  endif
+	docker run --rm --volume ${CURDIR}/:/opt ghcr.io/thisismana/fundoc:latest
 	cp docs_resources/highlight.js docs
 	@rm stroeer/introduction.md || true
 
