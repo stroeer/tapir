@@ -69,7 +69,7 @@ message Article {
   Metadata metadata = 7;
   repeated Element elements = 8;
   repeated Keyword keywords = 9;
-  repeated int64 onwards = 10;
+  repeated int64 onwards = 10 [deprecated = true];
   map<string, Article> variants = 11;
   repeated Author authors = 12;
   repeated string entities = 100 [deprecated = true];
