@@ -905,16 +905,16 @@ message Article {
 * This represents an author (or agency). The entity may be the main content
 * on author pages or simply indicate the author of an [Article](article.html).
 *
-* | Field name   | Type                                              | Description                                                                                                                   |
-* |--------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-* | id           | string                                            | The unique identifier (cms id) of the author.                                                                                 |
-* | type         | [Author.Type](#enum-type)                       | The type of the author entity.                                                                                                |
-* | fields       | map[string, string]                               | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
-* | elements     | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
-* | work_history | [Author.HistoryEntry](#historyentry)[]                   | The career entries of the author.                                                                                             |
-* | education    | [Reference](reference.html)[]           | The education entries of the author.                                                                                          |
-* | social       | [Reference](reference.html)[]           | The social profiles of the author.                                                                                            |
-* | topics       | string[]                                          | List of topics where the author possesses extraordinary knowledge                                                             |
+* | Field name         | Type                                             | Description                                                                                                                   |
+* |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+* | id                 | string                                           | The unique identifier (cms id) of the author.                                                                                 |
+* | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
+* | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
+* | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
+* | work_history       | [Author.HistoryEntry](#historyentry)[]           | The career entries of the author.                                                                                             |
+* | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
+* | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
+* | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
 *
 * @CodeBlockStart protobuf
 */
@@ -926,8 +926,8 @@ message Author {
 
   repeated HistoryEntry work_history = 5;
   repeated Reference education = 6;
-  repeated Reference social = 7;
-  repeated string topics = 8;
+  repeated Reference social_profiles = 7;
+  repeated string areas_of_expertise = 8;
   /** @CodeBlockEnd */
   /**
   *
