@@ -33,26 +33,28 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * Thus, not containing any data that is only required on detail pages.
  * This lightweight representation is sometimes referred to as `Teaser`.
  *
- * | Field name     | Type                      | Description                                                                                                                                  |
- * |----------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
- * | `id`           | `int64`                   | Unique ID of the article defined by the content management system (required).                                                                |
- * | `type`         | [`Type`][t]               | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
- * | `sub_type`     | [`SubType`][st]           | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
- * | `section_tree` | [`Reference`][ref]        | Hierarchical section tree information of the article (required).                                                                             |
- * | `fields`       | `map<string, string>`     | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
- * | `bodies`       | `repeated` [`Body`][b]    | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
- * | `elements`     | `repeated` [`Element`][e] | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
- * | `keywords`     | `repeated` [`Keyword`][k] | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
- * | `onwards`      | `int64`                   | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
- * | `variants`     | `repeated` [`Article`][a] | Variants of this article, e.g. for headline testing.                                                                                         |
- * | `entities`     | `string` `[deprecated]`   | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
+ * | Field name     | Type                          | Description                                                                                                                                  |
+ * |----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+ * | `id`           | `int64`                       | Unique ID of the article defined by the content management system (required).                                                                |
+ * | `type`         | [`Type`][t]                   | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
+ * | `sub_type`     | [`SubType`][st]               | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
+ * | `section_tree` | [`Reference`][ref]            | Hierarchical section tree information of the article (required).                                                                             |
+ * | `fields`       | `map<string, string>`         | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
+ * | `bodies`       | `repeated` [`Body`][b]        | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
+ * | `elements`     | `repeated` [`Element`][e]     | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
+ * | `keywords`     | `repeated` [`Keyword`][k]     | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
+ * | `onwards`      | `int64`                       | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
+ * | `variants`     | `repeated` [`Article`][a]     | Variants of this article, e.g. for headline testing.                                                                                         |
+ * | `entities`     | `string` `[deprecated]`       | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
+ * | `authors`      | `repeated` [`Author`][author] | Authors and|or Agencies ƒor this content                                                                                                     |
  *
- * [t]:   #enum-type
- * [b]:   article_%DB%B0_body.html
- * [e]:   article_%DB%B0_element.html
- * [k]:   article_%DB%B0_keyword.html
- * [st]:  #enum-subtype
- * [ref]: reference.html
+ * [t]:      #enum-type
+ * [b]:      article_%DB%B0_body.html
+ * [e]:      article_%DB%B0_element.html
+ * [k]:      article_%DB%B0_keyword.html
+ * [st]:     #enum-subtype
+ * [ref]:    reference.html
+ * [author]: author.html
  *
  * @CodeBlockStart protobuf
  * */
@@ -69,6 +71,7 @@ message Article {
   repeated Keyword keywords = 9;
   repeated int64 onwards = 10;
   map<string, Article> variants = 11;
+  repeated Author authors = 12;
   repeated string entities = 100 [deprecated = true];
 
   /** @CodeBlockEnd */
@@ -114,18 +117,18 @@ message Article {
    *
    * ## `enum Type`
    *
-   * | Enum value                 | Description                                                        |
-   * |----------------------------|--------------------------------------------------------------------|
-   * | `CONTENT_TYPE_UNSPECIFIED` | unspecified                                                        |
-   * | `ARTICLE`                  | A text article, usually [_sub typed_][sub_type]                    |
-   * | `IMAGE`                    | `[deprecated]` An image article, unused, deprecated                |
-   * | `VIDEO`                    | A video article, contains HLS-videos, as well as external live str |
-   * | `GALLERY`                  | A gallery article                                                  |
-   * | `EMBED`                    | An embed article including an oembed or edge_side_include element  |
-   * | `AUTHOR`                   | An author article, currently not implemented                       |
-   * | `AGENCY`                   | `[deprecated]` An agency article, unused, deprecated               |
-   * | `EXTERNAL`                 | An external article (teaser-like external article)                 |
-   * | `INTERNAL`                 | Used for internal purposes only.                                   |
+   * | Enum value         | Description                                                        |
+   * |--------------------|--------------------------------------------------------------------|
+   * | `TYPE_UNSPECIFIED` | unspecified                                                        |
+   * | `ARTICLE`          | A text article, usually [_sub typed_][sub_type]                    |
+   * | `IMAGE`            | `[deprecated]` An image article, unused, deprecated                |
+   * | `VIDEO`            | A video article, contains HLS-videos, as well as external live str |
+   * | `GALLERY`          | A gallery article                                                  |
+   * | `EMBED`            | An embed article including an oembed or edge_side_include element  |
+   * | `AUTHOR`           | An author article, currently not implemented                       |
+   * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated               |
+   * | `EXTERNAL`         | An external article (teaser-like external article)                 |
+   * | `INTERNAL`         | Used for internal purposes only.                                   |
    *
    * [sub_type]: #enum-contentsubtype
    *
@@ -890,6 +893,77 @@ message Article {
     string value = 1;
     string type = 2;
     float score = 3;
+  }
+  /** @CodeBlockEnd */
+}
+
+/**
+ * @FileArticle Author
+ */
+
+/**
+* This represents an author (or agency). The entity may be the main content
+* on author pages or simply indicate the author of an [Article](article.html).
+*
+* | Field name         | Type                                             | Description                                                                                                                   |
+* |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+* | id                 | string                                           | The unique identifier (cms id) of the author.                                                                                 |
+* | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
+* | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
+* | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
+* | work_history       | [Author.HistoryEntry](#historyentry)[]           | The career entries of the author.                                                                                             |
+* | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
+* | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
+* | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
+*
+* @CodeBlockStart protobuf
+*/
+message Author {
+  string id = 1;
+  Type type = 2;
+  map<string, string> fields = 3; // migrate from Asset[type=metadata]
+  repeated Article.Element elements = 4; // profile picture
+
+  repeated HistoryEntry work_history = 5;
+  repeated Reference education = 6;
+  repeated Reference social_profiles = 7;
+  repeated string areas_of_expertise = 8;
+  /** @CodeBlockEnd */
+  /**
+  *
+  * ## `enum Type`
+  *
+  * | Enum value         | Description                                                        |
+  * |--------------------|--------------------------------------------------------------------|
+  * | `TYPE_UNSPECIFIED` | unspecified                                                        |
+  * | `AUTHOR`           | The author is a person.                                            |
+  * | `AGENCY`           | The author is an agency or company.                                |
+  *
+  * @CodeBlockStart protobuf
+  */
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    AUTHOR = 1;
+    AGENCY = 2;
+  }
+  /** @CodeBlockEnd */
+  /**
+   *
+   * ## `HistoryEntry`
+   *
+   * Lists previous jobs and details about the author's career.
+   *
+   * | Field name  | Type   | Description                                 |
+   * |-------------|--------|---------------------------------------------|
+   * | role        | string | The role of the author for this occupation. |
+   * | description | string | A description of the author's role.         |
+   *
+   * @CodeBlockStart protobuf
+   */
+
+  message HistoryEntry {
+    string role = 1;
+    string description = 2;
   }
   /** @CodeBlockEnd */
 }
