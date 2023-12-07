@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html" class="active"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">9.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html" class="active"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -185,7 +185,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L636-L656">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L639-L659">[~]</a></p>
 <h2 id="type"><a class="header" href="#type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -207,7 +207,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L659-L683">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L662-L686">[~]</a></p>
 <h2 id="bodynode"><a class="header" href="#bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -224,7 +224,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L686-L707">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L689-L710">[~]</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -269,10 +269,10 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L709-L762">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L712-L765">[~]</a></td><td></td></tr>
 </tbody></table>
 </div>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L766-L767">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L769-L770">[~]</a></p>
 
                     </main>
 

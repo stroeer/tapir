@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">7.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">8.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">9.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html" class="active"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -201,6 +201,7 @@ This lightweight representation is sometimes referred to as <code>Teaser</code>.
 <tr><td><code>onwards</code></td><td><code>int64</code></td><td>IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.</td></tr>
 <tr><td><code>variants</code></td><td><code>repeated</code> [<code>Article</code>][a]</td><td>Variants of this article, e.g. for headline testing.</td></tr>
 <tr><td><code>entities</code></td><td><code>string</code> <code>[deprecated]</code></td><td>Extracted entities from the article body like persons, locations, organizations etc. <code>deprecated</code> — use <code>keywords</code> instead.</td></tr>
+<tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf*/">
@@ -216,10 +217,11 @@ repeated Element elements = 8;
 repeated Keyword keywords = 9;
 repeated int64 onwards = 10;
 map&lt;string, Article&gt; variants = 11;
+repeated Author authors = 12;
 repeated string entities = 100 [deprecated = true];
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L73">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L76">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
@@ -252,7 +254,7 @@ will vary depending on the main type of the article.</p>
 </div>
 <h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>CONTENT_TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
+<tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
 <tr><td><code>ARTICLE</code></td><td>A text article, usually <a href="#enum-contentsubtype"><em>sub typed</em></a></td></tr>
 <tr><td><code>IMAGE</code></td><td><code>[deprecated]</code> An image article, unused, deprecated</td></tr>
 <tr><td><code>VIDEO</code></td><td>A video article, contains HLS-videos, as well as external live str</td></tr>
@@ -278,7 +280,7 @@ EXTERNAL = 8;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L76-L146">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L79-L149">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -316,8 +318,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L149-L189">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L192-L193">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L152-L192">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L195-L196">[~]</a></p>
 
                     </main>
 
