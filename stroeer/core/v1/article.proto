@@ -967,77 +967,77 @@ message Author {
   }
   /** @CodeBlockEnd */
   /**
-  ## Sample Author
-```json
-{
-  "id": "100000001",
-  "type": "AUTHOR",
-  "fields": {
-    "flag:hidden": "true",
-    "role": "Hier steht ein Titel",
-    "academic_degree": "Prof.",
-    "last_name": "Doe",
-    "short_name": "jdoe",
-    "headline": "Autorenseite von John Doe",
-    "first_name": "John",
-    "ignore_vg_wort": "true",
-    "url": "/author/id_100000001/john-doe.html"
-  },
-  "elements": [
-    { "//": "Author Image Element removed for better readability" }
-  ],
-  "work_history": [
-    {
-      "role": "Dummy",
-      "description": "Hält nur als pseudo Autor her, John Doe eben ;)"
-    },
-    {
-      "role": "Chief Executive Officer of ACME",
-      "description": "Very important"
-    }
-  ],
-  "education": [
-    {
-      "children": [],
-      "fields": {},
-      "type": "",
-      "label": "John Doe Acedamy",
-      "href": "https://www.john.doe.acedamy.com"
-    },
-    {
-      "children": [],
-      "fields": {},
-      "type": "",
-      "label": "ACME university",
-      "href": "https://www.acmemilano.it/"
-    }
-  ],
-  "social_profiles": [
-    {
-      "children": [],
-      "fields": {},
-      "type": "",
-      "label": "MySpace",
-      "href": "https://myspace.com/johndoe"
-    },
-    {
-      "children": [],
-      "fields": {},
-      "type": "",
-      "label": "Instagram",
-      "href": "https://www.instagram.com/johndoe.x/?hl=en"
-    }
-  ],
-  "areas_of_expertise": [
-    "Dummy",
-    "ACME",
-    "Example",
-    "no-op",
-    "Cyber",
-    "PDP-11-Assembly",
-    "Tetris"
-  ]
-}
-```
-   */
+  *   ## Sample Author
+  * ```json
+  * {
+  *   "id": "100000001",
+  *   "type": "AUTHOR",
+  *   "fields": {
+  *     "flag:hidden": "true",
+  *     "role": "Hier steht ein Titel",
+  *     "academic_degree": "Prof.",
+  *     "last_name": "Doe",
+  *     "short_name": "jdoe",
+  *     "headline": "Autorenseite von John Doe",
+  *     "first_name": "John",
+  *     "ignore_vg_wort": "true",
+  *     "url": "/author/id_100000001/john-doe.html"
+  *   },
+  *   "elements": [
+  *     { "//": "Author Image Element removed for better readability" }
+  *   ],
+  *   "work_history": [
+  *     {
+  *       "role": "Dummy",
+  *       "description": "Hält nur als pseudo Autor her, John Doe eben ;)"
+  *     },
+  *     {
+  *       "role": "Chief Executive Officer of ACME",
+  *       "description": "Very important"
+  *     }
+  *   ],
+  *   "education": [
+  *     {
+  *       "children": [],
+  *       "fields": {},
+  *       "type": "",
+  *       "label": "John Doe Acedamy",
+  *       "href": "https://www.john.doe.acedamy.com"
+  *     },
+  *     {
+  *       "children": [],
+  *       "fields": {},
+  *       "type": "",
+  *       "label": "ACME university",
+  *       "href": "https://www.acmemilano.it/"
+  *     }
+  *   ],
+  *   "social_profiles": [
+  *     {
+  *       "children": [],
+  *       "fields": {},
+  *       "type": "",
+  *       "label": "MySpace",
+  *       "href": "https://myspace.com/johndoe"
+  *     },
+  *     {
+  *       "children": [],
+  *       "fields": {},
+  *       "type": "",
+  *       "label": "Instagram",
+  *       "href": "https://www.instagram.com/johndoe.x/?hl=en"
+  *     }
+  *   ],
+  *   "areas_of_expertise": [
+  *     "Dummy",
+  *     "ACME",
+  *     "Example",
+  *     "no-op",
+  *     "Cyber",
+  *     "PDP-11-Assembly",
+  *     "Tetris"
+  *   ]
+  * }
+  * ```
+  */
 }
