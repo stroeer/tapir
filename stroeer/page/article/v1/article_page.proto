@@ -15,10 +15,6 @@ message ArticlePage {
   // Unpublished elements will be filtered according to their metadata.
   stroeer.core.v1.Article article = 1;
 
-  // Additional related editorial articles. Articles which are not published
-  // according to their `Metadata` will be filtered.
-  repeated stroeer.core.v1.Article.RelatedArticle related_articles = 2;
-
   // stages for article pages contain companions, links to topic pages, A-Z Modules etc.
   // configuration.fields contains a `stage_type`, which defines the rendering position
   repeated stroeer.page.stage.v1.Stage stages = 3;
