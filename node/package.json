@@ -3,8 +3,7 @@
   "version": "0.37.0",
   "description": "T-Online API Repo",
   "engines": {
-    "node": "18",
-    "npm": "9"
+    "node": "18"
   },
   "scripts": {
     "checks": "npm run lint && npm run test",
