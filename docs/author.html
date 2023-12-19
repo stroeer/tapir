@@ -175,7 +175,7 @@
 <p>This represents an author (or agency). The entity may be the main content
 on author pages or simply indicate the author of an <a href="article.html">Article</a>.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td>id</td><td>string</td><td>The unique identifier (cms id) of the author.</td></tr>
+<tr><td>id</td><td>int64</td><td>The unique identifier (cms id) of the author.</td></tr>
 <tr><td>type</td><td><a href="#enum-type">Author.Type</a></td><td>The type of the author entity.</td></tr>
 <tr><td>fields</td><td>map[string, string]</td><td>The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values.</td></tr>
 <tr><td>elements</td><td><a href="article_%DB%B0_element.html">Article.Element</a>[]</td><td>The elements of the author, e.g. the author's profile picture.</td></tr>
@@ -186,7 +186,7 @@ on author pages or simply indicate the author of an <a href="article.html">Artic
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">message Author {
-string id = 1;
+int64 id = 1;
 Type type = 2;
 map&lt;string, string&gt; fields = 3; // migrate from Asset[type=metadata]
 repeated Article.Element elements = 4; // profile picture
@@ -227,7 +227,7 @@ string description = 2;
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L950-L967">[~]</a></p>
 <h2 id="sample-author"><a class="header" href="#sample-author">Sample Author</a></h2>
 <pre><code class="language-json">{
-  &quot;id&quot;: &quot;100000001&quot;,
+  &quot;id&quot;: 100000001,
   &quot;type&quot;: &quot;AUTHOR&quot;,
   &quot;fields&quot;: {
     &quot;flag:hidden&quot;: &quot;true&quot;,
