@@ -47,6 +47,7 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * | `variants`     | `repeated` [`Article`][a]     | Variants of this article, e.g. for headline testing.                                                                                         |
  * | `entities`     | `string` `[deprecated]`       | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
  * | `authors`      | `repeated` [`Author`][author] | Authors and|or Agencies ƒor this content                                                                                                     |
+ * | `related_articles`      | `repeated` [`RelatedArticle`][related_articles] | Editorial articles, which are related to the main article. Can only be an article shell with id and source in the core api.|
  *
  * [t]:      #enum-type
  * [b]:      article_%DB%B0_body.html
@@ -69,9 +70,10 @@ message Article {
   Metadata metadata = 7;
   repeated Element elements = 8;
   repeated Keyword keywords = 9;
-  repeated int64 onwards = 10;
+  repeated int64 onwards = 10 [deprecated = true];
   map<string, Article> variants = 11;
   repeated Author authors = 12;
+  repeated Article related_articles = 13;
   repeated string entities = 100 [deprecated = true];
 
   /** @CodeBlockEnd */
@@ -786,6 +788,7 @@ message Article {
    * | `event_source`           | [`EventSource`][es] | Source of the event that caused this item to be transformed and to be written into the DB.                                                                                                                                                                                                                                   |
    * | `seo_score`              | `double`            | The `article score` (originates from team data's _Content Engine_, higher scores are better)                                                                                                                                                                                                                                 |
    * | `publication_id`         | `int64`             | The unique `publication_id` provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.                                                                                                                                                                      |
+   * | `related_article_source` | `string`            | Source of this article, if embedded in another article as a related article.                                                                                                                                                                     |
    *
    * [ts]:    https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
    * [state]: #state
@@ -805,6 +808,7 @@ message Article {
     EventSource event_source = 9;
     double seo_score = 10;
     int64 publication_id = 11;
+    string related_article_source = 12;
 
     /** @CodeBlockEnd */
 
