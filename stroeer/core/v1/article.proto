@@ -907,7 +907,7 @@ message Article {
 *
 * | Field name         | Type                                             | Description                                                                                                                   |
 * |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-* | id                 | string                                           | The unique identifier (cms id) of the author.                                                                                 |
+* | id                 | int64                                           | The unique identifier (cms id) of the author.                                                                                 |
 * | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
 * | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
 * | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
@@ -919,7 +919,7 @@ message Article {
 * @CodeBlockStart protobuf
 */
 message Author {
-  string id = 1;
+  int64 id = 1;
   Type type = 2;
   map<string, string> fields = 3; // migrate from Asset[type=metadata]
   repeated Article.Element elements = 4; // profile picture
@@ -970,7 +970,7 @@ message Author {
   *   ## Sample Author
   * ```json
   * {
-  *   "id": "100000001",
+  *   "id": 100000001,
   *   "type": "AUTHOR",
   *   "fields": {
   *     "flag:hidden": "true",
