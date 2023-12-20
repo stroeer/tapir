@@ -17,7 +17,8 @@ message ArticlePage {
 
   // Additional related editorial articles. Articles which are not published
   // according to their `Metadata` will be filtered.
-  repeated RelatedArticle related_articles = 2;
+  // deprecated in favor `core.Article.relatedArticles`
+  repeated RelatedArticle related_articles = 2 [deprecated = true];
 
   // stages for article pages contain companions, links to topic pages, A-Z Modules etc.
   // configuration.fields contains a `stage_type`, which defines the rendering position
