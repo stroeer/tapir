@@ -46,11 +46,15 @@ service ArticleService {
  * | Field name       | Type                | Description                                                 |
  * |------------------|---------------------|-------------------------------------------------------------|
  * | `id`             | `int64`             | [required] Unique id of the article to be fetched.          |
+ * | `legal_filter`    | [`LegalFilter`][1]  | [optional]  legal filter, default is LegalFilter.UNFILTERED  |
+ *
+ * [1]: #legalfilter
  *
  * @CodeBlockStart protobuf
  */
 message GetArticleRequest {
   int64 id = 1;
+  LegalFilter legal_filter = 2;
 }
 /** @CodeBlockEnd */
 
@@ -66,11 +70,15 @@ message GetArticleRequest {
  * | Field name       | Type                | Description                                                 |
  * |------------------|---------------------|-------------------------------------------------------------|
  * | `ids`            | `repeated int64`    | [required] A list of ids of the articles to be fetched      |
+ * | `legal_filter`    | [`LegalFilter`][1]  | [optional]  legal filter, default is LegalFilter.UNFILTERED  |
+ *
+ * [1]: #legalfilter
  *
  * @CodeBlockStart protobuf
  */
 message BatchGetArticlesRequest {
   repeated int64 ids = 1;
+  LegalFilter legal_filter = 2;
 }
 /** @CodeBlockEnd */
 
@@ -101,12 +109,14 @@ message BatchGetArticlesResponse {
  * | Field name       | Type                | Description                                                 |
  * |------------------|---------------------|-------------------------------------------------------------|
  * | `query`          | [`Query`][1]        | [required] find items based on query values                 |
- * | `filters`        | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
+ * | `filters`         | [`Filters`][2]      | [optional] A filter expression is applied after a Query finishes, but before the results are returned. |
  * | `page_size`      | `int32`             | [optional] limit the results per page, default is `10`; max is `100` (or result exceeds `1 MB`). Values above 100 will be coerced to 100. If results get truncated, you can use pagination. |
  * | `page_token`     | `string`            | [optional]  A page token, received from a previous `ListArticles` call. Provide this to retrieve the subsequent page.  When paginating, all other parameters provided to `ListArticles` must match the call that provided the page token.|
+ * | `legal_filters`   | [`LegalFilter`][3]  | [optional]  legal filter, default is LegalFilter.UNFILTERED|
  *
  * [1]: #query
  * [2]: #filters
+ * [3]: #legalfilter
  *
  * @CodeBlockStart protobuf
  */
@@ -115,6 +125,7 @@ message ListArticlesRequest {
   Filters filters = 2;
   int32 page_size = 3;
   string page_token = 4;
+  LegalFilter legal_filter = 5;
 
   /** @CodeBlockEnd */
 
@@ -255,6 +266,26 @@ message ListArticlesRequest {
   }
   /** @CodeBlockEnd */
 }
+
+/**
+* ## `LegalFilter`
+*
+* If you need to filter out ... articles.
+*
+* | Enum value          | Description                      |
+* |---------------------|----------------------------------|
+* | `TYPE_UNSPECIFIED`  | unspecified                       |
+* | `UNFILTERED`        | unfiltered results                |
+* | `FILTERED`          | filtered results                  |
+*
+* @CodeBlockStart protobuf
+*/
+enum LegalFilter {
+  TYPE_UNSPECIFIED = 0;
+  UNFILTERED = 1;
+  FILTERED = 2;
+}
+/** @CodeBlockEnd */
 
 /**
  * ## `ListArticlesResponse`
