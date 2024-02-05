@@ -6,6 +6,7 @@
 *.iws
 kreya
 .kreya
+.DS_Store
 
 # node
 node_modules
@@ -30,3 +31,6 @@ protoc-gen-grpc-java
 # generated code
 gen/
 book.toml
+
+# Make postman
+root.proto
