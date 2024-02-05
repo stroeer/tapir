@@ -196,13 +196,14 @@ This lightweight representation is sometimes referred to as <code>Teaser</code>.
 <tr><td><code>section_tree</code></td><td><a href="reference.html"><code>Reference</code></a></td><td>Hierarchical section tree information of the article (required).</td></tr>
 <tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Generic map containing general content and configuration information of the article (required). See <a href="#fields"><code>fields</code></a></td></tr>
 <tr><td><code>bodies</code></td><td><code>repeated</code> <a href="article_%DB%B0_body.html"><code>Body</code></a></td><td>Recursive textual body of the article to be rendered on detail pages. May be <code>null</code> for <a href="#teaser"><em>Teaser</em></a>.</td></tr>
+<tr><td><code>metadata</code></td><td><a href="article_%DB%B0_metadata.html"><code>Metadata</code></a></td><td>The articles <a href="article_%DB%B0_metadata.html">Metadata</a>, containing state and various timestamps.</td></tr>
 <tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%DB%B0_element.html"><code>Element</code></a></td><td><code>Element</code>s required to render the teaser, such as <code>IMAGE</code>, <code>VIDEO</code> or <code>AUTHOR</code></td></tr>
 <tr><td><code>keywords</code></td><td><code>repeated</code> <a href="article_%DB%B0_keyword.html"><code>Keyword</code></a></td><td>Extracted keywords from the article body like persons, locations, organizations etc.</td></tr>
 <tr><td><code>onwards</code></td><td><code>int64</code></td><td>IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.</td></tr>
-<tr><td><code>variants</code></td><td><code>repeated</code> [<code>Article</code>][a]</td><td>Variants of this article, e.g. for headline testing.</td></tr>
+<tr><td><code>variants</code></td><td><code>map&lt;string, Article&gt;</code></td><td>Variants of this article, e.g. for headline testing.</td></tr>
 <tr><td><code>entities</code></td><td><code>string</code> <code>[deprecated]</code></td><td>Extracted entities from the article body like persons, locations, organizations etc. <code>deprecated</code> — use <code>keywords</code> instead.</td></tr>
-<tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and</td></tr>
-<tr><td><code>related_articles</code></td><td><code>repeated</code> [<code>RelatedArticle</code>][related_articles]</td><td>Editorial articles, which are related to the main article. Can only be an article shell with id and source in the core api.</td></tr>
+<tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and or Agencies ƒor this content</td></tr>
+<tr><td><code>related_articles</code></td><td><code>repeated Article</code></td><td>Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf*/">
@@ -223,7 +224,7 @@ repeated Article related_articles = 13;
 repeated string entities = 100 [deprecated = true];
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L78">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L80">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
@@ -282,7 +283,7 @@ EXTERNAL = 8;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L81-L151">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L83-L153">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -320,8 +321,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L154-L194">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L197-L198">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L156-L196">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L199-L200">[~]</a></p>
 
                     </main>
 

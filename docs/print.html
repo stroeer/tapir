@@ -197,13 +197,14 @@ This lightweight representation is sometimes referred to as <code>Teaser</code>.
 <tr><td><code>section_tree</code></td><td><a href="reference.html"><code>Reference</code></a></td><td>Hierarchical section tree information of the article (required).</td></tr>
 <tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Generic map containing general content and configuration information of the article (required). See <a href="article.html#fields"><code>fields</code></a></td></tr>
 <tr><td><code>bodies</code></td><td><code>repeated</code> <a href="article_%DB%B0_body.html"><code>Body</code></a></td><td>Recursive textual body of the article to be rendered on detail pages. May be <code>null</code> for <a href="article.html#teaser"><em>Teaser</em></a>.</td></tr>
+<tr><td><code>metadata</code></td><td><a href="article_%DB%B0_metadata.html"><code>Metadata</code></a></td><td>The articles <a href="article_%DB%B0_metadata.html">Metadata</a>, containing state and various timestamps.</td></tr>
 <tr><td><code>elements</code></td><td><code>repeated</code> <a href="article_%DB%B0_element.html"><code>Element</code></a></td><td><code>Element</code>s required to render the teaser, such as <code>IMAGE</code>, <code>VIDEO</code> or <code>AUTHOR</code></td></tr>
 <tr><td><code>keywords</code></td><td><code>repeated</code> <a href="article_%DB%B0_keyword.html"><code>Keyword</code></a></td><td>Extracted keywords from the article body like persons, locations, organizations etc.</td></tr>
 <tr><td><code>onwards</code></td><td><code>int64</code></td><td>IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.</td></tr>
-<tr><td><code>variants</code></td><td><code>repeated</code> [<code>Article</code>][a]</td><td>Variants of this article, e.g. for headline testing.</td></tr>
+<tr><td><code>variants</code></td><td><code>map&lt;string, Article&gt;</code></td><td>Variants of this article, e.g. for headline testing.</td></tr>
 <tr><td><code>entities</code></td><td><code>string</code> <code>[deprecated]</code></td><td>Extracted entities from the article body like persons, locations, organizations etc. <code>deprecated</code> — use <code>keywords</code> instead.</td></tr>
-<tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and</td></tr>
-<tr><td><code>related_articles</code></td><td><code>repeated</code> [<code>RelatedArticle</code>][related_articles]</td><td>Editorial articles, which are related to the main article. Can only be an article shell with id and source in the core api.</td></tr>
+<tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and or Agencies ƒor this content</td></tr>
+<tr><td><code>related_articles</code></td><td><code>repeated Article</code></td><td>Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf*/">
@@ -224,7 +225,7 @@ repeated Article related_articles = 13;
 repeated string entities = 100 [deprecated = true];
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L78">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L80">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
@@ -283,7 +284,7 @@ EXTERNAL = 8;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L81-L151">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L83-L153">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -321,8 +322,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L154-L194">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L197-L198">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L156-L196">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L199-L200">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-body"><a class="header" href="#article-۰-body">Article ۰ Body</a></h1>
 <p>The <code>Body</code> represents a basic block. Each <code>Body</code> is self-contained and holds
 all the data required for rendering within its data structures.</p>
@@ -337,7 +338,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L641-L661">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L643-L663">[~]</a></p>
 <h2 id="type"><a class="header" href="#type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -359,7 +360,7 @@ TRUST_BOX = 4;
 TABLE_OF_CONTENTS = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L664-L688">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L666-L690">[~]</a></p>
 <h2 id="bodynode"><a class="header" href="#bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -376,7 +377,7 @@ repeated BodyNode children = 4;
 repeated Element elements = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L691-L712">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L693-L714">[~]</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -421,10 +422,10 @@ repeated Element elements = 5;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L714-L767">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L716-L769">[~]</a></td><td></td></tr>
 </tbody></table>
 </div>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L771-L772">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L773-L774">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-element"><a class="header" href="#article-۰-element">Article ۰ Element</a></h1>
 <p><code>Element</code>s are self-contained objects that represent structured data that
 is usually too complex to fit into our usual workhorse which is the
@@ -473,7 +474,7 @@ repeated Asset assets = 3;
 repeated Element children = 4;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L201-L253">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L203-L255">[~]</a></p>
 <h2 id="elementtype"><a class="header" href="#elementtype"><code>Element.Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -502,7 +503,7 @@ EDGE_SIDE_INCLUDE = 8;
 CITATION = 9;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L256-L292">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L258-L294">[~]</a></p>
 <h2 id="elementrelation"><a class="header" href="#elementrelation"><code>Element.Relation</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>RELATION_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -518,7 +519,7 @@ TEASER = 2;
 SOCIAL = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L295-L312">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L297-L314">[~]</a></p>
 <h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
 <p>For details on certain <code>fields</code> or usages of <a href="asset.html#samples"><code>Assets</code>, please follow this link.</a></p>
 <h3 id="image-element"><a class="header" href="#image-element"><code>image element</code></a></h3>
@@ -678,8 +679,8 @@ SOCIAL = 3;
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L315-L481">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L484-L485">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L317-L483">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L486-L487">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-element-۰-asset"><a class="header" href="#article-۰-element-۰-asset">Article ۰ Element ۰ Asset</a></h1>
 <p>Asset of an <a href="article_%3E_element.html">Element</a>.</p>
 <p>An asset configuration is dependant upon its use, it may alter depending
@@ -695,7 +696,7 @@ Type type = 1;
 map&lt;string, string&gt; fields = 2;
 Metadata metadata = 3;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L488-L508">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L490-L510">[~]</a></p>
 <h2 id="enum-type-1"><a class="header" href="#enum-type-1"><code>enum Type</code></a></h2>
 <p>Type of an asset.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -717,7 +718,7 @@ METADATA = 4;
 LINK = 5;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L511-L535">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L513-L537">[~]</a></p>
 <h2 id="samples-1"><a class="header" href="#samples-1">Samples</a></h2>
 <h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -801,8 +802,8 @@ LINK = 5;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L539-L633">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L637-L638">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L541-L635">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L639-L640">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-keyword"><a class="header" href="#article-۰-keyword">Article ۰ Keyword</a></h1>
 <p>Extracted keywords from the article body like persons, locations, organizations etc.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -817,8 +818,8 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L885-L900">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L904-L905">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L887-L902">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L906-L907">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-metadata"><a class="header" href="#article-۰-metadata">Article ۰ Metadata</a></h1>
 <p>Article metadata like publication state and technical timestamps.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -851,7 +852,7 @@ int64 publication_id = 11;
 string related_article_source = 12;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L775-L812">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L777-L814">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -878,7 +879,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L815-L846">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L817-L848">[~]</a></p>
 <h2 id="enum-eventsource"><a class="header" href="#enum-eventsource"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -904,8 +905,8 @@ SECONDARY = 2;
 CONTENT_ENGINE = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L849-L877">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L881-L882">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L851-L879">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L883-L884">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="author"><a class="header" href="#author">Author</a></h1>
 <p>This represents an author (or agency). The entity may be the main content
 on author pages or simply indicate the author of an <a href="article.html">Article</a>.</p>
@@ -931,7 +932,7 @@ repeated Reference education = 6;
 repeated Reference social_profiles = 7;
 repeated string areas_of_expertise = 8;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L908-L934">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L910-L936">[~]</a></p>
 <h2 id="enum-type-2"><a class="header" href="#enum-type-2"><code>enum Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -945,7 +946,7 @@ AUTHOR = 1;
 AGENCY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L936-L952">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L938-L954">[~]</a></p>
 <h2 id="historyentry"><a class="header" href="#historyentry"><code>HistoryEntry</code></a></h2>
 <p>Lists previous jobs and details about the author's career.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -959,7 +960,7 @@ string role = 1;
 string description = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L954-L971">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L956-L973">[~]</a></p>
 <h2 id="sample-author"><a class="header" href="#sample-author">Sample Author</a></h2>
 <pre><code class="language-json">{
   &quot;id&quot;: 100000001,
@@ -1031,7 +1032,7 @@ string description = 2;
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L973-L1045">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L975-L1047">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
@@ -1209,9 +1210,10 @@ Embedded items can be editorial articles, advertisement and/or stages (only one 
 <p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
 by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
 a query.</p>
-<p>All results returned from this service are <em>unfiltered</em>, hence they may contain
+<p>All results returned from this service are <em>unfiltered</em> by default, hence they may contain
 <a href="element.html"><code>elements</code></a> that are <em>expired</em>, <em>not yet valid</em> or whose <a href="metadata.html#state"><code>state</code></a>
-is not <code>PUBLISHED</code>.</p>
+is not <code>PUBLISHED</code>.
+This behaviour can be changed by providing a <a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#requestsettings"><code>RequestSettings</code></a> object.</p>
 <pre><code class="language-protobuf/">
 service ArticleService {
 rpc GetArticle(GetArticleRequest) returns (stroeer.core.v1.Article) {}
@@ -1222,7 +1224,7 @@ rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse) {}
 rpc ListSections(google.protobuf.Empty) returns (ListSectionsResponse) {}
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L15-L34">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L15-L35">[~]</a></p>
 <h1 id="-getarticle"><a class="header" href="#-getarticle"><code>⚙︎ GetArticle</code></a></h1>
 <pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
 </code></pre>
@@ -1234,9 +1236,11 @@ an <code>Error</code>, otherwise. (todo: describe errors)</p>
 </div>
 <pre><code class="language-protobuf/">message GetArticleRequest {
 int64 id = 1;
+RequestSettings request_settings = 2;
 }
+
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L37-L54">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L38-L57">[~]</a></p>
 <h1 id="-batchgetarticle"><a class="header" href="#-batchgetarticle"><code>⚙︎ BatchGetArticle</code></a></h1>
 <p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
 ordering of items will the same ordering as the <code>ids</code> requested.
@@ -1248,20 +1252,11 @@ If an <code>id</code> does not exists, it is omitted in the result (no error wil
 </div>
 <pre><code class="language-protobuf/">message BatchGetArticlesRequest {
 repeated int64 ids = 1;
+RequestSettings request_settings = 2;
 }
+
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L57-L74">[~]</a></p>
-<h2 id="batchgetarticlesresponse"><a class="header" href="#batchgetarticlesresponse">BatchGetArticlesResponse</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>articles</code></td><td><a href="article.html"><code>stroeer.core.v1.Article</code></a></td><td>list of valid articles</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf/">
-message BatchGetArticlesResponse {
-repeated stroeer.core.v1.Article articles = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L77-L91">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L60-L79">[~]</a></p>
 <p>returns a <a href="%E2%9A%99%EF%B8%8E_corearticleservice.html#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
 articles matching the query. If the results exceed 100 Articles or 1 MB
 the response can be paginated to obtain additional results.</p>
@@ -1278,9 +1273,10 @@ Query query = 1;
 Filters filters = 2;
 int32 page_size = 3;
 string page_token = 4;
+RequestSettings request_settings = 5;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L94-L118">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L97-L122">[~]</a></p>
 <h2 id="query"><a class="header" href="#query"><code>Query</code></a></h2>
 <p>Specify the search criteria. The list-API is build around sections which
 come in two flavors:</p>
@@ -1312,7 +1308,7 @@ google.protobuf.Timestamp from_time = 5;
 google.protobuf.Timestamp to_time = 6;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L121-L160">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L125-L164">[~]</a></p>
 <h2 id="type-2"><a class="header" href="#type-2"><code>Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1328,7 +1324,7 @@ HOME_SECTION = 1;
 ROOT_SECTION = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L163-L181">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L167-L185">[~]</a></p>
 <h2 id="sortby"><a class="header" href="#sortby"><code>SortBy</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SORT_BY_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -1342,7 +1338,7 @@ UPDATE_TIME = 1;
 PUBLISH_TIME = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L184-L202">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L188-L206">[~]</a></p>
 <h2 id="order"><a class="header" href="#order"><code>Order</code></a></h2>
 <p>order of index traversal, default: ascending.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -1357,7 +1353,7 @@ ASCENDING = 1;
 DESCENDING = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L205-L222">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L209-L226">[~]</a></p>
 <h2 id="filters"><a class="header" href="#filters"><code>Filters</code></a></h2>
 <p>If you need to further refine the Query results, you can optionally provide
 a filter expression. A filter expression determines which items within the
@@ -1379,7 +1375,58 @@ repeated Article.SubType sub_type_includes = 3;
 repeated Article.SubType sub_type_excludes = 4;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L227-L255">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L230-L258">[~]</a></p>
+<h2 id="requestsettings"><a class="header" href="#requestsettings"><code>RequestSettings</code></a></h2>
+<p>Alters the behavior of the request in a way that filters or alters the
+result or parts of the result based on validity of the article or its elements.</p>
+<p>You can also alter the view mode of the article, selecting either the full
+article or a limited version of it (called <code>teaser</code> or <code>trail</code>)</p>
+<h3 id="requestsettingsarticleviewmode"><a class="header" href="#requestsettingsarticleviewmode"><code>RequestSettings.ArticleViewMode</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ARTICLE_VIEW_MODE_UNSPECIFIED</code></td><td>unspecified, defaults to <code>ARTICLE_VIEW_MODE_DEFAULT</code></td></tr>
+<tr><td><code>ARTICLE_VIEW_MODE_DEFAULT</code></td><td>full article including body and all elements.</td></tr>
+<tr><td><code>ARTICLE_VIEW_MODE_TEASER</code></td><td>elements that are not required when teasering the article are removed (e.g. body).</td></tr>
+</tbody></table>
+</div>
+<h3 id="requestsettingsarticlevalidity"><a class="header" href="#requestsettingsarticlevalidity"><code>RequestSettings.ArticleValidity</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ARTICLE_VALIDITY_UNSPECIFIED</code></td><td>unspecified, defaults to <code>ARTICLE_VALIDITY_IGNORE</code></td></tr>
+<tr><td><code>ARTICLE_VALIDITY_VALID</code></td><td>filters articles that are considered valid and allowed to be accessed publicly.</td></tr>
+<tr><td><code>ARTICLE_VALIDITY_IGNORE</code></td><td>Ignore the article validity and return everything as is, even deleted or expired content.</td></tr>
+</tbody></table>
+</div>
+<h3 id="requestsettingselementvalidity"><a class="header" href="#requestsettingselementvalidity"><code>RequestSettings.ElementValidity</code></a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>ELEMENT_VALIDITY_UNSPECIFIED</code></td><td>unspecified, defaults to <code>ELEMENT_VALIDITY_IGNORE</code></td></tr>
+<tr><td><code>ELEMENT_VALIDITY_VALID</code></td><td>Remove invalid elements from its parent article, such as expired images or videos.</td></tr>
+<tr><td><code>ELEMENT_VALIDITY_IGNORE</code></td><td>Ignore the element validity and return everything as is, even deleted or expired content.</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">message RequestSettings {
+ArticleViewMode article_view_mode = 1;
+ArticleValidity article_validity = 2;
+ElementValidity element_validity = 3;
+
+enum ArticleViewMode {
+ARTICLE_VIEW_MODE_UNSPECIFIED = 0;
+ARTICLE_VIEW_MODE_DEFAULT = 1;
+ARTICLE_VIEW_MODE_TEASER = 2;
+}
+
+enum ArticleValidity {
+ARTICLE_VALIDITY_UNSPECIFIED = 0;
+ARTICLE_VALIDITY_VALID = 1;
+ARTICLE_VALIDITY_IGNORE = 2;
+}
+
+enum ElementValidity {
+ELEMENT_VALIDITY_UNSPECIFIED = 0;
+ELEMENT_VALIDITY_VALID = 1;
+ELEMENT_VALIDITY_IGNORE = 2;
+}
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L262-L319">[~]</a></p>
 <h2 id="listarticlesresponse"><a class="header" href="#listarticlesresponse"><code>ListArticlesResponse</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>articles</code></td><td><a href="article.html"><code>Article</code></a></td><td>list of articles that match the <code>query</code> and also the <code>filter</code>, otherwise <code>empty</code>.</td></tr>
@@ -1391,7 +1438,7 @@ repeated stroeer.core.v1.Article articles = 1;
 string next_page_token = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L259-L274">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L323-L338">[~]</a></p>
 <h1 id="-listsections"><a class="header" href="#-listsections"><code>⚙︎ ListSections</code></a></h1>
 <p>list the available root sections</p>
 <h2 id="listsectionsresponse"><a class="header" href="#listsectionsresponse"><code>ListSectionsResponse</code></a></h2>
@@ -1400,7 +1447,7 @@ string next_page_token = 2;
 repeated string sections = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L277-L290">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L341-L354">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/shared.proto#L7-L8">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-curationservice"><a class="header" href="#-curationservice">⚙︎ CurationService</a></h1>
 <p>This services allows to query curations within the CMS. In the CMS domain
