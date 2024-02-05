@@ -17,9 +17,10 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * by its id or to query multiple articles (`rpc ListArticles()`) by providing
  * a query.
  *
- * All results returned from this service are _unfiltered_, hence they may contain
+ * All results returned from this service are _unfiltered_ by default, hence they may contain
  * [`elements`](element.html) that are *expired*, *not yet valid* or whose [`state`](metadata.html#state)
  * is not `PUBLISHED`.
+ * This behaviour can be changed by providing a [`RequestSettings`](#requestsettings) object.
  *
  * @CodeBlockStart protobuf
  */
@@ -51,7 +52,9 @@ service ArticleService {
  */
 message GetArticleRequest {
   int64 id = 1;
+  RequestSettings request_settings = 2;
 }
+
 /** @CodeBlockEnd */
 
 /**
@@ -71,8 +74,8 @@ message GetArticleRequest {
  */
 message BatchGetArticlesRequest {
   repeated int64 ids = 1;
+  RequestSettings request_settings = 2;
 }
-/** @CodeBlockEnd */
 
 /**
  * ## BatchGetArticlesResponse
@@ -115,6 +118,7 @@ message ListArticlesRequest {
   Filters filters = 2;
   int32 page_size = 3;
   string page_token = 4;
+  RequestSettings request_settings = 5;
 
   /** @CodeBlockEnd */
 
@@ -223,7 +227,6 @@ message ListArticlesRequest {
     /** @CodeBlockEnd */
   }
 
-  // client side filters executed after the query was returned from the database
   /**
    * ## `Filters`
    *
@@ -255,6 +258,67 @@ message ListArticlesRequest {
   }
   /** @CodeBlockEnd */
 }
+
+/**
+  * ## `RequestSettings`
+  *
+  * Alters the behavior of the request in a way that filters or alters the
+  * result or parts of the result based on validity of the article or its elements.
+  *
+  * You can also alter the view mode of the article, selecting either the full
+  * article or a limited version of it (called `teaser` or `trail`)
+  *
+  * ### `RequestSettings.ArticleViewMode`
+  *
+  * | Enum value                      | Description                                                                        |
+  * |---------------------------------|------------------------------------------------------------------------------------|
+  * | `ARTICLE_VIEW_MODE_UNSPECIFIED` | unspecified, defaults to `ARTICLE_VIEW_MODE_DEFAULT`                               |
+  * | `ARTICLE_VIEW_MODE_DEFAULT`     | full article including body and all elements.                                      |
+  * | `ARTICLE_VIEW_MODE_TEASER`      | elements that are not required when teasering the article are removed (e.g. body). |
+  *
+  * ### `RequestSettings.ArticleValidity`
+  *
+  * | Enum value                     | Description                                                                               |
+  * |--------------------------------|-------------------------------------------------------------------------------------------|
+  * | `ARTICLE_VALIDITY_UNSPECIFIED` | unspecified, defaults to `ARTICLE_VALIDITY_IGNORE`                                        |
+  * | `ARTICLE_VALIDITY_VALID`       | filters articles that are considered valid and allowed to be accessed publicly.           |
+  * | `ARTICLE_VALIDITY_IGNORE`      | Ignore the article validity and return everything as is, even deleted or expired content. |
+  *
+  * ### `RequestSettings.ElementValidity`
+  *
+  * | Enum value                     | Description                                                                               |
+  * |--------------------------------|-------------------------------------------------------------------------------------------|
+  * | `ELEMENT_VALIDITY_UNSPECIFIED` | unspecified, defaults to `ELEMENT_VALIDITY_IGNORE`                                        |
+  * | `ELEMENT_VALIDITY_VALID`       | Remove invalid elements from its parent article, such as expired images or videos.        |
+  * | `ELEMENT_VALIDITY_IGNORE`      | Ignore the element validity and return everything as is, even deleted or expired content. |
+  * 
+  * @CodeBlockStart protobuf
+  */
+message RequestSettings {
+  ArticleViewMode article_view_mode = 1;
+  ArticleValidity article_validity = 2;
+  ElementValidity element_validity = 3;
+
+  enum ArticleViewMode {
+    ARTICLE_VIEW_MODE_UNSPECIFIED = 0;
+    ARTICLE_VIEW_MODE_DEFAULT = 1;
+    ARTICLE_VIEW_MODE_TEASER = 2;
+  }
+
+  enum ArticleValidity {
+    ARTICLE_VALIDITY_UNSPECIFIED = 0;
+    ARTICLE_VALIDITY_VALID = 1;
+    ARTICLE_VALIDITY_IGNORE = 2;
+  }
+
+  enum ElementValidity {
+    ELEMENT_VALIDITY_UNSPECIFIED = 0;
+    ELEMENT_VALIDITY_VALID = 1;
+    ELEMENT_VALIDITY_IGNORE = 2;
+  }
+}
+/** @CodeBlockEnd */
+
 
 /**
  * ## `ListArticlesResponse`

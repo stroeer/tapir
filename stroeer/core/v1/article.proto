@@ -33,27 +33,29 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * Thus, not containing any data that is only required on detail pages.
  * This lightweight representation is sometimes referred to as `Teaser`.
  *
- * | Field name     | Type                          | Description                                                                                                                                  |
- * |----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
- * | `id`           | `int64`                       | Unique ID of the article defined by the content management system (required).                                                                |
- * | `type`         | [`Type`][t]                   | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
- * | `sub_type`     | [`SubType`][st]               | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
- * | `section_tree` | [`Reference`][ref]            | Hierarchical section tree information of the article (required).                                                                             |
- * | `fields`       | `map<string, string>`         | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
- * | `bodies`       | `repeated` [`Body`][b]        | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
- * | `elements`     | `repeated` [`Element`][e]     | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
- * | `keywords`     | `repeated` [`Keyword`][k]     | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
- * | `onwards`      | `int64`                       | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
- * | `variants`     | `repeated` [`Article`][a]     | Variants of this article, e.g. for headline testing.                                                                                         |
- * | `entities`     | `string` `[deprecated]`       | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
- * | `authors`      | `repeated` [`Author`][author] | Authors and|or Agencies ƒor this content                                                                                                     |
- * | `related_articles`      | `repeated` [`RelatedArticle`][related_articles] | Editorial articles, which are related to the main article. Can only be an article shell with id and source in the core api.|
+ * | Field name         | Type                                            | Description                                                                                                                                  |
+ * |--------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+ * | `id`               | `int64`                                         | Unique ID of the article defined by the content management system (required).                                                                |
+ * | `type`             | [`Type`][t]                                     | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
+ * | `sub_type`         | [`SubType`][st]                                 | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
+ * | `section_tree`     | [`Reference`][ref]                              | Hierarchical section tree information of the article (required).                                                                             |
+ * | `fields`           | `map<string, string>`                           | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
+ * | `bodies`           | `repeated` [`Body`][b]                          | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
+ * | `metadata`         | [`Metadata`][md]                                | The articles [Metadata][md], containing state and various timestamps.                                                                        |
+ * | `elements`         | `repeated` [`Element`][e]                       | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
+ * | `keywords`         | `repeated` [`Keyword`][k]                       | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
+ * | `onwards`          | `int64`                                         | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
+ * | `variants`         | `map<string, Article>`                          | Variants of this article, e.g. for headline testing.                                                                                         |
+ * | `entities`         | `string` `[deprecated]`                         | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
+ * | `authors`          | `repeated` [`Author`][author]                   | Authors and or Agencies ƒor this content                                                                                                     |                                                                                                                                 |
+ * | `related_articles` | `repeated Article`                              | Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).    |
  *
  * [t]:      #enum-type
  * [b]:      article_%DB%B0_body.html
  * [e]:      article_%DB%B0_element.html
  * [k]:      article_%DB%B0_keyword.html
  * [st]:     #enum-subtype
+ * [md]:     article_%DB%B0_metadata.html
  * [ref]:    reference.html
  * [author]: author.html
  *
