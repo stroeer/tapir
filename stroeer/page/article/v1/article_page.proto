@@ -15,10 +15,8 @@ message ArticlePage {
   // Unpublished elements will be filtered according to their metadata.
   stroeer.core.v1.Article article = 1;
 
-  // Additional related editorial articles. Articles which are not published
-  // according to their `Metadata` will be filtered.
-  // deprecated in favor `core.Article.relatedArticles`
-  repeated RelatedArticle related_articles = 2 [deprecated = true];
+  // formerly related_articles
+  reserved 2;
 
   // stages for article pages contain companions, links to topic pages, A-Z Modules etc.
   // configuration.fields contains a `stage_type`, which defines the rendering position
@@ -33,29 +31,4 @@ message ArticlePage {
   //     - submenu
   //     - external references
   stroeer.core.v1.Reference navigation_menu = 4;
-}
-
-// An editorial article, which is related to another article.
-//
-// Related articles are specified manually be the editorial department or
-// identified by recommendation systems.
-message RelatedArticle {
-  // Data of the related article. This message will only contain data required
-  // to render the article as a _Teaser_ (e.g. with `Article.body` set to `null`
-  // thus not containing any data that is only required on detail pages).
-  stroeer.core.v1.Article article = 1;
-
-  // Deprecated (since 04.04.2023) source of the related article in form of an enum.
-  RelatedArticleSource source = 2;
-
-// Source of the related article.
-  string related_article_source = 3;
-}
-
-enum RelatedArticleSource {
-  // Not specified.
-  RELATED_ARTICLE_SOURCE_UNSPECIFIED = 0;
-
-  // Article was related manually by the editorial department.
-  RELATED_ARTICLE_SOURCE_EDITORIAL = 1;
 }
