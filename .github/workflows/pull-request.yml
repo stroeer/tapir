@@ -91,7 +91,7 @@ jobs:
       - name: generate go code
         run: make generate TEMPLATE=buf.gen.go.yaml
 
-  lint:
+  buf:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -100,15 +100,13 @@ jobs:
 
       - uses: bufbuild/buf-lint-action@v1
 
-  breaking:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
+      - uses: bufbuild/buf-breaking-action@v1
+        if: always()
+        with:
+          against: "https://github.com/stroeer/tapir.git#branch=main"
 
-        - uses: bufbuild/buf-setup-action@v1
-
-        - uses: bufbuild/buf-breaking-action@v1
-          if: always()
-          with:
-            against: "https://github.com/stroeer/tapir.git#branch=main"
+      - uses: bufbuild/buf-push-action@v1
+        with:
+          buf_token: ${{ secrets.BUF_TOKEN }}
+          draft: ${{ github.ref_name != 'main'}}
 
