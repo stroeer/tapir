@@ -186,6 +186,7 @@
 <tr><td><code>seo_score</code></td><td><code>double</code></td><td>The <code>article score</code> (originates from team data's <em>Content Engine</em>, higher scores are better)</td></tr>
 <tr><td><code>publication_id</code></td><td><code>int64</code></td><td>The unique <code>publication_id</code> provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.</td></tr>
 <tr><td><code>related_article_source</code></td><td><code>string</code></td><td>Source of this article, if embedded in another article as a related article.</td></tr>
+<tr><td><code>tenant</code></td><td><code>string</code></td><td>The tenant this article belongs to. e.g. <code>www</code>, <code>berlin</code> or such</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">message Metadata {
@@ -201,9 +202,10 @@ EventSource event_source = 9;
 double seo_score = 10;
 int64 publication_id = 11;
 string related_article_source = 12;
+string tenant = 13;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L777-L814">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L777-L816">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -230,7 +232,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L817-L848">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L819-L850">[~]</a></p>
 <h2 id="enum-eventsource"><a class="header" href="#enum-eventsource"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -256,8 +258,8 @@ SECONDARY = 2;
 CONTENT_ENGINE = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L851-L879">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L883-L884">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L853-L881">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L885-L886">[~]</a></p>
 
                     </main>
 
