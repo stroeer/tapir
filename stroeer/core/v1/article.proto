@@ -790,7 +790,8 @@ message Article {
    * | `event_source`           | [`EventSource`][es] | Source of the event that caused this item to be transformed and to be written into the DB.                                                                                                                                                                                                                                   |
    * | `seo_score`              | `double`            | The `article score` (originates from team data's _Content Engine_, higher scores are better)                                                                                                                                                                                                                                 |
    * | `publication_id`         | `int64`             | The unique `publication_id` provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.                                                                                                                                                                      |
-   * | `related_article_source` | `string`            | Source of this article, if embedded in another article as a related article.                                                                                                                                                                     |
+   * | `related_article_source` | `string`            | Source of this article, if embedded in another article as a related article.                                                                                                                                                                                                                                                 |
+   * | `tenant`                 | `string`            | The tenant this article belongs to. e.g. `www`, `berlin` or such                                                                                                                                                                                                                                                             |
    *
    * [ts]:    https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
    * [state]: #state
@@ -811,6 +812,7 @@ message Article {
     double seo_score = 10;
     int64 publication_id = 11;
     string related_article_source = 12;
+    string tenant = 13;
 
     /** @CodeBlockEnd */
 
