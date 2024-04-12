@@ -292,7 +292,7 @@ message Article {
       AGENCY = 7;
       EDGE_SIDE_INCLUDE = 8;
       CITATION = 9;
-      INTERAL_WIDGET = 10;
+      INTERNAL_WIDGET = 10;
     }
     /** @CodeBlockEnd */
 
