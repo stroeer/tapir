@@ -270,7 +270,7 @@ message Article {
      * | `AGENCY`               | author, contains one `metadata` [`Asset`][a]                                                                 |
      * | `EDGE_SIDE_INCLUDE`    | `<esi:include>` that must be resolved server-side for SEO reasons, otherwise similar to `OEMBED`             |
      * | `CITATION`             | oEmbed, contains one `metadata` [`Asset`][a]. Todo: sample                                                   |
-     * | `INTERNAL_WIDGET`      | widget or embed that is handled directly by the paper front end rendering                                    |
+     * | `INTERNAL_WIDGET`      | widget or embed that is handled directly by the front end rendering                                    |
      *
      * [a]: article_%DB%B0_element_%DB%B0_asset.html
      * [e]: #element
