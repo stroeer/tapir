@@ -5,6 +5,7 @@ package stroeer.page.article.v1;
 import "stroeer/core/v1/article.proto";
 import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
+import "stroeer/page/section/v1/section_page.proto";
 
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 
@@ -28,4 +29,7 @@ message ArticlePage {
   //     - submenu
   //     - external references
   stroeer.core.v1.Reference navigation_menu = 4;
+
+  // meta information to render an article page such as commercial settings.
+  stroeer.page.section.v1.SectionPage.Section section = 5;
 }
