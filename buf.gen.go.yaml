@@ -1,7 +1,7 @@
 version: v1
 
 plugins:
-  - plugin: buf.build/protocolbuffers/go:v1.34.1
+  - plugin: buf.build/protocolbuffers/go:v1.33.0
     out: gen/go
     opt:
       - module=github.com/stroeer/go-tapir
