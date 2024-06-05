@@ -267,6 +267,7 @@ will vary depending on the main type of the article.</p>
 <tr><td><code>AGENCY</code></td><td><code>[deprecated]</code> An agency article, unused, deprecated</td></tr>
 <tr><td><code>EXTERNAL</code></td><td>An external article (teaser-like external article)</td></tr>
 <tr><td><code>INTERNAL</code></td><td>Used for internal purposes only.</td></tr>
+<tr><td><code>CLUSTER</code></td><td>a thematically grouped cluster for various amount of articles, resolved <code>Trails</code> embedded via <code>related_articles</code></td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">
@@ -280,10 +281,11 @@ EMBED = 5;
 AUTHOR = 6;
 AGENCY = 7 [deprecated = true];
 EXTERNAL = 8;
+CLUSTER = 9;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L83-L153">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L83-L155">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -321,8 +323,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L156-L196">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L199-L200">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L158-L198">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L201-L202">[~]</a></p>
 
                     </main>
 
