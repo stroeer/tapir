@@ -121,18 +121,19 @@ message Article {
    *
    * ## `enum Type`
    *
-   * | Enum value         | Description                                                        |
-   * |--------------------|--------------------------------------------------------------------|
-   * | `TYPE_UNSPECIFIED` | unspecified                                                        |
-   * | `ARTICLE`          | A text article, usually [_sub typed_][sub_type]                    |
-   * | `IMAGE`            | `[deprecated]` An image article, unused, deprecated                |
-   * | `VIDEO`            | A video article, contains HLS-videos, as well as external live str |
-   * | `GALLERY`          | A gallery article                                                  |
-   * | `EMBED`            | An embed article including an oembed or edge_side_include element  |
-   * | `AUTHOR`           | An author article, currently not implemented                       |
-   * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated               |
-   * | `EXTERNAL`         | An external article (teaser-like external article)                 |
-   * | `INTERNAL`         | Used for internal purposes only.                                   |
+   * | Enum value         | Description                                                                                                      |
+   * |--------------------|------------------------------------------------------------------------------------------------------------------|
+   * | `TYPE_UNSPECIFIED` | unspecified                                                                                                      |
+   * | `ARTICLE`          | A text article, usually [_sub typed_][sub_type]                                                                  |
+   * | `IMAGE`            | `[deprecated]` An image article, unused, deprecated                                                              |
+   * | `VIDEO`            | A video article, contains HLS-videos, as well as external live str                                               |
+   * | `GALLERY`          | A gallery article                                                                                                |
+   * | `EMBED`            | An embed article including an oembed or edge_side_include element                                                |
+   * | `AUTHOR`           | An author article, currently not implemented                                                                     |
+   * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated                                                             |
+   * | `EXTERNAL`         | An external article (teaser-like external article)                                                               |
+   * | `INTERNAL`         | Used for internal purposes only.                                                                                 |
+   * | `CLUSTER`          | a thematically grouped cluster for various amount of articles, resolved `Trails` embedded via `related_articles` |
    *
    * [sub_type]: #enum-contentsubtype
    *
@@ -149,6 +150,7 @@ message Article {
     AUTHOR = 6;
     AGENCY = 7 [deprecated = true];
     EXTERNAL = 8;
+    CLUSTER = 9;
     INTERNAL = 100;
   }
   /** @CodeBlockEnd */
