@@ -23,3 +23,9 @@ plugins:
 
   - plugin: buf.build/grpc/python:v1.59.2
     out: gen/python
+
+  # Swift
+  - plugin: buf.build/grpc/swift:v1.23.0
+    out: gen/swift
+  - plugin: buf.build/apple/swift
+    out: gen/swift
