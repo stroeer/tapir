@@ -5,19 +5,17 @@ updates:
     schedule:
       interval: "weekly"
 
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-
   - package-ecosystem: "gradle"
     directory: "/java"
     schedule:
       interval: "weekly"
-    reviewers:
-      - "stroeer/teams/buzz-end"
 
   - package-ecosystem: "npm"
     directory: "/node"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "npm"
+    directory: "/node-proto"
     schedule:
       interval: "weekly"
