@@ -9,7 +9,7 @@ jobs:
   java:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-java@v4
         with:
@@ -28,7 +28,7 @@ jobs:
   node:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: bufbuild/buf-setup-action@v1
 
@@ -54,7 +54,7 @@ jobs:
   node-proto:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: bufbuild/buf-setup-action@v1
 
@@ -80,7 +80,7 @@ jobs:
   go:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-go@v4
         with:
@@ -94,7 +94,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: bufbuild/buf-setup-action@v1
 
@@ -103,7 +103,7 @@ jobs:
   breaking:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
 
         - uses: bufbuild/buf-setup-action@v1
 
