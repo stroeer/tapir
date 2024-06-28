@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v3
 
       # we need Node for the local execution of protoc Typescript plugin
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: 'npm'
           cache-dependency-path: 'node/package-lock.json'
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: 'npm'
           cache-dependency-path: 'node-proto/package-lock.json'
