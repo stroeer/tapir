@@ -24,7 +24,7 @@
     "@tsconfig/strictest": "2.0.1",
     "@types/node-fetch": "2.6.4",
     "node-fetch": "2.6.11",
-    "prettier": "2.8.8",
+    "prettier": "3.3.2",
     "typescript": "5.0.4"
   },
   "repository": {
