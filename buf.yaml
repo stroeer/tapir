@@ -12,13 +12,8 @@ lint:
     - DEFAULT
   except:
     - ENUM_VALUE_PREFIX
-    - FIELD_NOT_REQUIRED
-    - PACKAGE_NO_IMPORT_CYCLE
     - RPC_RESPONSE_STANDARD_NAME
 
 breaking:
   use:
     - FILE
-  except:
-    - EXTENSION_NO_DELETE
-    - FIELD_SAME_DEFAULT
