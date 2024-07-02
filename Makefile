@@ -1,4 +1,4 @@
-all: generate test fmt lint breaking
+all: build generate test fmt lint breaking
 
 TEMPLATE ?= buf.gen.yaml
 .PHONY: generate
@@ -20,6 +20,22 @@ breaking: ## Detects breaking changes using https://docs.buf.build/breaking-over
 fmt: ## Formats all proto files using https://docs.buf.build/format/style
 	@echo "+ $@"
 	@buf format -w
+
+.PHONY: build
+build: ## Builds buf image, see https://buf.build/docs/reference/images
+	@echo "+ $@"
+	@buf build
+
+# Buf bsr label, see https://buf.build/docs/bsr/module/publish#pushing-with-labels
+LABEL ?=
+.PHONY: push
+push: build ## Pushes tapir to the buf schema registry, see https://buf.build/docs/bsr/introduction
+	@echo "+ $@"
+ifeq ($(LABEL),)
+	@buf push
+else
+	@buf push --label $(LABEL)
+endif
 
 .PHONY: test
 test: generate ## Runs all tests
