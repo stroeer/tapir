@@ -1,12 +1,10 @@
-version: v1
+version: v2
 
 plugins:
-  - plugin: buf.build/protocolbuffers/go:v1.31.0
+  - remote: buf.build/protocolbuffers/go:v1.31.0
     out: gen/go
-    opt:
-      - module=github.com/stroeer/go-tapir
+    opt: module=github.com/stroeer/go-tapir
 
-  - plugin: buf.build/grpc/go:v1.3.0
+  - remote: buf.build/grpc/go:v1.3.0
     out: gen/go
-    opt:
-      - module=github.com/stroeer/go-tapir
+    opt: module=github.com/stroeer/go-tapir

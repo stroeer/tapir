@@ -1,20 +1,19 @@
-version: v1
+version: v2
 
-name: buf.build/stroeer/tapir
-
-build:
-  excludes:
-    - node
-    - java
-
-breaking:
-  use:
-    - FILE
+modules:
+  - path: .
+    name: buf.build/stroeer/tapir
+    excludes:
+      - java
+      - node
 
 lint:
   use:
     - DEFAULT
   except:
-    - RPC_RESPONSE_STANDARD_NAME
     - ENUM_VALUE_PREFIX
-  allow_comment_ignores: true
+    - RPC_RESPONSE_STANDARD_NAME
+
+breaking:
+  use:
+    - FILE
