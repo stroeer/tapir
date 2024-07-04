@@ -138,4 +138,4 @@ jobs:
         run: |
           RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
           echo $RELEASE_TAG
-          make push LABEL=RELEASE_TAG
+          make push

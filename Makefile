@@ -26,16 +26,11 @@ build: ## Builds buf image, see https://buf.build/docs/reference/images
 	@echo "+ $@"
 	@buf build
 
-# Buf bsr label, see https://buf.build/docs/bsr/module/publish#pushing-with-labels
 LABEL ?=
 .PHONY: push
-push: build ## Pushes tapir to the buf schema registry, see https://buf.build/docs/bsr/introduction
+push: build ## Pushes tapir to the buf schema registry, see https://buf.build/docs/bsr/introduction and https://buf.build/docs/bsr/module/publish#pushing-with-labels
 	@echo "+ $@"
-ifeq ($(LABEL),)
-	@buf push
-else
-	@buf push --label $(LABEL)
-endif
+	@buf push --git-metadata
 
 .PHONY: test
 test: generate ## Runs all tests
