@@ -121,3 +121,21 @@ jobs:
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.GO_TAPIR_TOKEN }} \
           --data '{"event_type": "publish", "client_payload": { "tag": "'"$RELEASE_TAG"'" }}'
+
+
+  bsr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          make push
