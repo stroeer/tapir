@@ -26,7 +26,6 @@ build: ## Builds buf image, see https://buf.build/docs/reference/images
 	@echo "+ $@"
 	@buf build
 
-LABEL ?=
 .PHONY: push
 push: build ## Pushes tapir to the buf schema registry, see https://buf.build/docs/bsr/introduction and https://buf.build/docs/bsr/module/publish#pushing-with-labels
 	@echo "+ $@"
