@@ -31,7 +31,7 @@ metaData.set('authorization', apiToken);
 
 export const getSectionPage = (
   sectionPath: string,
-  cb: (err: ServiceError | null, sectionPage?: SectionPage | undefined) => void
+  cb: (err: ServiceError | null, sectionPage?: SectionPage | undefined) => void,
 ) => {
   const request = createRequest(sectionPath);
   console.log({ sectionPath });
