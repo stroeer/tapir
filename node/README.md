@@ -29,10 +29,10 @@ brew install nvm
 # add this to your shell/bash profile:
 # source /usr/local/opt/nvm/nvm.sh
 
-nvm install 18
-nvm use 18
+nvm install 20
+nvm use 20
 # optional
-nvm alias system 18
+nvm alias system 20
 ```
 
 ### install

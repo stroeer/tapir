@@ -20,14 +20,14 @@ const server = createServer((req, res) => {
           toResult({
             status: 'error',
             error: err,
-          })
+          }),
         );
       } else {
         res.end(
           toResult({
             status: 'success',
             path: sectionPage?.getSection()?.getFieldsMap().get('ref_path'),
-          })
+          }),
         );
       }
     });

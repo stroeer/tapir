@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest'
+import { expect, test } from 'vitest';
 import CoreArticleService from '../stroeer/core/v1/core_article_service_grpc_pb';
 import ArticlePageService from '../stroeer/page/article/v1/article_page_service_grpc_pb';
 import SectionPageService from '../stroeer/page/section/v1/section_page_service_grpc_pb';

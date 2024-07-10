@@ -25,7 +25,7 @@ function fetchData(acceptHeader: 'json' | 'protobuf' = 'json') {
   }).then((response) => {
     if (!response.ok) {
       throw new Error(
-        `The response is not ok. Status: ${response.status}. Text: ${response.statusText}`
+        `The response is not ok. Status: ${response.status}. Text: ${response.statusText}`,
       );
     }
     return response;
@@ -36,7 +36,7 @@ const fetchJSON = () => {
   const start = performance.now();
   fetchData()
     .then((response) => response.json())
-    .then((data) => {
+    .then((data: any) => {
       console.log('success: json');
       GetNavigationResponse.fromJson(data);
       const end = performance.now();
