@@ -4,7 +4,7 @@ syntax = "proto3";
  * @FileArticle ⚙︎ CurationService
  */
 
-package stroeer.curation.v1;
+package foo;
 
 import "google/protobuf/timestamp.proto";
 import "stroeer/core/v1/article.proto";
