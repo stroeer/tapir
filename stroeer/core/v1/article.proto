@@ -64,7 +64,7 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
 
 message Article {
   int64 id = 1;
-  Type type = 2;
+  string type = 2;
   SubType sub_type = 3;
   stroeer.core.v1.Reference section_tree = 4;
   map<string, string> fields = 5;
