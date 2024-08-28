@@ -914,22 +914,22 @@ message Article {
  */
 
 /**
-* This represents an author (or agency). The entity may be the main content
-* on author pages or simply indicate the author of an [Article](article.html).
-*
-* | Field name         | Type                                             | Description                                                                                                                   |
-* |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-* | id                 | int64                                           | The unique identifier (cms id) of the author.                                                                                 |
-* | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
-* | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
-* | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
-* | work_history       | [Author.HistoryEntry](#historyentry)[]           | The career entries of the author.                                                                                             |
-* | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
-* | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
-* | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
-*
-* @CodeBlockStart protobuf
-*/
+ * This represents an author (or agency). The entity may be the main content
+ * on author pages or simply indicate the author of an [Article](article.html).
+ *
+ * | Field name         | Type                                             | Description                                                                                                                   |
+ * |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+ * | id                 | int64                                           | The unique identifier (cms id) of the author.                                                                                 |
+ * | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
+ * | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
+ * | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
+ * | work_history       | [Author.HistoryEntry](#historyentry)[]           | The career entries of the author.                                                                                             |
+ * | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
+ * | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
+ * | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
+ *
+ * @CodeBlockStart protobuf
+ */
 message Author {
   int64 id = 1;
   Type type = 2;
@@ -942,17 +942,17 @@ message Author {
   repeated string areas_of_expertise = 8;
   /** @CodeBlockEnd */
   /**
-  *
-  * ## `enum Type`
-  *
-  * | Enum value         | Description                                                        |
-  * |--------------------|--------------------------------------------------------------------|
-  * | `TYPE_UNSPECIFIED` | unspecified                                                        |
-  * | `AUTHOR`           | The author is a person.                                            |
-  * | `AGENCY`           | The author is an agency or company.                                |
-  *
-  * @CodeBlockStart protobuf
-  */
+   *
+   * ## `enum Type`
+   *
+   * | Enum value         | Description                                                        |
+   * |--------------------|--------------------------------------------------------------------|
+   * | `TYPE_UNSPECIFIED` | unspecified                                                        |
+   * | `AUTHOR`           | The author is a person.                                            |
+   * | `AGENCY`           | The author is an agency or company.                                |
+   *
+   * @CodeBlockStart protobuf
+   */
   enum Type {
     TYPE_UNSPECIFIED = 0;
     AUTHOR = 1;
@@ -979,77 +979,77 @@ message Author {
   }
   /** @CodeBlockEnd */
   /**
-  *   ## Sample Author
-  * ```json
-  * {
-  *   "id": 100000001,
-  *   "type": "AUTHOR",
-  *   "fields": {
-  *     "flag:hidden": "true",
-  *     "role": "Hier steht ein Titel",
-  *     "academic_degree": "Prof.",
-  *     "last_name": "Doe",
-  *     "short_name": "jdoe",
-  *     "headline": "Autorenseite von John Doe",
-  *     "first_name": "John",
-  *     "ignore_vg_wort": "true",
-  *     "url": "/author/id_100000001/john-doe.html"
-  *   },
-  *   "elements": [
-  *     { "//": "Author Image Element removed for better readability" }
-  *   ],
-  *   "work_history": [
-  *     {
-  *       "role": "Dummy",
-  *       "description": "Hält nur als pseudo Autor her, John Doe eben ;)"
-  *     },
-  *     {
-  *       "role": "Chief Executive Officer of ACME",
-  *       "description": "Very important"
-  *     }
-  *   ],
-  *   "education": [
-  *     {
-  *       "children": [],
-  *       "fields": {},
-  *       "type": "",
-  *       "label": "John Doe Acedamy",
-  *       "href": "https://www.john.doe.acedamy.com"
-  *     },
-  *     {
-  *       "children": [],
-  *       "fields": {},
-  *       "type": "",
-  *       "label": "ACME university",
-  *       "href": "https://www.acmemilano.it/"
-  *     }
-  *   ],
-  *   "social_profiles": [
-  *     {
-  *       "children": [],
-  *       "fields": {},
-  *       "type": "",
-  *       "label": "MySpace",
-  *       "href": "https://myspace.com/johndoe"
-  *     },
-  *     {
-  *       "children": [],
-  *       "fields": {},
-  *       "type": "",
-  *       "label": "Instagram",
-  *       "href": "https://www.instagram.com/johndoe.x/?hl=en"
-  *     }
-  *   ],
-  *   "areas_of_expertise": [
-  *     "Dummy",
-  *     "ACME",
-  *     "Example",
-  *     "no-op",
-  *     "Cyber",
-  *     "PDP-11-Assembly",
-  *     "Tetris"
-  *   ]
-  * }
-  * ```
-  */
+   *   ## Sample Author
+   * ```json
+   * {
+   *   "id": 100000001,
+   *   "type": "AUTHOR",
+   *   "fields": {
+   *     "flag:hidden": "true",
+   *     "role": "Hier steht ein Titel",
+   *     "academic_degree": "Prof.",
+   *     "last_name": "Doe",
+   *     "short_name": "jdoe",
+   *     "headline": "Autorenseite von John Doe",
+   *     "first_name": "John",
+   *     "ignore_vg_wort": "true",
+   *     "url": "/author/id_100000001/john-doe.html"
+   *   },
+   *   "elements": [
+   *     { "//": "Author Image Element removed for better readability" }
+   *   ],
+   *   "work_history": [
+   *     {
+   *       "role": "Dummy",
+   *       "description": "Hält nur als pseudo Autor her, John Doe eben ;)"
+   *     },
+   *     {
+   *       "role": "Chief Executive Officer of ACME",
+   *       "description": "Very important"
+   *     }
+   *   ],
+   *   "education": [
+   *     {
+   *       "children": [],
+   *       "fields": {},
+   *       "type": "",
+   *       "label": "John Doe Acedamy",
+   *       "href": "https://www.john.doe.acedamy.com"
+   *     },
+   *     {
+   *       "children": [],
+   *       "fields": {},
+   *       "type": "",
+   *       "label": "ACME university",
+   *       "href": "https://www.acmemilano.it/"
+   *     }
+   *   ],
+   *   "social_profiles": [
+   *     {
+   *       "children": [],
+   *       "fields": {},
+   *       "type": "",
+   *       "label": "MySpace",
+   *       "href": "https://myspace.com/johndoe"
+   *     },
+   *     {
+   *       "children": [],
+   *       "fields": {},
+   *       "type": "",
+   *       "label": "Instagram",
+   *       "href": "https://www.instagram.com/johndoe.x/?hl=en"
+   *     }
+   *   ],
+   *   "areas_of_expertise": [
+   *     "Dummy",
+   *     "ACME",
+   *     "Example",
+   *     "no-op",
+   *     "Cyber",
+   *     "PDP-11-Assembly",
+   *     "Tetris"
+   *   ]
+   * }
+   * ```
+   */
 }
