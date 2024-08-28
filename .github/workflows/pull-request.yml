@@ -16,9 +16,11 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       - name: generate
         run: make generate
@@ -32,9 +34,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       # we need Node for the local execution of protoc Typescript plugin
       - uses: actions/setup-node@v4
@@ -60,9 +64,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       # we need Node for the local execution of protoc Typescript plugin
       - uses: actions/setup-node@v4
@@ -92,35 +98,23 @@ jobs:
         with:
           go-version: '1.20'
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       - name: generate go code
         run: make generate TEMPLATE=buf.gen.go.yaml
 
-  lint:
+  buf:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          token: ${{ secrets.BUF_TOKEN }}
+          setup_only: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: bufbuild/buf-lint-action@v1
-
-  breaking:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-
-        - uses: bufbuild/buf-setup-action@v1
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-
-        - uses: bufbuild/buf-breaking-action@v1
-          if: always()
-          with:
-            against: "https://github.com/stroeer/tapir.git#branch=main"
-
+          breaking_against: "https://github.com/stroeer/tapir.git#branch=main"
