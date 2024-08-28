@@ -135,7 +135,7 @@ jobs:
           --data '{"event_type": "publish", "client_payload": { "tag": "'"$RELEASE_TAG"'" }}'
 
 
-  bsr:
+  buf:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
