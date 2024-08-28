@@ -11,9 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       - uses: actions/setup-java@v4
         with:
@@ -47,9 +49,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       # we need Node for the local execution of protoc Typescript plugin
       - name: install
@@ -87,9 +91,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
 
       - name: install
         run: npm ci
@@ -134,14 +140,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: bufbuild/buf-action@v1
         with:
+          token: ${{ secrets.BUF_TOKEN }}
+          setup_only: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: push
-        env:
-          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
-        run: |
-          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
-          echo $RELEASE_TAG
-          make push
+          breaking_against: "https://github.com/stroeer/tapir.git#branch=main"
