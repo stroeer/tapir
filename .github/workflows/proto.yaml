@@ -1,4 +1,4 @@
-name: buf
+name: proto
 
 on:
   push:
