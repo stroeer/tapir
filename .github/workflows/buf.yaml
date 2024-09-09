@@ -159,7 +159,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           token: ${{ secrets.BUF_TOKEN }}
 
-      - name: generate go code
+      - name: generate
         run: make generate TEMPLATE=buf.gen.go.yaml
 
       - name: publish
