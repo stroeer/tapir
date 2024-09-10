@@ -3,7 +3,9 @@
    <h1>tapir</h1>
 </div>
 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/stroeer/tapir?color=%23f653a6&label=Release&style=flat-square)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/stroeer/tapir?color=%23f653a6&label=Release&style=flat-square) 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/stroeer/tapir/proto.yaml?style=flat-square&label=build) 
+![GitHub License](https://img.shields.io/github/license/stroeer/tapir?style=flat-square) 
 
 The **T**-online **API** **R**epository contains the interface definitions of t-online APIs that support the [gRPC](https://grpc.io/) protocol. You can use these definitions with open source tools to generate client libraries, documentation and other artifacts.
 
@@ -24,37 +26,64 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 * proto message fields and entries of maps are optional unless commented otherwise. Clients must not break if an optional field or map entry is missing.
 
 
-## generate gRPC source code
+## generate code
 
-To generate gRPC source code for t-online APIs you need to install `protoc` and gRPC plugins on your local machine,
-or you can use our [buf generate template](./buf.gen.yaml) to generate code for `java`, `node` and `go`
-using buf [remote plugins](https://buf.build/docs/bsr/remote-plugins/usage/):
+We use the [buf cli](https://buf.build/docs/generate/overview) to generate code for interacting with the t-online APIs. See [docs](https://buf.build/docs/installation)
+for installation instructions.
+
+Run the following commands to generate code for `java`, `python`, `node`, `protobuf-es` (`node-proto`) or `go`:
 
 ```shell
 # java and python
 make generate
 # node
 make generate TEMPLATE=buf.gen.node.yaml
-# node-proto
+# protobuf-es
 make generate TEMPLATE=buf.gen.node-proto.yaml
 # go
 make generate TEMPLATE=buf.gen.go.yaml
 ```
 
-### quality assurance
+See corresponding `buf.gen.*.yaml` code generation configuration.
 
-We use [buf](https://buf.build/) to lint our proto files and to detect breaking changes. In addition, we run some basic language specific tests to verify a
-successful code generation for `java`, `node` and `go`.
+## testing and quality assurance
 
-Run `make` to run all checks.
+We use the [buf cli](https://buf.build/docs/ecosystem/cli-overview) for quality assurance of our proto files:
+
+* `make lint`: linting all proto files with [buf lint](https://buf.build/docs/lint/overview) 
+* `make fmt`: formatting all proto files with [buf fmt](https://buf.build/docs/format/style)
+* `make breaking`: check for breaking changes against the main branch with [buf breaking](https://buf.build/docs/breaking/overview)
+
+These tools are configured in the `buf.yaml` file. 
+
+In addition, we run some basic language specific tests to verify a successful code generation for `java` and `node`.
+
+## releases
+
+We use [semantic versioning](https://semver.org/) for our releases. 
+
+To create a new release run`make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean main branch. This will create 
+a new tag and push it to the main branch. In addition, a new release will be created in GitHub if a
+fine-grained personal access token is provided in the `GITHUB_TOKEN` environment variable.
+
+### buf schema registry
+
+We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
+provides SDKs for various languages to interact with the t-online APIs.
 
 ### client libraries
 
-We generate packages for [java](https://github.com/stroeer/tapir/packages/235034) and [node](https://github.com/stroeer/tapir/packages/235031)
-automatically for each new tag which can be integrated in your build system. 
+In addition to the SDKs available in the [buf schema registry (BSR)](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
+for:
 
-In addition, a go module will be generated and pushed to [go-tapir](https://github.com/stroeer/go-tapir). 
+* [java](https://github.com/stroeer/tapir/packages/235034)
+* [node](https://github.com/stroeer/tapir/packages/235031) 
+* [protobuf-es](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
 
-## release a new tapir version
+automatically for each new tag which can be integrated in your build system. Go code will be generated and tagged in [go-tapir](https://github.com/stroeer/go-tapir).
 
-To create a new release run `make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean main branch.
+See our GitHub [workflow](.github/workflows/proto.yaml) for details. 
+
+
+
+ 
