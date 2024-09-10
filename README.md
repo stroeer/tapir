@@ -64,7 +64,7 @@ We use [semantic versioning](https://semver.org/) for our releases.
 
 To create a new release run`make BUMP=[major|minor|patch] release` (defaults to `patch)` in your clean main branch. This will create 
 a new tag and push it to the main branch. In addition, a new release will be created in GitHub if a
-fine-grained personal access tokens is provided in the `GITHUB_TOKEN` environment variable.
+fine-grained personal access token is provided in the `GITHUB_TOKEN` environment variable.
 
 ### buf schema registry
 
