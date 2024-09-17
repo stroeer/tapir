@@ -4,6 +4,7 @@ syntax = "proto3";
 // and all it's related fields.
 //
 // This package also defines gRPC services to retrieve such articles.
+// Test
 package stroeer.core.v1;
 
 import "google/protobuf/timestamp.proto";
