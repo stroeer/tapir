@@ -5,323 +5,276 @@ package stroeer.core.v1;
 import "google/protobuf/timestamp.proto";
 import "stroeer/core/v1/shared.proto";
 
-/**
- * @FileArticle Article
- */
+/*
+   # Article
 
-/**
- * An article represents a piece of content created in the content management
- * system. Different types of content like text or video articles share
- * the same message structure, they can be distinguished by the
- * [`Article.Type`](#type) field.
- * Text articles (`type = Article.Type.ARTICLE`) also have
- * [`Article.SubType`](#sub_type) to differentiate its purpose and form.
- *
- * ## Teaser
- *
- * To improve performance of database access and during network transmission tapir
- * is using a lightweight representation of `Article` in some places.
- *
- * Depending on the service used to retrieve an article, the `Article` message might
- * only contain data required on section pages:
- *
- * - `Article.body` set to `null`
- * - `Article.elements` filtered by `Element.relations` to only contain `TEASER`, but neither `OPENER` nor `SOCIAL`
- *
- * Thus, not containing any data that is only required on detail pages.
- * This lightweight representation is sometimes referred to as `Teaser`.
- *
- * | Field name         | Type                                            | Description                                                                                                                                  |
- * |--------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
- * | `id`               | `int64`                                         | Unique ID of the article defined by the content management system (required).                                                                |
- * | `type`             | [`Type`][t]                                     | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
- * | `sub_type`         | [`SubType`][st]                                 | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
- * | `section_tree`     | [`Reference`][ref]                              | Hierarchical section tree information of the article (required).                                                                             |
- * | `fields`           | `map<string, string>`                           | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
- * | `bodies`           | `repeated` [`Body`][b]                          | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
- * | `metadata`         | [`Metadata`][md]                                | The articles [Metadata][md], containing state and various timestamps.                                                                        |
- * | `elements`         | `repeated` [`Element`][e]                       | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
- * | `keywords`         | `repeated` [`Keyword`][k]                       | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
- * | `onwards`          | `int64`                                         | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
- * | `variants`         | `map<string, Article>`                          | Variants of this article, e.g. for headline testing.                                                                                         |
- * | `entities`         | `string` `[deprecated]`                         | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
- * | `authors`          | `repeated` [`Author`][author]                   | Authors and or Agencies ƒor this content                                                                                                     |                                                                                                                                 |
- * | `related_articles` | `repeated Article`                              | Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).    |
- * | `references`       | `repeated` [`Reference`](reference.html)[]                 | References, e.g. URLs belonging to this article.                                                                                                                                                                                                                                                             |
- *
- * [t]:      #enum-type
- * [b]:      article_%DB%B0_body.html
- * [e]:      article_%DB%B0_element.html
- * [k]:      article_%DB%B0_keyword.html
- * [st]:     #enum-subtype
- * [md]:     article_%DB%B0_metadata.html
- * [ref]:    reference.html
- * [author]: author.html
- *
- * @CodeBlockStart protobuf
- * */
+   An article represents a piece of content created in the content management
+   system. Different types of content like text or video articles share
+   the same message structure, they can be distinguished by the
+   [`Article.Type`](#stroeer.core.v1.Article.Type) field.
+   Text articles (`Article[@type = Article.Type.ARTICLE]`) also have
+   [`Article.SubType`](#stroeer.core.v1.Article.SubType) to differentiate its purpose and form.
 
+   To convert content from the content management system to a tapir protobuf message,
+   we use a software component called _el-dub-tor_ (aka _Adapter_).
+
+   ## Teaser
+
+   To improve performance of database access and during network transmission tapir
+   is using a lightweight representation of `Article` in some places.
+
+   Depending on the service used to retrieve an article, the `Article` message might
+   only contain data required on section pages:
+
+   - `Article.body` set to `null`
+   - `Article.elements` filtered by `Element.relations` to only contain `TEASER`, but neither `OPENER` nor `SOCIAL`
+   - Some element types may be missing, since they are only required on detail pages, e.g. `AUDIO`
+
+   Thus, not containing any data that is only required on detail pages.
+   This lightweight representation is sometimes referred to as `teaser`.
+
+   ## Details
+
+   ### `Article.fields`
+
+   The entry set is mainly defined by the content management system and
+   will vary depending on the main type of the article.
+
+   Some fields are automatically set by the content management system without
+   further modification, others are calculated programmatically by our adapter.
+
+   > ⚠ Clients must be resilient to unknown or missing entries. ⚠
+
+   #### For `Article[@type=Article.Type.ARTICLE`] the contents of the map are as follows:
+
+   | key                         | mandatory | description                                                                                            |
+   |-----------------------------|-----------|--------------------------------------------------------------------------------------------------------|
+   | `headline`                  | `*`       | the headline for this content (german: "Überschrift" or "Titel")                                       |
+   | `top_line`                  | `*`       | the top line for this content (german: "dachzeile")                                                    |
+   | `ref_path`                  | `*`       | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html`                               |
+   | `ref_canonical`             | `*`       | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html      |
+   | `social_headline`           |           | use-case specific `headline`: used for social markup (e.g. `og:title`), overrides `headline`           |
+   | `headline_short`            |           | use-case specific `headline`: used for "Schlagzeilen", overrides `headline`                            |
+   | `teaser:headline`           |           | use-case specific `headline`: used when this content is rendered as a teaser                           |
+   | `newsletter_subject_header` |           | use-case specific `headline`: used when this content is sent via newsletter E-Mail (e.g. Tagesanbruch) |
+   | `tracking_title`            |           | refers to CMS `internalStorage.trackingTitle` (probably unused)                                        |
+   | `mzt_title`                 |           | use-caes specific `headline`: used when this content is rendered as mzt ("mehr zum Thema")             |
+   | `mzt_top_line`              |           | use-caes specific `top_line`: used when this content is rendered as mzt ("mehr zum Thema")             |
+   | `teaser_author_label`       |           | overrides the default author/agency behaviour (cms: "Autorenkennzeichnung")                            |
+   | `summary`                   |           | summary for this content, used on detail pages                                                         |
+   | `teaser_text`               |           | used on teasers, overrides `summary`                                                                   |
+   | `meta_robots`               |           | value for the `<meta:robots>` directive                                                                |
+   | `social_description`        |           | like `social_headline` used for social markup                                                          |
+   | `meta_title`                |           | HTML `<meta title>`                                                                                    |
+   | `meta_description`          |           | HTML `<meta description>`                                                                              |
+   | `reading_time_minutes`      |           | estimated reading time in minutes                                                                      |
+   | `vg_wort_pixel`             |           | link for tracking this content with VG-Wort                                                            |
+
+   ##### `flags`
+
+   Some fields are prefixed with `flag:` to indicate that they are boolean flags:
+
+   | key                                | description                                                                                          |
+   |------------------------------------|------------------------------------------------------------------------------------------------------|
+   | `flag:hidden`                      | this content must be excluded from automated curations (CMS: `no auto-content`/`manuell kuratieren`) |
+   | `flag:advertisement`               | this content is an payed advertisement, e.g. an advertorial                                          |
+   | `flag:disable_metatag_ad`          | disable metatag ads for this content                                                                 |
+   | `flag:disable_seeding_alliance_ad` | disable seeding alliance ads for this content                                                        |
+   | `flag:show_more`                   | this content's body may be long and will be collapsed. A "show more" button will be shown.           |
+   | `flag:exclusive`                   | this content is exclusive, e.g. "exklusiv" or "exclusively"                                          |
+   | `flag:breaking_news`               | this content is breaking news, mark as "Eilmeldung"                                                  |
+   | `flag:disable_taboola_ad`          | disable taboola ads for this content                                                                 |
+   | `flag:live`                        | this content covers live events, its teaser will be marked as "Live"                                 |
+
+   #### For `Article.Type.GALLERY`
+
+   this map will contain the following data:
+
+   | key        | mandatory | description                   |
+   |------------|-----------|-------------------------------|
+   | `headline` | `*`       | the headline for this content |
+*/
 message Article {
+  // Unique ID of the article defined by the content management system (mandatory).
   int64 id = 1;
+  // Main content type of the article (mandatory).
   Type type = 2;
+  // Sub type of the article. For `ARTICLE` this field always holds a `sub_type`,
+  // for others like `GALLERY` it may not.
   SubType sub_type = 3;
+  // Hierarchical section tree information of the article (mandatory).
   stroeer.core.v1.Reference section_tree = 4;
+  // Generic map containing general content and configuration information of the article (mandatory). See sample section for details.
   map<string, string> fields = 5;
+  // Body of the article to be rendered on detail pages. May be `null`/missing in **teaser** representations.
   repeated Body bodies = 6;
+  // The articles metadata, containing state and various timestamps.
   Metadata metadata = 7;
+  // `Element`s required to render the teaser, such as `IMAGE`, `VIDEO`.
+  // Also contains deprecated `AUTHOR` and `AGENCY` elements, which have been replaced by `authors`.
   repeated Element elements = 8;
+  // Extracted keywords from the article body like persons, locations, organizations etc.
   repeated Keyword keywords = 9;
+  // IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.
+  // Deprecated in favor of `related_articles`.
   repeated int64 onwards = 10 [deprecated = true];
+  // Variants of this article, e.g. for a/b-testing (headline) testing.
+  // merge the variants with the main article to get the full article.
   map<string, Article> variants = 11;
+  // Authors and or Agencies ƒor this content
   repeated Author authors = 12;
+
+  // Editorial articles, which are related to the main article.
+  // May contain only a shallow article containing only its id.
+  // Not all grpc services will resolve return the related articles.
   repeated Article related_articles = 13;
+  // References, e.g. URLs belonging to this article.
   repeated Reference references = 14;
+  // Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.
   repeated string entities = 100 [deprecated = true];
 
-  /** @CodeBlockEnd */
+  /*
+     To distinguish between different types of articles, we use the `Type` enum.
+     This is sometimes referred to as the "article type", "content type" or "main type".
 
-  /**
-     * ## `fields`
-     *
-     * The entry set is defined by the content management system and
-     * will vary depending on the main type of the article.
-     *
-     * ⚠ Clients must be resilient to unknown or missing entries. ⚠
-     *
-     * ### For `Article.Type.ARTICLE`
-     *
-     * this map will contain the following data:
-     *
-     * | key                    | mandatory | description                                                                                          |
-     * |------------------------|-----------|------------------------------------------------------------------------------------------------------|
-     * | `headline`             | *         | the headline for this content                                                                        |
-     * | `top_line`             | *         | "dachzeile"                                                                                          |
-     * | `ref_path`             | *         | URL path for this article e.g. `/${section_tree}/id_${id}/${title}.html`                             |
-     * | `ref_canonical`        | *         | Canonical URL of this article, may differ if external, e.g. https://www.example.com/external.html    |
-     * | `summary`              |           | summary for this content                                                                             |
-     * | `teaser_text`          |           | used on teasers, overrides `summary`                                                                 |
-     * | `meta_robots`          |           |                                                                                                      |
-     * | `social_headline`      |           | used for social markup, overrides `headline`                                                         |
-     * | `headline_short`       |           | used for "Schlagzeilen", overrides `headline`                                                        |
-     * | `meta_title`           |           | HTML `<meta title>`                                                                                  |
-     * | `expert_line`          |           |                                                                                                      |
-     * | `social_description`   |           |                                                                                                      |
-     * | `meta_description`     |           | HTML `<meta description>`                                                                            |
-     * | `reading_time_minutes` |           | estimated reading time in minutes                                                                    |
-     * | `flag:hidden`          |           | this content must be excluded from automated curations (CMS: `no auto-content`/`manuell kuratieren`) |
-     *
-     *
-     * ### For `Article.Type.GALLERY`
-     *
-     * this map will contain the following data:
-     *
-     * | key        | mandatory | description                   |
-     * |------------|-----------|-------------------------------|
-     * | `headline` | *         | the headline for this content |
-     *
-     * ## `enum Type`
-     *
-     * | Enum value         | Description                                                                                                      |
-     * |--------------------|------------------------------------------------------------------------------------------------------------------|
-     * | `TYPE_UNSPECIFIED` | unspecified                                                                                                      |
-     * | `ARTICLE`          | A text article, usually [_sub typed_][sub_type]                                                                  |
-     * | `IMAGE`            | `[deprecated]` An image article, unused, deprecated                                                              |
-     * | `VIDEO`            | A video article, contains HLS-videos, as well as external live str                                               |
-     * | `GALLERY`          | A gallery article                                                                                                |
-     * | `EMBED`            | An embed article including an oembed or edge_side_include element                                                |
-     * | `AUTHOR`           | An author article, currently not implemented                                                                     |
-     * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated                                                             |
-     * | `EXTERNAL`         | An external article (teaser-like external article)                                                               |
-     * | `CLUSTER`          | a thematically grouped cluster for various amount of articles, resolved `Trails` embedded via `related_articles` |
-     * | `TOPIC`            | Article with content to be rendered on topic overview pages on teaser position                                   |
-     * | `INTERNAL`         | Used for internal purposes only.                                                                                 |
-
-     *
-     * [sub_type]: #enum-contentsubtype
-     *
-     * @CodeBlockStart protobuf
+     Content with `Type.ARTICLE` is usually sub typed via [`enum SubType`](#stroeer.core.v1.Article.SubType) to alter its form and purpose.
   */
-
   enum Type {
     TYPE_UNSPECIFIED = 0;
+    // Most common type of article, usually sub typed to further differentiate its form and purpose.
     ARTICLE = 1;
+    // `[deprecated]` An image article, unused, deprecated
     IMAGE = 2 [deprecated = true];
+    // A video article, contains video, sometimes external video references ("glomex") or even live stream streams.
     VIDEO = 3;
+    // A gallery article
     GALLERY = 4;
+    // An embed article including an `oEmbed` or `edge_side_include` ("esi")
     EMBED = 5;
+    // An author article
     AUTHOR = 6;
+    // `[deprecated]` An agency article, unused, deprecated
     AGENCY = 7 [deprecated = true];
+    // An external article that references externeral resources (teaser-like external article, e.g. "watson.de")
     EXTERNAL = 8;
+    // a thematically grouped cluster for variable amount of articles
     CLUSTER = 9;
+    // A topic page
     TOPIC = 10;
+    // Used for internal purposes only.
     INTERNAL = 100;
   }
-  /** @CodeBlockEnd */
-
-  /**
-   * ## `enum SubType`
-   *
-   * Content with `Type.ARTICLE` is usually sub typed to alter its form and purpose.
-   *
-   * | Enum value             | Description                                                |
-   * |------------------------|------------------------------------------------------------|
-   * | `SUB_TYPE_UNSPECIFIED` | unspecified                                                |
-   * | `NEWS`                 | _Meldung/Nachricht_ — this is the default                  |
-   * | `COLUMN`               | _Kolumne_                                                  |
-   * | `COMMENTARY`           | _Kommentar_                                                |
-   * | `INTERVIEW`            | _Interview_                                                |
-   * | `CONTROVERSY`          | _Pro und Kontra/Streitgespräch_                            |
-   * | `TAGESANBRUCH`         | _Tagesanbruch_                                             |
-   * | `EVERGREEN`            | _Evergreen_                                                |
-   * | `AGENCY_IMPORT`        | Content originally imported from agency/tickers by the CMS |
-   * | `ADVERTORIAL`          | _Advertorial_                                              |
-   * | `QUIZ`                 | _Quiz_                                                     |
-   * | `GAME`                 | _(Browser)Game_                                            |
-   * | `COMPLIANCE`           | Internal company articles like an imprint or contact forms |
-   * | `RECIPE`               | Cooking recipe                                             |
-   *
-   * @CodeBlockStart protobuf
-   */
 
   enum SubType {
     SUB_TYPE_UNSPECIFIED = 0;
+    // _Meldung/Nachricht_ — this is the default
     NEWS = 1;
+    // _Kolumne_ — a column
     COLUMN = 2;
+    // _Kommentar_ — a commentary
     COMMENTARY = 3;
+    // _Interview_ — an interview
     INTERVIEW = 4;
+    // _Pro und Kontra/Streitgespräch_ — a controversy
     CONTROVERSY = 5;
+    // _Tagesanbruch_ — a daily news article (plus newsletter and podcast)
     TAGESANBRUCH = 6;
+    // _Evergreen_ — a long-lasting article, not time sensitive
     EVERGREEN = 7;
+    // Content originally imported from agency/tickers by the CMS
     AGENCY_IMPORT = 8;
+    // _Advertorial_ — a payed advertisement, e.g. an advertorial
     ADVERTORIAL = 9;
+    // _Quiz_ — a quiz article
     QUIZ = 10;
+    // _Browser Game_ — a browser game article (/spiele)
     GAME = 11;
+    // Internal company articles like an imprint or contact forms
     COMPLIANCE = 12;
+    // _Recipe_ — a cooking recipe article
     RECIPE = 13;
   }
-  /** @CodeBlockEnd */
 
-  /**
-   * @FileArticle Article ۰ Element
-   */
+  /*
 
-  /**
-   *
-   * `Element`s are self-contained objects that represent structured data that
-   * is usually too complex to fit into our usual workhorse which is the
-   * [`Body`](#body).
-   *
-   * `Element`s can appear in multiple places within the `Article`:
-   *
-   * 1. `Article.elements`
-   *
-   * `Element`s of the article which are not part of the textual body, e.g. author,
-   * opener and teaser. Those elements should be used to render the article
-   * as a teaser e.g. on section pages.
-   *
-   * 2. `BodyNode.children`:
-   *
-   * Is the place where `Element` are quite commonly used. They come in various
-   * [`types`][et] and will be rendered inplace, thus breaking up the textual body.
-   *
-   * 3. `Elements.children`:
-   *
-   * Some more sophisticated `Element`s make use of nesting to make their API
-   * representation more concise and help to structure things hierarchically:
-   * * `video` uses nesting to model its optional _poster image_ which itself is a
-   * normal `image`.
-   *
-   * * `galleries` have their individual `image`s nested within.
-   *
-   * Different types of elements like images or videos share
-   * the same message structure distinguished by the `ElementType` field.
-   *
-   * See [Sample](#samples) section.
-   *
-   * | Field name       | Type                          | Description                                                         |
-   * |------------------|-------------------------------|---------------------------------------------------------------------|
-   * | `type`           | [`Type`][et]                  | `type` of this `Element`, see [`Element.Type`][et]                  |
-   * | `relations`      | `repeated` [`Relation`][rel]  | The usages (relations) of an element. See [`Relation`][rel]         |
-   * | `assets`         | `repeated` [`Asset`][a]       | [`Assets`][a] describing this `Element`, See [Samples][samples]     |
-   * | `children`       | `repeated` [`Element`][e]     | nested `Elements`, e.g. for `Element` of type `gallery` and `video` |
-   *
-   * [et]: #elementtype
-   * [rel]: #elementrelation
-   * [samples]: #samples
-   *
-   * @CodeBlockStart protobuf
-   */
+     `Element`s are self-contained objects that represent structured data that
+     is usually too complex to fit into our usual workhorse which is the
+     [`Body`](#stroeer.core.v1.Article.Body).
 
+     `Element`s can appear in multiple places within the `Article`:
+
+     1. `Article.elements`
+
+     `Element`s of the article which are not part of the textual body, e.g.
+     `OPENER` and `TEASER` usually of type `IMAGE`, `VIDEO` or `EMBED`. Some
+     articles contain a `AUDIO` element, which is used to render the audio player. ("read aloud")
+     Those elements should be used to render the article as a teaser e.g. on section pages.
+
+     2. `BodyNode.children`:
+
+     Is the place where `Element` are quite commonly used. They come in various
+     types and will be rendered inplace, thus breaking up the textual body.
+
+     3. `Elements.children`:
+
+     Some more sophisticated `Element`s make use of nesting to make their API
+     representation more concise and help to structure things hierarchically:
+     * `video` uses nesting to model its optional _poster image_ which itself is a
+     normal `image` element.
+
+     * `galleries` have their individual `image`s nested within.
+
+     Different types of elements like images or videos share
+     the same message structure distinguished by the `ElementType` field.
+
+  */
   message Element {
+    // type of this element
     Type type = 1;
+    // relations of this element, e.g. `OPENER`, `TEASER`, `SOCIAL`
     repeated Relation relations = 2;
+    // assets describing this element, e.g. `IMAGE`, `VIDEO`, `METADATA`
     repeated Asset assets = 3;
+    // nested elements, e.g. for `gallery` and `video` there may be nested `Element` of type `IMAGE`
+    // for video posters or gallery images.
     repeated Element children = 4;
-
-    /** @CodeBlockEnd */
-
-    /**
-     * ## `Element.Type`
-     *
-     * | Enum value             | Description                                                                                                  |
-     * |------------------------|--------------------------------------------------------------------------------------------------------------|
-     * | `TYPE_UNSPECIFIED`     | unspecified                                                                                                  |
-     * | `ARTICLE`              | unused                                                                                                       |
-     * | `IMAGE`                | image, containing further [`Assets`][a]. [Sample][image-sample]                                              |
-     * | `VIDEO`                | video, containing nested [`Asset`][a] and an optional nested image [`Element`][e]. [Sample][video-sample]    |
-     * | `GALLERY`              | gallery, consists of many nested image [`Element`][e]s.                                                      |
-     * | `OEMBED`               | oEmbed, contains one `metadata` [`Asset`][a]. Todo: sample                                                   |
-     * | `AUTHOR`               | author, contains one `metadata` [`Asset`][a] and an optional image [`Element`][e]. Todo: sample              |
-     * | `AGENCY`               | author, contains one `metadata` [`Asset`][a]                                                                 |
-     * | `EDGE_SIDE_INCLUDE`    | `<esi:include>` that must be resolved server-side for SEO reasons, otherwise similar to `OEMBED`             |
-     * | `CITATION`             | oEmbed, contains one `metadata` [`Asset`][a]. Todo: sample                                                   |
-     * | `INTERNAL_WIDGET`      | widget or embed that is handled directly by the front end rendering Todo: sample                             |
-     * | `AUDIO`                | audio element Todo: sample                                                                                   |
-     *
-     * [a]: article_%DB%B0_element_%DB%B0_asset.html
-     * [e]: #element
-     * [image-sample]: #image-element
-     * [video-sample]: #image-element
-     * [gallery-sample]: #gallery-element
-     *
-     * @CodeBlockStart protobuf
-     */
 
     enum Type {
       TYPE_UNSPECIFIED = 0;
+      // unused, deprecated
       ARTICLE = 1;
+      // image element, containing further `Asset`s
       IMAGE = 2;
+      // video element, containing nested `Asset`s and an optional nested image element
       VIDEO = 3;
+      // gallery element, consists of many nested image elements
       GALLERY = 4;
+      // oEmbed element, contains one `metadata` Asset
       OEMBED = 5;
+      // author element, contains one `metadata` Asset and an optional image Element.
+      // Only usage is "Pro and Contra" boxes
       AUTHOR = 6;
+      // agency element, unused, deprecated
       AGENCY = 7;
+      // `<esi:include>` that must be resolved server-side for SEO reasons, otherwise similar to `OEMBED`
       EDGE_SIDE_INCLUDE = 8;
+      // a citation element
       CITATION = 9;
+      // widget or embed that is handled directly by the front end rendering
       INTERNAL_WIDGET = 10;
+      // audio element, containing an `Asset` of type `AUDIO`
       AUDIO = 11;
     }
-    /** @CodeBlockEnd */
 
-    /**
-     * ## `Element.Relation`
-     *
-     * | Enum value             | Description                                                                                       |
-     * |------------------------|---------------------------------------------------------------------------------------------------|
-     * | `RELATION_UNSPECIFIED` | unspecified                                                                                       |
-     * | `OPENER`               | As an opener element (within the content)                                                         |
-     * | `TEASER`               | As a teaser element (when externally viewed)                                                      |
-     * | `SOCIAL`               | Use as social element (mostly images), e.g. `<og:image>` or JSON-LD                               |
-     *
-     * @CodeBlockStart protobuf
-     */
     enum Relation {
       RELATION_UNSPECIFIED = 0;
+      // element should be used as an opener ("Aufmacher") on detail pages
       OPENER = 1;
+      // element should be used as a teaser on section pages
       TEASER = 2;
+      // element should be used as a social media teaser, e.g. `<og:image>` or JSON-LD
       SOCIAL = 3;
     }
-    /** @CodeBlockEnd */
 
     /**
      * ## Samples
@@ -492,34 +445,22 @@ message Article {
      * ```
      */
 
-    /**
-     * @FileArticle Article ۰ Element ۰ Asset
-     */
+    /*
+       An asset nested within a element.
 
-    /**
-     * Asset of an [Element](article_>_element.html).
-     *
-     * An asset configuration is dependant upon its use, it may alter depending
-     * on its [`type`](#enum-type) field.
-     *
-     * | Field name  | Type                             | Description                                                                                                                                    |
-     * |-------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `type`      | [`Type`][at]                     | Type of the asset.                                                                                                                             |
-     * | `fields`    | `map<string, string>`            | Generic map containing general content and configuration information of the asset. Clients must be resilient to unknown or missing entry sets. |
-     * | `metadata`  | [`Metadata`][meta]               | Only present for `assets` of `TYPE.METADATA`. Technical metadata for the parent `element` (state, validity, ...). See [`Metadata`][meta]       |
-     * | `reference` | [`Reference`](reference.html)    | Reference, e.g. URL belonging to this asset.                                                                                                                                                                                                                                                             |
-     *
-     * [at]: #enum-type
-     * [meta]: article_%3E_metadata.html
-     *
-     * @CodeBlockStart protobuf
-     */
+       An asset configuration is dependant upon its purpose, it may alter depending
+       on its `type` field.
+
+    */
     message Asset {
+      // type of this asset
       Type type = 1;
+      // generic map containing general content and configuration information of the asset
       map<string, string> fields = 2;
+      // metadata, e.g. validity and timestamps. Only present for `METADATA` assets.
       Metadata metadata = 3;
+      // references (links) related to this asset, e.g. a clickable image or link asset
       Reference reference = 4;
-      /** @CodeBlockEnd */
 
       /**
        * ## `enum Type`
@@ -542,15 +483,21 @@ message Article {
 
       enum Type {
         TYPE_UNSPECIFIED = 0;
+        // image asset with an resizable template URL and some image stats (`width`, `height`, `cropping`).
         IMAGE = 1;
+        // internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `duration`) within `fields`.
         VIDEO = 2;
+        // holds (`m3u8`/`HLS`) URLS to external videos, such as _live streams_ and _glomex_.
         EXTERNAL_VIDEO = 3;
+        // holds [`Metadata`][meta] for the parent element and `fields` that also depend on the parent `Element.Type`.
         METADATA = 4;
+        // additional link (href, reference) asset for parent `Element`, e.g. an `image` with an optional link target.
         LINK = 5;
+        // audio asset, expect (`mp3`) URLS.
         AUDIO = 6;
+        // Web Video Text Tracks, usually used for video subtitles.
         WEB_VTT = 7;
       }
-      /** @CodeBlockEnd */
     }
 
     /**
@@ -651,350 +598,251 @@ message Article {
      */
   }
 
-  /**
-   * @FileArticle Article ۰ Body
-   */
+  /*
+     The `Body` represents a basic building block which will be translated to HTML
+     or similar by the front end renderer.
 
-  /**
-   *
-   * The `Body` represents a basic block. Each `Body` is self-contained and holds
-   * all the data required for rendering within its data structures.
-   *
-   * Common use cases for this are `Type.BODY` where the textual article body can be found
-   * and the `TYPE.ARTICLE_SOURCE` where onward articles are referenced.
-   *
-   * | Field name     | Type                         | Description                                                                                                                                  |
-   * |----------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-   * | `children`     | `repeated` [`BodyNode`][bn]  | Recursive/Nested structure that usually represents the textual body / Markup / HTML                                                          |
-   * | `type`         | [`Type`][t]                  | Unique ID of the article defined by the content management system (required).                                                                |
-   *
-   * [bn]: #bodynode
-   * [t]:  #type
-   *
-   * @CodeBlockStart protobuf
-   */
+     Each `Body` is self-contained and holds all the data required for rendering
+     within its data structures.
+
+     Common use cases for this are `Type.BODY` are:
+     * the textual article body can be found
+     * `TYPE.ARTICLE_SOURCE` where onward articles are referenced.
+     * `TYPE.DISCLAIMER` containing disclaimers
+     * `TYPE.TABLE_OF_CONTENTS` which contains a table of contents for the article
+  */
   message Body {
+    // Recursive/Nested structure that usually represents the textual body / Markup / HTML
     repeated BodyNode children = 1;
+    // Unique ID of the article defined by the content management system (required).
     Type type = 2;
-    /** @CodeBlockEnd */
 
-    /**
-     * ## Type
-     *
-     * Each `Body` has a `Body.Type` to help the consumer to correctly interpret
-     * the  [`BodyNode's`][bn] content.
-     *
-     * | Enum value          | Description                                                                                                 |
-     * |---------------------|-------------------------------------------------------------------------------------------------------------|
-     * | `TYPE_UNSPECIFIED`  | unspecified                                                                                                 |
-     * | `BODY`              | The textual article body including all inline elements such as `IMAGE`, `VIDEO` and `EMBED`                 |
-     * | `ARTICLE_SOURCES`   | A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.            |
-     * | `DISCLAIMER`        | A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles |
-     * | `TABLE_OF_CONTENTS` | Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`      |
-     * | `ARTICLE_EXTENDER`  | AI generated questions for the article for more engagement.                                                 |
-     * | `COMPANION`         | Rich text to be rendered as teaser within a stage companion                                                 |
-     *
-     * @CodeBlockStart protobuf
-     */
     enum Type {
       TYPE_UNSPECIFIED = 0;
+      // The textual article body including all inline elements such as `IMAGE`, `VIDEO` and `EMBED`.
       BODY = 1;
+      // A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.
       ARTICLE_SOURCES = 2;
+      // A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles.
       DISCLAIMER = 3;
+      // Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`.
       TRUST_BOX = 4 [deprecated = true];
+      // Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`.
       TABLE_OF_CONTENTS = 5;
+      // AI generated questions for the article for more engagement.
       ARTICLE_EXTENDER = 6;
+      // Content that is not rendered as part of the main article, but whose content
+      // will be shown in the companion column, e.g. tabular data or images.
       COMPANION = 7;
     }
-    /** @CodeBlockEnd */
 
-    /**
-     * ## `BodyNode`
-     *
-     * Recursive structure representing all types of possible nodes inside an article.
-     *
-     * One use-case is to represent [HTML-like](#html-like) markup in tapir, but it
-     * is also used to map [custom](#custom) elements that require a strict
-     * positional placement within the textual body. Things that are not part of the
-     * textual article body are represented as individual [`Body`][b] parts so they
-     * can be rendered independently if required.
-     *
-     * Clients must be resilient to unknown or missing nodes.
-     *
-     * @CodeBlockStart protobuf
-     */
+    /*
+       Recursive structure representing all types of possible nodes inside an article.
+
+       One use-case is to represent [HTML-like](#html-like) markup in tapir, but it
+       is also used to map [custom](#custom) elements that require a strict
+       positional placement within the textual body. Things that are not part of the
+       textual article body are represented as individual [`Body`][b] parts so they
+       can be rendered independently if required.
+
+       Clients must be resilient to unknown or missing nodes.
+    */
     message BodyNode {
+      // type usually refers to HTML elements
       string type = 1;
+      // if this is a leaf node, this is the text content of the node.
       string text = 2;
+      // additional information for the node, e.g. `word_count` for paragraphs `<p>`
       map<string, string> fields = 3;
+      // nested `BodyNode`s, e.g. the `text` of a `<p>` or a `<a>`
+      // or deeply structured content like `<table><tbody><tr><td>...</td></tr></tbody></table>`
       repeated BodyNode children = 4;
+      // inline elements, e.g. video, image, gallery, embed, ...
       repeated Element elements = 5;
+      // references to external resources, e.g. links to other articles or external resources for `<a>` nodes.
       Reference reference = 6;
     }
-    /** @CodeBlockEnd */
-    /**
-     * | Field name | Type                        | Description                                                                                                    |
-     * |------------|-----------------------------|----------------------------------------------------------------------------------------------------------------|
-     * | `type`     | `string`                    | Type of the node (required).                                                                                   |
-     * | `text`     | `string`                    | Text of the node, only set for text nodes (`type == 'text'`).                                                  |
-     * | `fields`   | `map<string, string>`       | Additional information for the node depending on it's type, e.g. `href` for `a` nodes. See [`fields`](#fields) |
-     * | `children` | `repeated` [`BodyNode`][bn] | Nested Items, e.g. the `text` of a `<p>` or a `<a>`.                                                           |
-     * | `elements` | `repeated` [`Element`][e]   | [Elements][e] of the node, e.g. video, image, gallery, embed, ...                                              |
-     *
-     * [b]: #article--body
-     * [e]: article_%3E_element.html
-     *
-     * ### `fields`
-     *
-     * #### _HTML like_
-     *
-     * | type           | description                                                                                                                                               |
-     * |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `text`         | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
-     * | `p`            | `paragraph` / `<p>`                                                                                                                                       |
-     * | `span`         | `<span>`                                                                                                                                                  |
-     * | `sub_headline` | a sub headline, may be part of the _table of contents_                                                                                                    |
-     * | `a`            | `anchor` / `<a>`, link target can be found in the `repeated Reference[]` structure                                                                        |
-     * | `strong`       | `strong` / `<strong>`                                                                                                                                     |
-     * | `em`           | `emphasis` / `<em>`                                                                                                                                       |
-     * | `sub`          | `subscript` / `sub`                                                                                                                                       |
-     * | `sup`          | `superscript` / `sup`                                                                                                                                     |
-     * | `hr`           | `horizontal rule` / `<hr>`                                                                                                                                |
-     * | `br`           | `line break` / `<br>`                                                                                                                                     |
-     * | `ul`           | `unordered list` / `<ul>`                                                                                                                                 |
-     * | `ol`           | `ordered list` / `<ol>`                                                                                                                                   |
-     * | `li`           | `list` / `<li>`                                                                                                                                           |
-     * | `table`        | `table` / `<table>`                                                                                                                                       |
-     * | `thead`        | `table head` / `<thead>`                                                                                                                                  |
-     * | `tbody`        | `table body` / `<tbody>`                                                                                                                                  |
-     * | `tfoot`        | `table footer` / `<tfoot>`                                                                                                                                |
-     * | `th`           | `table header` / `<th>`                                                                                                                                   |
-     * | `tr`           | `table row` / `<tr>`                                                                                                                                      |
-     * | `td`           | `table data cell` / `<td>`                                                                                                                                |
-     *
-     *
-     * ### _Custom_
-     *
-     * | type            | description                                                                   |
-     * |-----------------|-------------------------------------------------------------------------------|
-     * | `image`         | inline image element, check `elements`                                        |
-     * | `video`         | inline video element, check `elements`                                        |
-     * | `gallery`       | inline gallery element, check `elements`                                      |
-     * | `oembed`        | inline oEmbed element, check `elements`                                       |
-     * | `esi`           | inline edge side include element, check `elements`                            |
-     * | `quote`         | inline quotation element, check `elements`                                    |
-     * | `infobox`       | inline box, consists of textual content in `children` and optional `elements` |
-     * | `pros_and_cons` | pros and cons box, consists of `elements` and structured text in `children`   |
-     * | `question`      | article extender: ai generated question                                       |
-     */
+    /*
+       #### _HTML like_
+
+       | type           | description                                                                                                                                               |
+       |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+       | `text`         | most basic `type`, its text value can be found in the `text` field. The `word_count` can be found in the `BodyNode.fields` for each `BodyNode[type=text]` |
+       | `p`            | `paragraph` / `<p>`                                                                                                                                       |
+       | `span`         | `<span>`                                                                                                                                                  |
+       | `sub_headline` | a sub headline, may be part of the _table of contents_                                                                                                    |
+       | `a`            | `anchor` / `<a>`, link target can be found in the `repeated Reference[]` structure                                                                        |
+       | `strong`       | `strong` / `<strong>`                                                                                                                                     |
+       | `em`           | `emphasis` / `<em>`                                                                                                                                       |
+       | `sub`          | `subscript` / `sub`                                                                                                                                       |
+       | `sup`          | `superscript` / `sup`                                                                                                                                     |
+       | `hr`           | `horizontal rule` / `<hr>`                                                                                                                                |
+       | `br`           | `line break` / `<br>`                                                                                                                                     |
+       | `ul`           | `unordered list` / `<ul>`                                                                                                                                 |
+       | `ol`           | `ordered list` / `<ol>`                                                                                                                                   |
+       | `li`           | `list` / `<li>`                                                                                                                                           |
+       | `table`        | `table` / `<table>`                                                                                                                                       |
+       | `thead`        | `table head` / `<thead>`                                                                                                                                  |
+       | `tbody`        | `table body` / `<tbody>`                                                                                                                                  |
+       | `tfoot`        | `table footer` / `<tfoot>`                                                                                                                                |
+       | `th`           | `table header` / `<th>`                                                                                                                                   |
+       | `tr`           | `table row` / `<tr>`                                                                                                                                      |
+       | `td`           | `table data cell` / `<td>`                                                                                                                                |
+
+
+       ### _Custom_
+
+       | type            | description                                                                   |
+       |-----------------|-------------------------------------------------------------------------------|
+       | `image`         | inline image element, check `elements`                                        |
+       | `video`         | inline video element, check `elements`                                        |
+       | `gallery`       | inline gallery element, check `elements`                                      |
+       | `oembed`        | inline oEmbed element, check `elements`                                       |
+       | `esi`           | inline edge side include element, check `elements`                            |
+       | `quote`         | inline quotation element, check `elements`                                    |
+       | `infobox`       | inline box, consists of textual content in `children` and optional `elements` |
+       | `pros_and_cons` | pros and cons box, consists of `elements` and structured text in `children`   |
+       | `question`      | article extender: ai generated question                                       |
+    */
   }
 
-  /**
-   * @FileArticle Article ۰ Metadata
-   */
-
-  /**
-   * Article metadata like publication state and technical timestamps.
-   *
-   * | Field name               | Type                | Description                                                                                                                                                                                                                                                                                                                  |
-   * |--------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   * | `state`                  | [`State`][state]    | State of the article in the content management system. See [`enum State`](#enum-state)                                                                                                                                                                                                                                       |
-   * | `start_time`             | [`Timestamp`][ts]   | Manually set editorial timestamp (_Gültig von_) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                       |
-   * | `end_time`               | [`Timestamp`][ts]   | Manually set editorial timestamp (_Gültig bis_) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.                                                                                                                                                                           |
-   * | `publish_time`           | [`Timestamp`][ts]   | Editorial timestamp (_Publikationsdatum_) of the first publication of the article in seconds of UTC time since Unix epoch. This date will be set automatically by the content management system.                                                                                                                             |
-   * | `update_time`            | [`Timestamp`][ts]   | Editorial timestamp (_Aktualisierungsdatum_) at which the article was updated in seconds of UTC time since Unix epoch. On first publication this timestamp matches `publish_time`. Afterwards it's either updated manually in the content management system or automatically if the article content changed *significantly*. |
-   * | `transformation_time`    | [`Timestamp`][ts]   | Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.                                                                                                                                                                                                           |
-   * | `transformation_errors`  | `int64`             | Number of errors occurred while fetching and/or transforming optional article components (e.g. `embeds` or nested `documents`) to an `article` message.                                                                                                                                                                      |
-   * | `last_modification_time` | [`Timestamp`][ts]   | Technical timestamp at which the article was published regardless of the amount and significance of the change.                                                                                                                                                                                                              |
-   * | `event_source`           | [`EventSource`][es] | Source of the event that caused this item to be transformed and to be written into the DB.                                                                                                                                                                                                                                   |
-   * | `seo_score`              | `double`            | The `article score` (originates from team data's _Content Engine_, higher scores are better)                                                                                                                                                                                                                                 |
-   * | `publication_id`         | `int64`             | The unique `publication_id` provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.                                                                                                                                                                      |
-   * | `related_article_source` | `string`            | Source of this article, if embedded in another article as a related article.                                                                                                                                                                                                                                                 |
-   * | `tenant`                 | `string`            | The tenant this article belongs to. e.g. `www`, `berlin` or such                                                                                                                                                                                                                                                             |
-   *
-   * [ts]:    https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp
-   * [state]: #state
-   * [es]:    #enum-eventsource
-   *
-   * @CodeBlockStart protobuf
-   */
   message Metadata {
+    // State of the article in the content management system.
     State state = 1;
+    // Manually set editorial timestamp (_Gültig von_) at which the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.
     google.protobuf.Timestamp start_time = 2;
+    // Manually set editorial timestamp (_Gültig bis_) till the article is valid to deliver on digital platforms in seconds of UTC time since Unix epoch.
     google.protobuf.Timestamp end_time = 3;
+    // Editorial timestamp (_Publikationsdatum_) of the first publication of the article in seconds of UTC time since Unix epoch.
     google.protobuf.Timestamp publish_time = 4;
+    // Editorial timestamp (_Aktualisierungsdatum_) at which the article was updated in seconds of UTC time since Unix epoch.
     google.protobuf.Timestamp update_time = 5;
+    // Technical timestamp at which the article was transformed in the API layer in seconds of UTC time since Unix epoch.
     google.protobuf.Timestamp transformation_time = 6;
+    // Number of errors occurred while fetching and/or transforming optional article components (e.g. `embeds` or nested `documents`) to an `article` message.
     int64 transformation_errors = 7;
+    // Technical timestamp at which the article was published regardless of the amount and significance of the change.
     google.protobuf.Timestamp last_modification_time = 8;
+    // Source of the event that caused this item to be transformed and to be written into the DB.
     EventSource event_source = 9;
+    // The article score (originates from team data's _Content Engine_, higher scores are better)
     double seo_score = 10;
+    // The unique publication_id provided by the CMS, can be used to correlate the state of documents in tapir with the corresponding CMS publication event.
     int64 publication_id = 11;
+    // Source of this article, if embedded in another article as a related article.
     string related_article_source = 12;
+    // The tenant this article belongs to. e.g. `www`, `berlin` or such
     string tenant = 13;
 
-    /** @CodeBlockEnd */
+    /*
+       State of the item ([`Article`](article.html), [`Element`](article.element.html))
+       in the content management system. The `state` in combination with
+       `start_time` and `end_time` determines whether or not this item should be
+       rendered; this must be respected by all consumers especially
+       when content is duplicated or cached.
 
-    /**
-     * ## `enum State`
-     *
-     * State of the item ([`Article`](article.html), [`Element`](article.element.html))
-     * in the content management system. The `state` in combination with
-     * `start_time` and `end_time` determines whether or not this item should be
-     * rendered; this must be respected by all consumers especially
-     * when content is duplicated or cached.
-     *
-     * The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
-     * This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
-     * if it was deleted in the content management system, or if it's [end_time](#end_time)
-     * has been reached.
-     *
-     * An Article is in `State.DRAFT` if it has never been published, or if the
-     * `start_time` lies in the future.
-     *
-     * | Enum value          | description                                                    |
-     * |---------------------|----------------------------------------------------------------|
-     * | `STATE_UNSPECIFIED` | unspecified                                                    |
-     * | `PUBLISHED`         | published content which is currently within its validity dates |
-     * | `DELETED`           | this content is deleted or expired in the CMS                  |
-     * | `DRAFT`             | this content was never published in the CMS                    |
-     *
-     * @CodeBlockStart protobuf
-     */
+       The terms `deleted` (articles) and `archived` (media lib) are interchangeable/synonyms.
+       This enum combines those two into `State.DELETED`. An Article is in `State.DELETED`
+       if it was deleted in the content management system, or if it's [end_time](#end_time)
+       has been reached.
+
+       An Article is in `State.DRAFT` if it has never been published, or if the
+       `start_time` lies in the future.
+
+       Nowadays, the `State.PUBLISHED` is the only state that is used for articles within the database.
+       Content can be scheduled for publication and depublication via the CMS directly. There are
+       only a few edge cases where this is not the case, e.g. live-ticker embeds that will be
+       programmatically activated and deactivated via `metadata.start_time` and `metadata.end_time`.
+    */
     enum State {
       STATE_UNSPECIFIED = 0;
+      // published content which is currently within its validity dates
       PUBLISHED = 1;
+      // this content is deleted or expired in the CMS
       DELETED = 2;
+      // this content was never published in the CMS, but may be scheduled for publication in the future.
       DRAFT = 3;
     }
-    /** @CodeBlockEnd */
 
-    /**
-     * ## `enum EventSource`
-     *
-     * Even more detail about the circumstances of transformation for this article.
-     *
-     * The `EventSource` will be of type:
-     *
-     * - `PRIMARY` in case this article was directly _updated_ and _published_
-     * - `SECONDARY` in case this article was indirectly updated.
-     * This can be caused by updates of _nested elements_,
-     * such as _Videos_ that may expire at some point. Another source of change may be
-     * _Scheduled Events_ like this item becomes _valid_ or _invalid_ at some
-     * point in time in the future after the item's original publication time.
-     *
-     * | Enum value               | description                                                                     |
-     * |--------------------------|---------------------------------------------------------------------------------|
-     * | EVENT_SOURCE_UNSPECIFIED | unspecified                                                                     |
-     * | PRIMARY                  | this article's transformation was caused by a direct change in the CMS          |
-     * | SECONDARY                | this article's transformation was caused by a transitive update                 |
-     * | CONTENT_ENGINE           | this article's transformation was caused by an external system (Content Engine) |
-     *
-     * @CodeBlockStart protobuf
-     */
+    /*
+       Even more detail about the circumstances of transformation for this article.
+
+       The `EventSource` will be of type:
+
+       - `PRIMARY` in case this article was directly _updated_ and _published_
+       - `SECONDARY` in case this article was indirectly updated.
+       This can be caused by updates of _nested elements_,
+       such as _Videos_ that may expire at some point. Another source of change may be
+       _Scheduled Events_ like this item becomes _valid_ or _invalid_ at some
+       point in time in the future after the item's original publication time.
+    */
     enum EventSource {
       EVENT_SOURCE_UNSPECIFIED = 0;
+      // this article's transformation was caused by a direct change in the CMS
       PRIMARY = 1;
+      // this article's transformation was caused by a transitive update
       SECONDARY = 2;
+      // this article's transformation was caused by an external system (Content Engine)
       CONTENT_ENGINE = 3;
     }
-    /** @CodeBlockEnd */
   }
 
-  /**
-   * @FileArticle Article ۰ Keyword
-   */
-
-  /**
-   * Extracted keywords from the article body like persons, locations, organizations etc.
-   *
-   * | Field name              | Type              | Description                                                                                                                                                                                                                                                                                                           |
-   * |-------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   * | `value`                 | `string`          | Unique value of this keyword.                                                                                                                                                                                                                                |
-   * | `type`                 | `string`          | Type/Category of this keyword like `location`, `organization`, `person`                                                                                                                                                                                                                                |
-   * | `score`                 | `float`          | Score for the relevance of this keyword set by the engine |
-   *
-   * @CodeBlockStart protobuf
-   */
+  /*
+     Extracted keywords from the article body like persons, locations, organizations etc.
+  */
   message Keyword {
+    // Unique value of this keyword.
     string value = 1;
+    // Type of this keyword, e.g. `location`, `organization`, `person`.
     string type = 2;
+    // Unique value of this keyword.
     float score = 3;
   }
-  /** @CodeBlockEnd */
 }
 
 /**
  * @FileArticle Author
  */
 
-/**
- * This represents an author (or agency). The entity may be the main content
- * on author pages or simply indicate the author of an [Article](article.html).
- *
- * | Field name         | Type                                             | Description                                                                                                                   |
- * |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
- * | id                 | int64                                            | The unique identifier (cms id) of the author.                                                                                 |
- * | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
- * | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
- * | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
- * | work_history       | [Author.HistoryEntry](#historyentry)[]           | The career entries of the author.                                                                                             |
- * | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
- * | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
- * | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
- * | `references`       | [`Reference`](reference.html)[]                  | References, e.g. URLs belonging to this article.                                                                              |
- *
- * @CodeBlockStart protobuf
- */
+/*
+   This represents an author (or agency). The entity may be the main content
+   on author pages or simply indicate the author of an article.
+*/
 message Author {
+  // Unique identifier of the author, usually the CMS id.
   int64 id = 1;
+  // Type of the author, e.g. `AUTHOR` or `AGENCY`.
   Type type = 2;
-  map<string, string> fields = 3; // migrate from Asset[type=metadata]
-  repeated Article.Element elements = 4; // profile picture
-
+  // Generic map containing general content and configuration information of the author.
+  map<string, string> fields = 3;
+  // Elements of the author, e.g. the author's profile picture.
+  repeated Article.Element elements = 4;
+  // Lists previous jobs and details about the author's career.
   repeated HistoryEntry work_history = 5;
+  // Generic references to education entries, e.g. universities or schools.
   repeated Reference education = 6;
+  // Generic references to social profiles, e.g. Twitter, Facebook, LinkedIn.
   repeated Reference social_profiles = 7;
+  // List of topics where the author possesses extraordinary knowledge.
   repeated string areas_of_expertise = 8;
-
+  // References, e.g. URLs belonging to this author page (rss, external, internal links).
   repeated Reference references = 9;
-  /** @CodeBlockEnd */
-  /**
-   *
-   * ## `enum Type`
-   *
-   * | Enum value         | Description                                                        |
-   * |--------------------|--------------------------------------------------------------------|
-   * | `TYPE_UNSPECIFIED` | unspecified                                                        |
-   * | `AUTHOR`           | The author is a person.                                            |
-   * | `AGENCY`           | The author is an agency or company.                                |
-   *
-   * @CodeBlockStart protobuf
-   */
+
   enum Type {
     TYPE_UNSPECIFIED = 0;
+    // the autor is a person.
     AUTHOR = 1;
+    // the author is an agency or company.
     AGENCY = 2;
   }
-  /** @CodeBlockEnd */
-  /**
-   *
-   * ## `HistoryEntry`
-   *
-   * Lists previous jobs and details about the author's career.
-   *
-   * | Field name  | Type   | Description                                 |
-   * |-------------|--------|---------------------------------------------|
-   * | role        | string | The role of the author for this occupation. |
-   * | description | string | A description of the author's role.         |
-   *
-   * @CodeBlockStart protobuf
-   */
 
   message HistoryEntry {
+    // The role of the author for this occupation.
     string role = 1;
+    // A description of the author's role.
     string description = 2;
   }
+
   /** @CodeBlockEnd */
   /**
    *   ## Sample Author
