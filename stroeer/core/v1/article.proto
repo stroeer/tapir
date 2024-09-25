@@ -659,8 +659,6 @@ message Article {
    *
    * [bn]: #bodynode
    * [t]:  #type
-   *
-   * @CodeBlockStart protobuf
    */
   message Body {
     repeated BodyNode children = 1;
