@@ -1,3 +1,3 @@
 # Core
 
-test foo bar bla baz
+This is the documentation for the core module.

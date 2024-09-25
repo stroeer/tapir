@@ -661,6 +661,9 @@ message Article {
    * [t]:  #type
    */
   message Body {
+    /**
+     * Lorem ipsum set amet.
+     */
     repeated BodyNode children = 1;
     Type type = 2;
     /** @CodeBlockEnd */
