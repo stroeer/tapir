@@ -1,5 +1,20 @@
 syntax = "proto3";
+/*
+# headline
+lore ipsum dolor sit amet
 
+## sub headline
+
+lore ipsum dolor sit amet
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+ */
 package stroeer.core.v1;
 
 import "google/protobuf/timestamp.proto";
