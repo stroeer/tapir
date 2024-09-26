@@ -14,7 +14,17 @@ graph TD;
     B-->D;
     C-->D;
 ```
- */
+
+
+```mermaid
+  zenuml
+  title Demo
+  Alice->John: Hello John, how are you?
+  John->Alice: Great!
+  Alice->John: See you later!
+```
+
+*/
 package stroeer.core.v1;
 
 import "google/protobuf/timestamp.proto";
