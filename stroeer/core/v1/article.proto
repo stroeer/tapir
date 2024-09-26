@@ -15,14 +15,19 @@ graph TD;
     C-->D;
 ```
 
+<details>
 
-```mermaid
-zenuml
-    title Demo
-    Alice->John: Hello John, how are you?
-    John->Alice: Great!
-    Alice->John: See you later!
+```protobuf
+syntax = "proto3";
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
 ```
+
+</details>
 
 */
 package stroeer.core.v1;
