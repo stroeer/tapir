@@ -7,11 +7,7 @@ import "stroeer/core/v1/shared.proto";
 
 option go_package = "github.com/stroeer/go-tapir/core/v1;core";
 
-/**
- * @FileArticle Article
- */
-
-/**
+/*
  * An article represents a piece of content created in the content management
  * system. Different types of content like text or video articles share
  * the same message structure, they can be distinguished by the
@@ -59,7 +55,6 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * [ref]:    reference.html
  * [author]: author.html
  *
- * @CodeBlockStart protobuf
  * */
 
 message Article {
