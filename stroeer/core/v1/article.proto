@@ -61,20 +61,20 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  *
  * | Field name         | Type                                            | Description                                                                                                                                  |
  * |--------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
- * | `id`               | `int64`                                         | Unique ID of the article defined by the content management system (required).                                                                |
- * | `type`             | [`Type`][t]                                     | Main content type of the article (required). See list of supported [`ContentType`][ct]                                                       |
- * | `sub_type`         | [`SubType`][st]                                 | Subtype of the article. For `ARTICLE` this field holds a `sub_type`, for others like `GALLERY` it may not.                                   |
- * | `section_tree`     | [`Reference`][ref]                              | Hierarchical section tree information of the article (required).                                                                             |
- * | `fields`           | `map<string, string>`                           | Generic map containing general content and configuration information of the article (required). See [`fields`](#fields)                      |
- * | `bodies`           | `repeated` [`Body`][b]                          | Recursive textual body of the article to be rendered on detail pages. May be `null` for [_Teaser_](#teaser).                                 |
- * | `metadata`         | [`Metadata`][md]                                | The articles [Metadata][md], containing state and various timestamps.                                                                        |
- * | `elements`         | `repeated` [`Element`][e]                       | `Element`s required to render the teaser, such as `IMAGE`, `VIDEO` or `AUTHOR`                                                               |
- * | `keywords`         | `repeated` [`Keyword`][k]                       | Extracted keywords from the article body like persons, locations, organizations etc.                                                         |
- * | `onwards`          | `int64`                                         | IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department. |
- * | `variants`         | `map<string, Article>`                          | Variants of this article, e.g. for headline testing.                                                                                         |
- * | `entities`         | `string` `[deprecated]`                         | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
- * | `authors`          | `repeated` [`Author`][author]                   | Authors and or Agencies ƒor this content                                                                                                     |                                                                                                                                 |
- * | `related_articles` | `repeated Article`                              | Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).    |
+ * | `id`               | `int64`                                         |                                                                 |
+ * | `type`             | [`Type`][t]                                     |                                                        |
+ * | `sub_type`         | [`SubType`][st]                                 |                                    |
+ * | `section_tree`     | [`Reference`][ref]                              |                                                                              |
+ * | `fields`           | `map<string, string>`                           |                       |
+ * | `bodies`           | `repeated` [`Body`][b]                          |                                  |
+ * | `metadata`         | [`Metadata`][md]                                |                                                                         |
+ * | `elements`         | `repeated` [`Element`][e]                       |                                                                |
+ * | `keywords`         | `repeated` [`Keyword`][k]                       |                                                          |
+ * | `onwards`          | `int64`                                         |  |
+ * | `variants`         | `map<string, Article>`                          |                                                                                          |
+ * | `entities`         | `string` `[deprecated]`                         |                   |
+ * | `authors`          | `repeated` [`Author`][author]                   |                                                                                                      |                                                                                                                                 |
+ * | `related_articles` | `repeated Article`                              |     |
  *
  * [t]:      #enum-type
  * [b]:      article_%DB%B0_body.html
@@ -88,22 +88,42 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * */
 
 message Article {
+  // Unique ID of the article defined by the content management system (mandatory).
   int64 id = 1;
+  // Main content type of the article (mandatory).
   Type type = 2;
+  // Sub type of the article. For `ARTICLE` this field always holds a `sub_type`,
+  // for others like `GALLERY` it may not.
   SubType sub_type = 3;
+  // Hierarchical section tree information of the article (mandatory).
   stroeer.core.v1.Reference section_tree = 4;
+  // Generic map containing general content and configuration information of the article (mandatory). See sample section for details.
   map<string, string> fields = 5;
+  // Body of the article to be rendered on detail pages. May be `null`/missing in **teaser** representations.
   repeated Body bodies = 6;
+  // The articles metadata, containing state and various timestamps.
   Metadata metadata = 7;
+  // `Element`s required to render the teaser, such as `IMAGE`, `VIDEO`.
+  // Also contains deprecated `AUTHOR` and `AGENCY` elements, which have been replaced by `authors`.
   repeated Element elements = 8;
+  // Extracted keywords from the article body like persons, locations, organizations etc.
   repeated Keyword keywords = 9;
+  // IDs of articles related to this article. Related articles are defined manually in the content management system by the editorial department.
+  // Deprecated in favor of `related_articles`.
   repeated int64 onwards = 10 [deprecated = true];
+  // Variants of this article, e.g. for a/b-testing (headline) testing.
+  // merge the variants with the main article to get the full article.
   map<string, Article> variants = 11;
+  // Authors and or Agencies ƒor this content
   repeated Author authors = 12;
+  /*
+  Editorial articles, which are related to the main article.
+  May contain only a shallow article containing only its id.
+  Not all grpc services will resolve return the related articles.
+  */
   repeated Article related_articles = 13;
+  // Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.
   repeated string entities = 100 [deprecated = true];
-
-  /** @CodeBlockEnd */
 
   /**
    * ## `fields`
