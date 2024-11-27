@@ -101,17 +101,12 @@ check-git-branch: check-git-clean
 
 .PHONY: release
 release: clean check-git-branch commit_fundoc ## Releases new version of gRPC source code packages
+	@gh --version >/dev/null 2>&1 || (echo "ERROR: gh CLI is required (try running 'brew install gh')."; exit 1)
+	@gh auth status >/dev/null 2>&1 || (echo "ERROR: gh auth status is NOT OK (try running 'gh auth status')."; exit 1)
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
-	if [ ! -z "${GITHUB_TOKEN}" ] ; then 								\
-    		curl 																					\
-    			-H "Authorization: token ${GITHUB_TOKEN}" 	\
-    			-X POST 																		\
-    			-H "Accept: application/vnd.github.v3+json"	\
-    			https://api.github.com/repos/stroeer/tapir/releases \
-    			-d "{\"tag_name\":\"$(NEXT_TAG)\",\"generate_release_notes\":true}"; \
-    fi;
+	gh release create --generate-notes --notes --target $(NEXT_TAG) --verify-tag
 
 .PHONY:
 release-local-java: java ## Releases generated Java code to your local maven repository
