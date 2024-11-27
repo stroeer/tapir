@@ -275,6 +275,7 @@ message Article {
      * | `EDGE_SIDE_INCLUDE`    | `<esi:include>` that must be resolved server-side for SEO reasons, otherwise similar to `OEMBED`             |
      * | `CITATION`             | oEmbed, contains one `metadata` [`Asset`][a]. Todo: sample                                                   |
      * | `INTERNAL_WIDGET`      | widget or embed that is handled directly by the front end rendering Todo: sample                             |
+     * | `AUDIO`                | audio element Todo: sample                                                                                   |
      *
      * [a]: article_%DB%B0_element_%DB%B0_asset.html
      * [e]: #element
@@ -297,6 +298,7 @@ message Article {
       EDGE_SIDE_INCLUDE = 8;
       CITATION = 9;
       INTERNAL_WIDGET = 10;
+      AUDIO = 11;
     }
     /** @CodeBlockEnd */
 
