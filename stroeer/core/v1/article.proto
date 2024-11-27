@@ -49,6 +49,7 @@ option go_package = "github.com/stroeer/go-tapir/core/v1;core";
  * | `entities`         | `string` `[deprecated]`                         | Extracted entities from the article body like persons, locations, organizations etc. `deprecated` — use `keywords` instead.                  |
  * | `authors`          | `repeated` [`Author`][author]                   | Authors and or Agencies ƒor this content                                                                                                     |                                                                                                                                 |
  * | `related_articles` | `repeated Article`                              | Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).    |
+ * | `references`       | `repeated` [`Reference`](reference.html)[]                 | References, e.g. URLs belonging to this article.                                                                                                                                                                                                                                                             |
  *
  * [t]:      #enum-type
  * [b]:      article_%DB%B0_body.html
@@ -76,6 +77,7 @@ message Article {
   map<string, Article> variants = 11;
   repeated Author authors = 12;
   repeated Article related_articles = 13;
+  repeated Reference references = 14;
   repeated string entities = 100 [deprecated = true];
 
   /** @CodeBlockEnd */
@@ -497,11 +499,12 @@ message Article {
      * An asset configuration is dependant upon its use, it may alter depending
      * on its [`type`](#enum-type) field.
      *
-     * | Field name | Type                  | Description                                                                                                                                    |
-     * |------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `type`     | [`Type`][at]          | Type of the asset.                                                                                                                             |
-     * | `fields`   | `map<string, string>` | Generic map containing general content and configuration information of the asset. Clients must be resilient to unknown or missing entry sets. |
-     * | `metadata` | [`Metadata`][meta]    | Only present for `assets` of `TYPE.METADATA`. Technical metadata for the parent `element` (state, validity, ...). See [`Metadata`][meta]       |
+     * | Field name  | Type                             | Description                                                                                                                                    |
+     * |-------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `type`      | [`Type`][at]                     | Type of the asset.                                                                                                                             |
+     * | `fields`    | `map<string, string>`            | Generic map containing general content and configuration information of the asset. Clients must be resilient to unknown or missing entry sets. |
+     * | `metadata`  | [`Metadata`][meta]               | Only present for `assets` of `TYPE.METADATA`. Technical metadata for the parent `element` (state, validity, ...). See [`Metadata`][meta]       |
+     * | `reference` | [`Reference`](reference.html)    | Reference, e.g. URL belonging to this asset.                                                                                                                                                                                                                                                             |
      *
      * [at]: #enum-type
      * [meta]: article_%3E_metadata.html
@@ -512,6 +515,7 @@ message Article {
       Type type = 1;
       map<string, string> fields = 2;
       Metadata metadata = 3;
+      Reference reference = 4;
       /** @CodeBlockEnd */
 
       /**
@@ -717,6 +721,7 @@ message Article {
       map<string, string> fields = 3;
       repeated BodyNode children = 4;
       repeated Element elements = 5;
+      Reference reference = 6;
     }
     /** @CodeBlockEnd */
     /**
@@ -741,7 +746,7 @@ message Article {
      * | `p`            | `paragraph` / `<p>`                                                                                                                                       |
      * | `span`         | `<span>`                                                                                                                                                  |
      * | `sub_headline` | a sub headline, may be part of the _table of contents_                                                                                                    |
-     * | `a`            | `anchor` / `<a>`                                                                                                                                          |
+     * | `a`            | `anchor` / `<a>`, link target can be found in the `repeated Reference[]` structure                                                                        |
      * | `strong`       | `strong` / `<strong>`                                                                                                                                     |
      * | `em`           | `emphasis` / `<em>`                                                                                                                                       |
      * | `sub`          | `subscript` / `sub`                                                                                                                                       |
@@ -921,7 +926,7 @@ message Article {
  *
  * | Field name         | Type                                             | Description                                                                                                                   |
  * |--------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
- * | id                 | int64                                           | The unique identifier (cms id) of the author.                                                                                 |
+ * | id                 | int64                                            | The unique identifier (cms id) of the author.                                                                                 |
  * | type               | [Author.Type](#enum-type)                        | The type of the author entity.                                                                                                |
  * | fields             | map[string, string]                              | The fields of the author. This is a map of key-value pairs. The keys are the field names and the values are the field values. |
  * | elements           | [Article.Element](article_%DB%B0_element.html)[] | The elements of the author, e.g. the author's profile picture.                                                                |
@@ -929,6 +934,7 @@ message Article {
  * | education          | [Reference](reference.html)[]                    | The education entries of the author.                                                                                          |
  * | social_profiles    | [Reference](reference.html)[]                    | The social profiles of the author.                                                                                            |
  * | areas_of_expertise | string[]                                         | List of topics where the author possesses extraordinary knowledge                                                             |
+ * | `references`       | [`Reference`](reference.html)[]                  | References, e.g. URLs belonging to this article.                                                                              |
  *
  * @CodeBlockStart protobuf
  */
@@ -942,6 +948,8 @@ message Author {
   repeated Reference education = 6;
   repeated Reference social_profiles = 7;
   repeated string areas_of_expertise = 8;
+
+  repeated Reference references = 9;
   /** @CodeBlockEnd */
   /**
    *
