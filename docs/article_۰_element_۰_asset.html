@@ -179,14 +179,16 @@ on its <a href="#enum-type"><code>type</code></a> field.</p>
 <tr><td><code>type</code></td><td><a href="#enum-type"><code>Type</code></a></td><td>Type of the asset.</td></tr>
 <tr><td><code>fields</code></td><td><code>map&lt;string, string&gt;</code></td><td>Generic map containing general content and configuration information of the asset. Clients must be resilient to unknown or missing entry sets.</td></tr>
 <tr><td><code>metadata</code></td><td><a href="article_%3E_metadata.html"><code>Metadata</code></a></td><td>Only present for <code>assets</code> of <code>TYPE.METADATA</code>. Technical metadata for the parent <code>element</code> (state, validity, ...). See <a href="article_%3E_metadata.html"><code>Metadata</code></a></td></tr>
+<tr><td><code>reference</code></td><td><a href="reference.html"><code>Reference</code></a></td><td>Reference, e.g. URL belonging to this asset.</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">message Asset {
 Type type = 1;
 map&lt;string, string&gt; fields = 2;
 Metadata metadata = 3;
+Reference reference = 4;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L494-L514">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L498-L520">[~]</a></p>
 <h2 id="enum-type"><a class="header" href="#enum-type"><code>enum Type</code></a></h2>
 <p>Type of an asset.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -210,7 +212,7 @@ LINK = 5;
 AUDIO = 6;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L517-L543">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L523-L549">[~]</a></p>
 <h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
 <h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -294,8 +296,8 @@ AUDIO = 6;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L547-L641">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L645-L646">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L553-L647">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L651-L652">[~]</a></p>
 
                     </main>
 

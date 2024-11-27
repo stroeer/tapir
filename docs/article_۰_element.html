@@ -219,7 +219,7 @@ repeated Asset assets = 3;
 repeated Element children = 4;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L205-L257">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L207-L259">[~]</a></p>
 <h2 id="elementtype"><a class="header" href="#elementtype"><code>Element.Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -233,6 +233,7 @@ repeated Element children = 4;
 <tr><td><code>EDGE_SIDE_INCLUDE</code></td><td><code>&lt;esi:include&gt;</code> that must be resolved server-side for SEO reasons, otherwise similar to <code>OEMBED</code></td></tr>
 <tr><td><code>CITATION</code></td><td>oEmbed, contains one <code>metadata</code> <a href="article_%DB%B0_element_%DB%B0_asset.html"><code>Asset</code></a>. Todo: sample</td></tr>
 <tr><td><code>INTERNAL_WIDGET</code></td><td>widget or embed that is handled directly by the front end rendering Todo: sample</td></tr>
+<tr><td><code>AUDIO</code></td><td>audio element Todo: sample</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">
@@ -248,9 +249,10 @@ AGENCY = 7;
 EDGE_SIDE_INCLUDE = 8;
 CITATION = 9;
 INTERNAL_WIDGET = 10;
+AUDIO = 11;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L260-L298">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L262-L302">[~]</a></p>
 <h2 id="elementrelation"><a class="header" href="#elementrelation"><code>Element.Relation</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>RELATION_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -266,7 +268,7 @@ TEASER = 2;
 SOCIAL = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L301-L318">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L305-L322">[~]</a></p>
 <h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
 <p>For details on certain <code>fields</code> or usages of <a href="asset.html#samples"><code>Assets</code>, please follow this link.</a></p>
 <h3 id="image-element"><a class="header" href="#image-element"><code>image element</code></a></h3>
@@ -426,8 +428,8 @@ SOCIAL = 3;
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L321-L487">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L490-L491">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L325-L491">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L494-L495">[~]</a></p>
 
                     </main>
 

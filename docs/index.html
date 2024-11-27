@@ -204,6 +204,7 @@ This lightweight representation is sometimes referred to as <code>Teaser</code>.
 <tr><td><code>entities</code></td><td><code>string</code> <code>[deprecated]</code></td><td>Extracted entities from the article body like persons, locations, organizations etc. <code>deprecated</code> — use <code>keywords</code> instead.</td></tr>
 <tr><td><code>authors</code></td><td><code>repeated</code> <a href="author.html"><code>Author</code></a></td><td>Authors and or Agencies ƒor this content</td></tr>
 <tr><td><code>related_articles</code></td><td><code>repeated Article</code></td><td>Editorial articles, which are related to the main article. May only be an empty unresolved article (not all services will resolve these).</td></tr>
+<tr><td><code>references</code></td><td><code>repeated</code> <a href="reference.html"><code>Reference</code></a>[]</td><td>References, e.g. URLs belonging to this article.</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf*/">
@@ -221,10 +222,11 @@ repeated int64 onwards = 10 [deprecated = true];
 map&lt;string, Article&gt; variants = 11;
 repeated Author authors = 12;
 repeated Article related_articles = 13;
+repeated Reference references = 14;
 repeated string entities = 100 [deprecated = true];
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L80">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L14-L82">[~]</a></p>
 <h2 id="fields"><a class="header" href="#fields"><code>fields</code></a></h2>
 <p>The entry set is defined by the content management system and
 will vary depending on the main type of the article.</p>
@@ -285,7 +287,7 @@ CLUSTER = 9;
 INTERNAL = 100;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L83-L155">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L85-L157">[~]</a></p>
 <h2 id="enum-subtype"><a class="header" href="#enum-subtype"><code>enum SubType</code></a></h2>
 <p>Content with <code>Type.ARTICLE</code> is usually sub typed to alter its form and purpose.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -323,8 +325,8 @@ COMPLIANCE = 12;
 RECIPE = 13;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L158-L198">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L201-L202">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L160-L200">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L203-L204">[~]</a></p>
 
                     </main>
 
