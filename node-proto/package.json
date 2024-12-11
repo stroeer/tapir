@@ -4,7 +4,7 @@
   "description": "T-Online API Repo",
   "type": "commonjs",
   "engines": {
-    "node": ">=18 || >=20"
+    "node": ">=18"
   },
   "scripts": {
     "build": "tsc -b",
