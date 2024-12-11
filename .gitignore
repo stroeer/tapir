@@ -16,6 +16,7 @@ node-proto/stroeer
 node-proto/dist
 bin/protoc
 *.tgz
+*.tsbuildinfo
 
 # java
 java/bin
