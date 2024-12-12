@@ -1,7 +1,7 @@
 syntax = "proto3";
 /**
-* @FileArticle ⚙︎ ArticleExtenderService
-*/
+ * @FileArticle ⚙︎ ArticleExtenderService
+ */
 
 package stroeer.extender.v1;
 
