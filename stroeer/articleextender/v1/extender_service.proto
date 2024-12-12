@@ -3,7 +3,7 @@ syntax = "proto3";
  * @FileArticle ⚙︎ ArticleExtenderService
  */
 
-package stroeer.extender.v1;
+package stroeer.articleextender.v1;
 
 /**
  * The ArticleExtenderService provides methods to extend an article with additional information.
