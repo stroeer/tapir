@@ -1,0 +1,43 @@
+syntax = "proto3";
+/**
+ * @FileArticle ⚙︎ ArticleExtenderService
+ */
+
+package stroeer.page.article.v1;
+
+option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
+
+/**
+ * The ArticleExtenderService provides methods to extend an article with additional information.
+ * The main purpose is to retrieve questions for a given article to be rendered in the ArticleExtender Widget on ArticlePages.
+ *
+ * @CodeBlockStart protobuf
+ */
+service ArticleExtenderService {
+  rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+}
+/** @CodeBlockEnd */
+
+/**
+ * # `⚙︎ GetQuestions`
+ * ```protobuf
+ * rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+ * ```
+ *
+ * returns an array of questions if the given `id` exists, in the vector store,
+ * an `Error`, otherwise.
+ *
+ * | Field name       | Type                | Description                                                           |
+ * |------------------|---------------------|-----------------------------------------------------------------------|
+ * | `id`             | `int64`             | [required] Unique id of the article, questions should be returned for.|
+ *
+ * @CodeBlockStart protobuf
+ */
+
+message GetQuestionsRequest {
+  int64 id = 1;
+}
+
+message GetQuestionsResponse {
+  repeated string questions = 1;
+}
