@@ -5,6 +5,8 @@ syntax = "proto3";
 
 package stroeer.page.article.v1;
 
+import "stroeer/core/v1/article.proto";
+
 option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 
 /**
@@ -15,6 +17,7 @@ option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
  */
 service ArticleExtenderService {
   rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+  rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
 }
 /** @CodeBlockEnd */
 
@@ -24,7 +27,7 @@ service ArticleExtenderService {
  * rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
  * ```
  *
- * returns an array of questions if the given `id` exists, in the vector store,
+ * Returns an array of questions if the given `id` exists, in the vector store,
  * an `Error`, otherwise.
  *
  * | Field name       | Type                | Description                                                           |
@@ -33,11 +36,34 @@ service ArticleExtenderService {
  *
  * @CodeBlockStart protobuf
  */
-
 message GetQuestionsRequest {
   int64 id = 1;
 }
 
 message GetQuestionsResponse {
   repeated string questions = 1;
+}
+
+/**
+ * # `⚙︎ GetAnswer`
+ * ```protobuf
+ * rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
+ * ```
+ *
+ * Returns the answer of a question as a string. Otherwise an `Error`.
+ *
+ * | Field name       | Type                | Description                                       |
+ * |------------------|---------------------|---------------------------------------------------|
+ * | `question`       | `string`            | [required] The question for the returned answers. |
+ *
+ * @CodeBlockStart protobuf
+ */
+message GetAnswerRequest {
+  string question = 1;
+}
+
+message GetAnswerResponse {
+  string answer_text = 1;
+  repeated stroeer.core.v1.Article answer_sources = 2;
+  repeated string next_questions = 3;
 }
