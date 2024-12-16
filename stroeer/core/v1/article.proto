@@ -780,7 +780,7 @@ message Article {
      * | `quote`         | inline quotation element, check `elements`                                    |
      * | `infobox`       | inline box, consists of textual content in `children` and optional `elements` |
      * | `pros_and_cons` | pros and cons box, consists of `elements` and structured text in `children`   |
-     *
+     * | `question`      | article extender: ai generated question                                       |
      */
   }
 
