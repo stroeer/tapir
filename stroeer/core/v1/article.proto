@@ -681,14 +681,14 @@ message Article {
      * Each `Body` has a `Body.Type` to help the consumer to correctly interpret
      * the  [`BodyNode's`][bn] content.
      *
-     * | Enum value          | Description                                                                                                               |
-     * |---------------------|---------------------------------------------------------------------------------------------------------------------------|
-     * | `TYPE_UNSPECIFIED`  | unspecified                                                                                                               |
-     * | `BODY`              | The textual article body including all inline elements such as `IMAGE`, `VIDEO` and `EMBED`                               |
-     * | `ARTICLE_SOURCES`   | A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.                          |
-     * | `DISCLAIMER`        | A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles               |
-     * | `TRUST_BOX`         | Includes information what the current article type is (e.g. opinion article). There can only be one of these per article. |
-     * | `TABLE_OF_CONTENTS` | Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`                    |
+     * | Enum value          | Description                                                                                                 |
+     * |---------------------|-------------------------------------------------------------------------------------------------------------|
+     * | `TYPE_UNSPECIFIED`  | unspecified                                                                                                 |
+     * | `BODY`              | The textual article body including all inline elements such as `IMAGE`, `VIDEO` and `EMBED`                 |
+     * | `ARTICLE_SOURCES`   | A wrapper for all article sources ("Quellenaparat"). There can only be one of these per article.            |
+     * | `DISCLAIMER`        | A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles |
+     * | `TABLE_OF_CONTENTS` | Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`      |
+     * | `ARTICLE_EXTENDER`  | AI generated questions for the article for more engagement.                                                 |
      *
      * @CodeBlockStart protobuf
      */
@@ -697,8 +697,9 @@ message Article {
       BODY = 1;
       ARTICLE_SOURCES = 2;
       DISCLAIMER = 3;
-      TRUST_BOX = 4;
+      TRUST_BOX = 4 [deprecated = true];
       TABLE_OF_CONTENTS = 5;
+      ARTICLE_EXTENDER = 6;
     }
     /** @CodeBlockEnd */
 
@@ -779,7 +780,7 @@ message Article {
      * | `quote`         | inline quotation element, check `elements`                                    |
      * | `infobox`       | inline box, consists of textual content in `children` and optional `elements` |
      * | `pros_and_cons` | pros and cons box, consists of `elements` and structured text in `children`   |
-     *
+     * | `question`      | article extender: ai generated question                                       |
      */
   }
 
