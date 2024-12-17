@@ -28,7 +28,7 @@ message SectionPage {
     // * `external`: Canonical URL of this section, may differ if external, e.g. https://www.giga.de/tech/
     stroeer.core.v1.Reference section_tree = 2;
 
-    repeated stroeer.core.v1.Reference references = 14;
+    repeated stroeer.core.v1.Reference references = 3;
   }
 
   // Page navigation including internal and external references
