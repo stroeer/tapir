@@ -16,23 +16,19 @@ message SectionPage {
   message Section {
     // Generic map containing general content and configuration information of
     // the section (required).
-    //
     // The entry set is defined by the content management system and
     // will vary depending on the main type of the article.
-    //
-    // This map will always contain non empty values for the following keys:
-    //
-    // * `ref_path`: URL path for this section e.g. /section/id_$ID/title.html
-    // * `ref_canonical`: Canonical URL of this section, may differ if external, e.g. https://www.giga.de/tech/
     //
     // Clients must be resilient to unknown or missing entry sets.
     map<string, string> fields = 1;
 
-    // Hierarchical section tree information of the section (required).
+    // References, e.g. URLs belonging to this section (required).
     // For example:
-    // `/` -> `/sport/` -> `/sport/fussball/`
-    // @Deprecated in favor of references
+    // * `internal`: URL path for this section e.g. /section/id_$ID/title.html
+    // * `external`: Canonical URL of this section, may differ if external, e.g. https://www.giga.de/tech/
     stroeer.core.v1.Reference section_tree = 2;
+
+    repeated stroeer.core.v1.Reference references = 3;
   }
 
   // Page navigation including internal and external references
