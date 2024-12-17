@@ -63,7 +63,7 @@ message GetAnswerRequest {
 }
 
 message GetAnswerResponse {
-  string answer_text = 1;
-  repeated stroeer.core.v1.Article answer_sources = 2;
-  repeated string next_questions = 3;
+  string answer = 1;
+  repeated stroeer.core.v1.Article sources = 2;
+  repeated string further_questions = 3;
 }
