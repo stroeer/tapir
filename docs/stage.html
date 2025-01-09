@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>⚙︎ CurationService - tapir</title>
+        <title>Stage - tapir</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html" class="active"><strong aria-hidden="true">13.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">15.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html" class="active"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">15.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,81 +171,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-curationservice"><a class="header" href="#-curationservice">⚙︎ CurationService</a></h1>
-<p>This services allows to query curations within the CMS. In the CMS domain
-this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
-<pre><code class="language-protobuf/">service CurationService {
-rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
-rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
-}
+                        <h1 id="stage"><a class="header" href="#stage">Stage</a></h1>
+<p>A stream stage with companions and the main content area.
+Embedded items can be editorial articles, advertisement and/or stages (only one level deep).</p>
+<pre><code class="language-protobuf">message Stage {
+  Configuration configuration = 1;
+  repeated Item stream_items = 2;
+  repeated Item companion_items = 3;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L14-L23">[~]</a></p>
-<h1 id="-getcuration"><a class="header" href="#-getcuration"><code>⚙︎ GetCuration</code></a></h1>
-<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
-curation contains. The response may be empty in case the curation does not contain any items.</p>
-<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
-<h2 id="getcurationrequest"><a class="header" href="#getcurationrequest">GetCurationRequest</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf/">message GetCurationRequest {
-int64 id = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L26-L44">[~]</a></p>
-<h2 id="getcurationresponse"><a class="header" href="#getcurationresponse">GetCurationResponse</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
-<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
-<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf/">
-message GetCurationResponse {
-int64 id = 1;
-string label = 2;
-google.protobuf.Timestamp update_time = 3;
-repeated stroeer.core.v1.Article articles = 4;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L47-L68">[~]</a></p>
-<h1 id="-batchgetcuration"><a class="header" href="#-batchgetcuration"><code>⚙︎ BatchGetCuration</code></a></h1>
-<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
-curations contain. The response may be empty in case the curation does not contain any items.
-The ordering of items will the same ordering as the <code>ids</code> requested.</p>
-<h2 id="batchgetcurationrequest"><a class="header" href="#batchgetcurationrequest">BatchGetCurationRequest</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf/">message BatchGetCurationRequest {
-repeated int64 ids = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L71-L89">[~]</a></p>
-<h2 id="batchgetcurationresponse"><a class="header" href="#batchgetcurationresponse">BatchGetCurationResponse</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
-</tbody></table>
-</div>
-<pre><code class="language-protobuf/">message BatchGetCurationResponse {
-repeated GetCurationResponse curations = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L92-L105">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/stage/v1/stage.proto#L14-L22">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="⚙︎_corearticleservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="reference.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="⚙︎_sectionpageservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="⚙︎_articleextenderservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -255,11 +199,11 @@ repeated GetCurationResponse curations = 1;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="⚙︎_corearticleservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="reference.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="⚙︎_sectionpageservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="⚙︎_articleextenderservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

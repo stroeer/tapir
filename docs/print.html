@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">9.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">15.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -351,8 +351,8 @@ the  <a href="article_%DB%B0_body.html#bodynode"><code>BodyNode's</code></a> con
 <tr><td><code>BODY</code></td><td>The textual article body including all inline elements such as <code>IMAGE</code>, <code>VIDEO</code> and <code>EMBED</code></td></tr>
 <tr><td><code>ARTICLE_SOURCES</code></td><td>A wrapper for all article sources (&quot;Quellenaparat&quot;). There can only be one of these per article.</td></tr>
 <tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
-<tr><td><code>TRUST_BOX</code></td><td>Includes information what the current article type is (e.g. opinion article). There can only be one of these per article.</td></tr>
 <tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
+<tr><td><code>ARTICLE_EXTENDER</code></td><td>AI generated questions for the article for more engagement.</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">enum Type {
@@ -360,11 +360,12 @@ TYPE_UNSPECIFIED = 0;
 BODY = 1;
 ARTICLE_SOURCES = 2;
 DISCLAIMER = 3;
-TRUST_BOX = 4;
+TRUST_BOX = 4 [deprecated = true];
 TABLE_OF_CONTENTS = 5;
+ARTICLE_EXTENDER = 6;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L678-L702">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L678-L703">[~]</a></p>
 <h2 id="bodynode"><a class="header" href="#bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="article_%DB%B0_body.html#html-like">HTML-like</a> markup in tapir, but it
@@ -382,7 +383,7 @@ repeated Element elements = 5;
 Reference reference = 6;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L705-L727">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L706-L728">[~]</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -427,10 +428,11 @@ Reference reference = 6;
 <tr><td><code>quote</code></td><td>inline quotation element, check <code>elements</code></td></tr>
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L729-L782">[~]</a></td><td></td></tr>
+<tr><td><code>question</code></td><td>article extender: ai generated question</td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L730-L783">[~]</a></td><td></td></tr>
 </tbody></table>
 </div>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L786-L787">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L787-L788">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-element"><a class="header" href="#article-۰-element">Article ۰ Element</a></h1>
 <p><code>Element</code>s are self-contained objects that represent structured data that
 is usually too complex to fit into our usual workhorse which is the
@@ -831,8 +833,8 @@ string type = 2;
 float score = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L902-L917">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L921-L922">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L903-L918">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L922-L923">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="article-۰-metadata"><a class="header" href="#article-۰-metadata">Article ۰ Metadata</a></h1>
 <p>Article metadata like publication state and technical timestamps.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -867,7 +869,7 @@ string related_article_source = 12;
 string tenant = 13;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L790-L829">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L791-L830">[~]</a></p>
 <h2 id="enum-state"><a class="header" href="#enum-state"><code>enum State</code></a></h2>
 <p>State of the item (<a href="article.html"><code>Article</code></a>, <a href="article.element.html"><code>Element</code></a>)
 in the content management system. The <code>state</code> in combination with
@@ -894,7 +896,7 @@ DELETED = 2;
 DRAFT = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L832-L863">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L833-L864">[~]</a></p>
 <h2 id="enum-eventsource"><a class="header" href="#enum-eventsource"><code>enum EventSource</code></a></h2>
 <p>Even more detail about the circumstances of transformation for this article.</p>
 <p>The <code>EventSource</code> will be of type:</p>
@@ -920,8 +922,8 @@ SECONDARY = 2;
 CONTENT_ENGINE = 3;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L866-L894">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L898-L899">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L867-L895">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L899-L900">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="author"><a class="header" href="#author">Author</a></h1>
 <p>This represents an author (or agency). The entity may be the main content
 on author pages or simply indicate the author of an <a href="article.html">Article</a>.</p>
@@ -950,7 +952,7 @@ repeated string areas_of_expertise = 8;
 
 repeated Reference references = 9;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L925-L954">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L926-L955">[~]</a></p>
 <h2 id="enum-type-2"><a class="header" href="#enum-type-2"><code>enum Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -964,7 +966,7 @@ AUTHOR = 1;
 AGENCY = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L956-L972">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L957-L973">[~]</a></p>
 <h2 id="historyentry"><a class="header" href="#historyentry"><code>HistoryEntry</code></a></h2>
 <p>Lists previous jobs and details about the author's career.</p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -978,7 +980,7 @@ string role = 1;
 string description = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L974-L991">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L975-L992">[~]</a></p>
 <h2 id="sample-author"><a class="header" href="#sample-author">Sample Author</a></h2>
 <pre><code class="language-json">{
   &quot;id&quot;: 100000001,
@@ -1050,7 +1052,7 @@ string description = 2;
   ]
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L993-L1065">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L994-L1066">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L3-L4">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
 <p>A Reference represents a link to another entity, for example an <code>Article</code>,
@@ -1104,14 +1106,155 @@ repeated Reference children = 5;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/shared.proto#L38-L71">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L3-L4">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stage"><a class="header" href="#stage">Stage</a></h1>
+<p>A stream stage with companions and the main content area.
+Embedded items can be editorial articles, advertisement and/or stages (only one level deep).</p>
+<pre><code class="language-protobuf">message Stage {
+  Configuration configuration = 1;
+  repeated Item stream_items = 2;
+  repeated Item companion_items = 3;
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/stage/v1/stage.proto#L14-L22">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-articleextenderservice"><a class="header" href="#-articleextenderservice">⚙︎ ArticleExtenderService</a></h1>
 <p>The ArticleExtenderService provides methods to extend an article with additional information.
 The main purpose is to retrieve questions for a given article to be rendered in the ArticleExtender Widget on ArticlePages.</p>
 <pre><code class="language-protobuf/">service ArticleExtenderService {
 rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_extender_service.proto#L10-L18">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_extender_service.proto#L12-L21">[~]</a></p>
+<h1 id="-getquestions"><a class="header" href="#-getquestions"><code>⚙︎ GetQuestions</code></a></h1>
+<pre><code class="language-protobuf">rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+</code></pre>
+<p>Returns an array of questions if the given <code>id</code> exists, in the vector store,
+an <code>Error</code>, otherwise.</p>
+<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] Unique id of the article, questions should be returned for.</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-protobuf/">message GetQuestionsRequest {
+int64 id = 1;
+}
+
+message GetQuestionsResponse {
+repeated string questions = 1;
+}
+
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_extender_service.proto#L24-L46">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_page_service.proto#L3-L4">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-articlepageservice"><a class="header" href="#-articlepageservice">⚙︎ ArticlePageService</a></h1>
+<pre><code class="language-protobuf">service ArticlePageService {
+  # turns the requested article with editorial render relevant data for the user and SEO bots.
+  rpc GetArticlePage (GetArticlePageRequest) returns (GetArticlePageResponse) {}
+}
+</code></pre>
+<h1 id="description"><a class="header" href="#description">Description</a></h1>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_page_service.proto#L13-L22">[~]</a></p>
+<h2 id="request-message-to-get-an-article-page"><a class="header" href="#request-message-to-get-an-article-page">Request message to get an article page.</a></h2>
+<pre><code class="language-protobuf">message GetArticlePageRequest {
+  # ID of the article defined by the content management system (required).
+  int64 id = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_page_service.proto#L28-L35">[~]</a></p>
+<h2 id="response-message-for-an-article-page-request"><a class="header" href="#response-message-for-an-article-page-request">Response message for an article page request.</a></h2>
+<p>Status codes:</p>
+<ul>
+<li><code>OK</code> | article exists and is published</li>
+<li><code>NOT_FOUND</code> | article doesn't exist or is not published according to it's <code>Metadata</code></li>
+</ul>
+<pre><code class="language-protobuf">message GetArticlePageResponse {
+ # Article page with all render relevant data for the user and SEO bots.
+ stroeer.page.article.v1.ArticlePage article_page = 1;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_page_service.proto#L41-L53">[~]</a></p>
+<h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
+<h2 id="scenario-found"><a class="header" href="#scenario-found">scenario <code>found</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was found in the datastore and is published and valid according to it's <a href="metadata.html"><code>metadata</code></a></td></tr>
+<tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-invalid-id"><a class="header" href="#scenario-invalid-id">scenario <code>invalid id</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article id is invalid</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-not-found"><a class="header" href="#scenario-not-found">scenario <code>not found</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was not found in the datastore</td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-not-yet-valid"><a class="header" href="#scenario-not-yet-valid">scenario <code>not yet valid</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was found in the datastore, but is not valid yet according to its <a href="metadata.html#start_time"><code>metadata.start_time</code></a></td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-not-published"><a class="header" href="#scenario-not-published">scenario <code>not published</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was found in the datastore, but it's <a href="metadata.html#state"><code>state</code></a> is neither <code>State.DELETED</code> nor <code>State.PUBLISHED</code></td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-expired"><a class="header" href="#scenario-expired">scenario <code>expired</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was found in the datastore, but is expired according to <code>metadata.end_time</code></td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
+<tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-deletedarchived"><a class="header" href="#scenario-deletedarchived">scenario <code>deleted/archived</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>article was found in the datastore, but it's state is <code>State.DELETED</code></td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.ResourceInfo, check <code>description</code> field for recommended http status code</td></tr>
+<tr><td>HTTP status</td><td><code>410 (GONE)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-internal"><a class="header" href="#scenario-internal">scenario <code>internal</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>internal error processing the article</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-timeout"><a class="header" href="#scenario-timeout">scenario <code>timeout</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>timeout loading and processing the article</td></tr>
+<tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/article/v1/article_page_service.proto#L60-L153">[~]</a></td><td></td></tr>
+</tbody></table>
+</div>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L3-L4">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-corearticleservice"><a class="header" href="#-corearticleservice">⚙︎ CoreArticleService</a></h1>
 <p>Core service to either query a single article (<code>rpc GetArticle()</code>) identified
 by its id or to query multiple articles (<code>rpc ListArticles()</code>) by providing
@@ -1420,13 +1563,123 @@ repeated GetCurationResponse curations = 1;
 </code></pre>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L92-L105">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="-sectionpageservice"><a class="header" href="#-sectionpageservice">⚙︎ SectionPageService</a></h1>
+<p>Message to provide parameters when requesting data for a section page, currently only the path of the page.
+Correct paths have a leading and a trailing slash, like <code>/nachrichten/unterhaltung/</code>
+The homepage has the path <code>/</code>.</p>
+<pre><code class="language-protobuf">message GetSectionPageRequest {
+  // valid section_path, with leading and trailing slash
+  string section_path = 1;
+
+  // use to page through sections. If unspecified, it will default to `1`.
+  // Paging is 1-based (1 is the first page, there is no page `0`)
+  //
+  // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
+  // The service may return fewer than this value.
+  int32 page = 2;
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L13-L30">[~]</a></p>
+<p>Response message when requesting data for a section page.
+Responds with <code>NOT_FOUND</code> if an unknown path is requested, or the path is incorrect.</p>
+<pre><code class="language-protobuf">message GetSectionPageResponse {
+stroeer.page.section.v1.SectionPage section_page = 1;
+
+ // Total number of pages in this `section_path`
+int32 total_pages = 2;
+
+PaginationType pagination_type = 3;
+
+ enum PaginationType {
+   // Not specified.
+   PAGINATION_TYPE_UNSPECIFIED = 0;
+
+   // The default pagination type.
+   FIXED_BLOCK = 1;
+
+   // Pagination type for Evergreen-Ressorts.
+   GHOST_BLOCK = 2;
+ }
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L44-L68">[~]</a></p>
+<p>Service to fetch all data needed to render a section page, like the homepage or &quot;/politik/&quot;
+<a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L90-L91">[~]</a></p>
+<h1 id="statuserror-scenarios-1"><a class="header" href="#statuserror-scenarios-1">Status/Error scenario's</a></h1>
+<h1 id="scenario-found-1"><a class="header" href="#scenario-found-1">scenario: found</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>all data for the section page was found</td></tr>
+<tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h1 id="scenario-section-path-is-empty"><a class="header" href="#scenario-section-path-is-empty">scenario: section path is empty</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client did not provide a section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h1 id="scenario-section-path-is-invalid"><a class="header" href="#scenario-section-path-is-invalid">scenario: section path is invalid</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an invalid section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h1 id="scenario-section-path-is-unknown"><a class="header" href="#scenario-section-path-is-unknown">scenario: section path is unknown</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an unknown section path</td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-partial-section-data"><a class="header" href="#scenario-partial-section-data">scenario <code>partial section data</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>artificial internal error processing parts of this section (no data but valid section)</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-internal-1"><a class="header" href="#scenario-internal-1">scenario <code>internal</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>internal error processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-timeout-1"><a class="header" href="#scenario-timeout-1">scenario <code>timeout</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>timeout loading and processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<p>Scenarios about incomplete section data needs to be defined.
+No section data results in an internal server error while incomplete section data might be returned.
+<a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L97-L171">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/stage/v1/stage.proto#L3-L4">[~]</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-stageservice"><a class="header" href="#-stageservice">⚙︎ StageService</a></h1>
 <p>############################################################################</p>
-<h1 id="description"><a class="header" href="#description">Description</a></h1>
+<h1 id="description-1"><a class="header" href="#description-1">Description</a></h1>
 <p>############################################################################
 Get single stages by requesting them via well-known ids, e.g. &quot;schlagzeilen&quot; or &quot;meistgelesen&quot;.</p>
 <p>############################################################################</p>
-<h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
+<h1 id="statuserror-scenarios-2"><a class="header" href="#statuserror-scenarios-2">Status/Error scenario's</a></h1>
 <p>############################################################################</p>
 <p>scenario: found
 description: service responded without encountering exceptions

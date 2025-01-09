@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>⚙︎ CurationService - tapir</title>
+        <title>⚙︎ SectionPageService - tapir</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html" class="active"><strong aria-hidden="true">13.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html"><strong aria-hidden="true">14.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">15.</strong> ⚙︎ StageService</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="article.html"><strong aria-hidden="true">1.</strong> Article</a></li><li class="chapter-item expanded "><a href="article_۰_body.html"><strong aria-hidden="true">2.</strong> Article ۰ Body</a></li><li class="chapter-item expanded "><a href="article_۰_element.html"><strong aria-hidden="true">3.</strong> Article ۰ Element</a></li><li class="chapter-item expanded "><a href="article_۰_element_۰_asset.html"><strong aria-hidden="true">4.</strong> Article ۰ Element ۰ Asset</a></li><li class="chapter-item expanded "><a href="article_۰_keyword.html"><strong aria-hidden="true">5.</strong> Article ۰ Keyword</a></li><li class="chapter-item expanded "><a href="article_۰_metadata.html"><strong aria-hidden="true">6.</strong> Article ۰ Metadata</a></li><li class="chapter-item expanded "><a href="author.html"><strong aria-hidden="true">7.</strong> Author</a></li><li class="chapter-item expanded "><a href="reference.html"><strong aria-hidden="true">8.</strong> Reference</a></li><li class="chapter-item expanded "><a href="stage.html"><strong aria-hidden="true">9.</strong> Stage</a></li><li class="chapter-item expanded "><a href="⚙︎_articleextenderservice.html"><strong aria-hidden="true">10.</strong> ⚙︎ ArticleExtenderService</a></li><li class="chapter-item expanded "><a href="⚙︎_articlepageservice.html"><strong aria-hidden="true">11.</strong> ⚙︎ ArticlePageService</a></li><li class="chapter-item expanded "><a href="⚙︎_corearticleservice.html"><strong aria-hidden="true">12.</strong> ⚙︎ CoreArticleService</a></li><li class="chapter-item expanded "><a href="⚙︎_curationservice.html"><strong aria-hidden="true">13.</strong> ⚙︎ CurationService</a></li><li class="chapter-item expanded "><a href="⚙︎_sectionpageservice.html" class="active"><strong aria-hidden="true">14.</strong> ⚙︎ SectionPageService</a></li><li class="chapter-item expanded "><a href="⚙︎_stageservice.html"><strong aria-hidden="true">15.</strong> ⚙︎ StageService</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -171,81 +171,126 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="-curationservice"><a class="header" href="#-curationservice">⚙︎ CurationService</a></h1>
-<p>This services allows to query curations within the CMS. In the CMS domain
-this is implemented as <code>Lists</code> which usually contain one ore more <code>Articles</code>.</p>
-<pre><code class="language-protobuf/">service CurationService {
-rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
-rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
+                        <h1 id="-sectionpageservice"><a class="header" href="#-sectionpageservice">⚙︎ SectionPageService</a></h1>
+<p>Message to provide parameters when requesting data for a section page, currently only the path of the page.
+Correct paths have a leading and a trailing slash, like <code>/nachrichten/unterhaltung/</code>
+The homepage has the path <code>/</code>.</p>
+<pre><code class="language-protobuf">message GetSectionPageRequest {
+  // valid section_path, with leading and trailing slash
+  string section_path = 1;
+
+  // use to page through sections. If unspecified, it will default to `1`.
+  // Paging is 1-based (1 is the first page, there is no page `0`)
+  //
+  // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
+  // The service may return fewer than this value.
+  int32 page = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L14-L23">[~]</a></p>
-<h1 id="-getcuration"><a class="header" href="#-getcuration"><code>⚙︎ GetCuration</code></a></h1>
-<p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
-curation contains. The response may be empty in case the curation does not contain any items.</p>
-<p>a <code>NOT_FOUND</code> status code will indicate the curation <code>id</code> does not exist.</p>
-<h2 id="getcurationrequest"><a class="header" href="#getcurationrequest">GetCurationRequest</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>[required] id of the list to be fetched</td></tr>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L13-L30">[~]</a></p>
+<p>Response message when requesting data for a section page.
+Responds with <code>NOT_FOUND</code> if an unknown path is requested, or the path is incorrect.</p>
+<pre><code class="language-protobuf">message GetSectionPageResponse {
+stroeer.page.section.v1.SectionPage section_page = 1;
+
+ // Total number of pages in this `section_path`
+int32 total_pages = 2;
+
+PaginationType pagination_type = 3;
+
+ enum PaginationType {
+   // Not specified.
+   PAGINATION_TYPE_UNSPECIFIED = 0;
+
+   // The default pagination type.
+   FIXED_BLOCK = 1;
+
+   // Pagination type for Evergreen-Ressorts.
+   GHOST_BLOCK = 2;
+ }
+}
+</code></pre>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L44-L68">[~]</a></p>
+<p>Service to fetch all data needed to render a section page, like the homepage or &quot;/politik/&quot;
+<a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L90-L91">[~]</a></p>
+<h1 id="statuserror-scenarios"><a class="header" href="#statuserror-scenarios">Status/Error scenario's</a></h1>
+<h1 id="scenario-found"><a class="header" href="#scenario-found">scenario: found</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>all data for the section page was found</td></tr>
+<tr><td>gRPC status</td><td><code>OK (0)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>200 (OK)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
 </div>
-<pre><code class="language-protobuf/">message GetCurationRequest {
-int64 id = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L26-L44">[~]</a></p>
-<h2 id="getcurationresponse"><a class="header" href="#getcurationresponse">GetCurationResponse</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
-<tr><td><code>label</code></td><td><code>string</code></td><td>the <em>label</em> of this list</td></tr>
-<tr><td><code>update_time</code></td><td><a href="https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Timestamp"><code>Timestamp</code></a></td><td>Technical timestamp at which the curation was updated in seconds UTC time since Unix epoch.</td></tr>
-<tr><td><code>articles</code></td><td><code>repeated</code> <a href="article.html"><code>Article</code></a></td><td>curated items of this list</td></tr>
+<h1 id="scenario-section-path-is-empty"><a class="header" href="#scenario-section-path-is-empty">scenario: section path is empty</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client did not provide a section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
 </div>
-<pre><code class="language-protobuf/">
-message GetCurationResponse {
-int64 id = 1;
-string label = 2;
-google.protobuf.Timestamp update_time = 3;
-repeated stroeer.core.v1.Article articles = 4;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L47-L68">[~]</a></p>
-<h1 id="-batchgetcuration"><a class="header" href="#-batchgetcuration"><code>⚙︎ BatchGetCuration</code></a></h1>
-<p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
-curations contain. The response may be empty in case the curation does not contain any items.
-The ordering of items will the same ordering as the <code>ids</code> requested.</p>
-<h2 id="batchgetcurationrequest"><a class="header" href="#batchgetcurationrequest">BatchGetCurationRequest</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>ids</code></td><td><code>repeated int64</code></td><td>the <em>ids</em> of the lists to be fetched</td></tr>
+<h1 id="scenario-section-path-is-invalid"><a class="header" href="#scenario-section-path-is-invalid">scenario: section path is invalid</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an invalid section path</td></tr>
+<tr><td>gRPC status</td><td><code>INVALID_ARGUMENT (3)</code></td></tr>
+<tr><td>gRPC error payload</td><td>google.rpc.Bad</td></tr>
+<tr><td>HTTP status</td><td><code>400 (BAD REQUEST)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
 </div>
-<pre><code class="language-protobuf/">message BatchGetCurationRequest {
-repeated int64 ids = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L71-L89">[~]</a></p>
-<h2 id="batchgetcurationresponse"><a class="header" href="#batchgetcurationresponse">BatchGetCurationResponse</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
+<h1 id="scenario-section-path-is-unknown"><a class="header" href="#scenario-section-path-is-unknown">scenario: section path is unknown</a></h1>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>client provided an unknown section path</td></tr>
+<tr><td>gRPC status</td><td><code>NOT_FOUND (5)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>404 (NOT FOUND)</code></td></tr>
+<tr><td>cacheable</td><td><code>yes</code></td></tr>
 </tbody></table>
 </div>
-<pre><code class="language-protobuf/">message BatchGetCurationResponse {
-repeated GetCurationResponse curations = 1;
-}
-</code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L92-L105">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
+<h2 id="scenario-partial-section-data"><a class="header" href="#scenario-partial-section-data">scenario <code>partial section data</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>artificial internal error processing parts of this section (no data but valid section)</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-internal"><a class="header" href="#scenario-internal">scenario <code>internal</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>internal error processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>INTERNAL (13)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>500 (INTERNAL SERVER ERROR)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="scenario-timeout"><a class="header" href="#scenario-timeout">scenario <code>timeout</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td>description</td><td>timeout loading and processing the section</td></tr>
+<tr><td>gRPC status</td><td><code>DEADLINE_EXCEEDED (4)</code></td></tr>
+<tr><td>gRPC error payload</td><td>none</td></tr>
+<tr><td>HTTP status</td><td><code>504 (GATEWAY TIMEOUT)</code></td></tr>
+<tr><td>cacheable</td><td><code>no</code></td></tr>
+</tbody></table>
+</div>
+<p>Scenarios about incomplete section data needs to be defined.
+No section data results in an internal server error while incomplete section data might be returned.
+<a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/section/v1/section_page_service.proto#L97-L171">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/page/stage/v1/stage.proto#L3-L4">[~]</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="⚙︎_corearticleservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="⚙︎_curationservice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="⚙︎_sectionpageservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="⚙︎_stageservice.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -255,11 +300,11 @@ repeated GetCurationResponse curations = 1;
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="⚙︎_corearticleservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="⚙︎_curationservice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="⚙︎_sectionpageservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="⚙︎_stageservice.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
