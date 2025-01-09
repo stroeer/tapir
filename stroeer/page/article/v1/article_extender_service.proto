@@ -55,11 +55,13 @@ message GetQuestionsResponse {
  * | Field name       | Type                | Description                                       |
  * |------------------|---------------------|---------------------------------------------------|
  * | `question`       | `string`            | [required] The question for the returned answers. |
+ * | `article_id`     | `int64`             | [required] The original article the user read.    |
  *
  * @CodeBlockStart protobuf
  */
 message GetAnswerRequest {
   string question = 1;
+  int64 article_id = 2;
 }
 
 message GetAnswerResponse {
