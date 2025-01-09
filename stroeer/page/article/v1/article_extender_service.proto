@@ -61,7 +61,7 @@ message GetQuestionsResponse {
  */
 message GetAnswerRequest {
   string question = 1;
-  int64 article_id = 1;
+  int64 article_id = 2;
 }
 
 message GetAnswerResponse {
