@@ -55,7 +55,7 @@ message GetQuestionsResponse {
  * | Field name       | Type                | Description                                       |
  * |------------------|---------------------|---------------------------------------------------|
  * | `question`       | `string`            | [required] The question for the returned answers. |
- * | `article_id`     | `int64`             | [required] The original article the user read.
+ * | `article_id`     | `int64`             | [required] The original article the user read.    |
  *
  * @CodeBlockStart protobuf
  */
