@@ -14,6 +14,7 @@ node/stroeer
 node/dist
 node-proto/stroeer
 node-proto/dist
+node-buf/dist
 bin/protoc
 *.tgz
 *.tsbuildinfo

@@ -6,6 +6,8 @@ modules:
     excludes:
       - java
       - node
+      - node-proto
+      - node-buf
 
 lint:
   use:

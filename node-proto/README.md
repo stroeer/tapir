@@ -1,7 +1,11 @@
-# @stroeer/tapir-proto-v1
+# @stroeer/tapir-proto-v1 (deprecated)
 
 This package includes all tapir models without the grpc services.
 It's based on the packages `@bufbuild/protobuf`.
+
+## :warning: Deprecated
+
+Use the package directly from the "Buf Schema Registry" (BSR): https://buf.build/stroeer/tapir/sdks
 
 ## Usage
 
