@@ -1,6 +1,6 @@
 {
   "name": "@stroeer/tapir-buf-v1",
-  "version": "0.52.0",
+  "version": "0.53.0",
   "sideEffects": false,
   "description": "T-Online API Repo",
   "engines": {
