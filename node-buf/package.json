@@ -1,9 +1,6 @@
 {
   "name": "@stroeer/tapir-buf-v1",
-  "version": "0.53.0",
-  "type": "commonjs",
-  "main": "index.js",
-  "module": "index.js",
+  "version": "0.52.0",
   "sideEffects": false,
   "description": "T-Online API Repo",
   "engines": {
@@ -20,87 +17,12 @@
   "peerDependencies": {
     "@bufbuild/protobuf": "^2.2.0"
   },
-  "exports": {
-    ".": "./index.js",
-    "./package.json": "./package.json",
-    "./core/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/core/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/core/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/core/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/core/v1/*.js"
-      }
-    },
-    "./curation/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/curation/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/curation/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/curation/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/curation/v1/*.js"
-      }
-    },
-    "./fragment/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/fragment/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/fragment/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/fragment/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/fragment/v1/*.js"
-      }
-    },
-    "./navigation/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/navigation/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/navigation/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/navigation/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/navigation/v1/*.js"
-      }
-    },
-    "./page/article/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/page/article/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/page/article/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/page/article/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/page/article/v1/*.js"
-      }
-    },
-    "./page/section/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/page/section/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/page/section/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/page/section/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/page/section/v1/*.js"
-      }
-    },
-    "./page/stage/*": {
-      "import": {
-        "types": "./dist/esm/stroeer/page/stage/v1/*.d.ts",
-        "default": "./dist/esm/stroeer/page/stage/v1/*.js"
-      },
-      "require": {
-        "types": "./dist/cjs/stroeer/page/stage/v1/*.d.ts",
-        "default": "./dist/cjs/stroeer/page/stage/v1/*.js"
-      }
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stroeer/tapir.git"
   },
   "files": [
-    "dist",
-    "index.js"
+    "stroeer"
   ],
   "license": "MIT",
   "bugs": {
