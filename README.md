@@ -40,7 +40,7 @@ make generate
 make generate TEMPLATE=buf.gen.node.yaml
 # bufbuild/es generates ts only (@deprecated)
 make generate TEMPLATE=buf.gen.node-proto.yaml
-# bufbuild/es generates cjs + esm in one package
+# bufbuild/es generates cjs only
 make generate TEMPLATE=buf.gen.node-buf.yaml
 # go
 make generate TEMPLATE=buf.gen.go.yaml
