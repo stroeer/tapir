@@ -15,17 +15,17 @@
     "examples:grpc-js:run": "node ./dist/examples/grpc-js/server.js"
   },
   "dependencies": {
-    "@grpc/grpc-js": "1.12.4",
+    "@grpc/grpc-js": "1.12.5",
     "@types/google-protobuf": "3.15.12",
     "google-protobuf": "3.21.4"
   },
   "devDependencies": {
-    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/node22": "22.0.0",
     "@tsconfig/strictest": "2.0.5",
     "grpc-tools": "1.12.4",
     "prettier": "3.4.2",
     "ts-protoc-gen": "0.15.0",
-    "typescript": "5.7.2",
+    "typescript": "5.7.3",
     "vitest": "2.1.8"
   },
   "repository": {

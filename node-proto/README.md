@@ -1,7 +1,11 @@
-# @stroeer/tapir-proto-v1
+# @stroeer/tapir-proto-v1 (deprecated)
 
 This package includes all tapir models without the grpc services.
 It's based on the packages `@bufbuild/protobuf`.
+
+## :warning: Deprecated
+
+Use the package directly from the "Buf Schema Registry" (BSR): https://buf.build/stroeer/tapir/sdks
 
 ## Usage
 
@@ -29,10 +33,10 @@ brew install nvm
 # add this to your shell/bash profile:
 # source /usr/local/opt/nvm/nvm.sh
 
-nvm install 20
-nvm use 20
+nvm install 22
+nvm use 22
 # optional
-nvm alias system 20
+nvm alias system 22
 ```
 
 ### install

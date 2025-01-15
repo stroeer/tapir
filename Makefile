@@ -54,6 +54,7 @@ clean: ## Deletes all generated files
 	rm -rf ./gen || true
 	rm -rf `find ./node -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find ./node-proto -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
+	rm -rf `find ./node-buf -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 .PHONY: help
 help: ## Display this help screen

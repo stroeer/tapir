@@ -153,6 +153,44 @@ jobs:
           npm version $RELEASE_TAG
           npm publish
 
+  node-buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+          cache-dependency-path: 'node-buf/package-lock.json'
+          node-version-file: 'node-buf/.nvmrc'
+          registry-url: "https://npm.pkg.github.com"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: bufbuild/buf-action@v1
+        with:
+          setup_only: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
+
+      - name: generate
+        run: make generate TEMPLATE=buf.gen.node-buf.yaml
+
+      - name: install
+        working-directory: node-buf
+        run: npm ci
+
+      - name: publish
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+        working-directory: node-buf
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
+          echo $RELEASE_TAG
+          npm version $RELEASE_TAG
+          npm publish
+
   go:
     runs-on: ubuntu-latest
     steps:

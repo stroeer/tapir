@@ -1,0 +1,35 @@
+{
+  "name": "@stroeer/tapir-buf-v1",
+  "version": "0.53.0",
+  "sideEffects": false,
+  "description": "T-Online API Repo",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "update": "npx npm-check --update",
+    "format": "prettier --write '{examples,__tests__}/**/*.ts'"
+  },
+  "devDependencies": {
+    "@bufbuild/protobuf": "2.2.3",
+    "prettier": "3.4.2"
+  },
+  "peerDependencies": {
+    "@bufbuild/protobuf": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stroeer/tapir.git"
+  },
+  "files": [
+    "stroeer"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stroeer/tapir/issues"
+  },
+  "homepage": "https://github.com/stroeer/tapir#readme",
+  "prettier": {
+    "singleQuote": true
+  }
+}

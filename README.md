@@ -38,8 +38,10 @@ Run the following commands to generate code for `java`, `python`, `node`, `proto
 make generate
 # node
 make generate TEMPLATE=buf.gen.node.yaml
-# protobuf-es
+# bufbuild/es generates ts only (@deprecated)
 make generate TEMPLATE=buf.gen.node-proto.yaml
+# bufbuild/es generates cjs only
+make generate TEMPLATE=buf.gen.node-buf.yaml
 # go
 make generate TEMPLATE=buf.gen.go.yaml
 ```
