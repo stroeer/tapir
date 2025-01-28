@@ -28,17 +28,19 @@ T-online APIs use [Protocol Buffers](https://github.com/google/protobuf) version
 
 ## generate code
 
-We use the [buf cli](https://buf.build/docs/generate/overview) to generate code for interacting with the t-online APIs. See [docs](https://buf.build/docs/installation)
-for installation instructions.
+We recommend to use the generated SDKs from the [buf schema registry (BSR)](#buf-schema-registry) in your project. 
 
-Run the following commands to generate code for `java`, `python`, `node`, `protobuf-es` (`node-proto`) or `go`:
+In addition, it's possible to generate code for interacting with the t-online APIs using the [buf cli](https://buf.build/docs/generate/overview). See [docs](https://buf.build/docs/installation)
+for installation instructions.  
+
+Run the following commands to generate code for `java`, `python`, `node` (deprecated), `protobuf-es` (`node-buf`) or `go`:
 
 ```shell
 # java and python
 make generate
-# node
+# node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
 make generate TEMPLATE=buf.gen.node.yaml
-# bufbuild/es generates ts only (@deprecated)
+# bufbuild/es generates ts only (deprecated, use BSR sdk)
 make generate TEMPLATE=buf.gen.node-proto.yaml
 # bufbuild/es generates cjs only
 make generate TEMPLATE=buf.gen.node-buf.yaml
@@ -71,16 +73,17 @@ fine-grained personal access token is provided in the `GITHUB_TOKEN` environment
 ### buf schema registry
 
 We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
-provides SDKs for various languages to interact with the t-online APIs.
+provides SDKs for various languages to interact with the t-online APIs. Using the BSR SDKs is the recommended way to interact with the t-online APIs.
 
 ### client libraries
 
-In addition to the SDKs available in the [buf schema registry (BSR)](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
-for:
+In addition to the [BSR SDKs](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
+for the following languages:
 
 * [java](https://github.com/stroeer/tapir/packages/235034)
-* [node](https://github.com/stroeer/tapir/packages/235031) 
-* [protobuf-es](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
+* (`deprecated`) [node](https://github.com/stroeer/tapir/packages/235031) 
+* (`deprecated`) [protobuf-es (v1)](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
+* [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)
 
 automatically for each new tag which can be integrated in your build system. Go code will be generated and tagged in [go-tapir](https://github.com/stroeer/go-tapir).
 
