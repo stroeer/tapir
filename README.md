@@ -38,7 +38,7 @@ Run the following commands to generate code for `java`, `python`, `node` (deprec
 ```shell
 # java and python
 make generate
-# node (deprecated, use node-buf instead)
+# node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
 make generate TEMPLATE=buf.gen.node.yaml
 # bufbuild/es generates ts only (deprecated, use node-buf instead)
 make generate TEMPLATE=buf.gen.node-proto.yaml
