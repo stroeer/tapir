@@ -8,8 +8,6 @@ package stroeer.fragment.v1;
 
 import "stroeer/page/stage/v1/stage.proto";
 
-option go_package = "github.com/stroeer/go-tapir/fragment/v1;fragment";
-
 service StageService {
   /**
        ############################################################################

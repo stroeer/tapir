@@ -207,7 +207,7 @@ jobs:
           token: ${{ secrets.BUF_TOKEN }}
 
       - name: generate
-        run: make generate TEMPLATE=buf.gen.go.yaml
+        run: make generate
 
       - name: publish
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
