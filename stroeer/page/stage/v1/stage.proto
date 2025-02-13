@@ -9,6 +9,8 @@ package stroeer.page.stage.v1;
 import "stroeer/core/v1/article.proto";
 import "stroeer/core/v1/shared.proto";
 
+option go_package = "buf.build/stroeer/tapir/page/stage/v1;stage";
+
 /**
  * A stream stage with companions and the main content area.
  * Embedded items can be editorial articles, advertisement and/or stages (only one level deep).
