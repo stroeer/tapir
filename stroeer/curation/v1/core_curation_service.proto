@@ -9,8 +9,6 @@ package stroeer.curation.v1;
 import "google/protobuf/timestamp.proto";
 import "stroeer/core/v1/article.proto";
 
-option go_package = "buf.build/stroeer/tapir/curation/v1";
-
 /**
  * This services allows to query curations within the CMS. In the CMS domain
  * this is implemented as `Lists` which usually contain one ore more `Articles`.
