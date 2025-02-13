@@ -7,8 +7,6 @@ package stroeer.page.article.v1;
 
 import "stroeer/core/v1/article.proto";
 
-option go_package = "buf.build/stroeer/tapir/page/article/v1";
-
 /**
  * The ArticleExtenderService provides methods to extend an article with additional information.
  * The main purpose is to retrieve questions for a given article to be rendered in the ArticleExtender Widget on ArticlePages.

@@ -4,8 +4,6 @@ package stroeer.navigation.v1;
 
 import "stroeer/core/v1/shared.proto";
 
-option go_package = "buf.build/stroeer/tapir/navigation/v1";
-
 service NavigationService {
   // Retrieve navigation tree structure
   rpc GetNavigation(GetNavigationRequest) returns (GetNavigationResponse) {}

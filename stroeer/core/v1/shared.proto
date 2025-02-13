@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package stroeer.core.v1;
 
-option go_package = "buf.build/stroeer/tapir/core/v1;core";
-
 /**
  * @FileArticle Reference
  */

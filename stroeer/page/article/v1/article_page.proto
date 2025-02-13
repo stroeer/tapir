@@ -6,8 +6,6 @@ import "stroeer/core/v1/article.proto";
 import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
 
-option go_package = "buf.build/stroeer/tapir/page/article/v1";
-
 // Article page with all render relevant data for the user and SEO bots.
 message ArticlePage {
   // The editorial article with the ID of a `GetArticlePageRequest`.
