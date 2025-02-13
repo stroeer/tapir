@@ -36,7 +36,7 @@ for installation instructions.
 Run the following commands to generate code for `java`, `python`, `node` (deprecated), `protobuf-es` (`node-buf`) or `go`:
 
 ```shell
-# java and python
+# java, python and go
 make generate
 # node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
 make generate TEMPLATE=buf.gen.node.yaml
@@ -44,8 +44,6 @@ make generate TEMPLATE=buf.gen.node.yaml
 make generate TEMPLATE=buf.gen.node-proto.yaml
 # bufbuild/es generates cjs only
 make generate TEMPLATE=buf.gen.node-buf.yaml
-# go
-make generate TEMPLATE=buf.gen.go.yaml
 ```
 
 See corresponding `buf.gen.*.yaml` code generation configuration.
