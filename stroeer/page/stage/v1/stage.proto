@@ -9,7 +9,7 @@ package stroeer.page.stage.v1;
 import "stroeer/core/v1/article.proto";
 import "stroeer/core/v1/shared.proto";
 
-option go_package = "buf.build/stroeer/tapir/page/stage/v1;stage";
+option go_package = "buf.build/stroeer/tapir/page/stage/v1";
 
 /**
  * A stream stage with companions and the main content area.
