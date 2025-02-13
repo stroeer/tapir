@@ -8,7 +8,7 @@ package stroeer.fragment.v1;
 
 import "stroeer/page/stage/v1/stage.proto";
 
-option go_package = "buf.build/stroeer/tapir/fragment/v1;fragment";
+option go_package = "buf.build/stroeer/tapir/fragment/v1";
 
 service StageService {
   /**
