@@ -8,6 +8,8 @@ package stroeer.page.article.v1;
 
 import "stroeer/page/article/v1/article_page.proto";
 
+option go_package = "buf.build/stroeer/tapir/page/article/v1;article";
+
 /**
  * ```protobuf
  * service ArticlePageService {

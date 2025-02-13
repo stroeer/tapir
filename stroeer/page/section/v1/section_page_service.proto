@@ -8,6 +8,8 @@ package stroeer.page.section.v1;
 
 import "stroeer/page/section/v1/section_page.proto";
 
+option go_package = "buf.build/stroeer/tapir/page/section/v1;section";
+
 /**
  * Message to provide parameters when requesting data for a section page, currently only the path of the page.
  * Correct paths have a leading and a trailing slash, like `/nachrichten/unterhaltung/`

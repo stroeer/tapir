@@ -5,6 +5,8 @@ package stroeer.page.section.v1;
 import "stroeer/core/v1/shared.proto";
 import "stroeer/page/stage/v1/stage.proto";
 
+option go_package = "buf.build/stroeer/tapir/page/section/v1;section";
+
 // All data to render a section page like the homepage or "/politik/".
 message SectionPage {
   Section section = 1;
