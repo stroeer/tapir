@@ -19,8 +19,6 @@ managed:
     - file_option: go_package_prefix
       value: buf.build/stroeer/tapir
 
-
-
 plugins:
   # Java
   - remote: buf.build/protocolbuffers/java:v24.4
@@ -40,3 +38,9 @@ plugins:
   - remote: buf.build/grpc/go:v1.5.1
     out: gen/go
 
+  # gRPC Gateway
+  - remote: buf.build/grpc-ecosystem/gateway:v2.26.1
+    out: gen/go
+    opt:
+      - logtostderr=true
+      - paths=import

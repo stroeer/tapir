@@ -2,11 +2,16 @@ syntax = "proto3";
 
 package stroeer.navigation.v1;
 
+import "google/api/annotations.proto";
 import "stroeer/core/v1/shared.proto";
 
 service NavigationService {
   // Retrieve navigation tree structure
-  rpc GetNavigation(GetNavigationRequest) returns (GetNavigationResponse) {}
+  rpc GetNavigation(GetNavigationRequest) returns (GetNavigationResponse) {
+    option (google.api.http) = {
+      get: "/v1/navigation"
+    };
+  }
 }
 
 message GetNavigationRequest {}
