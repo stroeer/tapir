@@ -22,9 +22,7 @@ import "stroeer/page/article/v1/article_page.proto";
  */
 service ArticlePageService {
   rpc GetArticlePage(GetArticlePageRequest) returns (GetArticlePageResponse) {
-    option (google.api.http) = {
-      get: "/v1/pages/articles/{id}"
-    };
+    option (google.api.http) = {get: "/v1/pages/articles/{id}"};
   }
 }
 
