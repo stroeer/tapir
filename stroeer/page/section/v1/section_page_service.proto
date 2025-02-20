@@ -91,9 +91,7 @@ message GetSectionPageResponse {
  */
 service SectionPageService {
   rpc GetSectionPage(GetSectionPageRequest) returns (GetSectionPageResponse) {
-    option (google.api.http) = {
-      get: "/v1/pages/sections"
-    };
+    option (google.api.http) = {get: "/v1/pages/sections"};
   }
 }
 

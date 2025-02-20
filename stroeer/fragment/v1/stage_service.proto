@@ -42,9 +42,7 @@ service StageService {
        cacheable: no
      **/
   rpc GetStages(GetStagesRequest) returns (GetStagesResponse) {
-    option (google.api.http) = {
-      get: "/v1/fragment/stages/{ids}"
-    };
+    option (google.api.http) = {get: "/v1/fragment/stages/{ids}"};
   }
 
   // request data to render Article Companions as individual html for esi integration on ArticlePages
