@@ -1,10 +1,17 @@
 all: build generate test fmt lint breaking
 
 TEMPLATE ?= buf.gen.yaml
+ifeq ($(findstring node,$(TEMPLATE)),node)
+	# Also generate all imports (except for Well-Known Types) like google/api/http.proto
+  FLAGS = --include-imports
+else
+  FLAGS =
+endif
+
 .PHONY: generate
 generate: ## Generates proto and grpc files using https://docs.buf.build/generate/overview
 	@echo "+ $@"
-	@buf generate --template $(TEMPLATE)
+	@buf generate --template $(TEMPLATE) $(FLAGS)
 
 .PHONY: lint
 lint: ## Lints all proto files using https://docs.buf.build/lint-overview
