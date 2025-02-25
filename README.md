@@ -83,7 +83,7 @@ for the following languages:
 * (`deprecated`) [protobuf-es (v1)](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
 * [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)
 
-automatically for each new tag which can be integrated in your build system. Go code will be generated and tagged in [go-tapir](https://github.com/stroeer/go-tapir).
+automatically for each new tag which can be integrated in your build system.
 
 See our GitHub [workflow](.github/workflows/proto.yaml) for details. 
 
