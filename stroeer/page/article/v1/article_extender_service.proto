@@ -66,6 +66,7 @@ message GetAnswerRequest {
 
 message GetAnswerResponse {
   string answer = 1;
-  repeated stroeer.core.v1.Article sources = 2;
+  repeated stroeer.core.v1.Article sources = 2 [deprecated = true];
   repeated string further_questions = 3;
+  repeated int64 source_ids = 4;
 }
