@@ -64,6 +64,49 @@ message GetAnswerRequest {
   int64 article_id = 2;
   QuestionSource question_source = 3;
   Accept accept = 4;
+
+  /** @CodeBlockEnd */
+
+  /**
+   * ## `enum QuestionSource`
+   * Information about the source of the question.
+   * User questions must be treated differently than questions that we provided.
+   *
+   * | Enum value                    | Description                                                  |
+   * |-------------------------------|--------------------------------------------------------------|
+   * | `QUESTION_SOURCE_UNSPECIFIED` | unspecified                                                  |
+   * | `INITIAL_QUESTIONS`           | The question was part of the initial server-side response.   |
+   * | `USER`                        | The question is an input from the user.                      |
+   *
+   *
+   * @CodeBlockStart protobuf
+   */
+  enum QuestionSource {
+    QUESTION_SOURCE_UNSPECIFIED = 0;
+    INITIAL_QUESTIONS = 1;
+    USER = 2;
+  }
+
+  /** @CodeBlockEnd */
+
+  /**
+   * ## `enum Accept`
+   * The client can specify the format of the answer text.
+   *
+   * | Enum value            | Description                                                  |
+   * |-----------------------|--------------------------------------------------------------|
+   * | `ACCEPT_UNSPECIFIED`  | unspecified                                                  |
+   * | `PLAINTEXT`           | The question was part of the initial server-side response.   |
+   * | `MARKDOWN`            | The question is an input from the user.                      |
+   *
+   *
+   * @CodeBlockStart protobuf
+   */
+  enum Accept {
+    ACCEPT_UNSPECIFIED = 0;
+    PLAINTEXT = 1;
+    MARKDOWN = 2;
+  }
 }
 
 message GetAnswerResponse {
@@ -71,47 +114,4 @@ message GetAnswerResponse {
   repeated stroeer.core.v1.Article sources = 2 [deprecated = true];
   repeated string further_questions = 3;
   repeated int64 source_ids = 4;
-}
-
-/** @CodeBlockEnd */
-
-/**
- * ## `enum QuestionSource`
- * Information about the source of the question.
- * User questions must be treated differently than questions that we provided.
- *
- * | Enum value                    | Description                                                  |
- * |-------------------------------|--------------------------------------------------------------|
- * | `QUESTION_SOURCE_UNSPECIFIED` | unspecified                                                  |
- * | `INITIAL_QUESTIONS`           | The question was part of the initial server-side response.   |
- * | `USER`                        | The question is an input from the user.                      |
- *
- *
- * @CodeBlockStart protobuf
- */
-enum QuestionSource {
-  QUESTION_SOURCE_UNSPECIFIED = 0;
-  INITIAL_QUESTIONS = 1;
-  USER = 2;
-}
-
-/** @CodeBlockEnd */
-
-/**
- * ## `enum Accept`
- * The client can specify the format of the answer text.
- *
- * | Enum value            | Description                                                  |
- * |-----------------------|--------------------------------------------------------------|
- * | `ACCEPT_UNSPECIFIED`  | unspecified                                                  |
- * | `PLAINTEXT`           | The question was part of the initial server-side response.   |
- * | `MARKDOWN`            | The question is an input from the user.                      |
- *
- *
- * @CodeBlockStart protobuf
- */
-enum Accept {
-  ACCEPT_UNSPECIFIED = 0;
-  PLAINTEXT = 1;
-  MARKDOWN = 2;
 }
