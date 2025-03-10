@@ -6,9 +6,8 @@ syntax = "proto3";
 
 package stroeer.page.article.v1;
 
+import "google/api/annotations.proto";
 import "stroeer/page/article/v1/article_page.proto";
-
-option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
 
 /**
  * ```protobuf
@@ -22,7 +21,9 @@ option go_package = "github.com/stroeer/go-tapir/page/article/v1;article";
  *
  */
 service ArticlePageService {
-  rpc GetArticlePage(GetArticlePageRequest) returns (GetArticlePageResponse) {}
+  rpc GetArticlePage(GetArticlePageRequest) returns (GetArticlePageResponse) {
+    option (google.api.http) = {get: "/v1/pages/articles/{id}"};
+  }
 }
 
 /**
