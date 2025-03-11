@@ -71,7 +71,8 @@ fine-grained personal access token is provided in the `GITHUB_TOKEN` environment
 ### buf schema registry
 
 We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
-provides SDKs for various languages to interact with the t-online APIs. Using the BSR SDKs is the recommended way to interact with the t-online APIs.
+provides SDKs for various languages to interact with the t-online APIs. It's recommended to 
+use these SDKs instead of our custom [client libraries](#client-libraries).
 
 ### client libraries
 
