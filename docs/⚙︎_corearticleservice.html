@@ -189,7 +189,7 @@ rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse) {}
 rpc ListSections(google.protobuf.Empty) returns (ListSectionsResponse) {}
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L15-L35">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L13-L33">[~]</a></p>
 <h1 id="-getarticle"><a class="header" href="#-getarticle"><code>⚙︎ GetArticle</code></a></h1>
 <pre><code class="language-protobuf">rpc GetArticle (GetArticleRequest) returns (stroeer.core.v1.Article) {}
 </code></pre>
@@ -205,7 +205,7 @@ RequestSettings request_settings = 2;
 }
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L38-L57">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L36-L55">[~]</a></p>
 <h1 id="-batchgetarticle"><a class="header" href="#-batchgetarticle"><code>⚙︎ BatchGetArticle</code></a></h1>
 <p>returns multiple <a href="Article.html"><code>stroeer.core.v1.Article</code></a> for the given <code>ids</code>. The
 ordering of items will the same ordering as the <code>ids</code> requested.
@@ -221,7 +221,7 @@ RequestSettings request_settings = 2;
 }
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L60-L79">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L58-L77">[~]</a></p>
 <p>returns a <a href="#ListArticlesResponse"><code>message-listarticlesresponse</code></a> with
 articles matching the query. If the results exceed 100 Articles or 1 MB
 the response can be paginated to obtain additional results.</p>
@@ -241,7 +241,7 @@ string page_token = 4;
 RequestSettings request_settings = 5;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L97-L122">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L95-L120">[~]</a></p>
 <h2 id="query"><a class="header" href="#query"><code>Query</code></a></h2>
 <p>Specify the search criteria. The list-API is build around sections which
 come in two flavors:</p>
@@ -273,7 +273,7 @@ google.protobuf.Timestamp from_time = 5;
 google.protobuf.Timestamp to_time = 6;
 
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L125-L164">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L123-L162">[~]</a></p>
 <h2 id="type"><a class="header" href="#type"><code>Type</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -289,7 +289,7 @@ HOME_SECTION = 1;
 ROOT_SECTION = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L167-L185">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L165-L183">[~]</a></p>
 <h2 id="sortby"><a class="header" href="#sortby"><code>SortBy</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>SORT_BY_UNSPECIFIED</code></td><td>unspecified</td></tr>
@@ -303,7 +303,7 @@ UPDATE_TIME = 1;
 PUBLISH_TIME = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L188-L206">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L186-L204">[~]</a></p>
 <h2 id="order"><a class="header" href="#order"><code>Order</code></a></h2>
 <p>order of index traversal, default: ascending.</p>
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
@@ -318,7 +318,7 @@ ASCENDING = 1;
 DESCENDING = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L209-L226">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L207-L224">[~]</a></p>
 <h2 id="filters"><a class="header" href="#filters"><code>Filters</code></a></h2>
 <p>If you need to further refine the Query results, you can optionally provide
 a filter expression. A filter expression determines which items within the
@@ -340,7 +340,7 @@ repeated Article.SubType sub_type_includes = 3;
 repeated Article.SubType sub_type_excludes = 4;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L230-L258">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L228-L256">[~]</a></p>
 <h2 id="requestsettings"><a class="header" href="#requestsettings"><code>RequestSettings</code></a></h2>
 <p>Alters the behavior of the request in a way that filters or alters the
 result or parts of the result based on validity of the article or its elements.</p>
@@ -391,7 +391,7 @@ ELEMENT_VALIDITY_IGNORE = 2;
 }
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L262-L319">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L260-L317">[~]</a></p>
 <h2 id="listarticlesresponse"><a class="header" href="#listarticlesresponse"><code>ListArticlesResponse</code></a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>articles</code></td><td><a href="article.html"><code>Article</code></a></td><td>list of articles that match the <code>query</code> and also the <code>filter</code>, otherwise <code>empty</code>.</td></tr>
@@ -403,7 +403,7 @@ repeated stroeer.core.v1.Article articles = 1;
 string next_page_token = 2;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L322-L337">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L320-L335">[~]</a></p>
 <h1 id="-listsections"><a class="header" href="#-listsections"><code>⚙︎ ListSections</code></a></h1>
 <p>list the available root sections</p>
 <h2 id="listsectionsresponse"><a class="header" href="#listsectionsresponse"><code>ListSectionsResponse</code></a></h2>
@@ -412,8 +412,8 @@ string next_page_token = 2;
 repeated string sections = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L340-L353">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/shared.proto#L7-L8">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/core_article_service.proto#L338-L351">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/shared.proto#L5-L6">[~]</a></p>
 
                     </main>
 

@@ -179,7 +179,7 @@ rpc GetCuration(GetCurationRequest) returns (GetCurationResponse) {}
 rpc BatchGetCuration(BatchGetCurationRequest) returns (BatchGetCurationResponse) {}
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L14-L23">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L12-L21">[~]</a></p>
 <h1 id="-getcuration"><a class="header" href="#-getcuration"><code>⚙︎ GetCuration</code></a></h1>
 <p>Fetch a curation by its id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> this
 curation contains. The response may be empty in case the curation does not contain any items.</p>
@@ -193,7 +193,7 @@ curation contains. The response may be empty in case the curation does not conta
 int64 id = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L26-L44">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L24-L42">[~]</a></p>
 <h2 id="getcurationresponse"><a class="header" href="#getcurationresponse">GetCurationResponse</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>id</code></td><td><code>int64</code></td><td>the <em>id</em> of this list</td></tr>
@@ -210,7 +210,7 @@ google.protobuf.Timestamp update_time = 3;
 repeated stroeer.core.v1.Article articles = 4;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L47-L68">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L45-L66">[~]</a></p>
 <h1 id="-batchgetcuration"><a class="header" href="#-batchgetcuration"><code>⚙︎ BatchGetCuration</code></a></h1>
 <p>Fetch multiple curations by their id and return the <a href="Article.html"><code>repeated stroeer.core.v1.Article</code></a> those
 curations contain. The response may be empty in case the curation does not contain any items.
@@ -224,7 +224,7 @@ The ordering of items will the same ordering as the <code>ids</code> requested.<
 repeated int64 ids = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L71-L89">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L69-L87">[~]</a></p>
 <h2 id="batchgetcurationresponse"><a class="header" href="#batchgetcurationresponse">BatchGetCurationResponse</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>curations</code></td><td><a href="#getcurationresponse"><code>GetCurationResponse</code></a></td><td>a single response item that corresponds to <em>ids</em> this service was called with.</td></tr>
@@ -234,7 +234,7 @@ repeated int64 ids = 1;
 repeated GetCurationResponse curations = 1;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L92-L105">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/curation/v1/core_curation_service.proto#L90-L103">[~]</a></p>
 <p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/fragment/v1/stage_service.proto#L5-L6">[~]</a></p>
 
                     </main>
