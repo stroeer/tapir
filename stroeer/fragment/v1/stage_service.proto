@@ -6,9 +6,8 @@ package stroeer.fragment.v1;
  * @FileArticle ⚙︎ StageService
  */
 
+import "google/api/annotations.proto";
 import "stroeer/page/stage/v1/stage.proto";
-
-option go_package = "github.com/stroeer/go-tapir/fragment/v1;fragment";
 
 service StageService {
   /**
@@ -42,7 +41,9 @@ service StageService {
        HTTP status: 504
        cacheable: no
      **/
-  rpc GetStages(GetStagesRequest) returns (GetStagesResponse) {}
+  rpc GetStages(GetStagesRequest) returns (GetStagesResponse) {
+    option (google.api.http) = {get: "/v1/fragment/stages/{ids}"};
+  }
 
   // request data to render Article Companions as individual html for esi integration on ArticlePages
   rpc GetArticleCompanions(GetArticleCompanionsRequest) returns (GetArticleCompanionsResponse) {}

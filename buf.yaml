@@ -9,6 +9,9 @@ modules:
       - node-proto
       - node-buf
 
+deps:
+  - buf.build/googleapis/googleapis
+
 lint:
   use:
     - STANDARD

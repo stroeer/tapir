@@ -1,10 +1,17 @@
 all: build generate test fmt lint breaking
 
 TEMPLATE ?= buf.gen.yaml
+ifeq ($(findstring node,$(TEMPLATE)),node)
+	# Also generate all imports (except for Well-Known Types) like google/api/http.proto
+  FLAGS = --include-imports
+else
+  FLAGS =
+endif
+
 .PHONY: generate
 generate: ## Generates proto and grpc files using https://docs.buf.build/generate/overview
 	@echo "+ $@"
-	@buf generate --template $(TEMPLATE)
+	@buf generate --template $(TEMPLATE) $(FLAGS)
 
 .PHONY: lint
 lint: ## Lints all proto files using https://docs.buf.build/lint-overview
@@ -24,7 +31,7 @@ fmt: ## Formats all proto files using https://docs.buf.build/format/style
 .PHONY: build
 build: ## Builds buf image, see https://buf.build/docs/reference/images
 	@echo "+ $@"
-	@buf build
+	@buf build -o tapir.pb
 
 .PHONY: push
 push: build ## Pushes tapir to the buf schema registry, see https://buf.build/docs/bsr/introduction and https://buf.build/docs/bsr/module/publish#pushing-with-labels

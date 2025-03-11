@@ -20,7 +20,8 @@
     "url": "git+https://github.com/stroeer/tapir.git"
   },
   "files": [
-    "stroeer"
+    "stroeer",
+    "google"
   ],
   "license": "MIT",
   "bugs": {

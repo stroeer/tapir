@@ -34,6 +34,7 @@ protoc-gen-grpc-java
 # generated code
 gen/
 book.toml
+tapir.pb
 
 # Make postman
 root.proto

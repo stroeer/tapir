@@ -207,14 +207,4 @@ jobs:
           token: ${{ secrets.BUF_TOKEN }}
 
       - name: generate
-        run: make generate TEMPLATE=buf.gen.go.yaml
-
-      - name: publish
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        run: |
-          RELEASE_TAG=${GITHUB_REF/refs\/tags\/v/}
-          echo $RELEASE_TAG
-          curl -X POST https://api.github.com/repos/stroeer/go-tapir/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.GO_TAPIR_TOKEN }} \
-          --data '{"event_type": "publish", "client_payload": { "tag": "'"$RELEASE_TAG"'" }}'
+        run: make generate

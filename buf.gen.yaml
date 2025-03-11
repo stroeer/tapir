@@ -1,5 +1,9 @@
 version: v2
 
+# 'clean', when set to true, deletes the directories, zip files, and/or jar files specified in the `out` field for
+# all plugins before running code generation.
+clean: true
+
 managed:
   enabled: true
   disable:
@@ -12,6 +16,8 @@ managed:
       value: de
     - file_option: optimize_for
       value: SPEED
+    - file_option: go_package_prefix
+      value: buf.build/stroeer/tapir
 
 plugins:
   # Java
@@ -25,3 +31,16 @@ plugins:
     out: gen/python
   - remote: buf.build/grpc/python:v1.59.2
     out: gen/python
+
+  # Go
+  - remote: buf.build/protocolbuffers/go:v1.36.5
+    out: gen/go
+  - remote: buf.build/grpc/go:v1.5.1
+    out: gen/go
+
+  # gRPC Gateway
+  - remote: buf.build/grpc-ecosystem/gateway:v2.26.1
+    out: gen/go
+    opt:
+      - logtostderr=true
+      - paths=import

@@ -36,7 +36,7 @@ for installation instructions.
 Run the following commands to generate code for `java`, `python`, `node` (deprecated), `protobuf-es` (`node-buf`) or `go`:
 
 ```shell
-# java and python
+# java, python and go
 make generate
 # node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
 make generate TEMPLATE=buf.gen.node.yaml
@@ -44,8 +44,6 @@ make generate TEMPLATE=buf.gen.node.yaml
 make generate TEMPLATE=buf.gen.node-proto.yaml
 # bufbuild/es generates cjs only
 make generate TEMPLATE=buf.gen.node-buf.yaml
-# go
-make generate TEMPLATE=buf.gen.go.yaml
 ```
 
 See corresponding `buf.gen.*.yaml` code generation configuration.
@@ -73,7 +71,8 @@ fine-grained personal access token is provided in the `GITHUB_TOKEN` environment
 ### buf schema registry
 
 We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
-provides SDKs for various languages to interact with the t-online APIs. Using the BSR SDKs is the recommended way to interact with the t-online APIs.
+provides SDKs for various languages to interact with the t-online APIs. It's recommended to 
+use these SDKs instead of our custom [client libraries](#client-libraries).
 
 ### client libraries
 
@@ -85,7 +84,7 @@ for the following languages:
 * (`deprecated`) [protobuf-es (v1)](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
 * [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)
 
-automatically for each new tag which can be integrated in your build system. Go code will be generated and tagged in [go-tapir](https://github.com/stroeer/go-tapir).
+automatically for each new tag which can be integrated in your build system.
 
 See our GitHub [workflow](.github/workflows/proto.yaml) for details. 
 

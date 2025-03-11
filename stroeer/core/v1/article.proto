@@ -5,8 +5,6 @@ package stroeer.core.v1;
 import "google/protobuf/timestamp.proto";
 import "stroeer/core/v1/shared.proto";
 
-option go_package = "github.com/stroeer/go-tapir/core/v1;core";
-
 /**
  * @FileArticle Article
  */
