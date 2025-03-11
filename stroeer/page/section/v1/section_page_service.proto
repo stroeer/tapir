@@ -8,6 +8,7 @@ package stroeer.page.section.v1;
 
 import "google/api/annotations.proto";
 import "stroeer/page/section/v1/section_page.proto";
+import "stroeer/page/shared/v1/shared.proto";
 
 /**
  * Message to provide parameters when requesting data for a section page, currently only the path of the page.
@@ -38,6 +39,7 @@ message GetSectionPageRequest {
   // Due to underlying mechanisms and seo requirements, page-size is fixed at 30
   // The service may return fewer than this value.
   int32 page = 2;
+  stroeer.page.shared.v1.PageRequestConfig config = 3;
 }
 
 /**

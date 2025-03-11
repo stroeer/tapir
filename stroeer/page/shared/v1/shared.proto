@@ -1,0 +1,47 @@
+syntax = "proto3";
+package stroeer.page.shared.v1;
+
+// Configuration for a page request
+//
+// Callers may alter the APIs behavior by providing a PageRequestConfig.
+// Goal: optimize the data returned for the specific use case by
+// * reducing the amount of data
+// * applying A/B tests already in the API (suggested feature)
+// * alter the response based on the requester's view mode (e.g. external vs direct traffic)
+message PageRequestConfig {
+  // The level of detail for trials (teasers) to include in the response
+  // * on section pages this refers to the detail level of all teasers
+  // * on article pages this refers to the detail level of the related articles
+  TrailDetailLevel trail_detail_level = 1;
+
+  // future: the idea is to move stuff from the grpc metadata to the request
+  // to make things more explicit by having them in the message
+  // question: should we already announce this in the proto file?
+
+  // The requester's view mode
+  //  ViewMode view_mode = 2;
+  // The paper variant used for A/B testing and segmentation
+  //  string paper_variant = 3;
+  // experimental: apply A/B Tests within the API and deliver the applied results
+  //  bool apply_variant = 4;
+
+  enum TrailDetailLevel {
+    TRAIL_DETAIL_LEVEL_UNSPECIFIED = 0;
+    // include all data for trails that are available via the corresponding database
+    FULL = 1;
+    // remove data from trails that are not required when rendering a section page (paper)
+    // but may still be required for other use-cases like feeds or external API consumers
+    LIGHT = 2;
+  }
+
+  //  enum ViewMode {
+  //    // default or unset: treat as external traffic
+  //    VIEW_MODE_UNSPECIFIED = 0;
+  //    // view mode used by project radio iOs apps, implies direct traffic
+  //    RADIO_IOS = 1;
+  //    // view mode used by project radio Android apps, implies direct traffic
+  //    RADIO_ANDROID = 2;
+  //    // traffic originated directly from our website(s)
+  //    DIRECT = 3;
+  //  }
+}
