@@ -10,7 +10,7 @@
     "update": "npx npm-check --update"
   },
   "devDependencies": {
-    "@bufbuild/protobuf": "2.2.3"
+    "@bufbuild/protobuf": "2.2.5"
   },
   "peerDependencies": {
     "@bufbuild/protobuf": "^2.2.0"
