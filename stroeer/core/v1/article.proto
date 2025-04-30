@@ -527,11 +527,12 @@ message Article {
        * |--------------------|----------------------------------------------------------------------------------------------------------------------------|
        * | `TYPE_UNSPECIFIED` | unspecified                                                                                                                |
        * | `IMAGE`            | image asset with an resizable template URL and some image stats (`width`, `height`, `cropping`). See [`samples`](#samples) |
-       * | `VIDEO`            | internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `druation`) within `fields`      |
+       * | `VIDEO`            | internal video asset, expect (`m3u8`/`HLS`) URLS and some video stats (`width`, `height`, `duration`) within `fields`      |
        * | `EXTERNAL_VIDEO`   | holds (`m3u8`/`HLS`) URLS to external videos, such as _live streams_ and _glomex_                                          |
        * | `METADATA`         | holds [`Metadata`][meta] for the parent element and `fields` that also depend on the parent `Element.Type`                 |
        * | `LINK`             | additional link (href, reference) asset for parent `Element`, e.g. an `image` with an optional link target.                |
-       * | `AUDIO`             | internal audio asset, expect (`mp3`) URLS    |
+       * | `AUDIO`            | internal audio asset, expect (`mp3`) URLS                                                                                  |
+       * | `WEB_VTT`          | Web Video Text Tracks, usually used for video subtitles.                                                                   |
        *
        * @CodeBlockStart protobuf
        */
@@ -544,6 +545,7 @@ message Article {
         METADATA = 4;
         LINK = 5;
         AUDIO = 6;
+        WEB_VTT = 7;
       }
       /** @CodeBlockEnd */
     }
