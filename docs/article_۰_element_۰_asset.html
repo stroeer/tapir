@@ -194,11 +194,12 @@ Reference reference = 4;
 <div class="table-wrapper"><table><thead><tr><th>Enum value</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>TYPE_UNSPECIFIED</code></td><td>unspecified</td></tr>
 <tr><td><code>IMAGE</code></td><td>image asset with an resizable template URL and some image stats (<code>width</code>, <code>height</code>, <code>cropping</code>). See <a href="#samples"><code>samples</code></a></td></tr>
-<tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>druation</code>) within <code>fields</code></td></tr>
+<tr><td><code>VIDEO</code></td><td>internal video asset, expect (<code>m3u8</code>/<code>HLS</code>) URLS and some video stats (<code>width</code>, <code>height</code>, <code>duration</code>) within <code>fields</code></td></tr>
 <tr><td><code>EXTERNAL_VIDEO</code></td><td>holds (<code>m3u8</code>/<code>HLS</code>) URLS to external videos, such as <em>live streams</em> and <em>glomex</em></td></tr>
 <tr><td><code>METADATA</code></td><td>holds <a href="article_%3E_metadata.html"><code>Metadata</code></a> for the parent element and <code>fields</code> that also depend on the parent <code>Element.Type</code></td></tr>
 <tr><td><code>LINK</code></td><td>additional link (href, reference) asset for parent <code>Element</code>, e.g. an <code>image</code> with an optional link target.</td></tr>
 <tr><td><code>AUDIO</code></td><td>internal audio asset, expect (<code>mp3</code>) URLS</td></tr>
+<tr><td><code>WEB_VTT</code></td><td>Web Video Text Tracks, usually used for video subtitles.</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">
@@ -210,9 +211,10 @@ EXTERNAL_VIDEO = 3;
 METADATA = 4;
 LINK = 5;
 AUDIO = 6;
+WEB_VTT = 7;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L521-L547">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L521-L549">[~]</a></p>
 <h2 id="samples"><a class="header" href="#samples">Samples</a></h2>
 <h3 id="image-asset"><a class="header" href="#image-asset">Image Asset</a></h3>
 <pre><code class="language-json">{
@@ -296,8 +298,8 @@ AUDIO = 6;
 
 ...
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L551-L645">[~]</a></p>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L649-L650">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L553-L647">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L651-L652">[~]</a></p>
 
                     </main>
 
