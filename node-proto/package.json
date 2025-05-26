@@ -19,7 +19,7 @@
     "@bufbuild/protobuf": "1.10.0"
   },
   "devDependencies": {
-    "@tsconfig/node22": "22.0.1",
+    "@tsconfig/node22": "22.0.2",
     "@tsconfig/strictest": "2.0.5",
     "@types/node-fetch": "2.6.12",
     "node-fetch": "3.3.2",
