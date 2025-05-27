@@ -691,7 +691,7 @@ message Article {
      * | `DISCLAIMER`        | A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles |
      * | `TABLE_OF_CONTENTS` | Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`      |
      * | `ARTICLE_EXTENDER`  | AI generated questions for the article for more engagement.                                                 |
-     * | `TEASER`            | Rich text to be rendered instead of regular teaser fields - only available under limited circumstances      |
+     * | `COMPANION`         | Rich text to be rendered as teaser within a stage companion                                                 |
      *
      * @CodeBlockStart protobuf
      */
@@ -703,7 +703,7 @@ message Article {
       TRUST_BOX = 4 [deprecated = true];
       TABLE_OF_CONTENTS = 5;
       ARTICLE_EXTENDER = 6;
-      TEASER = 7;
+      COMPANION = 7;
     }
     /** @CodeBlockEnd */
 
