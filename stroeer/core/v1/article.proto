@@ -132,6 +132,7 @@ message Article {
    * | `AUTHOR`           | An author article, currently not implemented                                                                     |
    * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated                                                             |
    * | `EXTERNAL`         | An external article (teaser-like external article)                                                               |
+   * | `CLUSTER`          | a thematically grouped cluster for various amount of articles, resolved `Trails` embedded via `related_articles` |
    * | `TOPIC`            | Article with content to be rendered on topic overview pages on teaser position                                   |
    * | `INTERNAL`         | Used for internal purposes only.                                                                                 |
 
