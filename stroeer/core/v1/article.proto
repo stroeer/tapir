@@ -132,8 +132,9 @@ message Article {
    * | `AUTHOR`           | An author article, currently not implemented                                                                     |
    * | `AGENCY`           | `[deprecated]` An agency article, unused, deprecated                                                             |
    * | `EXTERNAL`         | An external article (teaser-like external article)                                                               |
+   * | `TOPIC`            | Article with content to be rendered on topic overview pages on teaser position                                   |
    * | `INTERNAL`         | Used for internal purposes only.                                                                                 |
-   * | `CLUSTER`          | a thematically grouped cluster for various amount of articles, resolved `Trails` embedded via `related_articles` |
+
    *
    * [sub_type]: #enum-contentsubtype
    *
@@ -151,6 +152,7 @@ message Article {
     AGENCY = 7 [deprecated = true];
     EXTERNAL = 8;
     CLUSTER = 9;
+    TOPIC = 10;
     INTERNAL = 100;
   }
   /** @CodeBlockEnd */
