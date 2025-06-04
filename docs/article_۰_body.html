@@ -185,7 +185,7 @@ and the <code>TYPE.ARTICLE_SOURCE</code> where onward articles are referenced.</
 repeated BodyNode children = 1;
 Type type = 2;
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L655-L675">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L658-L678">[~]</a></p>
 <h2 id="type"><a class="header" href="#type">Type</a></h2>
 <p>Each <code>Body</code> has a <code>Body.Type</code> to help the consumer to correctly interpret
 the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
@@ -196,6 +196,7 @@ the  <a href="#bodynode"><code>BodyNode's</code></a> content.</p>
 <tr><td><code>DISCLAIMER</code></td><td>A article disclaimer with important notes/legal stuff. E.g. &quot;medizinischer Hinweis&quot; on all medical articles</td></tr>
 <tr><td><code>TABLE_OF_CONTENTS</code></td><td>Table of contents for this article, consists of anchors which refer to sub headlines within the <code>BODY</code></td></tr>
 <tr><td><code>ARTICLE_EXTENDER</code></td><td>AI generated questions for the article for more engagement.</td></tr>
+<tr><td><code>COMPANION</code></td><td>Rich text to be rendered as teaser within a stage companion</td></tr>
 </tbody></table>
 </div>
 <pre><code class="language-protobuf/">enum Type {
@@ -206,9 +207,10 @@ DISCLAIMER = 3;
 TRUST_BOX = 4 [deprecated = true];
 TABLE_OF_CONTENTS = 5;
 ARTICLE_EXTENDER = 6;
+COMPANION = 7;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L678-L703">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L681-L708">[~]</a></p>
 <h2 id="bodynode"><a class="header" href="#bodynode"><code>BodyNode</code></a></h2>
 <p>Recursive structure representing all types of possible nodes inside an article.</p>
 <p>One use-case is to represent <a href="#html-like">HTML-like</a> markup in tapir, but it
@@ -226,7 +228,7 @@ repeated Element elements = 5;
 Reference reference = 6;
 }
 </code></pre>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L706-L728">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L711-L733">[~]</a></p>
 <div class="table-wrapper"><table><thead><tr><th>Field name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>type</code></td><td><code>string</code></td><td>Type of the node (required).</td></tr>
 <tr><td><code>text</code></td><td><code>string</code></td><td>Text of the node, only set for text nodes (<code>type == 'text'</code>).</td></tr>
@@ -272,10 +274,10 @@ Reference reference = 6;
 <tr><td><code>infobox</code></td><td>inline box, consists of textual content in <code>children</code> and optional <code>elements</code></td></tr>
 <tr><td><code>pros_and_cons</code></td><td>pros and cons box, consists of <code>elements</code> and structured text in <code>children</code></td></tr>
 <tr><td><code>question</code></td><td>article extender: ai generated question</td></tr>
-<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L730-L783">[~]</a></td><td></td></tr>
+<tr><td><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L735-L788">[~]</a></td><td></td></tr>
 </tbody></table>
 </div>
-<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L787-L788">[~]</a></p>
+<p><a href="https://github.com/stroeer/tapir/blob/main/stroeer/core/v1/article.proto#L792-L793">[~]</a></p>
 
                     </main>
 
