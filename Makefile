@@ -120,26 +120,6 @@ release: clean check-git-branch commit_fundoc ## Releases new version of gRPC so
 release-local-java: java ## Releases generated Java code to your local maven repository
 	cd java && ./gradlew clean build publishToMavenLocal
 
-###########
-# docs	  #
-###########
-
-.PHONY: fundoc
-# to test locally, install fundoc via `cargo install fundoc`
-fundoc :: introduction.md ## Generate, Commit and Push documentation.
-	@echo "+ $@"
-	docker run --rm --volume ${CURDIR}/:/opt ghcr.io/thisismana/fundoc:latest
-	cp docs_resources/highlight.js docs
-	@rm stroeer/introduction.md || true
-
-commit_fundoc :: fundoc
-	git add --all docs/
-	git commit --message "docs released for new tag: $(NEXT_TAG)" || true # in case nothing changes
-	git push
-
-introduction.md ::
-	awk 'BEGINFILE{print "/**\n* @Article 00 Introduction"}{print "* " $$0} END{ print "*/"}' docs_resources/introduction.md > stroeer/$@
-
 postman :: ## Generate postman root.proto than can be imported into postman v10 gRPC APIs
 	echo 'syntax = "proto3";' > root.proto
 	echo 'package stroeer;' >> root.proto
