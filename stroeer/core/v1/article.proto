@@ -196,7 +196,7 @@ message Article {
     // _Report_ — a report article
     REPORT = 14;
     // _Analyses_ — a detailed analysis article
-    ANALYSES = 15;
+    ANALYSIS = 15;
     // _Guest_ — a guest article, usually written by an external author
     GUEST = 16;
   }
