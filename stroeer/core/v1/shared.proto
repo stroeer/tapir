@@ -2,69 +2,281 @@ syntax = "proto3";
 
 package stroeer.core.v1;
 
-/**
- * @FileArticle Reference
- */
+/*
+   A Reference represents a link to another entity, for example an `Article`,
+   a `Section` or an external website, or a whole tree structure, for example
+   a section tree or breadcrumb navigation.
 
-/**
- * A Reference represents a link to another entity, for example an `Article`,
- * a `Section` or an external website, or a whole tree structure, for example
- * a section tree or breadcrumb navigation.
- *
- * | Field name | Type                          | Description                                                                                                                                         |
- * |------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
- * | `type`     | `string`                      | The `type` is used for filtering in a list of references. It describes a use-case, which usually has a defined render position. See [`type`](#type) |
- * | `label`    | `string`                      | The label of the reference.                                                                                                                         |
- * | `href`     | `string`                      | The href of the reference. It can be relative or absolute.                                                                                          |
- * | `fields`   | `map<string, string>`         | Contains all optional attributes of the reference. Clients must be resilient to unknown or missing entries. See [`fields`](#fields)                 |
- * | `children` | `repeated` [`Reference`][ref] | Hierarchically structured references for representing a navigation or tree.                                                                         |
- *
- * [ref]: reference.html
- *
- * @CodeBlockStart protobuf
- */
+   The reference target may usually be a URL with format `https://example.com/path/to/resource`. But be
+   prepared that it can also be a relative URL, for example `/path/to/resource`, or even an exotic stuff like
+   `mailto:`, `tel:` or `ftp: links.
 
+   Depending on the positon within the message it serves different purposes:
+
+   ## Usages
+
+   ### `section_tree`
+
+   This serves as a breadcrumb navigation for an article, showing the paths and labels. This data structure
+   makes use of nesting via the `repeated children` field.
+
+   <details>
+
+   ```json
+   {
+     "label": "Home",
+     "href": "/",
+     "children": [
+       {
+         "label": "Politik",
+         "href": "/nachrichten/",
+         "children": [
+           {
+             "label": "Deutschland",
+             "href": "/nachrichten/deutschland/",
+             "children": [
+               {
+                 "label": "Innenpolitik",
+                 "href": "/nachrichten/deutschland/innenpolitik/"
+               }
+             ]
+           }
+         ]
+       }
+     ]
+   }
+   ```
+
+   </details>
+
+   ### `repeated references`
+
+   In this case, all relevant references are stored in a flat list.
+
+   - References can be distinguished by their `type` attribute.
+   - The order of the references is important, as it determines the display order in the UI.
+
+   For the **core API** expect the following references:
+
+   ```mermaid
+   graph LR
+   ;
+       A[content] -->|internal| C["/path/title.html"];
+       A[content] -->|external| B["https​://www.​t-online.de/path/title.html"];
+       A[content] -->|rss| D["https:/​/www.​t-online.de/path/feed.rss"];
+       A[content] -->|topic| E["https:​//www.​t-online.de/themen/topic-1/"];
+       A[content] -->|topic| F["https:​//www.​t-online.de/themen/topic-2/"];
+   ```
+
+   When interacting with the **page API** there may be some more "exotic" reference types.
+
+   Those types are used to distinguish different use cases for our front end. Those links
+   have to be treated the same way as the `internal` references: It is in the responsibility
+   of the API to ensure that the links are valid and point to the correct tenant/domain
+   (avoiding extra redirects and such).
+
+   | Type                   | Description |
+   |------------------------|-------------|
+   | `stage_title`          |             |
+   | `stage_themenbereiche` |             |
+   | `stage_header_links`   |             |
+   | `stage_top_themen`     |             |
+   | `stage_tag_category`   |             |
+
+   #### `internal`
+
+   Use to link content while preferable staying within the same domain. Usually, this will be a relative URL.
+   In rare cases, it can also be an absolute URL, for example when linking to a different tenant/domain or for
+   external articles (watson).
+
+   This will always be present for the main content:
+
+   - For **core** at `references[@type = "internal"]`.
+   - For **article pages** at `articlePage.article.references[@type = "internal"]`.
+   - For **section pages** at `sectionPage.section.references[@type = "internal"]`.
+
+   #### `external`
+
+   Use this to expose an external reference to this content, e.g. for canonical URLs or content
+   that will be displayed externally, like RSS, Feeds or Emails. This is always an absolute URL.
+
+   This will always be present for the main content:
+
+   - For **core** at `references[@type = "external"]`.
+   - For **article pages** at `articlePage.article.references[@type = "external"]`.
+   - For **section pages** at `sectionPage.section.references[@type = "external"]`.
+
+   #### `rss`
+
+   This is a special type of external reference that is used to expose the RSS feed of a section, topic page or author page.
+
+   Its target is always an absolute URL, for example `https://www.t-online.de/feed.rss`.
+
+   #### `topic`
+
+   This may be present for the main content (for `articles` and `topic pages`),
+   if the content is part of a topic page or relates to a specific topic.
+
+   These URLs are usually relative URLs, for example `/themen/spd/` — unless the sourounding article
+   belongs to a different tenant/domain, in which case it may be an absolute URL like `https://www.t-online.de/themen/spd/`.
+
+   Topic pages are mostly linked withing the main content of an article, this happens via the
+   automated in-text-linking feature of the CMS.
+
+   Other use cases are topic pages themselves, linking to related topics. This also originates from the CMS.
+
+   A `topic` reference consists of a `label` and an `href` attribute, which is a relative URL to the topic page.
+
+   <details>
+
+   Sample topic links:
+
+   ```json
+   [
+     {
+       "type": "topic",
+       "label": "SPD",
+       "href": "/themen/spd/"
+     },
+     {
+       "type": "topic",
+       "label": "Dänemark",
+       "href": "/themen/daenemark/"
+     }
+   ]
+   ```
+
+   </details>
+
+   #### `reference`s within the body
+
+   References in the main article body can be seen as HTML `<a>` tags. It is in the responsibility of the Adapter
+   and/or API to alter the links as required by the use case.
+
+   Depending on the source and target, links can either be relative or absolute URLs.
+
+   Additionally, there is a `fields` map that provides additional attributes for the link, such as:
+
+   - `flag:published`: depending on the target, being an external URL or internal Content and internal URL, this flag may be used to indicate:
+       - **for internal content:** Indicates the **published state** when linking to CMS content. If `false` the link may not be displayed in the UI.
+         Some link
+         targets currently cannot be checked for validity, e.g. links to sections (`/foo/`) or topics (`/themen/foo/`).
+       - **for external content:** Indicates the result of the link checker, if the Adapter will follow the link and redirects.
+         If the final http status code is `200 OK` this flag will be
+         set to `true`, otherwise it will be `false`. Some external links will never be checked by the link checker (`mailto:` or `tel:` links).
+   - `flag:internal`: Indicates if the link target belongs to our "network", this may be interpreted by the front end to add link attributes indicating
+     crawlers to not follow the link.
+   - `flag:auto_link` : Indicates that the link was automatically generated by the CMS without a user interaction. Usually these link to topic pages.
+   - `target`: Specifies the target attribute of the link, e.g. `_blank` for opening in a new tab. This can be set in the CMS on a per-link basis.
+   - `rel`: Specifies the rel attribute of the link, e.g. `nofollow` or `noopener`. This can be set in the CMS on a per-link basis.
+   - `link_layout`: Special use case for **affiliate** links, which will be rendered with a special layout in the UI (shopping cart next to the link
+     text).
+     The only valid value is `commercial`. This can be set in the CMS on a per-link basis.
+   - `branding`: Special use case for links pointing to our partner network (watson.de, giga.de, kino.de, etc.).
+     This will be used to display the branding in the UI, e.g. `watson`, `giga`, `kino`.
+
+   ##### Samples
+
+   <details>
+
+   External Link, not considered internal (`flag:internal` is `false`), but valid as tested by the link checker (`flag:published` is `true`):
+
+   ```mermaid
+   graph LR
+   ;
+       A[content] -->|" https:​//www​.example.com "| B["external content"];
+   ```
+
+   ```json
+   {
+     "label": "Example Link",
+     "href": "https://www.example.com/?link=one",
+     "fields": {
+       "flag:internal": "false",
+       "flag:published": "true"
+     }
+   }
+   ```
+
+   Internal Link, same tenant (relative URL), also it is published
+
+   ```mermaid
+   graph LR
+   ;
+       A[tenant A] -->|" /relative "| B[tenant A];
+   ```
+
+   ```json
+   {
+     "href": "/digital/aktuelles/id_86241714/jupiter-seltene-aufnahmen-zeigen-meteoriten-einschlag-.html",
+     "fields": {
+       "flag:internal": "true",
+       "flag:published": "true",
+       "target": "_blank"
+     }
+   }
+   ```
+
+   Internal Link, different tenant. Since we're changing the tenant/domain, the URL will be absolute. It is in the
+   responsibility of the Adapter and/or API to ensure that the link is valid and points to the correct tenant
+   (avoiding extra redirects and such).
+
+   The link is still recognized as internal (`flag:internal` is `true`) since it belongs to our "network".
+   Also, the published state will be present: `flag:published` is `true`
+
+   ```mermaid
+   graph LR
+   ;
+       A[tenant A] -->|" https:​//example​.com/absolute "| B[tenant B];
+   ```
+
+   ```json
+   {
+     "href": "https://muenchen.t-online.de/test-playground/buzz/muenchen/id_100387018/buzz-test-regio-muenchen.html",
+     "fields": {
+       "flag:internal": "true",
+       "flag:published": "true"
+     }
+   }
+   ```
+
+   Branding links, e.g. pointing to our partner network (watson.de, giga.de, kino.de, etc.).
+   Since the link is targeting an external domain, both `external` and `internal` references
+   will be absolute URLs.
+
+   ```json
+   { "references": [
+     {
+       "type": "external",
+       "href": "https://www.watson.de/unterhaltung/stars/745939867-sofia-vergara-und-tom-brady-insider-klaert-nach-verdaechtigem-foto-auf",
+       "fields": {
+         "flag:internal": "true",
+         "branding": "watson"
+       }
+     },
+     {
+       "type": "internal",
+       "href": "https://www.watson.de/unterhaltung/stars/745939867-sofia-vergara-und-tom-brady-insider-klaert-nach-verdaechtigem-foto-auf",
+       "fields": {
+         "flag:internal": "true",
+         "branding": "watson"
+       }
+     }
+   ] }
+   ```
+
+   </details>
+
+*/
 message Reference {
+  // the type for this reference, see examples and description above
   string type = 1;
+  // The label of the reference.
   string label = 2;
+  // The href of the reference, can be relative or absolute, also mailto: and tel: are possible.
   string href = 3;
+  // attribute map with optional attributes of the reference, such as branding, rel, target, layout, etc.
   map<string, string> fields = 4;
+  // children of this reference, can be used to represent a tree structure, such as a navigation menu or breadcrumb navigation
   repeated Reference children = 5;
 }
-/** @CodeBlockEnd */
-
-/**
- * ## `type`
- *
- * Example entries:
- *
- * - `unspecified` text
- * - `stage_title`
- * - `stage_themenbereiche`
- * - `stage_header_links`
- * - `stage_top_themen`
- * - `stage_tag_category`
- *
- *
- * ## `fields`
- *
- * Contains one or more optional attributes of the reference:
- *
- * - `target`
- * - `rel`
- * - `flag:internal`
- * - `layout`
- *
- * ## `Samples`
- *
- * ```json
- * {
- *   "label": "Home"
- *   "href": "/",
- *   "children": [
- *         "label": "Spielwiese (Tests)",
- *         "href": "/test-playground/"
- *   ]
- * }
- * ```
- */
