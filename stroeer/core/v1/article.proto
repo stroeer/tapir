@@ -193,6 +193,12 @@ message Article {
     COMPLIANCE = 12;
     // _Recipe_ — a cooking recipe article
     RECIPE = 13;
+    // _Report_ — a report article
+    REPORT = 14;
+    // _Analyses_ — a detailed analysis article
+    ANALYSES = 15;
+    // _Guest Article_ — a guest article, usually written by an external author
+    GUEST_ARTICLE = 16;
   }
 
   /*
