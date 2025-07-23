@@ -197,8 +197,8 @@ message Article {
     REPORT = 14;
     // _Analysis_ — a detailed analysis article
     ANALYSIS = 15;
-    // _Guest Opinion_ — a guest article, usually written by an external author
-    GUEST_OPINION = 16;
+    // _Guest Essay_ — a guest article, usually written by an external author
+    GUEST_ESSAY = 16;
   }
 
   /*
