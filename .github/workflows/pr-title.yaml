@@ -7,10 +7,6 @@ on:
       - edited
       - synchronize
 
-permissions:
-  id-token: read
-  pull-requests: read
-
 jobs:
   main:
     name: validate

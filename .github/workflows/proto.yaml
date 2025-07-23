@@ -27,8 +27,6 @@ jobs:
 
   java:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
     steps:
       - uses: actions/checkout@v4
 
@@ -71,8 +69,6 @@ jobs:
 
   node:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
     steps:
       - uses: actions/checkout@v4
 
@@ -117,8 +113,6 @@ jobs:
 
   node-proto:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
     steps:
       - uses: actions/checkout@v4
 
@@ -165,8 +159,6 @@ jobs:
 
   node-buf:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
     steps:
       - uses: actions/checkout@v4
 
@@ -205,8 +197,6 @@ jobs:
 
   go:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
     steps:
       - uses: actions/checkout@v4
 
