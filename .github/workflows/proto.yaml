@@ -8,13 +8,15 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: read
+  contents: read
+  # needed for 'bufbuild/buf-action'
+  pull-requests: write
+
 jobs:
   buf:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: read
-      contents: read
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
