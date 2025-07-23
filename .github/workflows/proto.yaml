@@ -13,7 +13,6 @@ jobs:
   buf:
     runs-on: ubuntu-latest
     permissions:
-      id-token: 'read'
       contents: 'read'
       pull-requests: 'write'
     steps:
