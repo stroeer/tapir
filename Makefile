@@ -108,7 +108,7 @@ check-git-branch: check-git-clean
 	git checkout main
 
 .PHONY: release
-release: clean check-git-branch commit_fundoc ## Releases new version of gRPC source code packages
+release: clean check-git-branch ## Releases new version of gRPC source code packages
 	@gh --version >/dev/null 2>&1 || (echo "ERROR: gh CLI is required (try running 'brew install gh')."; exit 1)
 	@gh auth status >/dev/null 2>&1 || (echo "ERROR: gh auth status is NOT OK (try running 'gh auth status')."; exit 1)
 	@echo "+ $@ $(NEXT_TAG)"
