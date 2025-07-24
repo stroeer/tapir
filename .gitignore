@@ -20,14 +20,6 @@ bin/protoc
 *.tgz
 *.tsbuildinfo
 
-# java
-java/bin
-java/build
-java/.gradle
-java/src/main/java
-java/.*
-.gradle
-
 # binaries
 protoc-gen-grpc-java
 

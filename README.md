@@ -76,10 +76,13 @@ use these SDKs instead of our custom [client libraries](#client-libraries).
 
 ### client libraries
 
+> [!IMPORTANT]  
+> It is recommended to use the [BSR SDKs](#buf-schema-registry) instead of the client libraries below. 
+> The client libraries are deprecated and will not be maintained in the future.
+
 In addition to the [BSR SDKs](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
 for the following languages:
 
-* [java](https://github.com/stroeer/tapir/packages/235034)
 * (`deprecated`) [node](https://github.com/stroeer/tapir/packages/235031) 
 * (`deprecated`) [protobuf-es (v1)](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
 * [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)

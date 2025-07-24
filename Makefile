@@ -41,7 +41,6 @@ push: build ## Pushes tapir to the buf schema registry, see https://buf.build/do
 .PHONY: test
 test: generate ## Runs all tests
 	@echo "+ $@"
-	@cd java && ./gradlew clean build
 	@cd node && npm run checks
 
 .PHONY: node-examples
@@ -57,7 +56,6 @@ node-proto-examples:  ## Tests generated node-proto client stubs against API
 .PHONY: clean
 clean: ## Deletes all generated files
 	@echo "+ $@"
-	rm -rf ./java/src/main/java || true
 	rm -rf ./gen || true
 	rm -rf `find ./node -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 	rm -rf `find ./node-proto -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true

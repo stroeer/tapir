@@ -4,7 +4,6 @@ modules:
   - path: .
     name: buf.build/stroeer/tapir
     excludes:
-      - java
       - node
       - node-proto
       - node-buf
