@@ -22,9 +22,9 @@ managed:
 plugins:
   # Java
   - remote: buf.build/protocolbuffers/java:v24.4
-    out: ./java/src/main/java
+    out: gen/java
   - remote: buf.build/grpc/java:v1.59.0
-    out: ./java/src/main/java
+    out: gen/java
 
   # Python
   - remote: buf.build/protocolbuffers/python:v24.4
