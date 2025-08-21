@@ -5,7 +5,6 @@ modules:
     name: buf.build/stroeer/tapir
     excludes:
       - node
-      - node-proto
       - node-buf
 
 deps:

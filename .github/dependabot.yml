@@ -11,6 +11,6 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "npm"
-    directory: "/node-proto"
+    directory: "/node-buf"
     schedule:
       interval: "weekly"
