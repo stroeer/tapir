@@ -40,8 +40,6 @@ Run the following commands to generate code for `java`, `python`, `node` (deprec
 make generate
 # node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
 make generate TEMPLATE=buf.gen.node.yaml
-# bufbuild/es generates ts only (deprecated, use BSR sdk)
-make generate TEMPLATE=buf.gen.node-proto.yaml
 # bufbuild/es generates cjs only
 make generate TEMPLATE=buf.gen.node-buf.yaml
 ```
@@ -83,8 +81,7 @@ use these SDKs instead of our custom [client libraries](#client-libraries).
 In addition to the [BSR SDKs](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
 for the following languages:
 
-* (`deprecated`) [node](https://github.com/stroeer/tapir/packages/235031) 
-* (`deprecated`) [protobuf-es (v1)](https://github.com/stroeer/tapir/pkgs/npm/tapir-proto-v1)
+* (`deprecated`) [node](https://github.com/stroeer/tapir/packages/235031)
 * [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)
 
 automatically for each new tag which can be integrated in your build system.
