@@ -11,9 +11,11 @@ kreya
 # node
 node_modules
 node/stroeer
+node/google
 node/dist
 node-buf/dist
 node-buf/stroeer
+node-buf/google
 bin/protoc
 *.tgz
 *.tsbuildinfo
