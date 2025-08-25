@@ -8,13 +8,16 @@ on:
       - synchronize
 
 jobs:
-  main:
+  linting:
     name: validate
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       # We use pinned version for non-verified actions to ensure security.
-      # https://github.com/amannn/action-semantic-pull-request/releases/tag/v5.5.3
-      - uses: amannn/action-semantic-pull-request@0723387faaf9b38adef4775cd42cfd5155ed6017
+      # https://github.com/amannn/action-semantic-pull-request/releases/tag/v6.1.1
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

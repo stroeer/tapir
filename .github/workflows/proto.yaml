@@ -8,7 +8,6 @@ on:
     branches:
       - main
 
-
 jobs:
   buf:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: bufbuild/buf-action@v1
         with:
@@ -34,7 +33,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # we need Node for the local execution of protoc Typescript plugin
       - uses: actions/setup-node@v4
@@ -81,7 +80,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: actions/setup-node@v4
         with:
