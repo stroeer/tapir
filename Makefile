@@ -43,18 +43,10 @@ test: generate ## Runs all tests
 	@echo "+ $@"
 	@cd node && npm run checks
 
-.PHONY: node-examples
-node-examples:  ## Tests generated node client stubs against API
-	@echo "+ $@"
-	@cd node && npm run examples:build  && npm run examples:grpc-js:run
-
 .PHONY: clean
 clean: ## Deletes all generated files
 	@echo "+ $@"
 	rm -rf ./gen || true
-	rm -rf `find ./node -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
-	rm -rf `find ./node-proto -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
-	rm -rf `find ./node-buf -type d \( -iname "*" ! -iname "node_modules" ! -iname "__tests__" ! -iname "examples" \) -mindepth 1 -maxdepth 1` 2> /dev/null || true
 
 .PHONY: help
 help: ## Display this help screen

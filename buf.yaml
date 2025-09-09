@@ -3,9 +3,6 @@ version: v2
 modules:
   - path: .
     name: buf.build/stroeer/tapir
-    excludes:
-      - node
-      - node-buf
 
 deps:
   - buf.build/googleapis/googleapis
