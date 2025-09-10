@@ -4,13 +4,3 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
-  - package-ecosystem: "npm"
-    directory: "/node"
-    schedule:
-      interval: "weekly"
-
-  - package-ecosystem: "npm"
-    directory: "/node-buf"
-    schedule:
-      interval: "weekly"

@@ -33,18 +33,14 @@ We recommend to use the generated SDKs from the [buf schema registry (BSR)](#buf
 In addition, it's possible to generate code for interacting with the t-online APIs using the [buf cli](https://buf.build/docs/generate/overview). See [docs](https://buf.build/docs/installation)
 for installation instructions.  
 
-Run the following commands to generate code for `java`, `python`, `node` (deprecated), `protobuf-es` (`node-buf`) or `go`:
+Run the following commands to generate code for `java`, `python` or `go`:
 
 ```shell
 # java, python and go
 make generate
-# node (deprecated, use BSR sdk instead or node-buf if cjs is needed)
-make generate TEMPLATE=buf.gen.node.yaml
-# bufbuild/es generates cjs only
-make generate TEMPLATE=buf.gen.node-buf.yaml
 ```
 
-See corresponding `buf.gen.*.yaml` code generation configuration.
+See corresponding `buf.gen.yaml` code generation configuration.
 
 ## testing and quality assurance
 
@@ -55,8 +51,6 @@ We use the [buf cli](https://buf.build/docs/ecosystem/cli-overview) for quality 
 * `make breaking`: check for breaking changes against the main branch with [buf breaking](https://buf.build/docs/breaking/overview)
 
 These tools are configured in the `buf.yaml` file. 
-
-In addition, we run some basic language specific tests to verify a successful code generation for `java` and `node`.
 
 ## releases
 
@@ -72,22 +66,8 @@ We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) auto
 provides SDKs for various languages to interact with the t-online APIs. It's recommended to 
 use these SDKs instead of our custom [client libraries](#client-libraries).
 
-### client libraries
+### deprecated client libraries
 
-> [!IMPORTANT]  
-> It is recommended to use the [BSR SDKs](#buf-schema-registry) instead of the client libraries below. 
-> The client libraries are deprecated and will not be maintained in the future.
-
-In addition to the [BSR SDKs](https://buf.build/stroeer/tapir), we generate packages hosted on [GitHub](https://github.com/orgs/stroeer/packages?repo_name=tapiro) 
-for the following languages:
-
-* (`deprecated`) [node](https://github.com/stroeer/tapir/packages/235031)
-* [protobuf-es (v2)](https://github.com/stroeer/tapir/pkgs/npm/tapir-buf-v1)
-
-automatically for each new tag which can be integrated in your build system.
-
-See our GitHub [workflow](.github/workflows/proto.yaml) for details. 
-
-
-
- 
+> [!CAUTION]
+> All client libraries hosted on [GitHub Packages](https://github.com/orgs/stroeer/packages?repo_name=tapiro)
+> are deprecated and outdated. If you still use one of them, please migrate to the [BSR SDKs](#buf-schema-registry).

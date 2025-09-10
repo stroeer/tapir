@@ -8,21 +8,6 @@ kreya
 .kreya
 .DS_Store
 
-# node
-node_modules
-node/stroeer
-node/google
-node/dist
-node-buf/dist
-node-buf/stroeer
-node-buf/google
-bin/protoc
-*.tgz
-*.tsbuildinfo
-
-# binaries
-protoc-gen-grpc-java
-
 # generated code
 gen/
 book.toml
