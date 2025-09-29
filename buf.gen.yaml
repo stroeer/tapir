@@ -21,25 +21,25 @@ managed:
 
 plugins:
   # Java
-  - remote: buf.build/protocolbuffers/java:v24.4
+  - remote: buf.build/protocolbuffers/java:v32.1
     out: gen/java
-  - remote: buf.build/grpc/java:v1.59.0
+  - remote: buf.build/grpc/java:v1.75.0
     out: gen/java
 
   # Python
-  - remote: buf.build/protocolbuffers/python:v24.4
+  - remote: buf.build/protocolbuffers/python:v32.1
     out: gen/python
-  - remote: buf.build/grpc/python:v1.59.2
+  - remote: buf.build/grpc/python:v1.75.1
     out: gen/python
 
   # Go
-  - remote: buf.build/protocolbuffers/go:v1.36.5
+  - remote: buf.build/protocolbuffers/go:v1.36.9
     out: gen/go
   - remote: buf.build/grpc/go:v1.5.1
     out: gen/go
 
   # gRPC Gateway
-  - remote: buf.build/grpc-ecosystem/gateway:v2.26.1
+  - remote: buf.build/grpc-ecosystem/gateway:v2.27.2
     out: gen/go
     opt:
       - logtostderr=true
