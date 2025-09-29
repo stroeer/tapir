@@ -101,10 +101,6 @@ release: clean check-git-branch ## Releases new version of gRPC source code pack
 	git push origin $(NEXT_TAG)
 	gh release create --generate-notes --notes --target $(NEXT_TAG) --verify-tag
 
-.PHONY:
-release-local-java: java ## Releases generated Java code to your local maven repository
-	cd java && ./gradlew clean build publishToMavenLocal
-
 postman :: ## Generate postman root.proto than can be imported into postman v10 gRPC APIs
 	echo 'syntax = "proto3";' > root.proto
 	echo 'package stroeer;' >> root.proto
