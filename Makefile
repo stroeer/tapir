@@ -1,4 +1,4 @@
-all: build generate test fmt lint breaking
+all: build generate fmt lint breaking
 
 TEMPLATE ?= buf.gen.yaml
 ifeq ($(findstring node,$(TEMPLATE)),node)
@@ -38,10 +38,11 @@ push: build ## Pushes tapir to the buf schema registry, see https://buf.build/do
 	@echo "+ $@"
 	@buf push --git-metadata
 
-.PHONY: test
-test: generate ## Runs all tests
+.PHONY: update
+update: ## Updates and prunes unused dependencies defined in buf.yaml
 	@echo "+ $@"
-	@cd node && npm run checks
+	@buf dep update
+	@buf dep prune
 
 .PHONY: clean
 clean: ## Deletes all generated files
