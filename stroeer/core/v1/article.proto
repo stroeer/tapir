@@ -833,6 +833,8 @@ message Author {
   repeated string areas_of_expertise = 8;
   // References, e.g. URLs belonging to this author page (rss, external, internal links).
   repeated Reference references = 9;
+  // Author's signature, to be used for extra personlized content (e.g. tagesanbruch)
+  Article.Element signature = 10;
 
   enum Type {
     TYPE_UNSPECIFIED = 0;
