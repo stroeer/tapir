@@ -640,6 +640,9 @@ message Article {
       // Content that is not rendered as part of the main article, but whose content
       // will be shown in the companion column, e.g. tabular data or images.
       COMPANION = 7;
+      // outline for the content, in contrast to the table of contents this is not
+      // auto-generated. Instead, this was written by an editor.
+      OUTLINE = 8;
     }
 
     /*
