@@ -24,18 +24,22 @@ service ArticleExtenderService {
  * ```protobuf
  * rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
  * ```
- *
- * Returns an array of questions if the given `id` exists, in the vector store,
- * an `Error`, otherwise.
+
+ * Returns a list of contextual questions for the given article or section,
+ * if the provided \`id\` exists in the vector store or the \`path\` can be
+ * resolved to AE\-score\-based questions; otherwise returns an \`Error\`.
+ * At least one of id or path is required.
  *
  * | Field name       | Type                | Description                                                           |
  * |------------------|---------------------|-----------------------------------------------------------------------|
- * | `id`             | `int64`             | [required] Unique id of the article, questions should be returned for.|
+ * | `id`             | `int64`             | Unique id of an article, questions should be returned for.            |
+ * | `path`           | `string`            | Path of a section, questions should be returned for.                  |
  *
  * @CodeBlockStart protobuf
  */
 message GetQuestionsRequest {
   int64 id = 1;
+  string path = 2;
 }
 
 message GetQuestionsResponse {
