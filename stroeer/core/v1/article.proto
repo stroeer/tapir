@@ -157,10 +157,12 @@ message Article {
     AGENCY = 7 [deprecated = true];
     // An external article that references externeral resources (teaser-like external article, e.g. "watson.de")
     EXTERNAL = 8;
-    // a thematically grouped cluster for variable amount of articles
+    // A thematically grouped cluster for variable amount of articles
     CLUSTER = 9;
     // A topic page
     TOPIC = 10;
+    // A article representing a debate
+    DEBATE = 11;
     // Used for internal purposes only.
     INTERNAL = 100;
   }
@@ -270,6 +272,8 @@ message Article {
       INTERNAL_WIDGET = 10;
       // audio element, containing an `Asset` of type `AUDIO`
       AUDIO = 11;
+      // debate element, containing a nested poster image and structured data to render a debate
+      DEBATE = 12;
     }
 
     enum Relation {
