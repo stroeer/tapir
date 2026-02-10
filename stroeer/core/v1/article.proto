@@ -157,7 +157,7 @@ message Article {
     AGENCY = 7 [deprecated = true];
     // An external article that references externeral resources (teaser-like external article, e.g. "watson.de")
     EXTERNAL = 8;
-    // A thematically grouped cluster for variable amount of articles
+    // An thematically grouped cluster for variable amount of articles
     CLUSTER = 9;
     // A topic page
     TOPIC = 10;
