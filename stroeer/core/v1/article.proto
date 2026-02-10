@@ -161,7 +161,7 @@ message Article {
     CLUSTER = 9;
     // A topic page
     TOPIC = 10;
-    // A article representing a debate
+    // An article representing a debate
     DEBATE = 11;
     // Used for internal purposes only.
     INTERNAL = 100;
