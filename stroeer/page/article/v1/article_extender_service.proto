@@ -1,6 +1,6 @@
 syntax = "proto3";
 /**
- * @FileArticle ⚙︎ ArticleExtenderService
+ * ArticleExtenderService
  */
 
 package stroeer.page.article.v1;
@@ -8,54 +8,72 @@ package stroeer.page.article.v1;
 import "stroeer/core/v1/article.proto";
 
 /**
- * The ArticleExtenderService provides methods to extend an article with additional information.
- * The main purpose is to retrieve questions for a given article to be rendered in the ArticleExtender Widget on ArticlePages.
+ * The ArticleExtenderService provides methods to extend an article with additional
+ * information. Its main purpose is to retrieve questions for a given article so
+ * that the ArticleExtender Widget on ArticlePages can render them alongside any
+ * server-provided answers.
  *
- * @CodeBlockStart protobuf
+ * ```protobuf
+ * service ArticleExtenderService {
+ *   rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
+ *   rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
+ * }
+ * ```
  */
 service ArticleExtenderService {
   rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
   rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
 }
-/** @CodeBlockEnd */
 
 /**
- * # `⚙︎ GetQuestions`
+ * # GetQuestions
+ *
  * ```protobuf
  * rpc GetQuestions(GetQuestionsRequest) returns (GetQuestionsResponse) {}
  * ```
  *
- * Returns an array of questions if the given `id` exists, in the vector store,
- * an `Error`, otherwise.
+ * Returns a list of contextual questions for the given article or section if
+ * the provided `article_id` exists in the vector store or the `section_path`
+ * can be resolved to AE-score-based questions; otherwise returns an error. At
+ * least one of `article_id` or `section_path` is required.
  *
- * | Field name       | Type                | Description                                                           |
- * |------------------|---------------------|-----------------------------------------------------------------------|
- * | `id`             | `int64`             | [required] Unique id of the article, questions should be returned for.|
- *
- * @CodeBlockStart protobuf
+ * | Field name      | Type     | Description                                                    |
+ * |-----------------|----------|----------------------------------------------------------------|
+ * | `article_id`    | `int64`  | Unique id of an article the questions belong to.               |
+ * | `section_path`  | `string` | Path of a section the questions should be returned for.        |
  */
 message GetQuestionsRequest {
-  int64 id = 1;
+  int64 article_id = 1;
+  string section_path = 2;
 }
 
+/**
+ * Questions to render within the article extender widget.
+ *
+ * | Field name   | Type            | Description                        |
+ * |--------------|-----------------|------------------------------------|
+ * | `questions`  | `repeated string` | List of contextual questions.    |
+ */
 message GetQuestionsResponse {
   repeated string questions = 1;
 }
 
 /**
- * # `⚙︎ GetAnswer`
+ * # GetAnswer
+ *
  * ```protobuf
  * rpc GetAnswer(GetAnswerRequest) returns (GetAnswerResponse) {}
  * ```
  *
- * Returns the answer of a question as a string. Otherwise an `Error`.
+ * Returns the answer for a question as a string. Otherwise an error is
+ * returned if the question cannot be answered for the referenced article.
  *
- * | Field name       | Type                | Description                                       |
- * |------------------|---------------------|---------------------------------------------------|
- * | `question`       | `string`            | [required] The question for the returned answers. |
- * | `article_id`     | `int64`             | [required] The original article the user read.    |
- *
- * @CodeBlockStart protobuf
+ * | Field name        | Type       | Description                                        |
+ * |-------------------|------------|----------------------------------------------------|
+ * | `question`        | `string`   | **Required.** The question to answer.              |
+ * | `article_id`      | `int64`    | **Required.** The original article the user read.  |
+ * | `question_source` | `QuestionSource` | Source of the question.                       |
+ * | `accept`          | `Accept`   | Preferred format of the answer content.            |
  */
 message GetAnswerRequest {
   string question = 1;
@@ -63,21 +81,16 @@ message GetAnswerRequest {
   QuestionSource question_source = 3;
   Accept accept = 4;
 
-  /** @CodeBlockEnd */
-
   /**
-   * ## `enum QuestionSource`
-   * Information about the source of the question.
-   * User questions must be treated differently than questions that we provided.
+   * ## QuestionSource
+   * Information about the origin of the question. User-provided questions must
+   * be treated differently than questions provided server-side.
    *
-   * | Enum value                    | Description                                                  |
-   * |-------------------------------|--------------------------------------------------------------|
-   * | `QUESTION_SOURCE_UNSPECIFIED` | unspecified                                                  |
-   * | `INITIAL_QUESTIONS`           | The question was part of the initial server-side response.   |
-   * | `USER`                        | The question is an input from the user.                      |
-   *
-   *
-   * @CodeBlockStart protobuf
+   * | Enum value                    | Description                                                |
+   * |-------------------------------|------------------------------------------------------------|
+   * | `QUESTION_SOURCE_UNSPECIFIED` | Unspecified origin.                                        |
+   * | `INITIAL_QUESTIONS`           | Part of the initial server-side response.                  |
+   * | `USER`                        | Direct user input.                                         |
    */
   enum QuestionSource {
     QUESTION_SOURCE_UNSPECIFIED = 0;
@@ -85,20 +98,15 @@ message GetAnswerRequest {
     USER = 2;
   }
 
-  /** @CodeBlockEnd */
-
   /**
-   * ## `enum Accept`
-   * The client can specify the format of the answer text.
+   * ## Accept
+   * The client can specify the format of the returned answer text.
    *
-   * | Enum value            | Description                                                  |
-   * |-----------------------|--------------------------------------------------------------|
-   * | `ACCEPT_UNSPECIFIED`  | unspecified                                                  |
-   * | `PLAINTEXT`           | The question was part of the initial server-side response.   |
-   * | `MARKDOWN`            | The question is an input from the user.                      |
-   *
-   *
-   * @CodeBlockStart protobuf
+   * | Enum value           | Description                         |
+   * |----------------------|-------------------------------------|
+   * | `ACCEPT_UNSPECIFIED` | Unspecified format preference.      |
+   * | `PLAINTEXT`          | Request an answer formatted as text.|
+   * | `MARKDOWN`           | Request an answer formatted in Markdown. |
    */
   enum Accept {
     ACCEPT_UNSPECIFIED = 0;
@@ -107,6 +115,16 @@ message GetAnswerRequest {
   }
 }
 
+/**
+ * Answer payload returned for a specific question.
+ *
+ * | Field name           | Type                            | Description                                                |
+ * |----------------------|---------------------------------|------------------------------------------------------------|
+ * | `answer`             | `string`                        | Answer text in the requested format.                       |
+ * | `sources`            | `repeated stroeer.core.v1.Article` | Deprecated source articles for backward compatibility. |
+ * | `further_questions`  | `repeated string`               | Follow-up questions for continued engagement.             |
+ * | `source_ids`         | `repeated int64`                | References to source articles backing the answer.         |
+ */
 message GetAnswerResponse {
   string answer = 1;
   repeated stroeer.core.v1.Article sources = 2 [deprecated = true];
