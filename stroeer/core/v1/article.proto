@@ -57,9 +57,10 @@ import "stroeer/core/v1/shared.proto";
    | `headline_short`            |           | use-case specific `headline`: used for "Schlagzeilen", overrides `headline`                            |
    | `teaser:headline`           |           | use-case specific `headline`: used when this content is rendered as a teaser                           |
    | `newsletter_subject_header` |           | use-case specific `headline`: used when this content is sent via newsletter E-Mail (e.g. Tagesanbruch) |
+   | `breaking_news_headline`    |           | use-case specific `headline`: used when content is displayed as a breaking news                        |
    | `tracking_title`            |           | refers to CMS `internalStorage.trackingTitle` (probably unused)                                        |
-   | `mzt_title`                 |           | use-caes specific `headline`: used when this content is rendered as mzt ("mehr zum Thema")             |
-   | `mzt_top_line`              |           | use-caes specific `top_line`: used when this content is rendered as mzt ("mehr zum Thema")             |
+   | `mzt_title`                 |           | use-case specific `headline`: used when this content is rendered as mzt ("mehr zum Thema")             |
+   | `mzt_top_line`              |           | use-cass specific `top_line`: used when this content is rendered as mzt ("mehr zum Thema")             |
    | `teaser_author_label`       |           | overrides the default author/agency behaviour (cms: "Autorenkennzeichnung")                            |
    | `summary`                   |           | summary for this content, used on detail pages                                                         |
    | `teaser_text`               |           | used on teasers, overrides `summary`                                                                   |
