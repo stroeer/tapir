@@ -748,7 +748,8 @@ message Article {
     // Start of the time range during which this content is eligible for automated curation
     // based on queries or performance data.
     google.protobuf.Timestamp curation_automation_start_time = 14;
-    // time range end during which this content is viable for curation / automation
+    // End of the time range during which this content is eligible for automated curation
+    // based on queries or performance data.
     google.protobuf.Timestamp curation_automation_end_time = 15;
 
     /*
