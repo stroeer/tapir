@@ -745,6 +745,10 @@ message Article {
     string related_article_source = 12;
     // The tenant this article belongs to. e.g. `www`, `berlin` or such
     string tenant = 13;
+    // time range start during which this content is viable for curation / automation
+    google.protobuf.Timestamp curation_automation_start_time = 14;
+    // time range end during which this content is viable for curation / automation
+    google.protobuf.Timestamp curation_automation_end_time = 15;
 
     /*
        State of the item ([`Article`](article.html), [`Element`](article.element.html))
