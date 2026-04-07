@@ -247,6 +247,8 @@ message Article {
     // nested elements, e.g. for `gallery` and `video` there may be nested `Element` of type `IMAGE`
     // for video posters or gallery images.
     repeated Element children = 4;
+    // TODO: docs!
+    repeated Body bodies = 5;
 
     enum Type {
       TYPE_UNSPECIFIED = 0;
@@ -646,6 +648,8 @@ message Article {
       // outline for the content, in contrast to the table of contents this is not
       // auto-generated. Instead, this was written by an editor.
       OUTLINE = 8;
+      // TODO: docs!
+      CAPTION = 9;
     }
 
     /*
