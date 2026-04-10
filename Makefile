@@ -100,7 +100,7 @@ release: clean check-git-branch ## Releases new version of gRPC source code pack
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
 	git push origin $(NEXT_TAG)
-	gh release create --generate-notes --notes --target $(NEXT_TAG) --verify-tag
+	gh release create $(NEXT_TAG) --generate-notes --verify-tag --fail-on-no-commits
 
 postman :: ## Generate postman root.proto than can be imported into postman v10 gRPC APIs
 	echo 'syntax = "proto3";' > root.proto
