@@ -63,8 +63,36 @@ fine-grained personal access token is provided in the `GITHUB_TOKEN` environment
 ### buf schema registry
 
 We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
-provides SDKs for various languages to interact with the t-online APIs. It's recommended to 
+provides SDKs for various languages to interact with the t-online APIs. It's recommended to
 use these SDKs instead of our custom [client libraries](#client-libraries).
+
+#### Python installation
+
+The Python package `stroeer-tapir-grpc-python` is published to `https://buf.build/gen/python`.
+
+**Using pip:**
+
+```bash
+pip install stroeer-tapir-grpc-python --extra-index-url https://buf.build/gen/python
+```
+
+**Using uv:**
+
+When using [uv](https://docs.astral.sh/uv/), you need to configure it to check multiple package indexes. Add the buf.build index to your `pyproject.toml`:
+
+```toml
+[[tool.uv.index]]
+name = "buf"
+url = "https://buf.build/gen/python"
+```
+
+Or use the `--index-strategy` flag:
+
+```bash
+uv pip install stroeer-tapir-grpc-python --index-strategy unsafe-best-match --extra-index-url https://buf.build/gen/python
+```
+
+**Note:** The `unsafe-best-match` strategy allows uv to consider versions from all configured indexes. This is safe when all your package sources are trusted.
 
 ### deprecated client libraries
 
