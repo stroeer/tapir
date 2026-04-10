@@ -470,6 +470,8 @@ message Article {
       Metadata metadata = 3;
       // references (links) related to this asset, e.g. a clickable image or link asset
       Reference reference = 4;
+      // contains editorial content with markup like captions with links. Only present for `METADATA` assets.
+      repeated Body bodies = 5;
 
       /**
        * ## `enum Type`
@@ -634,7 +636,7 @@ message Article {
       ARTICLE_SOURCES = 2;
       // A article disclaimer with important notes/legal stuff. E.g. "medizinischer Hinweis" on all medical articles.
       DISCLAIMER = 3;
-      // Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`.
+      // Deprecated. Do not use!
       TRUST_BOX = 4 [deprecated = true];
       // Table of contents for this article, consists of anchors which refer to sub headlines within the `BODY`.
       TABLE_OF_CONTENTS = 5;
@@ -643,9 +645,12 @@ message Article {
       // Content that is not rendered as part of the main article, but whose content
       // will be shown in the companion column, e.g. tabular data or images.
       COMPANION = 7;
-      // outline for the content, in contrast to the table of contents this is not
+      // Outline for the content, in contrast to the table of contents this is not
       // auto-generated. Instead, this was written by an editor.
       OUTLINE = 8;
+      // Content that is rendered as a caption for elements like images or videos.
+      // Contains only content with styles for text (e.g. bold, italic, ...) and links.
+      CAPTION = 9;
     }
 
     /*
