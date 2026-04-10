@@ -63,8 +63,33 @@ fine-grained personal access token is provided in the `GITHUB_TOKEN` environment
 ### buf schema registry
 
 We push to the [buf schema registry (BSR)](https://buf.build/stroeer/tapir) automatically for each new tag. The registry
-provides SDKs for various languages to interact with the t-online APIs. It's recommended to 
+provides SDKs for various languages to interact with the t-online APIs. It's recommended to
 use these SDKs instead of our custom [client libraries](#client-libraries).
+
+#### python package installation
+
+When using Python packages from BSR with the `uv` package manager, you may encounter dependency resolution issues due to missing upload timestamp metadata. This is a known limitation of BSR's Python package index.
+
+**Workaround for uv users:**
+
+Add the `--index-strategy unsafe-best-match` flag to allow uv to search across multiple package indexes:
+
+```bash
+uv pip install stroeer-tapir-grpc-python --index-strategy unsafe-best-match
+```
+
+Or configure it in your `pyproject.toml`:
+
+```toml
+[tool.uv]
+index-strategy = "unsafe-best-match"
+```
+
+Alternatively, use `pip` which handles this scenario more gracefully:
+
+```bash
+pip install stroeer-tapir-grpc-python --extra-index-url https://buf.build/gen/python
+```
 
 ### deprecated client libraries
 
