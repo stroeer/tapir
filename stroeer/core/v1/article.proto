@@ -202,8 +202,8 @@ message Article {
     ANALYSIS = 15;
     // _Guest Essay_ — a guest article, usually written by an external author
     GUEST_ESSAY = 16;
-    // _Orbituary_ — an orbituary article is a special article type that is used to mark the death of a person.
-    ORBITUARY = 17;
+    // _Obituary_ — an obituary article is a special article type that is used to mark the death of a person.
+    OBITUARY = 17;
   }
 
   /*
