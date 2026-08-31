@@ -70,6 +70,8 @@ import "stroeer/core/v1/shared.proto";
    | `meta_description`          |           | HTML `<meta description>`                                                                              |
    | `reading_time_minutes`      |           | estimated reading time in minutes                                                                      |
    | `vg_wort_pixel`             |           | link for tracking this content with VG-Wort                                                            |
+   | `meta_sdi_zone`             |           | advertising zone passed to the SDI ad server, maintained per section in the CMS design                 |
+   | `marketing_campaign_ad_id`  |           | id of the referenced marketing campaign (CMS: "Umfeldvermarktung"); used for ad targeting and tracking  |
 
    ##### `flags`
 
@@ -86,6 +88,7 @@ import "stroeer/core/v1/shared.proto";
    | `flag:breaking_news`               | this content is breaking news, mark as "Eilmeldung"                                                  |
    | `flag:disable_taboola_ad`          | disable taboola ads for this content                                                                 |
    | `flag:live`                        | this content covers live events, its teaser will be marked as "Live"                                 |
+   | `flag:disable_commercials_ad_defend` | disable the AdDefend anti-adblock fallback for this content                                        |
 
    #### For `Article.Type.GALLERY`
 
