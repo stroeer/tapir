@@ -615,18 +615,18 @@ message Article {
   }
 
   /*
-     The `Body` represents a basic building block which will be translated to HTML
-     or similar by the front end renderer.
+   The `Body` represents a basic building block which will be translated to HTML
+   or similar by the front end renderer.
 
-     Each `Body` is self-contained and holds all the data required for rendering
-     within its data structures.
+   Each `Body` is self-contained and holds all the data required for rendering
+   within its data structures.
 
-     Common use cases for this are `Type.BODY` are:
-     * the textual article body can be found
-     * `TYPE.ARTICLE_SOURCE` where onward articles are referenced.
-     * `TYPE.DISCLAIMER` containing disclaimers
-     * `TYPE.TABLE_OF_CONTENTS` which contains a table of contents for the article
-  */
+   Common use cases for this are `Type.BODY` are:
+   * the textual article body can be found
+   * `TYPE.ARTICLE_SOURCE` where onward articles are referenced.
+   * `TYPE.DISCLAIMER` containing disclaimers
+   * `TYPE.TABLE_OF_CONTENTS` which contains a table of contents for the article
+   */
   message Body {
     // Recursive/Nested structure that usually represents the textual body / Markup / HTML
     repeated BodyNode children = 1;
