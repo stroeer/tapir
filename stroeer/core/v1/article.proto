@@ -207,6 +207,8 @@ message Article {
     GUEST_ESSAY = 16;
     // _Obituary_ — an obituary article is a special article type that is used to mark the death of a person.
     OBITUARY = 17;
+    // _Magazine_ — a magazine article (e.g. "Anständig Miteinander")
+    MAGAZINE = 18;
   }
 
   /*
