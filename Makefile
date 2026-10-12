@@ -57,11 +57,10 @@ help: ## Display this help screen
 # release #
 ###########
 
-DESCRIBE			= $(eval DESCRIBE := $(shell git fetch --all > /dev/null && git describe --match "v*" --always --tags))$(DESCRIBE)
+UPSTREAM			= git@github.com:stroeer/tapir.git
 
-DESCRIBE_PARTS		= $(subst -, ,$(DESCRIBE))
-# 'v0.2.0'
-VERSION_TAG			= $(word 1,$(DESCRIBE_PARTS))
+# 'v0.2.0', highest tag upstream (evaluated once, lazily)
+VERSION_TAG		= $(eval VERSION_TAG := $(shell git ls-remote --tags --refs --sort=-v:refname $(UPSTREAM) 'v*' | head -1 | cut -d/ -f3))$(VERSION_TAG)
 # '0.2.0'
 VERSION				= $(subst v,,$(VERSION_TAG))
 # '0 2 0'
@@ -90,8 +89,8 @@ check-git-clean: ## Verifies clean working directory
 .PHONY: check-git-branch
 check-git-branch: check-git-clean
 	@echo "+ $@"
-	git fetch --all --tags --prune
 	git checkout main
+	git pull --ff-only $(UPSTREAM) main
 
 .PHONY: release
 release: clean check-git-branch ## Releases new version of gRPC source code packages
@@ -99,8 +98,8 @@ release: clean check-git-branch ## Releases new version of gRPC source code pack
 	@gh auth status >/dev/null 2>&1 || (echo "ERROR: gh auth status is NOT OK (try running 'gh auth status')."; exit 1)
 	@echo "+ $@ $(NEXT_TAG)"
 	git tag -a $(NEXT_TAG) -m "$(NEXT_TAG)"
-	git push origin $(NEXT_TAG)
-	gh release create $(NEXT_TAG) --generate-notes --verify-tag --fail-on-no-commits
+	git push $(UPSTREAM) $(NEXT_TAG)
+	gh release create $(NEXT_TAG) --repo stroeer/tapir --generate-notes --verify-tag --fail-on-no-commits
 
 postman :: ## Generate postman root.proto than can be imported into postman v10 gRPC APIs
 	echo 'syntax = "proto3";' > root.proto
